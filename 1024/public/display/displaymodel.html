@@ -1,0 +1,52 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+		<script type="text/javascript">
+			var modelId = 40001;
+		</script>
+        <!-- build:css display/styles/displaymodel-style.css -->
+        <link type="text/css" rel="stylesheet" href="../display/jquery.qtip.min.css" />
+        <link type="text/css" rel="stylesheet" href="../display/displaymodel.css" />
+        <!-- endbuild -->
+    <!--[if lt IE 9]>
+    <script src="../libs/es5-shim-15.3.4.5/es5-shim.js"></script>
+    <script src="../libs/json3_3.2.6/lib/json3.min.js"></script>
+    <![endif]-->
+
+    <!-- 3rd party libs -->
+    <script src="../libs/jquery_1.11.0/jquery.min.js"></script>
+        <!-- Configuration -->
+       <!--
+         todo
+         Remove this? shouldn't this be on the page already,
+         and wouldn't it override settings form app-cfg-on-premise & others
+         -->
+		 
+       <!--
+        <script type="text/javascript" src="../scripts/app-cfg.js?v=1"></script>
+       -->
+
+
+
+    </head>
+	<body>
+	<div class="content center-pane" ng-if="model.process" auto-height offset="40" >
+        
+    	<div class="model-preview-wrapper" ng-if="!model.process.modelType && model.process.modelType != 1">
+    	   <div id="bpmnModel" data-model-id="52508"></div>
+    	</div>
+</div>
+	</body>
+</html>
+
+        <!-- build:js display/scripts/displaymodel-logic.js -->
+        <script type="text/javascript" src="../display/jquery.qtip.min.js"></script>
+        <script type="text/javascript" src="../display/raphael.js"></script>
+        <script type="text/javascript" src="../display/bpmn-draw.js"></script>
+        <script type="text/javascript" src="../display/bpmn-icons.js"></script>
+        <script type="text/javascript" src="../display/Polyline.js"></script>
+        <script type="text/javascript" src="../display/displaymodel2.js"></script>
+        <!-- endbuild -->

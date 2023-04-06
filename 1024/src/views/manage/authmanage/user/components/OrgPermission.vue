@@ -1,0 +1,272 @@
+<template>
+  <div class="app-container" style="background-color: #FFFFFF;">
+    组织机构权限类型:
+    <el-radio-group v-model="formData.orgPermissionType" size="medium"
+      @input="handleOrgPermissionTypeChangeEvent">
+      <el-radio-button v-for="item in formData.permissionOptions" :key="item.value" :value="item.value"
+        :label="item.value">
+        {{ item.label }}
+      </el-radio-button>
+    </el-radio-group>
+    <!--查询条件和查询按钮区-->
+    <div style="text-align:left;height:50px;margin-top: 10px;" v-if="formData.orgPermissionType == $commonConstant.DATA_PERMISSION_CUSTMOS()">
+      <el-form :inline="true" class="demo-form-inline">
+        <el-form-item>
+          <el-input v-model="granted.code" placeholder="请输入编码" size="mini" prefix-icon="el-icon-search" clearable="true"/>
+        </el-form-item>
+        <el-form-item>
+          <el-input v-model="granted.name" placeholder="请输入名称" size="mini" prefix-icon="el-icon-search" clearable="true"/>
+        </el-form-item>
+        <el-form-item>
+          <el-button size="mini" type="success" icon="el-icon-search" @click="handleClickGrantedQueryButton()">查询</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
+    <!--查询条件和查询按钮区结束-->
+    <el-table :data="granted.tableData" stripe border highlight-current-row fit style="width: 800px"
+      :header-cell-style="{'text-align':'center'}"
+      v-if="formData.orgPermissionType == $commonConstant.DATA_PERMISSION_CUSTMOS()">
+      <el-table-column prop="code" label="编码" align="left" min-width="15%" />
+      <el-table-column prop="name" label="名称" align="left" min-width="15%" />
+      <el-table-column label="操作" min-width="10%">
+        <template slot="header" slot-scope="scope">
+          操作
+          <el-button size="least" type="primary" icon="el-icon-plus" @click="handleClickAddButton()" />
+        </template>
+        <template slot-scope="scope">
+          <el-button type="danger" size="least" @click="handleRevokeGrantedRow(scope.row)">撤销</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+    <!-- 分页组件开始 -->
+    <div ref="grantedPaginationContainer" style="text-align: center;"
+      v-if="formData.orgPermissionType == $commonConstant.DATA_PERMISSION_CUSTMOS()">
+      <el-pagination v-on:size-change="handleGrantedPageSizeChange" v-on:current-change="handleGrantedPageCurrentChange"
+        :current-page="granted.page.currentPage" :page-sizes="[5,10,20,50,100,500]" :page-size="granted.page.pageSize"
+        layout="total, sizes, prev, pager, next, jumper" :total="granted.page.total">
+      </el-pagination>
+    </div>
+    <!-- 分页组件结束 -->
+    <el-dialog :visible.sync="grantable.dialogVisible" :title="getDialogTitle()" append-to-body>
+      <!--查询条件和查询按钮区-->
+      <div style="text-align:left;height:50px;margin-top: 10px;" v-if="formData.orgPermissionType == $commonConstant.DATA_PERMISSION_CUSTMOS()">
+        <el-form :inline="true" class="demo-form-inline">
+          <el-form-item>
+            <el-input v-model="grantable.code" placeholder="请输入编码" size="mini" prefix-icon="el-icon-search" clearable />
+          </el-form-item>
+          <el-form-item>
+            <el-input v-model="grantable.name" placeholder="请输入名称" size="mini" prefix-icon="el-icon-search" clearable />
+          </el-form-item>
+          <el-form-item>
+            <el-button size="mini" type="success" icon="el-icon-search" @click="handleClickGrantableQueryButton()">查询</el-button>
+          </el-form-item>
+        </el-form>
+      </div>
+      <!--查询条件和查询按钮区结束-->
+      <el-table :data="grantable.tableData" stripe border highlight-current-row fit style="width: 800px"
+        :header-cell-style="{'text-align':'center'}">
+        <el-table-column prop="code" label="编码" align="left" min-width="15%" />
+        <el-table-column prop="name" label="名称" align="left" min-width="15%" />
+        <el-table-column label="操作" min-width="10%">
+          <template slot-scope="scope">
+            <el-button type="danger" size="least" @click="handleClickGrantRowButton(scope.row)">赋权</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+      <!-- 分页组件开始 -->
+      <div ref="grantablePaginationContainer" style="text-align: center;">
+        <el-pagination v-on:size-change="handleGrantablePageSizeChange"
+          v-on:current-change="handleGrantablePageCurrentChange" :current-page="grantable.page.currentPage"
+          :page-sizes="[5,10,20,50,100,500]" :page-size="grantable.page.pageSize"
+          layout="total, sizes, prev, pager, next, jumper" :total="grantable.page.total">
+        </el-pagination>
+      </div>
+    </el-dialog>
+  </div>
+</template>
+
+<script>
+  import {
+    fetchGrantedOrgPage,
+    fetchGrantableOrgPage,
+    grantOneOrgToUser,
+    revokeOneOrgFromUser
+  } from '@/api/tr-user-org'
+  import {
+    saveUserOrgDataPermissionType
+  } from '@/api/manage'
+
+  export default {
+    name: 'RegionPermission',
+    data() {
+      return {
+        formData: {
+          userGuid: '',
+          logonName: '',
+          orgPermissionType: '',
+          permissionOptions: []
+        },
+        granted: {
+          page: {
+            currentPage: 1,
+            pageSize: 10,
+            total: 2
+          },
+          tableData: [],
+          code: "",
+          name: ""
+        },
+        grantable: {
+          page: {
+            currentPage: 1,
+            pageSize: 10,
+            total: 2
+          },
+          tableData: [],
+          code: "",
+          name: "",
+          dialogVisible: false
+        },
+      }
+    },
+    mounted() {},
+    methods: {
+      setComponentData(userGuid, logonName, orgPermissionType, permissionOptions) {
+        this.formData.userGuid = userGuid
+        this.formData.logonName = logonName
+        this.formData.orgPermissionType = orgPermissionType
+        this.formData.permissionOptions = permissionOptions
+        this.granted.page.currentPage=1
+        this.loadGrantedOrg()
+      },
+      getDialogTitle(){
+        return '用户组织机构权限授予【'+ this.formData.logonName +'】'
+      },
+      handleGrantedPageSizeChange(val) {
+        if (val !== this.granted.page.pageSize) {
+          this.granted.page.pageSize = val
+          this.loadGrantedOrg()
+        }
+      },
+      handleGrantablePageSizeChange(val) {
+        if (val !== this.grantable.page.pageSize) {
+          this.grantable.page.pageSize = val
+          this.loadGrantableOrg()
+        }
+      },
+      handleGrantedPageCurrentChange(val) {
+        if (val !== this.granted.page.currentPage) {
+          this.granted.page.currentPage = val
+          this.loadGrantedOrg()
+        }
+      },
+      handleGrantablePageCurrentChange(val) {
+        if (val !== this.grantable.page.currentPage) {
+          this.grantable.page.currentPage = val
+          this.loadGrantableOrg()
+        }
+      },
+      handleOrgPermissionTypeChangeEvent(val) {
+        const data = {
+          userGuid: this.formData.userGuid,
+          permissionType: val
+        }
+        this.setUserOrgDataPermissionType(data)
+        if (this.$commonConstant.DATA_PERMISSION_CUSTMOS() == val) {
+          this.loadGrantedOrg()
+        }
+      },
+      async setUserOrgDataPermissionType(data) {
+        const response = await saveUserOrgDataPermissionType(data)
+        this.$message({
+          message: response.message,
+          type: 'warning'
+        })
+      },
+      async handleRevokeGrantedRow(row) {
+        const UserOrgVO = {
+          userGuid: this.formData.userGuid,
+          orgCode: row.code
+        }
+        const response = await revokeOneOrgFromUser(UserOrgVO)
+        this.$message({
+          message: response.message,
+          type: 'warning'
+        })
+        this.loadGrantedOrg()
+      },
+      async handleClickGrantRowButton(row) {
+        const UserOrgVO = {
+          userGuid: this.formData.userGuid,
+          orgCode: row.code
+        }
+        const response = await grantOneOrgToUser(UserOrgVO)
+        this.$message({
+          message: response.message,
+          type: 'warning'
+        })
+        this.loadGrantedOrg()
+        this.loadGrantableOrg()
+      },
+      handleClickGrantedQueryButton(){
+        this.granted.page.currentPage=1
+        this.loadGrantedOrg()
+      },
+      async loadGrantedOrg() {
+        const QueryByGuidDTO = {
+          guid: this.formData.userGuid,
+          currentPage: this.granted.page.currentPage,
+          pageSize: this.granted.page.pageSize,
+          code: this.granted.code,
+          name: this.granted.name
+        }
+        const response = await fetchGrantedOrgPage(QueryByGuidDTO)
+        if (response.code !== 100) {
+          this.$message({
+            message: response.message,
+            type: 'warning'
+          })
+          return
+        }
+        const {
+          data
+        } = response
+        this.granted.page.total = data.total
+        this.granted.tableData = data.records
+      },
+      handleClickAddButton() {
+        this.loadGrantableOrg()
+      },
+      handleClickGrantableQueryButton(){
+        this.grantable.page.currentPage = 1
+        this.loadGrantableOrg()
+      },
+      async loadGrantableOrg() {
+        const QueryByGuidDTO = {
+          guid: this.formData.userGuid,
+          currentPage: this.grantable.page.currentPage,
+          pageSize: this.grantable.page.pageSize,
+          code: this.grantable.code,
+          name: this.grantable.name
+        }
+        const response = await fetchGrantableOrgPage(QueryByGuidDTO)
+        if (response.code !== 100) {
+          this.$message({
+            message: response.message,
+            type: 'warning'
+          })
+          return
+        }
+        const {
+          data
+        } = response
+        this.grantable.tableData = data.records
+        this.grantable.page.total = data.total
+        this.grantable.dialogVisible = true
+      },
+    },
+  };
+</script>
+
+<style>
+</style>
