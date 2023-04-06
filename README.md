@@ -1,31 +1,14 @@
 # boot-admin
 
 #### 介绍
-面向学习型的开源框架，简洁高效，减少过渡封装，展现技术本质!
+boot-admin 是一款采用前后端分离架构模式的后台管理系统解决方案。既有助于学习微服务开发，也可直接作为实际项目的初始框架。不过渡封装，简洁高效，展现技术本质!
 
-#### 软件架构
-软件架构说明
+#### 软件技术路线
 
-
-#### 安装教程
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+**前端**：基于 vue-element-admin 改造实现（官网：https://panjiachen.gitee.io/vue-element-admin-site/zh/ ）；
+**后端**：在SpringBoot基础上搭建的一个Java基础开发平台，MyBatis-Plus为数据访问层，使用Redis对常用数据进行缓存，集成整合Nacos、Seata、Flowable、Quartz、Liquibase、Mapstruct、OpenFeign、i18N、JWT、Freemarker等。
 
 
-#### 特技
+#### 主要功能
+![image](https://gitee.com/soft1314/boot-admin-vue/raw/master/func.png)
 
