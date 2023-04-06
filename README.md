@@ -6,7 +6,7 @@ boot-admin 是一款采用前后端分离架构模式的后台管理系统解决
 #### 软件技术路线
 
 **前端**：基于 vue-element-admin 改造实现（官网：https://panjiachen.gitee.io/vue-element-admin-site/zh/ ）；
-**后端**：在SpringBoot基础上搭建的一个Java基础开发平台，MyBatis-Plus为数据访问层，使用Redis对常用数据进行缓存，集成整合Nacos、Seata、Flowable、Quartz、Liquibase、Mapstruct、OpenFeign、i18N、JWT、Freemarker等。
+**后端**：在SpringBoot基础上搭建的一个Java基础开发平台，MyBatis-Plus为数据访问层，使用Redis对常用数据进行缓存，集成整合Nacos、Seata、SpringCloudGateway、SpringBootAdmin、Flowable、Quartz、Liquibase、Mapstruct、OpenFeign、i18N、JWT、Freemarker等。
 
 
 #### 主要功能
