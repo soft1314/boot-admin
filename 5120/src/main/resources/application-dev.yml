@@ -1,0 +1,35 @@
+server:
+  port: 5120
+spring:
+  application:
+    name: service-rest-admin5120
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: 9047c5e7-ee93-498f-9c79-10f53a92310f
+        username: nacos
+        password: nacos123
+        metadata:
+          user.name: ${spring.security.user.name}
+          user.password: ${spring.security.user.password}
+      config:
+        username: ${spring.cloud.nacos.discovery.username}
+        password: ${spring.cloud.nacos.discovery.password}
+  security:
+    user:
+      name: "admin"
+      password: "admin123"
+
+# 开启监控所有项
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: ALWAYS
+  server:
+    port: 15120
