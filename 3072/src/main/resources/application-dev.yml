@@ -1,0 +1,116 @@
+server:
+  port: 3072
+spring:
+  application:
+    name: service-rest-workflow3072
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: 9047c5e7-ee93-498f-9c79-10f53a92310f
+        username: nacos
+        password: nacos123
+        metadata:
+          user.name: ${spring.security.user.name}
+          user.password: ${spring.security.user.password}
+      config:
+        username: ${spring.cloud.nacos.discovery.username}
+        password: ${spring.cloud.nacos.discovery.password}
+  datasource:
+#    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+#    url: jdbc:p6spy:oracle:thin:@127.0.0.1:1521:orcl
+#    username: base2048flow
+#    password: base2048flow
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/base2048flow?useSSL=false&serverTimezone=UTC&autoReconnect=true&allowPublicKeyRetrieval=true&useOldAliasMetadataBehavior=true&nullCatalogMeansCurrent=true
+    username: root
+    password: mysql
+
+  thymeleaf:
+    mode: LEGACYHTML5
+    cache: false
+  security:
+    user:
+      name: "admin"
+      password: "client123"
+  redis:
+    # Redis服务器地址
+    host: 127.0.0.1
+    # Redis数据库索引（默认为0）
+    database: 0
+    # Redis服务器连接端口
+    port: 6389
+    # Redis服务器连接密码（默认为空）
+    password: redis2021
+    # 连接超时时间
+    timeout: 1000ms
+    lettuce:
+      pool:
+        # 连接池最大连接数
+        max-active: 8
+        # 连接池最大空闲连接数
+        max-idle: 8
+        # 连接池最小空闲连接数
+        min-idle: 0
+        # 连接池最大阻塞等待时间，负值表示没有限制
+        max-wait: -1ms
+flowable:
+  async-executor-activate: false
+  activity-font-name: 宋体
+  label-font-name: 宋体
+  annotation-font-name: 宋体
+  database-schema-update: true
+  database-schema: base2048flow
+
+#  为了Hystrix传播ThreadLocal对象 feign.hystrix.enabled = false
+feign:
+  hystrix:
+    enabled: false
+  client:
+    config:
+      default:
+        readTimeout: 3000
+        connectTimeout: 3000
+      service-rest-base2048:
+        readTimeout: 9000
+        connectTimeout: 9000
+
+seata:
+  application-id: ${spring.application.name}
+  tx-service-group: my_test_tx_group
+  enable-auto-data-source-proxy: false
+  client:
+    undo:
+      log-serialization: kryo
+  registry:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      namespace: a667f2c4-d1f7-466b-80e7-2fa043135670
+      group: SEATA_GROUP
+      username: ${spring.cloud.nacos.discovery.username}
+      password: ${spring.cloud.nacos.discovery.password}
+  config:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      namespace: a667f2c4-d1f7-466b-80e7-2fa043135670
+      group: SEATA_GROUP
+      username: ${spring.cloud.nacos.discovery.username}
+      password: ${spring.cloud.nacos.discovery.password}
+logging:
+  level:
+    org.flowable.engine.impl.persistence.entity.*: debug
+    org.flowable.task.service.impl.persistence.entity.*: debug
+# 开启监控所有项
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: ALWAYS
+  server:
+    port: 13072
