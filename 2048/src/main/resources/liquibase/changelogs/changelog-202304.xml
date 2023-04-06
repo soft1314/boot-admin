@@ -1,0 +1,45 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="20230404-001" author="Administrator">
+        <insert tableName="TB_DICTIONARY">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="ITEM_CODE" value="03"/>
+            <column name="ITEM_NAME" value="已强制销毁"/>
+            <column name="ITEM_TYPE_CODE" value="5012"/>
+            <column name="ITEM_TYPE_NAME" value="数据流转状态"/>
+            <column name="CREATE_TIME" valueDate="2022-12-03T22:51:18"/>
+            <column name="MODIFY_TIME" valueDate="2022-12-03T22:51:18"/>
+            <column name="ENABLED" value="1"/>
+            <column name="DELETED" value="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="REMARKS" value="无"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="SORT" valueNumeric="1"/>
+            <column name="LEAF" value="1"/>
+            <column name="PARENT_GUID" value="top"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="DATESTAMP" valueDate="2022-12-03T22:51:18"/>
+        </insert>
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="URI" value="/api/system/auth/workflow/finish/force"/>
+            <column name="RESOURCE_TYPE" value="2"/>
+            <column name="ACCESS_CONTROL_STYLE" value="02"/>
+            <column name="NAME" value="工作流业务数据置已强制销毁"/>
+            <column name="CREATE_TIME" valueDate="2022-12-15T10:57:48"/>
+            <column name="MODIFY_TIME" valueDate="2022-12-15T10:57:48"/>
+            <column name="ENABLED" value="1"/>
+            <column name="DELETED" value="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="REMARKS" value="无"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="function"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="DATESTAMP" valueDate="2022-12-15T10:57:49"/>
+            <column name="LEAF" value="1"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

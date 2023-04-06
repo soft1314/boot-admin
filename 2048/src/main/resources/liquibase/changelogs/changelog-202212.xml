@@ -1,0 +1,241 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="administrator" id="20221215-002">
+        <dropColumn tableName="TR_ROLE_RESOURCE" columnName="LEAF" />
+        <dropColumn tableName="TR_ROLE_RESOURCE" columnName="PARENT_GUID" />
+        <dropColumn tableName="TR_ROLE_RESOURCE" columnName="SORT" />
+        <dropColumn tableName="TR_ROLE_USER" columnName="LEAF" />
+        <dropColumn tableName="TR_ROLE_USER" columnName="PARENT_GUID" />
+        <dropColumn tableName="TR_ROLE_USER" columnName="SORT" />
+    </changeSet>
+    <changeSet author="administrator" id="20221218-001">
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="URI" value="/api/system/auth/user/logout"/>
+            <column name="RESOURCE_TYPE" value="2"/>
+            <column name="ACCESS_CONTROL_STYLE" value="02"/>
+            <column name="NAME" value="用户登出系统"/>
+            <column name="CREATE_TIME" valueDate="2022-12-15T10:57:47"/>
+            <column name="MODIFY_TIME" valueDate="2022-12-15T10:57:47"/>
+            <column name="ENABLED" value="1"/>
+            <column name="DELETED" value="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="REMARKS" value="无"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="function"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="DATESTAMP" valueDate="2022-12-15T10:57:49"/>
+            <column name="LEAF" value="1"/>
+        </insert>
+    </changeSet>
+    <changeSet author="administrator" id="20221220-001">
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="URI" value="/api/system/auth/online/user/page"/>
+            <column name="RESOURCE_TYPE" value="2"/>
+            <column name="ACCESS_CONTROL_STYLE" value="02"/>
+            <column name="NAME" value="分页获取系统在线用户"/>
+            <column name="CREATE_TIME" valueDate="2022-12-15T10:57:47"/>
+            <column name="MODIFY_TIME" valueDate="2022-12-15T10:57:47"/>
+            <column name="ENABLED" value="1"/>
+            <column name="DELETED" value="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="REMARKS" value="无"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="function"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="DATESTAMP" valueDate="2022-12-15T10:57:49"/>
+            <column name="LEAF" value="1"/>
+        </insert>
+    </changeSet>
+    <changeSet author="administrator" id="20221220-002">
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="URI" value="/api/system/auth/token/refresh"/>
+            <column name="RESOURCE_TYPE" value="2"/>
+            <column name="ACCESS_CONTROL_STYLE" value="02"/>
+            <column name="NAME" value="刷新令牌"/>
+            <column name="CREATE_TIME" valueDate="2022-12-15T10:57:47"/>
+            <column name="MODIFY_TIME" valueDate="2022-12-15T10:57:47"/>
+            <column name="ENABLED" value="1"/>
+            <column name="DELETED" value="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="REMARKS" value="无"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="function"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="DATESTAMP" valueDate="2022-12-15T10:57:49"/>
+            <column name="LEAF" value="1"/>
+        </insert>
+    </changeSet>
+    <changeSet author="administrator" id="20221221-001">
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="URI" value="/api/system/auth/manage/operationmanage/nacos"/>
+            <column name="RESOURCE_TYPE" value="1"/>
+            <column name="ACCESS_CONTROL_STYLE" value="02"/>
+            <column name="NAME" value="NACOS"/>
+            <column name="CREATE_TIME" valueDate="2022-12-15T10:57:47"/>
+            <column name="MODIFY_TIME" valueDate="2022-12-15T10:57:47"/>
+            <column name="ENABLED" value="1"/>
+            <column name="DELETED" value="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="REMARKS" value="无"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="DA4BEC67E7AE40C49565C964F524DCF0"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="DATESTAMP" valueDate="2022-12-15T10:57:49"/>
+            <column name="LEAF" value="1"/>
+        </insert>
+    </changeSet>
+    <changeSet author="administrator" id="20221222-001">
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="URI" value="/api/system/auth/job/save"/>
+            <column name="RESOURCE_TYPE" value="2"/>
+            <column name="ACCESS_CONTROL_STYLE" value="02"/>
+            <column name="NAME" value="保存添加或修改任务"/>
+            <column name="CREATE_TIME" valueDate="2022-12-15T10:57:47"/>
+            <column name="MODIFY_TIME" valueDate="2022-12-15T10:57:47"/>
+            <column name="ENABLED" value="1"/>
+            <column name="DELETED" value="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="REMARKS" value="无"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="function"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="DATESTAMP" valueDate="2022-12-15T10:57:49"/>
+            <column name="LEAF" value="1"/>
+        </insert>
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="URI" value="/api/system/auth/job/page"/>
+            <column name="RESOURCE_TYPE" value="2"/>
+            <column name="ACCESS_CONTROL_STYLE" value="02"/>
+            <column name="NAME" value="查询任务"/>
+            <column name="CREATE_TIME" valueDate="2022-12-15T10:57:47"/>
+            <column name="MODIFY_TIME" valueDate="2022-12-15T10:57:47"/>
+            <column name="ENABLED" value="1"/>
+            <column name="DELETED" value="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="REMARKS" value="无"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="function"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="DATESTAMP" valueDate="2022-12-15T10:57:49"/>
+            <column name="LEAF" value="1"/>
+        </insert>
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="URI" value="/api/system/auth/job/pause"/>
+            <column name="RESOURCE_TYPE" value="2"/>
+            <column name="ACCESS_CONTROL_STYLE" value="02"/>
+            <column name="NAME" value="暂停任务"/>
+            <column name="CREATE_TIME" valueDate="2022-12-15T10:57:47"/>
+            <column name="MODIFY_TIME" valueDate="2022-12-15T10:57:47"/>
+            <column name="ENABLED" value="1"/>
+            <column name="DELETED" value="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="REMARKS" value="无"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="function"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="DATESTAMP" valueDate="2022-12-15T10:57:49"/>
+            <column name="LEAF" value="1"/>
+        </insert>
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="URI" value="/api/system/auth/job/resume"/>
+            <column name="RESOURCE_TYPE" value="2"/>
+            <column name="ACCESS_CONTROL_STYLE" value="02"/>
+            <column name="NAME" value="恢复任务"/>
+            <column name="CREATE_TIME" valueDate="2022-12-15T10:57:47"/>
+            <column name="MODIFY_TIME" valueDate="2022-12-15T10:57:47"/>
+            <column name="ENABLED" value="1"/>
+            <column name="DELETED" value="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="REMARKS" value="无"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="function"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="DATESTAMP" valueDate="2022-12-15T10:57:49"/>
+            <column name="LEAF" value="1"/>
+        </insert>
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="URI" value="/api/system/auth/job/delete"/>
+            <column name="RESOURCE_TYPE" value="2"/>
+            <column name="ACCESS_CONTROL_STYLE" value="02"/>
+            <column name="NAME" value="删除任务"/>
+            <column name="CREATE_TIME" valueDate="2022-12-15T10:57:47"/>
+            <column name="MODIFY_TIME" valueDate="2022-12-15T10:57:47"/>
+            <column name="ENABLED" value="1"/>
+            <column name="DELETED" value="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="REMARKS" value="无"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="function"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="DATESTAMP" valueDate="2022-12-15T10:57:49"/>
+            <column name="LEAF" value="1"/>
+        </insert>
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="URI" value="/api/system/auth/job/blank"/>
+            <column name="RESOURCE_TYPE" value="2"/>
+            <column name="ACCESS_CONTROL_STYLE" value="02"/>
+            <column name="NAME" value="返回一个空任务"/>
+            <column name="CREATE_TIME" valueDate="2022-12-15T10:57:47"/>
+            <column name="MODIFY_TIME" valueDate="2022-12-15T10:57:47"/>
+            <column name="ENABLED" value="1"/>
+            <column name="DELETED" value="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="REMARKS" value="无"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="function"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="DATESTAMP" valueDate="2022-12-15T10:57:49"/>
+            <column name="LEAF" value="1"/>
+        </insert>
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="URI" value="/api/system/auth/job/dataforupdate"/>
+            <column name="RESOURCE_TYPE" value="2"/>
+            <column name="ACCESS_CONTROL_STYLE" value="02"/>
+            <column name="NAME" value="获取一个用于修改"/>
+            <column name="CREATE_TIME" valueDate="2022-12-15T10:57:47"/>
+            <column name="MODIFY_TIME" valueDate="2022-12-15T10:57:47"/>
+            <column name="ENABLED" value="1"/>
+            <column name="DELETED" value="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="REMARKS" value="无"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="function"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="DATESTAMP" valueDate="2022-12-15T10:57:49"/>
+            <column name="LEAF" value="1"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
