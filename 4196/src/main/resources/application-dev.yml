@@ -1,0 +1,145 @@
+server:
+  port: 4196
+
+spring:
+  application:
+    name: gateway-4196
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: 9047c5e7-ee93-498f-9c79-10f53a92310f
+        username: nacos
+        password: nacos123
+#      config:
+#        username: ${spring.cloud.nacos.discovery.username}
+#        password: ${spring.cloud.nacos.discovery.password}
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            # 允许携带认证信息
+            # 允许跨域的源(网站域名/ip)，设置*为全部
+            # 允许跨域请求里的head字段，设置*为全部
+            # 允许跨域的method， 默认为GET和OPTIONS，设置*为全部
+            # 跨域允许的有效期
+            allow-credentials: true
+            allowed-origins:
+              - "http://localhost:9528"
+              - "http://localhost:9527"
+              - "http://localhost:8848"
+              - "http://localhost:8080"
+              - "http://127.0.0.1:9528"
+              - "http://127.0.0.1:9527"
+              - "http://127.0.0.1:8848"
+              - "http://127.0.0.1:8080"
+              - "http://192.168.50.254:9527"
+              - "http://192.168.50.254:9528"
+            allowed-headers: "*"
+            allowed-methods:
+              - OPTIONS
+              - GET
+              - POST
+              - PUT
+            max-age: 3600
+            # 允许response的head信息
+            # 默认仅允许如下6个：
+            #     Cache-Control
+            #     Content-Language
+            #     Content-Type
+            #     Expires
+            #     Last-Modified
+            #     Pragma
+            #exposed-headers:
+      discovery:
+        locator:
+          enabled: false
+          lowerCaseServiceId: true
+      routes:
+        - id: api-system
+          uri: lb://service-rest-base2048
+          predicates:
+            - Path=/api/system/**
+        - id: api-workflow
+          uri: lb://service-rest-workflow3072
+          predicates:
+            - Path=/api/workflow/**
+  redis:
+    # Redis服务器地址
+    host: 127.0.0.1
+    # Redis数据库索引（默认为0）
+    database: 0
+    # Redis服务器连接端口
+    port: 6389
+    # Redis服务器连接密码（默认为空）
+    password: redis2021
+    # 连接超时时间
+    timeout: 1000ms
+    lettuce:
+      pool:
+        # 连接池最大连接数
+        max-active: 8
+        # 连接池最大空闲连接数
+        max-idle: 8
+        # 连接池最小空闲连接数
+        min-idle: 0
+        # 连接池最大阻塞等待时间，负值表示没有限制
+        max-wait: -1ms
+  cache:
+    type: redis
+    redis:
+      time-to-live: 300000
+# 开启监控所有项
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: ALWAYS
+  server:
+    port: 14196
+feign:
+  client:
+    config:
+      feignName:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: full
+        defaultQueryParameters:
+          query: queryValue
+        defaultRequestHeaders:
+          header: headerValue
+        decode404: false
+        metrics:
+          enabled: false
+  circuitbreaker:
+    enabled: true
+logging:
+  level:
+    project:
+      user:
+        UserClient: DEBUG
+async:
+  executor:
+    thread:
+      # 配置核心线程数
+      core_pool_size: 5
+      # 配置最大线程数
+      max_pool_size: 10
+      # 配置队列大小
+      queue_capacity: 500
+      name:
+        # 配置线程池中的线程的名称前缀
+        prefix: async-service-
+gateway4196:
+  tenant:
+    default: DEMO
+  token:
+    mode: redis   # jwt 或者 redis
+    perfix: requestFromGageway
+  aes:
+    backuser:
+      key: 1234567890123456
