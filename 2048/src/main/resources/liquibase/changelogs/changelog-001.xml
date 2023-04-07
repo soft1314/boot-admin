@@ -6,28 +6,23 @@
     <property name="type.int" value="INT" dbms="mysql"/>
     <property name="type.decimal" value="NUMBER(*, 2)" dbms="oracle"/>
     <property name="type.decimal" value="DECIMAL" dbms="mysql"/>
-
     <property name="now" value="SYSDATE" dbms="oracle"/>
     <property name="now" value="now()" dbms="mysql,h2"/>
     <property name="autoIncrement" value="true" dbms="mysql,h2,postgresql,oracle"/>
     <property name="amount" value="decimal(20,2)"/>
     <property name="uuid" value="sys_guid()" dbms="oracle"/>
     <property name="uuid" value="UUID()" dbms="mysql"/>
-
-    <changeSet author="37514 (generated)" id="1671074893480-1" dbms="oracle">
-        <createView fullDefinition="true" remarks="表和视图" viewName="V_TABLES_MASTER">
-            CREATE OR REPLACE FORCE VIEW V_TABLES_MASTER (TABLE_SCHEMA,TABLENAME, TABLETYPE, COMMENTS,TENANT_ID_) AS
-            select SYS_CONTEXT('USERENV','CURRENT_SCHEMA') TABLE_SCHEMA,
+    <changeSet author="admin (generated)" id="00001-1" dbms="oracle">
+        <createView fullDefinition="true" remarks="表和视图" viewName="V_TABLES_MASTER">CREATE OR REPLACE FORCE VIEW V_TABLES_MASTER (TABLE_SCHEMA, TABLENAME, TABLETYPE, COMMENTS, TENANT_ID_) AS select SYS_CONTEXT('USERENV','CURRENT_SCHEMA') TABLE_SCHEMA,
             t.tname tableName,
             tabtype tabletype,
             f.comments comments,
             'DEMO' TENANT_ID_
             from tab t
             inner join user_tab_comments f
-            on t.tname = f.table_name
-        </createView>
+            on t.tname = f.table_name</createView>
     </changeSet>
-    <changeSet author="37514 (generated)" id="1671074893480-2" dbms="mysql">
+    <changeSet author="37514 (generated)" id="00000-2" dbms="mysql">
         <createView fullDefinition="true" remarks="表和视图" viewName="V_TABLES_MASTER">
             CREATE OR REPLACE VIEW V_TABLES_MASTER  AS
             SELECT
@@ -40,21 +35,18 @@
             information_schema.`TABLES`
         </createView>
     </changeSet>
-    <changeSet author="37514 (generated)" id="1671074893480-3" dbms="oracle">
-        <createView fullDefinition="true" remarks="表主键视图" viewName="V_TABLE_KEY">
-            create or replace view V_TABLE_KEY as
-            select con.owner, con.table_name, col.column_name, con.constraint_type,'DEMO' TENANT_ID_
+    <changeSet author="admin (generated)" id="00001-2" dbms="oracle">
+        <createView fullDefinition="true" remarks="表主键视图" viewName="V_TABLE_KEY">CREATE OR REPLACE FORCE VIEW V_TABLE_KEY (OWNER, TABLE_NAME, COLUMN_NAME, CONSTRAINT_TYPE, TENANT_ID_) AS select con.owner, con.table_name, col.column_name, con.constraint_type,'DEMO' TENANT_ID_
             from user_constraints con, user_cons_columns col
             where con.constraint_name = col.constraint_name
             and con.owner = col.owner
             and con.table_name = col.table_name
-            and con.constraint_type = 'P'
-        </createView>
+            and con.constraint_type = 'P'</createView>
     </changeSet>
-    <changeSet author="37514 (generated)" id="1671074893480-4" dbms="oracle">
-        <createView fullDefinition="true" remarks="列视图" viewName="V_COLUMNS_MASTER">
-            create or replace view V_COLUMNS_MASTER as
-            select
+
+
+    <changeSet author="admin (generated)" id="00001-3" dbms="oracle">
+        <createView fullDefinition="true" remarks="列视图" viewName="V_COLUMNS_MASTER">CREATE OR REPLACE FORCE VIEW V_COLUMNS_MASTER (TENANT_ID_, COLUMN_ID, COLUMN_NAME, DATA_TYPE, DATA_LENGTH, DATA_SCALE, CHAR_LENGTH, NULLABLE, DATA_DEFAULT, COMMENTS, TABLE_NAME, TABLE_SCHEMA, PRIMARY_KEY) AS select
             'DEMO' TENANT_ID_,
             a.column_id,
             a."COLUMN_NAME",a."DATA_TYPE",a."DATA_LENGTH",a."DATA_SCALE",a."CHAR_LENGTH",a."NULLABLE",a."DATA_DEFAULT",a."COMMENTS",a."TABLE_NAME",
@@ -79,10 +71,9 @@
             and utc.column_name = ucc.column_name) a
             left join v_table_key b
             on a.table_name = b.table_name
-            and a.column_name = b.column_name
-        </createView>
+            and a.column_name = b.column_name</createView>
     </changeSet>
-    <changeSet author="37514 (generated)" id="1671074893480-5" dbms="mysql">
+    <changeSet author="37514 (generated)" id="00000-5" dbms="mysql">
         <createView fullDefinition="true" remarks="列视图" viewName="V_COLUMNS_MASTER">
             CREATE OR REPLACE VIEW V_COLUMNS_MASTER  AS
             SELECT TABLE_SCHEMA,
@@ -101,7 +92,7 @@
             information_schema.`COLUMNS`
         </createView>
     </changeSet>
-    <changeSet author="37514 (generated)" id="1671074893488-4">
+    <changeSet author="admin (generated)" id="00001-9">
         <createTable remarks="行政区划表" tableName="TB_ADM_DIV">
             <column name="GUID" remarks="主键" type="NVARCHAR2(38)">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_TB_ADM_DIV"/>
@@ -124,7 +115,7 @@
             <column name="MODIFY_TIME" remarks="记录最后修改时间" type="${type.datetime}">
                 <constraints nullable="false"/>
             </column>
-            <column name="DATESTAMP" type="${type.datetime}" defaultValueComputed="${now}" remarks="时间戳">
+            <column defaultValueComputed="${now}" name="DATESTAMP" remarks="时间戳" type="${type.datetime}">
                 <constraints nullable="false"/>
             </column>
             <column name="ENABLED" remarks="启用状态;ENABLED" type="NVARCHAR2(1)">
@@ -151,7 +142,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="37514 (generated)" id="1671074893488-5">
+    <changeSet author="admin (generated)" id="00001-10">
         <createTable remarks="通用代码表" tableName="TB_DICTIONARY">
             <column name="GUID" remarks="主键" type="NVARCHAR2(38)">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_TB_DICTIONARY"/>
@@ -209,7 +200,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="37514 (generated)" id="1671074893488-6">
+    <changeSet author="admin (generated)" id="00001-11">
         <createTable remarks="数据字典类型表" tableName="TB_DICTYPE">
             <column name="GUID" remarks="主键" type="NVARCHAR2(38)">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_TB_DICTYPE"/>
@@ -253,7 +244,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="37514 (generated)" id="1671074893488-7">
+    <changeSet author="admin (generated)" id="00001-12">
         <createTable remarks="人员表" tableName="TB_EMP">
             <column name="GUID" remarks="主键" type="NVARCHAR2(38)">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_TB_EMP"/>
@@ -333,7 +324,45 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="37514 (generated)" id="1671074893488-8">
+    <changeSet author="admin (generated)" id="00001-13">
+        <createTable remarks="一般日志表" tableName="TB_LOG_GENERAL">
+            <column name="GUID" remarks="主键" type="NVARCHAR2(38)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C00335258"/>
+            </column>
+            <column name="LOG_CONTENT" remarks="日志内容" type="NVARCHAR2(900)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_BY" remarks="记录创建者" type="NVARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_TIME" remarks="记录创建时间" type="${type.datetime}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODIFY_BY" remarks="记录最后修改者" type="NVARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODIFY_TIME" remarks="记录最后修改时间" type="${type.datetime}">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="${now}" name="DATESTAMP" remarks="时间戳" type="${type.datetime}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ENABLED" remarks="启用状态;ENABLED" type="NVARCHAR2(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DELETED" remarks="删除状态;DELETED" type="NVARCHAR2(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" remarks="乐观锁" type="${type.int}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REMARKS" remarks="备注" type="NVARCHAR2(900)"/>
+            <column name="TENANT_ID_" remarks="租户ID" type="NVARCHAR2(38)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="admin (generated)" id="00001-14">
         <createTable remarks="组织机构基础表" tableName="TB_ORGANIZATION">
             <column name="GUID" remarks="主键" type="NVARCHAR2(38)">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C00304347"/>
@@ -389,7 +418,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="37514 (generated)" id="1671074893488-9">
+    <changeSet author="admin (generated)" id="00001-15">
         <createTable remarks="系统资源（功能、菜单）基础表" tableName="TB_RESOURCE">
             <column name="GUID" remarks="主键" type="NVARCHAR2(38)">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_TB_RESOURCE"/>
@@ -447,7 +476,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="37514 (generated)" id="1671074893488-10">
+    <changeSet author="admin (generated)" id="00001-16">
         <createTable remarks="系统角色基础表" tableName="TB_ROLE">
             <column name="GUID" remarks="主键" type="NVARCHAR2(38)">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_TB_ROLE"/>
@@ -488,7 +517,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="37514 (generated)" id="1671074893488-11">
+    <changeSet author="admin (generated)" id="00001-17">
         <createTable remarks="系统用户基础表" tableName="TB_USER">
             <column name="GUID" remarks="主键" type="NVARCHAR2(38)">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_TB_USER"/>
@@ -551,7 +580,7 @@
             <column name="MODIFY_BY" remarks="记录最后修改者" type="NVARCHAR2(100)">
                 <constraints nullable="false"/>
             </column>
-            <column name="DATESTAMP" remarks="时间戳" type="${type.datetime}" defaultValueComputed="${now}">
+            <column defaultValueComputed="${now}" name="DATESTAMP" remarks="时间戳" type="${type.datetime}">
                 <constraints nullable="false"/>
             </column>
             <column name="ENABLED" remarks="启用状态;ENABLED" type="NVARCHAR2(1)">
@@ -562,7 +591,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="37514 (generated)" id="1671074893488-12">
+    <changeSet author="admin (generated)" id="00001-18">
         <createTable remarks="生成文件的摘要记录表" tableName="TG_FILE_SUMMARY">
             <column name="GUID" remarks="主键" type="NVARCHAR2(38)">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_TG_FILE_SUMMARY"/>
@@ -603,7 +632,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="37514 (generated)" id="1671074893488-13">
+    <changeSet author="admin (generated)" id="00001-19">
         <createTable remarks="代码生成功能项目定义表" tableName="TG_PROJECT">
             <column name="GUID" remarks="主键" type="NVARCHAR2(38)">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_TG_PROJECT"/>
@@ -704,7 +733,7 @@
             <column name="REMARKS" remarks="备注" type="NVARCHAR2(900)"/>
         </createTable>
     </changeSet>
-    <changeSet author="37514 (generated)" id="1671074893488-14">
+    <changeSet author="admin (generated)" id="00001-20">
         <createTable remarks="角色资源关系表" tableName="TR_ROLE_RESOURCE">
             <column name="GUID" remarks="主键" type="NVARCHAR2(38)">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C00312523"/>
@@ -743,18 +772,9 @@
             <column name="TENANT_ID_" remarks="租户ID" type="NVARCHAR2(38)">
                 <constraints nullable="false"/>
             </column>
-            <column name="LEAF" remarks="是否末级;YESNO" type="NVARCHAR2(1)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="PARENT_GUID" remarks="父级GUID" type="NVARCHAR2(38)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="SORT" remarks="顺序号" type="${type.int}">
-                <constraints nullable="false"/>
-            </column>
         </createTable>
     </changeSet>
-    <changeSet author="37514 (generated)" id="1671074893488-15">
+    <changeSet author="admin (generated)" id="00001-21">
         <createTable remarks="角色用户关联表" tableName="TR_ROLE_USER">
             <column name="GUID" remarks="主键" type="NVARCHAR2(38)">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C00312539"/>
@@ -793,18 +813,9 @@
             <column name="TENANT_ID_" remarks="租户ID" type="NVARCHAR2(38)">
                 <constraints nullable="false"/>
             </column>
-            <column name="LEAF" remarks="是否末级;YESNO" type="NVARCHAR2(1)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="PARENT_GUID" remarks="父级GUID" type="NVARCHAR2(38)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="SORT" remarks="顺序号" type="${type.int}">
-                <constraints nullable="false"/>
-            </column>
         </createTable>
     </changeSet>
-    <changeSet author="37514 (generated)" id="1671074893488-16">
+    <changeSet author="admin (generated)" id="00001-22">
         <createTable remarks="用户与区划权限关联表" tableName="TR_USER_ADMDIV">
             <column name="GUID" remarks="主键" type="NVARCHAR2(38)">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_TR_USER_ADMDIV"/>
@@ -845,7 +856,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="37514 (generated)" id="1671074893488-17">
+    <changeSet author="admin (generated)" id="00001-23">
         <createTable remarks="用户与组织机构权限关联表" tableName="TR_USER_ORG">
             <column name="GUID" remarks="主键" type="NVARCHAR2(38)">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_TR_USER_ORG"/>
@@ -886,32 +897,32 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="37514 (generated)" id="1671074893488-18">
+    <changeSet author="admin (generated)" id="00001-27">
         <createIndex indexName="IDX_LOGONNAME" tableName="TB_USER" unique="true">
             <column name="LOGON_NAME"/>
         </createIndex>
     </changeSet>
-    <changeSet author="37514 (generated)" id="1671074893488-19" dbms="oracle">
+    <changeSet author="admin (generated)" id="00001-28" dbms="oracle">
         <createIndex indexName="IDX_TB_ADM_DIV_CODE" tableName="TB_ADM_DIV" unique="true">
             <column computed="true" name="CASE &quot;DELETED&quot; WHEN U'1' THEN &quot;ADM_DIV_CODE&quot; END"/>
         </createIndex>
     </changeSet>
-    <changeSet author="37514 (generated)" id="1671074893488-20" dbms="oracle">
+    <changeSet author="admin (generated)" id="00001-29" dbms="oracle">
         <createIndex indexName="IDX_TB_DICTIONARY_CODE" tableName="TB_DICTIONARY" unique="true">
             <column computed="true" name="CASE &quot;DELETED&quot; WHEN U'1' THEN &quot;ITEM_TYPE_CODE&quot;||&quot;ITEM_CODE&quot; END"/>
         </createIndex>
     </changeSet>
-    <changeSet author="37514 (generated)" id="1671074893488-21" dbms="oracle">
+    <changeSet author="admin (generated)" id="00001-30" dbms="oracle">
         <createIndex indexName="IDX_TB_DICTYPE_CODE" tableName="TB_DICTYPE" unique="true">
             <column computed="true" name="CASE &quot;DELETED&quot; WHEN U'1' THEN &quot;CODE&quot; END"/>
         </createIndex>
     </changeSet>
-    <changeSet author="37514 (generated)" id="1671074893488-22" dbms="oracle">
+    <changeSet author="admin (generated)" id="00001-31" dbms="oracle">
         <createIndex indexName="IDX_TB_DICTYPE_VARNAME" tableName="TB_DICTYPE" unique="true">
             <column computed="true" name="CASE &quot;DELETED&quot; WHEN U'1' THEN &quot;VAR_NAME&quot; END"/>
         </createIndex>
     </changeSet>
-    <changeSet author="37514 (generated)" id="1671074893488-23" dbms="oracle">
+    <changeSet author="admin (generated)" id="00001-32" dbms="oracle">
         <createIndex indexName="IDX_TB_RESOURCE_URI" tableName="TB_RESOURCE" unique="true">
             <column computed="true" name="CASE &quot;DELETED&quot; WHEN U'1' THEN &quot;URI&quot; END"/>
         </createIndex>
