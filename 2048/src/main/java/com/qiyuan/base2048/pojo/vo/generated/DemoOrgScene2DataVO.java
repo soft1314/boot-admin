@@ -51,7 +51,7 @@ private static final long serialVersionUID = 1L;
             /**
             *  单位级别;UNITLEVEL
             */
-        private String rank;
+        private String rankCode;
             /**
             *  编制人数
             */

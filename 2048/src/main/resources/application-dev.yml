@@ -6,10 +6,10 @@ spring:
   datasource:
     #    driverClassName: oracle.jdbc.driver.OracleDriver
     #    url: jdbc:oracle:thin:@127.0.0.1:1521:orcl
-    #    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
-    #    url: jdbc:p6spy:oracle:thin:@127.0.0.1:1521:orcl
-    #    username: base2048
-    #    password: base2048
+#    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+#    url: jdbc:p6spy:oracle:thin:@127.0.0.1:1521:orcl
+#    username: base2048
+#    password: base2048
 
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/base2048?useSSL=false&serverTimezone=UTC&autoReconnect=true&allowPublicKeyRetrieval=true&useOldAliasMetadataBehavior=true
@@ -228,10 +228,15 @@ base2048:
   job:
     enable: true
     datasource:
-      driver-class-name: ${spring.datasource.driver-class-name}
+#      driver-class-name: ${spring.datasource.driver-class-name}
+#      url: jdbc:mysql://localhost:3306/base2048job?useSSL=false&serverTimezone=UTC&autoReconnect=true&allowPublicKeyRetrieval=true&useOldAliasMetadataBehavior=true
+#      username: ${spring.datasource.username}
+#      password: ${spring.datasource.password}
+      driver-class-name: com.mysql.cj.jdbc.Driver
       url: jdbc:mysql://localhost:3306/base2048job?useSSL=false&serverTimezone=UTC&autoReconnect=true&allowPublicKeyRetrieval=true&useOldAliasMetadataBehavior=true
-      username: ${spring.datasource.username}
-      password: ${spring.datasource.password}
+      username: root
+      password: mysql
+
 generator:
   author: 虚领顶劲气沉丹田
   vue:

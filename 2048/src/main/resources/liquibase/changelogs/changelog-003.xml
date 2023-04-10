@@ -208,7 +208,7 @@
             <column name="FOUND_TIME" remarks="成立时间" type="${type.datetime}">
                 <constraints nullable="false"/>
             </column>
-            <column name="RANK" remarks="单位级别;UNITLEVEL" type="NVARCHAR2(2)">
+            <column name="RANK_CODE" remarks="单位级别;UNITLEVEL" type="NVARCHAR2(2)">
                 <constraints nullable="false"/>
             </column>
             <column name="NUM" remarks="编制人数" type="${type.int}">

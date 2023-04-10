@@ -1,44 +1,46 @@
 Manifest-Version: 1.0
 Main-Class: com.qiyuan.admin5120.Admin5120Application
-Class-Path: animal-sniffer-annotations-1.14.jar simpleclient-0.10.0.jar 
- netty-codec-dns-4.1.68.Final.jar netty-buffer-4.1.68.Final.jar tomcat-e
- mbed-websocket-9.0.53.jar netty-resolver-4.1.68.Final.jar spring-boot-a
- ctuator-2.5.5.jar spring-boot-starter-thymeleaf-2.5.5.jar httpclient-4.
- 5.13.jar netty-codec-http2-4.1.68.Final.jar httpcore-4.4.14.jar spring-
- boot-starter-json-2.5.5.jar jakarta.annotation-api-1.3.5.jar spring-boo
- t-starter-web-2.5.5.jar httpasyncclient-4.1.4.jar netty-codec-socks-4.1
- .68.Final.jar jsr305-1.3.9.jar error_prone_annotations-2.1.3.jar logbac
- k-classic-1.2.6.jar netty-common-4.1.68.Final.jar log4j-to-slf4j-2.17.0
- .jar commons-codec-1.15.jar thymeleaf-3.0.12.RELEASE.jar slf4j-api-1.7.
- 32.jar spring-security-crypto-5.5.2.jar netty-resolver-dns-native-macos
- -4.1.68.Final-osx-x86_64.jar netty-codec-http-4.1.68.Final.jar micromet
- er-core-1.7.4.jar spring-web-5.3.10.jar reactor-extra-3.4.5.jar jackson
- -datatype-jdk8-2.12.5.jar jackson-module-parameter-names-2.12.5.jar net
- ty-resolver-dns-4.1.68.Final.jar HdrHistogram-2.1.12.jar spring-boot-2.
- 5.5.jar nacos-common-1.4.1.jar attoparser-2.0.5.RELEASE.jar log4j-api-2
- .14.1.jar spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar thyme
- leaf-extras-java8time-3.0.4.RELEASE.jar netty-handler-4.1.68.Final.jar 
- spring-aop-5.3.10.jar spring-boot-admin-server-ui-2.5.5.jar nacos-api-1
- .4.1.jar netty-handler-proxy-4.1.68.Final.jar spring-boot-admin-server-
- 2.5.5.jar jackson-databind-2.12.5.jar jul-to-slf4j-1.7.32.jar spring-bo
- ot-starter-logging-2.5.5.jar httpcore-nio-4.4.14.jar spring-boot-actuat
- or-autoconfigure-2.5.5.jar jackson-core-2.12.5.jar spring-cloud-context
- -3.0.2.jar jackson-annotations-2.12.5.jar netty-transport-native-unix-c
- ommon-4.1.68.Final.jar netty-transport-native-epoll-4.1.68.Final-linux-
- x86_64.jar reactor-core-3.4.10.jar netty-codec-4.1.68.Final.jar spring-
- context-5.3.10.jar spring-boot-starter-reactor-netty-2.5.5.jar reactor-
- netty-core-1.0.11.jar reactor-netty-http-1.0.11.jar commons-io-2.2.jar 
- j2objc-annotations-1.1.jar reactive-streams-1.0.3.jar jackson-datatype-
- jsr310-2.12.5.jar spring-cloud-commons-3.0.2.jar snakeyaml-1.28.jar nac
- os-client-1.4.1.jar unbescape-1.1.6.RELEASE.jar netty-transport-4.1.68.
- Final.jar spring-expression-5.3.10.jar spring-boot-admin-starter-server
- -2.5.5.jar spring-jcl-5.3.10.jar spring-boot-starter-webflux-2.5.5.jar 
- thymeleaf-spring5-3.0.12.RELEASE.jar spring-boot-starter-actuator-2.5.5
- .jar checker-compat-qual-2.0.0.jar guava-24.1.1-jre.jar spring-beans-5.
- 3.10.jar spring-boot-starter-2.5.5.jar spring-cloud-alibaba-commons-202
- 1.1.jar tomcat-embed-el-9.0.53.jar spring-boot-autoconfigure-2.5.5.jar 
- spring-boot-starter-tomcat-2.5.5.jar LatencyUtils-2.0.3.jar tomcat-embe
- d-core-9.0.53.jar logback-core-1.2.6.jar spring-core-5.3.10.jar spring-
- context-support-1.0.10.jar spring-webmvc-5.3.10.jar spring-webflux-5.3.
- 10.jar spring-boot-admin-server-cloud-2.5.5.jar
+Class-Path: netty-common-4.1.68.Final.jar snakeyaml-1.28.jar spring-boot
+ -starter-logging-2.5.5.jar slf4j-api-1.7.32.jar thymeleaf-spring5-3.0.1
+ 2.RELEASE.jar spring-boot-starter-2.5.5.jar spring-boot-starter-web-2.5
+ .5.jar spring-jcl-5.3.10.jar spring-security-web-5.5.2.jar spring-boot-
+ starter-json-2.5.5.jar simpleclient-0.10.0.jar reactive-streams-1.0.3.j
+ ar log4j-to-slf4j-2.17.0.jar unbescape-1.1.6.RELEASE.jar tomcat-embed-e
+ l-9.0.53.jar jackson-datatype-jdk8-2.12.5.jar spring-boot-starter-tomca
+ t-2.5.5.jar spring-core-5.3.10.jar nacos-api-1.4.1.jar httpasyncclient-
+ 4.1.4.jar spring-cloud-context-3.0.2.jar netty-transport-native-unix-co
+ mmon-4.1.68.Final.jar nacos-client-1.4.1.jar logback-classic-1.2.6.jar 
+ spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar spring-security
+ -config-5.5.2.jar spring-webmvc-5.3.10.jar checker-compat-qual-2.0.0.ja
+ r logback-core-1.2.6.jar spring-boot-starter-actuator-2.5.5.jar log4j-a
+ pi-2.14.1.jar HdrHistogram-2.1.12.jar netty-codec-socks-4.1.68.Final.ja
+ r netty-codec-4.1.68.Final.jar j2objc-annotations-1.1.jar reactor-core-
+ 3.4.10.jar jsr305-1.3.9.jar jackson-module-parameter-names-2.12.5.jar n
+ acos-common-1.4.1.jar spring-boot-admin-starter-server-2.5.5.jar jackso
+ n-databind-2.12.5.jar spring-boot-admin-server-ui-2.5.5.jar jackson-ann
+ otations-2.12.5.jar netty-buffer-4.1.68.Final.jar spring-beans-5.3.10.j
+ ar spring-boot-starter-webflux-2.5.5.jar thymeleaf-extras-java8time-3.0
+ .4.RELEASE.jar httpcore-nio-4.4.14.jar reactor-netty-http-1.0.11.jar sp
+ ring-web-5.3.10.jar commons-codec-1.15.jar spring-boot-admin-server-clo
+ ud-2.5.5.jar jakarta.annotation-api-1.3.5.jar spring-boot-admin-server-
+ 2.5.5.jar jackson-datatype-jsr310-2.12.5.jar spring-aop-5.3.10.jar nett
+ y-codec-http2-4.1.68.Final.jar netty-handler-proxy-4.1.68.Final.jar spr
+ ing-boot-autoconfigure-2.5.5.jar httpcore-4.4.14.jar micrometer-core-1.
+ 7.4.jar attoparser-2.0.5.RELEASE.jar spring-boot-starter-thymeleaf-2.5.
+ 5.jar netty-codec-http-4.1.68.Final.jar netty-transport-4.1.68.Final.ja
+ r reactor-extra-3.4.5.jar thymeleaf-3.0.12.RELEASE.jar animal-sniffer-a
+ nnotations-1.14.jar spring-context-5.3.10.jar spring-security-crypto-5.
+ 5.2.jar spring-boot-actuator-autoconfigure-2.5.5.jar spring-cloud-commo
+ ns-3.0.2.jar spring-expression-5.3.10.jar spring-cloud-alibaba-commons-
+ 2021.1.jar spring-boot-starter-reactor-netty-2.5.5.jar reactor-netty-co
+ re-1.0.11.jar jackson-core-2.12.5.jar netty-resolver-4.1.68.Final.jar s
+ pring-webflux-5.3.10.jar tomcat-embed-core-9.0.53.jar netty-codec-dns-4
+ .1.68.Final.jar guava-24.1.1-jre.jar netty-resolver-dns-4.1.68.Final.ja
+ r netty-resolver-dns-native-macos-4.1.68.Final-osx-x86_64.jar spring-bo
+ ot-starter-security-2.5.5.jar netty-handler-4.1.68.Final.jar spring-sec
+ urity-core-5.5.2.jar netty-transport-native-epoll-4.1.68.Final-linux-x8
+ 6_64.jar jul-to-slf4j-1.7.32.jar spring-boot-actuator-2.5.5.jar spring-
+ context-support-1.0.10.jar tomcat-embed-websocket-9.0.53.jar httpclient
+ -4.5.13.jar spring-boot-2.5.5.jar commons-io-2.2.jar error_prone_annota
+ tions-2.1.3.jar LatencyUtils-2.0.3.jar
 

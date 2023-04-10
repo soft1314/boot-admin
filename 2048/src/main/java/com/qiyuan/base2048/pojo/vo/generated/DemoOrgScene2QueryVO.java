@@ -50,7 +50,7 @@ public class DemoOrgScene2QueryVO extends BasePageQueryVO {
             /**
             *  单位级别;UNITLEVEL
             */
-        private String rank;
+        private String rankCode;
             /**
             *  编制人数
             */

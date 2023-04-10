@@ -59,8 +59,8 @@ public class DemoOrg implements Serializable {
     /**
      *  单位级别;UNITLEVEL
      */
-    @TableField("RANK")
-    private String rank;
+    @TableField("RANK_CODE")
+    private String rankCode;
     /**
      *  编制人数
      */

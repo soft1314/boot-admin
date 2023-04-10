@@ -1,6 +1,3 @@
---liquibase formatted sql
-
--- mysql 注意此处0.3.0+ 增加唯一索引 ux_undo_log
 CREATE TABLE `undo_log` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `branch_id` bigint(20) NOT NULL,
