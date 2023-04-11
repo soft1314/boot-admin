@@ -31,6 +31,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import static cn.hutool.core.bean.BeanUtil.beanToMap;
+import com.qiyuan.bautil.constant.ConstantCommon;
+import java.util.LinkedHashMap;
 /**
 * <p>
     * 本文件自动生成，严禁人工修改
@@ -172,12 +174,15 @@ public class ${marker.entityName}Scene4ServiceImpl extends ServiceImpl<${marker.
 
   private WorkflowStartProcessDTO genWorkflowStartProcessDTO(${marker.entityName} entity,BaseUser baseUser) throws Exception{
     String tableName = entity.getClass().getAnnotation(TableName.class).value();
+    Map extraObj=new LinkedHashMap();
+    extraObj.put(ConstantWorkflowVarKey.BUSINESS_TABLE,tableName);
+    String procDefKey = procDefKeySelector.selectProcDefKey(tableName, ConstantCommon.PARAMETER_NON,entity,extraObj);
+    if(StringUtils.isBlank(procDefKey)){
+      throw new Exception(MessageUtils.get("workflow.procdefkey.null.error"));
+    }
     WorkflowStartProcessDTO startProcessDTO = new WorkflowStartProcessDTO();
     startProcessDTO.setBusinessTable(tableName);
-    /** 不用选择器时，也可以在这里写固定值 **/
-    Map map = new HashMap();
-    map.put("entity",entity);
-    startProcessDTO.setProcDefKey(procDefKeySelector.selectProcDefKey(tableName,map));
+    startProcessDTO.setProcDefKey(procDefKey);
     startProcessDTO.setTitle(entity.getTitle());
     startProcessDTO.setVars(new HashMap<>());
     startProcessDTO.getVars().put(ConstantWorkflowVarKey.LAST_ASSIGNEE, WorkflowTool.genAssignee(baseUser));

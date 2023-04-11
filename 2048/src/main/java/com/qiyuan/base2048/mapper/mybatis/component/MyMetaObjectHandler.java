@@ -22,8 +22,11 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     public void insertFill(MetaObject metaObject) {
         log.info("start insert fill ....");
         Date now = new Date();
+        String operator = "[系统]";
         BaseUser baseUser = UserTool.getBaseUser();
-        String operator = baseUser.getUserName()+"["+baseUser.getLogonName()+"]";
+        if(baseUser != null){
+            operator = baseUser.getUserName()+"["+baseUser.getLogonName()+"]";
+        }
         this.setFieldValByName("createTime",now,metaObject);
         this.setFieldValByName("createBy",operator,metaObject);
         this.setFieldValByName("modifyTime",now,metaObject);
@@ -45,7 +48,10 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
         log.info("start update fill ....");
         Date now = new Date();
         BaseUser baseUser = UserTool.getBaseUser();
-        String operator = baseUser.getUserName()+"["+baseUser.getLogonName()+"]";
+        String operator = "[系统]";
+        if(baseUser != null){
+            operator = baseUser.getUserName()+"["+baseUser.getLogonName()+"]";
+        }
 
         this.setFieldValByName("modifyTime",now,metaObject);
         this.setFieldValByName("modifyBy",operator,metaObject);

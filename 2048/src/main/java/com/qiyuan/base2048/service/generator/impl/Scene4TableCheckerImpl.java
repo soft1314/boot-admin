@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service("Scene4TableCheckerImpl")
@@ -99,8 +100,8 @@ public class Scene4TableCheckerImpl implements TableChecker {
      */
     private boolean checkFlowStatusColumn(UserTableColumnResultDTO userTableColumnResultDTO){
         if("FLOW_STATUS".equals(userTableColumnResultDTO.getColumnName())){
-            if(userTableColumnResultDTO.getDataType().startsWith("VARCHAR")||userTableColumnResultDTO.getDataType().startsWith("NVARCHAR")){
-                if(userTableColumnResultDTO.getCharLength() == 2){
+            if(userTableColumnResultDTO.getDataType().toUpperCase().startsWith("VARCHAR")||userTableColumnResultDTO.getDataType().toUpperCase().startsWith("NVARCHAR")){
+                if(userTableColumnResultDTO.getCharLength().compareTo(new BigDecimal("2")) == 0){
                     if("N".equals(userTableColumnResultDTO.getNullable())) {
                         if("流转状态;FLOW_STATUS".equals(userTableColumnResultDTO.getComments())) {
                             return true;
@@ -120,8 +121,8 @@ public class Scene4TableCheckerImpl implements TableChecker {
      */
     private boolean checkTitleColumn(UserTableColumnResultDTO userTableColumnResultDTO){
         if("TITLE".equals(userTableColumnResultDTO.getColumnName())){
-            if(userTableColumnResultDTO.getDataType().startsWith("VARCHAR")||userTableColumnResultDTO.getDataType().startsWith("NVARCHAR")){
-                if(userTableColumnResultDTO.getCharLength() >= 50){
+            if(userTableColumnResultDTO.getDataType().toUpperCase().startsWith("VARCHAR")||userTableColumnResultDTO.getDataType().toUpperCase().startsWith("NVARCHAR")){
+                if(userTableColumnResultDTO.getCharLength().compareTo(new BigDecimal("50")) >= 0){
                     if("N".equals(userTableColumnResultDTO.getNullable())) {
                         if("标题".equals(userTableColumnResultDTO.getComments())) {
                             return true;
@@ -142,8 +143,8 @@ public class Scene4TableCheckerImpl implements TableChecker {
      */
     private boolean checkProcessInstanceIdKeyColumn(UserTableColumnResultDTO userTableColumnResultDTO){
         if("PROCESS_INSTANCE_ID".equals(userTableColumnResultDTO.getColumnName())){
-            if(userTableColumnResultDTO.getDataType().startsWith("VARCHAR")||userTableColumnResultDTO.getDataType().startsWith("NVARCHAR")){
-                if(userTableColumnResultDTO.getCharLength() == 38){
+            if(userTableColumnResultDTO.getDataType().toUpperCase().startsWith("VARCHAR")||userTableColumnResultDTO.getDataType().toUpperCase().startsWith("NVARCHAR")){
+                if(userTableColumnResultDTO.getCharLength().compareTo(new BigDecimal("38")) == 0){
                     if("Y".equals(userTableColumnResultDTO.getNullable())) {
                         if("流程实例ID".equals(userTableColumnResultDTO.getComments())) {
                             return true;
@@ -164,8 +165,8 @@ public class Scene4TableCheckerImpl implements TableChecker {
      */
     private boolean checkProcessDefinitionIdColumn(UserTableColumnResultDTO userTableColumnResultDTO){
         if("PROCESS_DEFINITION_ID".equals(userTableColumnResultDTO.getColumnName())){
-            if(userTableColumnResultDTO.getDataType().startsWith("VARCHAR")||userTableColumnResultDTO.getDataType().startsWith("NVARCHAR")){
-                if(userTableColumnResultDTO.getCharLength() == 100){
+            if(userTableColumnResultDTO.getDataType().toUpperCase().startsWith("VARCHAR")||userTableColumnResultDTO.getDataType().toUpperCase().startsWith("NVARCHAR")){
+                if(userTableColumnResultDTO.getCharLength().compareTo(new BigDecimal("100")) == 0){
                     if("Y".equals(userTableColumnResultDTO.getNullable())) {
                         if("流程定义ID".equals(userTableColumnResultDTO.getComments())) {
                             return true;

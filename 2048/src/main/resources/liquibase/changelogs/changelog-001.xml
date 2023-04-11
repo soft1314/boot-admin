@@ -13,14 +13,20 @@
     <property name="uuid" value="sys_guid()" dbms="oracle"/>
     <property name="uuid" value="UUID()" dbms="mysql"/>
     <changeSet author="admin (generated)" id="00001-1" dbms="oracle">
-        <createView fullDefinition="true" remarks="表和视图" viewName="V_TABLES_MASTER">CREATE OR REPLACE FORCE VIEW V_TABLES_MASTER (TABLE_SCHEMA, TABLENAME, TABLETYPE, COMMENTS, TENANT_ID_) AS select SYS_CONTEXT('USERENV','CURRENT_SCHEMA') TABLE_SCHEMA,
+        <createView fullDefinition="true" remarks="表和视图" viewName="V_TABLES_MASTER">
+            CREATE OR REPLACE FORCE VIEW V_TABLES_MASTER (TABLE_SCHEMA, TABLENAME, TABLETYPE, COMMENTS, TENANT_ID_) AS
+            select SYS_CONTEXT('USERENV','CURRENT_SCHEMA') TABLE_SCHEMA,
             t.tname tableName,
             tabtype tabletype,
             f.comments comments,
             'DEMO' TENANT_ID_
             from tab t
             inner join user_tab_comments f
-            on t.tname = f.table_name</createView>
+            on t.tname = f.table_name
+            where tname != 'DATABASECHANGELOG'
+            and tname != 'DATABASECHANGELOGLOCK'
+            and tname != 'UNDO_LOG'
+        </createView>
     </changeSet>
     <changeSet author="37514 (generated)" id="00000-2" dbms="mysql">
         <createView fullDefinition="true" remarks="表和视图" viewName="V_TABLES_MASTER">
@@ -33,6 +39,7 @@
             'DEMO' TENANT_ID_
             FROM
             information_schema.`TABLES`
+            WHERE table_name != 'databasechangeloglock' AND TABLE_NAME != 'databasechangelog' AND TABLE_NAME != 'undo_log'
         </createView>
     </changeSet>
     <changeSet author="admin (generated)" id="00001-2" dbms="oracle">
@@ -664,22 +671,22 @@
             <column name="PACKAGE_VO" remarks="VO包名" type="NVARCHAR2(100)">
                 <constraints nullable="false"/>
             </column>
-            <column name="JAVA_OUTPUT_DIR" remarks="项目JAVA文件路径" type="NVARCHAR2(100)">
+            <column name="JAVA_OUTPUT_DIR" remarks="项目JAVA文件路径" type="NVARCHAR2(200)">
                 <constraints nullable="false"/>
             </column>
             <column name="XML_OUTPUT_DIR" remarks="项目Mapper XML文件路径" type="NVARCHAR2(200)">
                 <constraints nullable="false"/>
             </column>
-            <column name="VUE_DIR" remarks="VUE文件路径" type="NVARCHAR2(100)">
+            <column name="VUE_DIR" remarks="VUE文件路径" type="NVARCHAR2(200)">
                 <constraints nullable="false"/>
             </column>
-            <column name="API_JS_DIR" remarks="API文件路径" type="NVARCHAR2(100)">
+            <column name="API_JS_DIR" remarks="API文件路径" type="NVARCHAR2(200)">
                 <constraints nullable="false"/>
             </column>
-            <column name="DICTYPE_JS_DIR" remarks="代码类型定义JS路径" type="NVARCHAR2(100)">
+            <column name="DICTYPE_JS_DIR" remarks="代码类型定义JS路径" type="NVARCHAR2(200)">
                 <constraints nullable="false"/>
             </column>
-            <column name="VIEWS_DIR" remarks="前端VIEWS文件夹" type="NVARCHAR2(100)">
+            <column name="VIEWS_DIR" remarks="前端VIEWS文件夹" type="NVARCHAR2(200)">
                 <constraints nullable="false"/>
             </column>
             <column name="DEFAULT_PROJ" remarks="是否缺省项目" type="NVARCHAR2(1)">
@@ -715,7 +722,7 @@
             <column name="PACKAGE_MAPSTRUCT" remarks="MAPSTRUCT包名" type="NVARCHAR2(100)">
                 <constraints nullable="false"/>
             </column>
-            <column name="CHANGE_LOG_DIR" remarks="CHANGE_LOG路径" type="NVARCHAR2(100)">
+            <column name="CHANGE_LOG_DIR" remarks="CHANGE_LOG路径" type="NVARCHAR2(200)">
                 <constraints nullable="false"/>
             </column>
             <column name="PACKAGE_SERVICE_SC" remarks="剧情SERVICE包名" type="NVARCHAR2(100)">

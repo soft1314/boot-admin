@@ -250,11 +250,11 @@ const actions = {
         })
       })
     }else{
-      Message({
-        message: '刷新太频繁，这次不刷新',
-        type: 'error',
-        duration: 5 * 1000
-      })
+      // Message({
+      //   message: '刷新太频繁，这次不刷新',
+      //   type: 'error',
+      //   duration: 5 * 1000
+      // })
     }
   },
 }

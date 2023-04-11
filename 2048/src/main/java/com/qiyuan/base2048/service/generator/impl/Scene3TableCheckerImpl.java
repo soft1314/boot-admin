@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service("Scene3TableCheckerImpl")
@@ -75,8 +76,8 @@ public class Scene3TableCheckerImpl implements TableChecker {
      */
     private boolean checkFlowStatusColumn(UserTableColumnResultDTO userTableColumnResultDTO){
         if("FLOW_STATUS".equals(userTableColumnResultDTO.getColumnName())){
-            if(userTableColumnResultDTO.getDataType().startsWith("VARCHAR")||userTableColumnResultDTO.getDataType().startsWith("NVARCHAR")){
-                if(userTableColumnResultDTO.getCharLength() == 2){
+            if(userTableColumnResultDTO.getDataType().toUpperCase().startsWith("VARCHAR")||userTableColumnResultDTO.getDataType().toUpperCase().startsWith("NVARCHAR")){
+                if(userTableColumnResultDTO.getCharLength().compareTo(new BigDecimal("2")) == 0){
                     if("N".equals(userTableColumnResultDTO.getNullable())) {
                         if("流转状态;FLOW_STATUS".equals(userTableColumnResultDTO.getComments())) {
                             return true;
@@ -96,8 +97,8 @@ public class Scene3TableCheckerImpl implements TableChecker {
      */
     private boolean checkTitleColumn(UserTableColumnResultDTO userTableColumnResultDTO){
         if("TITLE".equals(userTableColumnResultDTO.getColumnName())){
-            if(userTableColumnResultDTO.getDataType().startsWith("VARCHAR")||userTableColumnResultDTO.getDataType().startsWith("NVARCHAR")){
-                if(userTableColumnResultDTO.getCharLength() >= 50){
+            if(userTableColumnResultDTO.getDataType().toUpperCase().startsWith("VARCHAR")||userTableColumnResultDTO.getDataType().toUpperCase().startsWith("NVARCHAR")){
+                if(userTableColumnResultDTO.getCharLength().compareTo(new BigDecimal("50")) >= 0){
                     if("N".equals(userTableColumnResultDTO.getNullable())) {
                         if("标题".equals(userTableColumnResultDTO.getComments())) {
                             return true;

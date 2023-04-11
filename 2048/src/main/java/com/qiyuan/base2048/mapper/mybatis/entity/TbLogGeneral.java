@@ -87,19 +87,5 @@ public class TbLogGeneral implements Serializable {
      */
     @TableField("TENANT_ID_")
     private String tenantId_;
-    /**
-     *  是否末级;YESNO
-     */
-    @TableField("LEAF")
-    private String leaf;
-    /**
-     *  父级GUID
-     */
-    @TableField("PARENT_GUID")
-    private String parentGuid;
-    /**
-     *  顺序号
-     */
-    @TableField("SORT")
-    private BigDecimal sort;
+
 }

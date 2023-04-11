@@ -8,6 +8,7 @@ import com.qiyuan.bautil.dto.ResultDTO;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -182,8 +183,8 @@ public class BasicTableCheckerImpl implements BasicTableChecker {
     private boolean checkPrimaryKey(UserTableColumnResultDTO userTableColumnResultDTO){
         if("GUID".equals(userTableColumnResultDTO.getColumnName())){
             if("Y".equals(userTableColumnResultDTO.getPrimaryKey())){
-                if(userTableColumnResultDTO.getDataType().startsWith("VARCHAR")||userTableColumnResultDTO.getDataType().startsWith("NVARCHAR")){
-                    if(userTableColumnResultDTO.getCharLength() == 38){
+                if(userTableColumnResultDTO.getDataType().toUpperCase().startsWith("VARCHAR")||userTableColumnResultDTO.getDataType().toUpperCase().startsWith("NVARCHAR")){
+                    if(userTableColumnResultDTO.getCharLength().compareTo(new BigDecimal("38")) == 0){
                         if("N".equals(userTableColumnResultDTO.getNullable())) {
                             if("主键".equals(userTableColumnResultDTO.getComments())) {
                                 return true;
@@ -204,8 +205,8 @@ public class BasicTableCheckerImpl implements BasicTableChecker {
      */
     private boolean checkCreateByColumn(UserTableColumnResultDTO userTableColumnResultDTO){
         if("CREATE_BY".equals(userTableColumnResultDTO.getColumnName())){
-            if(userTableColumnResultDTO.getDataType().startsWith("VARCHAR")||userTableColumnResultDTO.getDataType().startsWith("NVARCHAR")){
-                if(userTableColumnResultDTO.getCharLength() == 100){
+            if(userTableColumnResultDTO.getDataType().toUpperCase().startsWith("VARCHAR")||userTableColumnResultDTO.getDataType().toUpperCase().startsWith("NVARCHAR")){
+                if(userTableColumnResultDTO.getCharLength().compareTo(new BigDecimal("100")) == 0){
                     if("N".equals(userTableColumnResultDTO.getNullable())) {
                         if("记录创建者".equals(userTableColumnResultDTO.getComments())) {
                             return true;
@@ -225,8 +226,8 @@ public class BasicTableCheckerImpl implements BasicTableChecker {
      */
     private boolean checkModifyByColumn(UserTableColumnResultDTO userTableColumnResultDTO){
         if("MODIFY_BY".equals(userTableColumnResultDTO.getColumnName())){
-            if(userTableColumnResultDTO.getDataType().startsWith("VARCHAR")||userTableColumnResultDTO.getDataType().startsWith("NVARCHAR")){
-                if(userTableColumnResultDTO.getCharLength() == 100){
+            if(userTableColumnResultDTO.getDataType().toUpperCase().startsWith("VARCHAR")||userTableColumnResultDTO.getDataType().toUpperCase().startsWith("NVARCHAR")){
+                if(userTableColumnResultDTO.getCharLength().compareTo(new BigDecimal("100")) == 0){
                     if("N".equals(userTableColumnResultDTO.getNullable())) {
                         if("记录最后修改者".equals(userTableColumnResultDTO.getComments())) {
                             return true;
@@ -246,7 +247,7 @@ public class BasicTableCheckerImpl implements BasicTableChecker {
      */
     private boolean checkCreateTimeColumn(UserTableColumnResultDTO userTableColumnResultDTO){
         if("CREATE_TIME".equals(userTableColumnResultDTO.getColumnName())){
-            if("DATE".equals(userTableColumnResultDTO.getDataType())){
+            if("DATE".equalsIgnoreCase(userTableColumnResultDTO.getDataType()) || "timestamp".equalsIgnoreCase(userTableColumnResultDTO.getDataType())){
                 if("N".equals(userTableColumnResultDTO.getNullable())) {
                     if("记录创建时间".equals(userTableColumnResultDTO.getComments())) {
                         return true;
@@ -265,7 +266,7 @@ public class BasicTableCheckerImpl implements BasicTableChecker {
      */
     private boolean checkModifyTimeColumn(UserTableColumnResultDTO userTableColumnResultDTO){
         if("MODIFY_TIME".equals(userTableColumnResultDTO.getColumnName())){
-            if("DATE".equals(userTableColumnResultDTO.getDataType())){
+            if("DATE".equalsIgnoreCase(userTableColumnResultDTO.getDataType()) || "timestamp".equalsIgnoreCase(userTableColumnResultDTO.getDataType())){
                 if("N".equals(userTableColumnResultDTO.getNullable())) {
                     if("记录最后修改时间".equals(userTableColumnResultDTO.getComments())) {
                         return true;
@@ -285,7 +286,7 @@ public class BasicTableCheckerImpl implements BasicTableChecker {
      */
     private boolean checkDatestampColumn(UserTableColumnResultDTO userTableColumnResultDTO) {
         if ("DATESTAMP".equals(userTableColumnResultDTO.getColumnName())) {
-            if("DATE".equals(userTableColumnResultDTO.getDataType())){
+            if("DATE".equalsIgnoreCase(userTableColumnResultDTO.getDataType()) || "timestamp".equalsIgnoreCase(userTableColumnResultDTO.getDataType())){
                 if ("N".equals(userTableColumnResultDTO.getNullable())) {
                     if ("时间戳".equals(userTableColumnResultDTO.getComments())) {
                         return true;
@@ -304,8 +305,8 @@ public class BasicTableCheckerImpl implements BasicTableChecker {
      */
     private boolean checkEnabledColumn(UserTableColumnResultDTO userTableColumnResultDTO){
         if("ENABLED".equals(userTableColumnResultDTO.getColumnName())){
-            if(userTableColumnResultDTO.getDataType().startsWith("VARCHAR")||userTableColumnResultDTO.getDataType().startsWith("NVARCHAR")){
-                if(userTableColumnResultDTO.getCharLength() == 1){
+            if(userTableColumnResultDTO.getDataType().toUpperCase().startsWith("VARCHAR")||userTableColumnResultDTO.getDataType().toUpperCase().startsWith("NVARCHAR")){
+                if(userTableColumnResultDTO.getCharLength().compareTo(new BigDecimal("1")) == 0){
                     if("启用状态;ENABLED".equals(userTableColumnResultDTO.getComments())){
                         if("N".equals(userTableColumnResultDTO.getNullable())) {
                             return true;
@@ -325,8 +326,8 @@ public class BasicTableCheckerImpl implements BasicTableChecker {
      */
     private boolean checkDeletedColumn(UserTableColumnResultDTO userTableColumnResultDTO){
         if("DELETED".equals(userTableColumnResultDTO.getColumnName())){
-            if(userTableColumnResultDTO.getDataType().startsWith("VARCHAR")||userTableColumnResultDTO.getDataType().startsWith("NVARCHAR")){
-                if(userTableColumnResultDTO.getCharLength() == 1){
+            if(userTableColumnResultDTO.getDataType().toUpperCase().startsWith("VARCHAR")||userTableColumnResultDTO.getDataType().toUpperCase().startsWith("NVARCHAR")){
+                if(userTableColumnResultDTO.getCharLength().compareTo(new BigDecimal("1")) == 0){
                     if("删除状态;DELETED".equals(userTableColumnResultDTO.getComments())){
                         if("N".equals(userTableColumnResultDTO.getNullable())) {
                             return true;
@@ -346,8 +347,16 @@ public class BasicTableCheckerImpl implements BasicTableChecker {
      */
     private boolean checkVersionColumn(UserTableColumnResultDTO userTableColumnResultDTO){
         if("VERSION".equals(userTableColumnResultDTO.getColumnName())){
-            if(userTableColumnResultDTO.getDataType().equals("NUMBER")){
-                if(userTableColumnResultDTO.getDataLength().equals("22") && userTableColumnResultDTO.getDataScale().equals("0")){
+            if(userTableColumnResultDTO.getDataType().equalsIgnoreCase("NUMBER")){
+                if(userTableColumnResultDTO.getDataLength()!=null && userTableColumnResultDTO.getDataLength().equals("22") && userTableColumnResultDTO.getDataScale().equals("0")){
+                    if("乐观锁".equals(userTableColumnResultDTO.getComments())){
+                        if("N".equals(userTableColumnResultDTO.getNullable())) {
+                            return true;
+                        }
+                    }
+                }
+            }else if("int".equalsIgnoreCase(userTableColumnResultDTO.getDataType())){
+                if(userTableColumnResultDTO.getCharLength()!=null && userTableColumnResultDTO.getCharLength().compareTo(new BigDecimal("10")) == 0){
                     if("乐观锁".equals(userTableColumnResultDTO.getComments())){
                         if("N".equals(userTableColumnResultDTO.getNullable())) {
                             return true;
@@ -367,8 +376,8 @@ public class BasicTableCheckerImpl implements BasicTableChecker {
      */
     private boolean checkRemarksColumn(UserTableColumnResultDTO userTableColumnResultDTO){
         if("REMARKS".equals(userTableColumnResultDTO.getColumnName())){
-            if(userTableColumnResultDTO.getDataType().startsWith("VARCHAR") || userTableColumnResultDTO.getDataType().startsWith("NVARCHAR")){
-                if(userTableColumnResultDTO.getCharLength() >= 900){
+            if(userTableColumnResultDTO.getDataType().toUpperCase().startsWith("VARCHAR") || userTableColumnResultDTO.getDataType().toUpperCase().startsWith("NVARCHAR")){
+                if(userTableColumnResultDTO.getCharLength().compareTo(new BigDecimal("900")) >= 0){
                     if("备注".equals(userTableColumnResultDTO.getComments())){
                         return true;
                     }
@@ -386,8 +395,8 @@ public class BasicTableCheckerImpl implements BasicTableChecker {
      */
     private boolean checkTenantIdColumn(UserTableColumnResultDTO userTableColumnResultDTO){
         if("TENANT_ID_".equals(userTableColumnResultDTO.getColumnName())){
-            if(userTableColumnResultDTO.getDataType().startsWith("VARCHAR") || userTableColumnResultDTO.getDataType().startsWith("NVARCHAR")){
-                if(userTableColumnResultDTO.getCharLength() == 38){
+            if(userTableColumnResultDTO.getDataType().toUpperCase().startsWith("VARCHAR") || userTableColumnResultDTO.getDataType().toUpperCase().startsWith("NVARCHAR")){
+                if(userTableColumnResultDTO.getCharLength().compareTo(new BigDecimal("38")) == 0){
                     if("租户ID".equals(userTableColumnResultDTO.getComments())){
                         if("N".equals(userTableColumnResultDTO.getNullable())) {
                             return true;

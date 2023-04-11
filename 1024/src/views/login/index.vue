@@ -50,16 +50,16 @@
       <div style="position:relative">
         <div class="tips">
           <span>Username : admin</span>
-          <span>Password : any</span>
+          <span>Password : Bootadmin@666</span>
         </div>
         <div class="tips">
-          <span style="margin-right:18px;">Username : editor</span>
-          <span>Password : any</span>
+          <span style="margin-right:18px;">Username : geust </span>
+          <span>Password : Bootadmin@666</span>
         </div>
 
-        <el-button class="thirdparty-button" type="primary" @click="showDialog=true">
+        <!--        <el-button class="thirdparty-button" type="primary" @click="showDialog=true">
           Or connect with
-        </el-button>
+        </el-button> -->
       </div>
     </el-form>
 

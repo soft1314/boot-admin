@@ -18,6 +18,8 @@ public class OracleTool {
             return "Date";
         }else if("BLOB".equalsIgnoreCase(dataType)) {
             return "Object";
+        }else if("TIMESTAMP".equalsIgnoreCase(dataType)){
+            return "Date";
         }
         return "String";
     }

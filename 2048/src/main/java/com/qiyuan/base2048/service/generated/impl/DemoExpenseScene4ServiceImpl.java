@@ -9,13 +9,14 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qiyuan.base2048.mapper.mapstruct.generated.DemoExpenseScene4StructMapper;
 import com.qiyuan.base2048.mapper.mybatis.DemoExpenseMapper;
 import com.qiyuan.base2048.mapper.mybatis.entity.DemoExpense;
+import com.qiyuan.base2048.pojo.vo.generated.DemoExpenseScene4CompleteTaskDataVO;
 import com.qiyuan.base2048.pojo.vo.generated.DemoExpenseScene4DataVO;
 import com.qiyuan.base2048.pojo.vo.generated.DemoExpenseScene4QueryVO;
-import com.qiyuan.base2048.pojo.vo.generated.DemoExpenseScene4CompleteTaskDataVO;
 import com.qiyuan.base2048.service.Component.MessageUtils;
 import com.qiyuan.base2048.service.generated.IDemoExpenseScene4Service;
 import com.qiyuan.base2048.service.generated.IDemoExpenseScene4Transaction;
 import com.qiyuan.base2048.service.workflow.ProcDefKeySelector;
+import com.qiyuan.bautil.constant.ConstantCommon;
 import com.qiyuan.bautil.constant.ConstantWorkflowVarKey;
 import com.qiyuan.bautil.dto.BaseUser;
 import com.qiyuan.bautil.dto.ResultDTO;
@@ -27,11 +28,14 @@ import com.qiyuan.bautil.util.StringTool;
 import com.qiyuan.bautil.util.TimeTool;
 import com.qiyuan.bautil.util.WorkflowTool;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+
 import static cn.hutool.core.bean.BeanUtil.beanToMap;
 /**
 * <p>
@@ -174,12 +178,15 @@ public class DemoExpenseScene4ServiceImpl extends ServiceImpl<DemoExpenseMapper,
 
   private WorkflowStartProcessDTO genWorkflowStartProcessDTO(DemoExpense entity,BaseUser baseUser) throws Exception{
     String tableName = entity.getClass().getAnnotation(TableName.class).value();
+    Map extraObj=new LinkedHashMap();
+    extraObj.put(ConstantWorkflowVarKey.BUSINESS_TABLE,tableName);
+    String procDefKey = procDefKeySelector.selectProcDefKey(tableName, ConstantCommon.PARAMETER_NON,entity,extraObj);
+    if(StringUtils.isBlank(procDefKey)){
+      throw new Exception(MessageUtils.get("workflow.procdefkey.null.error"));
+    }
     WorkflowStartProcessDTO startProcessDTO = new WorkflowStartProcessDTO();
     startProcessDTO.setBusinessTable(tableName);
-    /** 不用选择器时，也可以在这里写固定值 **/
-    Map map = new HashMap();
-    map.put("entity",entity);
-    startProcessDTO.setProcDefKey(procDefKeySelector.selectProcDefKey(tableName,map));
+    startProcessDTO.setProcDefKey(procDefKey);
     startProcessDTO.setTitle(entity.getTitle());
     startProcessDTO.setVars(new HashMap<>());
     startProcessDTO.getVars().put(ConstantWorkflowVarKey.LAST_ASSIGNEE, WorkflowTool.genAssignee(baseUser));

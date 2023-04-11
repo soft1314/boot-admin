@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service("Scene2TableCheckerImpl")
@@ -85,8 +86,8 @@ public class Scene2TableCheckerImpl implements TableChecker {
      */
     private boolean checkParentGuidColumn(UserTableColumnResultDTO userTableColumnResultDTO){
         if("PARENT_GUID".equals(userTableColumnResultDTO.getColumnName())){
-            if(userTableColumnResultDTO.getDataType().startsWith("VARCHAR")||userTableColumnResultDTO.getDataType().startsWith("NVARCHAR")){
-                if(userTableColumnResultDTO.getCharLength() == 38){
+            if(userTableColumnResultDTO.getDataType().toUpperCase().startsWith("VARCHAR")||userTableColumnResultDTO.getDataType().toUpperCase().startsWith("NVARCHAR")){
+                if(userTableColumnResultDTO.getCharLength().compareTo(new BigDecimal("38")) == 0){
                     if("N".equals(userTableColumnResultDTO.getNullable())) {
                         if("父级GUID".equals(userTableColumnResultDTO.getComments())) {
                             return true;
@@ -106,8 +107,8 @@ public class Scene2TableCheckerImpl implements TableChecker {
      */
     private boolean checkLeafColumn(UserTableColumnResultDTO userTableColumnResultDTO){
         if("LEAF".equals(userTableColumnResultDTO.getColumnName())){
-            if(userTableColumnResultDTO.getDataType().startsWith("VARCHAR")||userTableColumnResultDTO.getDataType().startsWith("NVARCHAR")){
-                if(userTableColumnResultDTO.getCharLength() == 1){
+            if(userTableColumnResultDTO.getDataType().toUpperCase().startsWith("VARCHAR")||userTableColumnResultDTO.getDataType().toUpperCase().startsWith("NVARCHAR")){
+                if(userTableColumnResultDTO.getCharLength().compareTo(new BigDecimal("1")) == 0){
                     if("N".equals(userTableColumnResultDTO.getNullable())) {
                         if("是否末级;YESNO".equals(userTableColumnResultDTO.getComments())) {
                             return true;
@@ -127,7 +128,7 @@ public class Scene2TableCheckerImpl implements TableChecker {
      */
     private boolean checkSortColumn(UserTableColumnResultDTO userTableColumnResultDTO){
         if("SORT".equals(userTableColumnResultDTO.getColumnName())){
-            if(userTableColumnResultDTO.getDataType().equals("NUMBER")){
+            if(userTableColumnResultDTO.getDataType().toUpperCase().equals("NUMBER")){
                 if(userTableColumnResultDTO.getDataLength().equals("22")){
                     if("N".equals(userTableColumnResultDTO.getNullable())) {
                         if("顺序号".equals(userTableColumnResultDTO.getComments())) {

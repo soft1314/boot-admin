@@ -337,13 +337,13 @@
                 this.optionMap.set(itemType, data)
             },
             handlePageSizeChange(val) {
-                if (val != this.filterDrawer.formData.pageSize) {
+                if (val !== this.filterDrawer.formData.pageSize) {
                     this.filterDrawer.formData.pageSize = val;
                     this.getMainTableData()
                 }
             },
             handlePageCurrentChange(val) {
-                if (val != this.filterDrawer.formData.currentPage) {
+                if (val !== this.filterDrawer.formData.currentPage) {
                     this.filterDrawer.formData.currentPage = val;
                     this.getMainTableData()
                 }
@@ -405,7 +405,7 @@
                     guid
                 }
                 const result = await del${marker.entityName}(guidVO)
-                if (this.$commonResultCode.SUCCESS() == result.code) {
+                if (this.$commonResultCode.SUCCESS() === result.code) {
                     this.getMainTableData()
                 }
                 this.$message({
@@ -438,7 +438,7 @@
                     message: response.message,
                     type: 'warning'
                 })
-                if (this.mainDataForm.mainDataFormDialogTitle == '修改') {
+                if (this.mainDataForm.mainDataFormDialogTitle === '修改') {
                     this.getMainTableData()
                     this.mainDataForm.mainDataFormDialogVisible = false
                 }

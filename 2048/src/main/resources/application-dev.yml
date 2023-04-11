@@ -6,15 +6,15 @@ spring:
   datasource:
     #    driverClassName: oracle.jdbc.driver.OracleDriver
     #    url: jdbc:oracle:thin:@127.0.0.1:1521:orcl
-#    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
-#    url: jdbc:p6spy:oracle:thin:@127.0.0.1:1521:orcl
-#    username: base2048
-#    password: base2048
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    url: jdbc:p6spy:oracle:thin:@127.0.0.1:1521:orcl
+    username: base2048
+    password: base2048
 
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/base2048?useSSL=false&serverTimezone=UTC&autoReconnect=true&allowPublicKeyRetrieval=true&useOldAliasMetadataBehavior=true
-    username: root
-    password: mysql
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/base2048?useSSL=false&serverTimezone=UTC&autoReconnect=true&allowPublicKeyRetrieval=true&useOldAliasMetadataBehavior=true
+#    username: root
+#    password: mysql
   cloud:
     nacos:
       discovery:
@@ -79,7 +79,7 @@ spring:
     wait-for-jobs-to-complete-on-shutdown: true
     jdbc:
       #数据库架构初始化模式--never 从不进行初始化，always 每次都清空数据库进行初始化,embedded 只初始化内存数据库（默认值）
-      initialize-schema: always
+      initialize-schema: never
 # 开启监控所有项
 management:
   endpoints:

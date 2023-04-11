@@ -7,6 +7,7 @@ import com.qiyuan.base2048.service.mybatis.ITbLogGeneralService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qiyuan.bautil.enums.IsDeletedEnum;
 import com.qiyuan.bautil.enums.IsEnabledEnum;
+import com.qiyuan.bautil.util.StringTool;
 import org.springframework.stereotype.Service;
 
 /**
@@ -24,7 +25,7 @@ public class TbLogGeneralServiceImpl extends ServiceImpl<TbLogGeneralMapper, TbL
     public boolean createLog(String logContent) throws Exception {
         TbLogGeneral entity = new TbLogGeneral();
         entity.setGuid(IdWorker.getIdStr(entity));
-        entity.setLogContent(logContent);
+        entity.setLogContent(StringTool.subStringDb(logContent,900));
         entity.setDeleted(IsDeletedEnum.NOTDELETED.getStringValue());
         entity.setEnabled(IsEnabledEnum.ENABLED.getStringValue());
         entity.setVersion(1);
