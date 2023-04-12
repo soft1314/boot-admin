@@ -354,13 +354,13 @@
                 this.optionMap.set(itemType, data)
             },
             handlePageSizeChange(val) {
-                if (val != this.filterDrawer.formData.pageSize) {
+                if (val !== this.filterDrawer.formData.pageSize) {
                     this.filterDrawer.formData.pageSize = val;
                     this.getMainTableData()
                 }
             },
             handlePageCurrentChange(val) {
-                if (val != this.filterDrawer.formData.currentPage) {
+                if (val !== this.filterDrawer.formData.currentPage) {
                     this.filterDrawer.formData.currentPage = val;
                     this.getMainTableData()
                 }
@@ -422,7 +422,7 @@
                     guid
                 }
                 const result = await del${marker.entityName}(guidVO)
-                if (this.$commonResultCode.SUCCESS() == result.code) {
+                if (this.$commonResultCode.SUCCESS() === result.code) {
                     this.getMainTableData()
                 }
                 this.$message({
@@ -460,7 +460,7 @@
                 });
             },
             handleDisplay(row) {
-                if(row.processInstanceId == null || row.processInstanceId ==''){
+                if(row.processInstanceId === null || row.processInstanceId ===''){
                     this.$message({
                         message: '数据未提交到流程',
                         type: 'warning'
@@ -480,7 +480,7 @@
                     message: response.message,
                     type: 'warning'
                 })
-                if (this.mainDataForm.mainDataFormDialogTitle == '修改') {
+                if (this.mainDataForm.mainDataFormDialogTitle === '修改') {
                     this.getMainTableData()
                     this.mainDataForm.mainDataFormDialogVisible = false
                 }
@@ -504,13 +504,13 @@
                   const {
                     level,
                   } = node;
-                  if(level == 0){
-                    const nodes = this.loadLazyCodeNode(this.$commonDicType.${col.dicType}(),'top',resolve)
+                  if(level === 0){
+                    this.loadLazyCodeNode(this.$commonDicType.${col.dicType}(),'top',resolve)
                   }else{
                     const {
                         value,
                     } = node;
-                    const nodes = this.loadLazyCodeNode(this.$commonDicType.${col.dicType}(),value,resolve)
+                    this.loadLazyCodeNode(this.$commonDicType.${col.dicType}(),value,resolve)
                   }
                 },
                 ${col.prop}EditCascaderChangeEvent(value){
@@ -519,7 +519,7 @@
                     this.mainDataForm.editingRecord.${col.prop} = code+'_'+name
                 },
                 ${col.prop}QueryCascaderChangeEvent(value){
-                    if(value.length == 0){
+                    if(value.length === 0){
                         this.filterDrawer.formData.${col.prop} = ''
                     }else{
                         const code=value[value.length-1]

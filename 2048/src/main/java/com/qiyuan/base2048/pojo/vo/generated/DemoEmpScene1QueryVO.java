@@ -15,7 +15,7 @@ import java.util.Date;
     * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-3-30 15:09:52
+* @since 2023-4-12 22:26:26
 */
 
 @Data
@@ -46,7 +46,7 @@ public class DemoEmpScene1QueryVO extends BasePageQueryVO {
             /**
             *  薪水
             */
-        private BigDecimal salary;
+        private String salary;
             /**
             *  情况说明
             */
@@ -78,7 +78,7 @@ public class DemoEmpScene1QueryVO extends BasePageQueryVO {
             /**
             *  乐观锁
             */
-        private BigDecimal version;
+        private String version;
             /**
             *  备注
             */

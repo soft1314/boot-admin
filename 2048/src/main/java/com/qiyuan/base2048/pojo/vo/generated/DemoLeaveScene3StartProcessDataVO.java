@@ -15,7 +15,7 @@ import java.util.Date;
     * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-3-30 15:13:12
+* @since 2023-4-12 22:27:24
 */
 
 @Data
@@ -35,7 +35,7 @@ public class DemoLeaveScene3StartProcessDataVO implements Serializable {
             /**
             *  请假天数
             */
-        private BigDecimal days;
+        private String days;
             /**
             *  请假类型;LEAVE_TYPE
             */
@@ -103,7 +103,7 @@ public class DemoLeaveScene3StartProcessDataVO implements Serializable {
             /**
             *  乐观锁
             */
-        private BigDecimal version;
+        private String version;
             /**
             *  备注
             */

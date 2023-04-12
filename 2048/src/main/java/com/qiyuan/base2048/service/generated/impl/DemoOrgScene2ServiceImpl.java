@@ -35,7 +35,7 @@ import static cn.hutool.core.bean.BeanUtil.beanToMap;
     * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-3-30 15:11:31
+* @since 2023-4-12 22:26:50
 */
 @Service
 public class DemoOrgScene2ServiceImpl extends ServiceImpl<DemoOrgMapper, DemoOrg>  implements IDemoOrgScene2Service {

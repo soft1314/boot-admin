@@ -3017,21 +3017,6 @@
             <column name="TENANT_ID_" value="DEMO"/>
         </insert>
         <insert tableName="TR_ROLE_RESOURCE">
-            <column name="GUID" value="1644225766186754051"/>
-            <column name="ROLE_GUID" value="administrator"/>
-            <column name="RESOURCE_GUID" value="70D4B81355B64660BECDBD7FDEA3B1D9"/>
-            <column name="CREATE_BY" value="张三丰[admin]"/>
-            <column name="CREATE_TIME" valueDate="2023-04-07T14:29:05"/>
-            <column name="MODIFY_BY" value="张三丰[admin]"/>
-            <column name="MODIFY_TIME" valueDate="2023-04-07T14:29:05"/>
-            <column name="DATESTAMP" valueDate="2023-04-07T14:29:05"/>
-            <column name="ENABLED" value="1"/>
-            <column name="DELETED" value="1"/>
-            <column name="VERSION" valueNumeric="0"/>
-            <column name="REMARKS"/>
-            <column name="TENANT_ID_" value="DEMO"/>
-        </insert>
-        <insert tableName="TR_ROLE_RESOURCE">
             <column name="GUID" value="1644225783987380227"/>
             <column name="ROLE_GUID" value="administrator"/>
             <column name="RESOURCE_GUID" value="DA4BEC67E7AE40C49565C964F524DCF0"/>

@@ -244,13 +244,13 @@
                         const {
                             level,
                         } = node;
-                        if (level == 0) {
-                            const nodes = this.loadLazyCodeNode(this.$commonDicType.${col.dicType}(), 'top', resolve)
+                        if (level === 0) {
+                            this.loadLazyCodeNode(this.$commonDicType.${col.dicType}(), 'top', resolve)
                         } else {
                             const {
                                 value,
                             } = node;
-                            const nodes = this.loadLazyCodeNode(this.$commonDicType.${col.dicType}(), value, resolve)
+                            this.loadLazyCodeNode(this.$commonDicType.${col.dicType}(), value, resolve)
                         }
                     },
                 </#if>

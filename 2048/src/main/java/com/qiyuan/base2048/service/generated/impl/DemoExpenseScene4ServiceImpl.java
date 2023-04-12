@@ -9,15 +9,13 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qiyuan.base2048.mapper.mapstruct.generated.DemoExpenseScene4StructMapper;
 import com.qiyuan.base2048.mapper.mybatis.DemoExpenseMapper;
 import com.qiyuan.base2048.mapper.mybatis.entity.DemoExpense;
-import com.qiyuan.base2048.pojo.vo.generated.DemoExpenseScene4CompleteTaskDataVO;
 import com.qiyuan.base2048.pojo.vo.generated.DemoExpenseScene4DataVO;
 import com.qiyuan.base2048.pojo.vo.generated.DemoExpenseScene4QueryVO;
+import com.qiyuan.base2048.pojo.vo.generated.DemoExpenseScene4CompleteTaskDataVO;
 import com.qiyuan.base2048.service.Component.MessageUtils;
 import com.qiyuan.base2048.service.generated.IDemoExpenseScene4Service;
 import com.qiyuan.base2048.service.generated.IDemoExpenseScene4Transaction;
 import com.qiyuan.base2048.service.workflow.ProcDefKeySelector;
-import com.qiyuan.bautil.constant.ConstantCommon;
-import com.qiyuan.bautil.constant.ConstantWorkflowVarKey;
 import com.qiyuan.bautil.dto.BaseUser;
 import com.qiyuan.bautil.dto.ResultDTO;
 import com.qiyuan.bautil.dto.WorkflowReviewResultVO;
@@ -28,15 +26,15 @@ import com.qiyuan.bautil.util.StringTool;
 import com.qiyuan.bautil.util.TimeTool;
 import com.qiyuan.bautil.util.WorkflowTool;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
-
 import static cn.hutool.core.bean.BeanUtil.beanToMap;
+import com.qiyuan.bautil.constant.ConstantCommon;
+import com.qiyuan.bautil.constant.ConstantWorkflowVarKey;
+import java.util.LinkedHashMap;
 /**
 * <p>
     * 本文件自动生成，严禁人工修改
@@ -44,7 +42,7 @@ import static cn.hutool.core.bean.BeanUtil.beanToMap;
     * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-3-30 15:16:27
+* @since 2023-4-12 22:39:12
 */
 @Service
 public class DemoExpenseScene4ServiceImpl extends ServiceImpl<DemoExpenseMapper, DemoExpense>  implements IDemoExpenseScene4Service {

@@ -16,7 +16,7 @@ import java.util.Date;
 * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-3-30 15:07:03
+* @since 2023-4-12 22:25:39
 */
 
 @Data
@@ -40,7 +40,7 @@ public class DemoLeave implements Serializable {
      *  请假天数
      */
     @TableField("DAYS")
-    private BigDecimal days;
+    private String days;
     /**
      *  请假类型;LEAVE_TYPE
      */

@@ -316,4 +316,63 @@ end
             <column name="DATESTAMP" valueDate="2023-04-07T14:26:53"/>
         </insert>
     </changeSet>
+    <changeSet id="20230412-001" author="Administrator">
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="NAME" value="剧情1获取表tb_log_general分页数据"/>
+            <column name="URI" value="/api/system/auth/tb-log-general/scene1/table/page"/>
+            <column name="RESOURCE_TYPE" value="2"/>
+            <column name="ACCESS_CONTROL_STYLE" value="02"/>
+            <column name="REMARKS" value="无"/>
+            <column name="CREATE_TIME" valueComputed="${now}"/>
+            <column name="MODIFY_TIME" valueComputed="${now}"/>
+            <column name="ENABLED" valueNumeric="1"/>
+            <column name="DELETED" valueNumeric="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="LEAF" value="1"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="function"/>
+        </insert>
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="NAME" value="剧情1保存表tb_log_general数据"/>
+            <column name="URI" value="/api/system/auth/tb-log-general/scene1/save"/>
+            <column name="RESOURCE_TYPE" value="2"/>
+            <column name="ACCESS_CONTROL_STYLE" value="02"/>
+            <column name="REMARKS" value="无"/>
+            <column name="CREATE_TIME" valueComputed="${now}"/>
+            <column name="MODIFY_TIME" valueComputed="${now}"/>
+            <column name="ENABLED" valueNumeric="1"/>
+            <column name="DELETED" valueNumeric="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="LEAF" value="1"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="function"/>
+        </insert>
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="NAME" value="剧情1按GUID删除表tb_log_general数据"/>
+            <column name="URI" value="/api/system/auth/tb-log-general/scene1/del"/>
+            <column name="RESOURCE_TYPE" value="2"/>
+            <column name="ACCESS_CONTROL_STYLE" value="02"/>
+            <column name="REMARKS" value="无"/>
+            <column name="CREATE_TIME" valueComputed="${now}"/>
+            <column name="MODIFY_TIME" valueComputed="${now}"/>
+            <column name="ENABLED" valueNumeric="1"/>
+            <column name="DELETED" valueNumeric="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="LEAF" value="1"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="function"/>
+        </insert>
+    </changeSet>
 </databaseChangeLog>

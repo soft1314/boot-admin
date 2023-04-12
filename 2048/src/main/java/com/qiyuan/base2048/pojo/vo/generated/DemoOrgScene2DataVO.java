@@ -15,7 +15,7 @@ import java.util.Date;
     * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-3-30 15:11:19
+* @since 2023-4-12 22:26:50
 */
 
 @Data
@@ -55,7 +55,7 @@ private static final long serialVersionUID = 1L;
             /**
             *  编制人数
             */
-        private BigDecimal num;
+        private String num;
             /**
             *  办公地址
             */
@@ -75,7 +75,7 @@ private static final long serialVersionUID = 1L;
             /**
             *  乐观锁
             */
-        private BigDecimal version;
+        private String version;
             /**
             *  备注
             */
@@ -91,7 +91,7 @@ private static final long serialVersionUID = 1L;
             /**
             *  顺序号
             */
-        private BigDecimal sort;
+        private String sort;
     /** 是否末级 **/
     private boolean hasChildren;
 }

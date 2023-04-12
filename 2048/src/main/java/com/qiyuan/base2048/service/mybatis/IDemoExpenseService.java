@@ -10,7 +10,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-3-30 15:07:37
+* @since 2023-4-12 22:25:32
 */
 public interface IDemoExpenseService extends IService<DemoExpense> {
 

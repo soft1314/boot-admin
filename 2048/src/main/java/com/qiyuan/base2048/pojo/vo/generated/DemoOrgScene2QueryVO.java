@@ -15,7 +15,7 @@ import java.util.Date;
     * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-3-30 15:11:10
+* @since 2023-4-12 22:26:50
 */
 
 @Data
@@ -54,7 +54,7 @@ public class DemoOrgScene2QueryVO extends BasePageQueryVO {
             /**
             *  编制人数
             */
-        private BigDecimal num;
+        private String num;
             /**
             *  办公地址
             */
@@ -90,7 +90,7 @@ public class DemoOrgScene2QueryVO extends BasePageQueryVO {
             /**
             *  乐观锁
             */
-        private BigDecimal version;
+        private String version;
             /**
             *  备注
             */
@@ -106,5 +106,5 @@ public class DemoOrgScene2QueryVO extends BasePageQueryVO {
             /**
             *  顺序号
             */
-        private BigDecimal sort;
+        private String sort;
 }

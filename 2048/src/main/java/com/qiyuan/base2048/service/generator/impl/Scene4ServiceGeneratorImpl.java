@@ -9,6 +9,7 @@ import com.qiyuan.base2048.pojo.vo.vuecomponent.TableColVO;
 import com.qiyuan.base2048.pojo.vo.vuecomponent.UserTableColumnResultDTO;
 import com.qiyuan.base2048.service.Component.FreeMarkerUtils;
 import com.qiyuan.base2048.service.Component.MessageUtils;
+import com.qiyuan.base2048.service.database.ColumnService;
 import com.qiyuan.base2048.service.database.TableService;
 import com.qiyuan.base2048.service.generator.GeneratorInfoAdapter;
 import com.qiyuan.base2048.service.generator.ServiceGenerator;
@@ -30,8 +31,6 @@ import java.util.Map;
 
 @Service("Scene4ServiceGeneratorImpl")
 public class Scene4ServiceGeneratorImpl implements ServiceGenerator {
-    @Value("${base2048.table-schema}")
-    private String tableSchema;
     @Autowired
     private FreeMarkerUtils freeMarkerUtils;
     @Resource
@@ -39,7 +38,7 @@ public class Scene4ServiceGeneratorImpl implements ServiceGenerator {
     @Resource
     private GeneratorInfoAdapter generatorInfoAdapter;
     @Resource
-    private UserTableColumnMasterGetter userTableColumnMasterGetter;
+    private ColumnService columnService;
 
     @Override
     public ResultDTO generateFile(String tableName, TgProject tgProject,boolean overwrite) throws Exception {
@@ -148,54 +147,7 @@ public class Scene4ServiceGeneratorImpl implements ServiceGenerator {
         serviceMarker.setMapstructPackageUrl(tgProject.getPackageMapstruct());
         serviceMarker.setMapperPackageUrl(tgProject.getPackageMapper());
         /** 列信息 **/
-        this.setCols(serviceMarker,tableName);
+        serviceMarker.setCols(columnService.getTableCols(tableName));
         return ResultDTO.success(serviceMarker);
-    }
-    private ServiceMarker setCols(ServiceMarker serviceMarker, String tableName) throws Exception{
-        List<UserTableColumnResultDTO> userTableColumnResultDTOList = userTableColumnMasterGetter.selectUserTableColumn(tableSchema,tableName);
-        List<TableColVO> tableColVOList = new ArrayList<>();
-        for(UserTableColumnResultDTO userTableColumnResultDTO:userTableColumnResultDTOList){
-            TableColVO tableColVO = new TableColVO();
-            /** 字段名 转 驼峰 **/
-            tableColVO.setProp(freeMarkerUtils.underlineToHump(userTableColumnResultDTO.getColumnName()));
-            /** ; 分隔，前面是字段label,后面是对应的代码类型短语 **/
-            String[] commentsArray = userTableColumnResultDTO.getComments().split(";");
-            if(commentsArray.length == 1) {
-                if("DATE".equals(userTableColumnResultDTO.getDataType())){
-                    tableColVO.setType(TableColStyleEnum.DATE);
-                }else {
-                    tableColVO.setType(TableColStyleEnum.NORMAL);
-                }
-                tableColVO.setLabel(userTableColumnResultDTO.getComments());
-            }else if(commentsArray.length == 2){
-                tableColVO.setType(TableColStyleEnum.CODE);
-                tableColVO.setLabel(commentsArray[0]);
-                tableColVO.setDicType(commentsArray[1]);
-            }else if(commentsArray.length == 3 && "LAZY".equalsIgnoreCase(commentsArray[2])){
-                tableColVO.setType(TableColStyleEnum.LAZYCODE);
-                tableColVO.setLabel(commentsArray[0]);
-                tableColVO.setDicType(commentsArray[1]);
-            }else{
-                throw new Exception("tableName:"+tableName+";字段名："+userTableColumnResultDTO.getColumnName()+";字段描述："+userTableColumnResultDTO.getComments()+";字段描述格式不正确。");
-            }
-            /** 数据类型 **/
-            if(userTableColumnResultDTO.getDataType().startsWith("NUMBER")){
-                tableColVO.setDataType(DataTypeEnum.NUMBER);
-            }else if(userTableColumnResultDTO.getDataType().startsWith("VARCHAR")){
-                tableColVO.setDataType(DataTypeEnum.STRING);
-            }else if(userTableColumnResultDTO.getDataType().startsWith("NVARCHAR")){
-                tableColVO.setDataType(DataTypeEnum.STRING);
-            }else if("DATE".equals(userTableColumnResultDTO.getDataType())){
-                tableColVO.setDataType(DataTypeEnum.DATE);
-            }else if(userTableColumnResultDTO.getDataType().startsWith("TIME")){
-                tableColVO.setDataType(DataTypeEnum.DATE);
-            }else{
-                tableColVO.setDataType(DataTypeEnum.STRING);
-            }
-
-            tableColVOList.add(tableColVO);
-        }
-        serviceMarker.setCols(tableColVOList);
-        return serviceMarker;
     }
 }

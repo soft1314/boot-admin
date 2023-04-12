@@ -16,7 +16,7 @@ import java.util.Date;
 * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-3-30 15:07:09
+* @since 2023-4-12 22:25:47
 */
 
 @Data
@@ -65,7 +65,7 @@ public class DemoOrg implements Serializable {
      *  编制人数
      */
     @TableField("NUM")
-    private BigDecimal num;
+    private String num;
     /**
      *  办公地址
      */
@@ -141,5 +141,5 @@ public class DemoOrg implements Serializable {
      *  顺序号
      */
     @TableField("SORT")
-    private BigDecimal sort;
+    private String sort;
 }

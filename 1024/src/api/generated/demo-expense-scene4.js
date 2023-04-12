@@ -1,12 +1,12 @@
 /**
 * 本文件自动生成，严禁人工修改
 * @author 虚领顶劲气沉丹田
-* @since 2023-3-30 15:14:03
+* @since 2023-4-12 22:27:42
 *  tg-project表持久化接口
 */
 import request from '@/utils/request'
 
-//分页获取数据表列表
+// 分页获取数据表列表
 export function fetchDemoExpensePage(data) {
   return request({
     url: '/api/system/auth/demo-expense/scene4/table/page',
@@ -15,7 +15,7 @@ export function fetchDemoExpensePage(data) {
   })
 }
 
-//保存数据
+// 保存数据
 export function saveDemoExpense(data) {
   return request({
     url: '/api/system/auth/demo-expense/scene4/save',
@@ -24,7 +24,7 @@ export function saveDemoExpense(data) {
   })
 }
 
-//删除数据
+// 删除数据
 export function delDemoExpense(data) {
   return request({
     url: '/api/system/auth/demo-expense/scene4/del',
@@ -32,7 +32,7 @@ export function delDemoExpense(data) {
     data
   })
 }
-//保存数据并启动流程
+// 保存数据并启动流程
 export function saveAndStartProcessDemoExpense(data) {
   return request({
     url: '/api/system/auth/demo-expense/scene4/save-start',
@@ -40,7 +40,7 @@ export function saveAndStartProcessDemoExpense(data) {
     data
   })
 }
-//修改数据并完成任务
+// 修改数据并完成任务
 export function saveDemoExpenseAndCompleteTask(data) {
   return request({
     url: '/api/system/auth/demo-expense/scene4/task/complete',
@@ -48,7 +48,7 @@ export function saveDemoExpenseAndCompleteTask(data) {
     data
   })
 }
-//按GUID查询一条
+// 按GUID查询一条
 export function fetchDemoExpenseInfo(data) {
   return request({
     url: '/api/system/auth/demo-expense/scene4/info',

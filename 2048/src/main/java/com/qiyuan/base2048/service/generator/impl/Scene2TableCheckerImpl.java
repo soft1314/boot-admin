@@ -128,10 +128,18 @@ public class Scene2TableCheckerImpl implements TableChecker {
      */
     private boolean checkSortColumn(UserTableColumnResultDTO userTableColumnResultDTO){
         if("SORT".equals(userTableColumnResultDTO.getColumnName())){
-            if(userTableColumnResultDTO.getDataType().toUpperCase().equals("NUMBER")){
-                if(userTableColumnResultDTO.getDataLength().equals("22")){
-                    if("N".equals(userTableColumnResultDTO.getNullable())) {
-                        if("顺序号".equals(userTableColumnResultDTO.getComments())) {
+            if(userTableColumnResultDTO.getDataType().equalsIgnoreCase("NUMBER")){
+                if(userTableColumnResultDTO.getDataLength()!=null && userTableColumnResultDTO.getDataLength().equals("22") && userTableColumnResultDTO.getDataScale().equals("0")){
+                    if("顺序号".equals(userTableColumnResultDTO.getComments())){
+                        if("N".equals(userTableColumnResultDTO.getNullable())) {
+                            return true;
+                        }
+                    }
+                }
+            }else if("int".equalsIgnoreCase(userTableColumnResultDTO.getDataType())){
+                if(userTableColumnResultDTO.getCharLength()!=null && userTableColumnResultDTO.getCharLength().compareTo(new BigDecimal("10")) == 0){
+                    if("顺序号".equals(userTableColumnResultDTO.getComments())){
+                        if("N".equals(userTableColumnResultDTO.getNullable())) {
                             return true;
                         }
                     }

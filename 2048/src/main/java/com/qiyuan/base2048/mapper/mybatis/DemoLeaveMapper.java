@@ -10,7 +10,7 @@ import com.qiyuan.base2048.mapper.mybatis.entity.DemoLeave;
 * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-3-30 15:07:23
+* @since 2023-4-12 22:25:39
 */
 public interface DemoLeaveMapper extends BaseMapper<DemoLeave> {
 }

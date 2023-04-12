@@ -16,7 +16,7 @@ import java.util.Date;
 * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-3-30 15:06:53
+* @since 2023-4-12 22:25:23
 */
 
 @Data
@@ -55,7 +55,7 @@ public class DemoEmp implements Serializable {
      *  薪水
      */
     @TableField("SALARY")
-    private BigDecimal salary;
+    private String salary;
     /**
      *  情况说明
      */

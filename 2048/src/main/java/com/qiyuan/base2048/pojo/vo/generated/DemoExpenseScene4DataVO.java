@@ -15,7 +15,7 @@ import java.util.Date;
     * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-3-30 15:16:00
+* @since 2023-4-12 22:39:12
 */
 
 @Data
@@ -35,7 +35,7 @@ private static final long serialVersionUID = 1L;
             /**
             *  报销金额
             */
-        private BigDecimal money;
+        private String money;
             /**
             *  情况说明
             */
@@ -83,7 +83,7 @@ private static final long serialVersionUID = 1L;
             /**
             *  乐观锁
             */
-        private BigDecimal version;
+        private String version;
             /**
             *  备注
             */

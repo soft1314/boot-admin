@@ -214,10 +214,10 @@ const actions = {
     if (lastTime !== null) {
       timeSpan = thisTime - lastTime
     }
-    //距上次刷新超过10秒钟，才允许刷新
-    console.log("------------timeSpan=================="+timeSpan)
+    // 距上次刷新超过10秒钟，才允许刷新
+    console.log('------------timeSpan==================' + timeSpan)
     if (timeSpan > 10000) {
-      commit('SET_LASTREFRESH_TIME',thisTime)
+      commit('SET_LASTREFRESH_TIME', thisTime)
       return new Promise((resolve, reject) => {
         refreshToken({
           token: state.seed
@@ -249,14 +249,14 @@ const actions = {
           reject(error)
         })
       })
-    }else{
+    } else {
       // Message({
       //   message: '刷新太频繁，这次不刷新',
       //   type: 'error',
       //   duration: 5 * 1000
       // })
     }
-  },
+  }
 }
 
 export default {

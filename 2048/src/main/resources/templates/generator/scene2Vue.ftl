@@ -376,13 +376,13 @@
                 resolve(data)
             },
             handlePageSizeChange(val) {
-                if (val != this.filterDrawer.formData.pageSize) {
+                if (val !== this.filterDrawer.formData.pageSize) {
                     this.filterDrawer.formData.pageSize = val
                     this.loadDataForTurnPage()
                 }
             },
             handlePageCurrentChange(val) {
-                if (val != this.filterDrawer.formData.currentPage) {
+                if (val !== this.filterDrawer.formData.currentPage) {
                     this.filterDrawer.formData.currentPage = val
                     this.loadDataForTurnPage()
                 }
@@ -499,13 +499,13 @@
                         const {
                             level,
                         } = node;
-                        if(level == 0){
-                            const nodes = this.loadLazyCodeNode(this.$commonDicType.${col.dicType}(),'top',resolve)
+                        if(level === 0){
+                            this.loadLazyCodeNode(this.$commonDicType.${col.dicType}(),'top',resolve)
                         }else{
                             const {
                                 value,
                             } = node;
-                            const nodes = this.loadLazyCodeNode(this.$commonDicType.${col.dicType}(),value,resolve)
+                            this.loadLazyCodeNode(this.$commonDicType.${col.dicType}(),value,resolve)
                         }
                     },
                     ${col.prop}EditCascaderChangeEvent(value){
@@ -514,7 +514,7 @@
                         this.mainDataForm.editingRecord.${col.prop} = code+'_'+name
                     },
                     ${col.prop}QueryCascaderChangeEvent(value){
-                        if(value.length == 0){
+                        if(value.length === 0){
                             this.filterDrawer.formData.${col.prop} = ''
                         }else{
                             const code=value[value.length-1]

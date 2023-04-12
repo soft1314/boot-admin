@@ -42,7 +42,6 @@
     export default {
         name: '${marker.apiJsFileName}-view',
         data() {
-            const that = this;
             return {
                 loading: true,
                 mainDataForm: {

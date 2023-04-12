@@ -24,6 +24,7 @@ import com.qiyuan.bautil.enums.IsDeletedEnum;
 import com.qiyuan.bautil.enums.WorkflowStatusEnum;
 import com.qiyuan.bautil.util.StringTool;
 import com.qiyuan.bautil.util.TimeTool;
+import com.qiyuan.bautil.util.WorkflowTool;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,7 @@ import java.util.HashMap;
 import java.util.Map;
 import static cn.hutool.core.bean.BeanUtil.beanToMap;
 import com.qiyuan.bautil.constant.ConstantCommon;
+import com.qiyuan.bautil.constant.ConstantWorkflowVarKey;
 import java.util.LinkedHashMap;
 /**
 * <p>

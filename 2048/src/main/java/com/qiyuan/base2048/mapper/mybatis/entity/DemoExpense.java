@@ -16,7 +16,7 @@ import java.util.Date;
 * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-3-30 15:06:58
+* @since 2023-4-12 22:25:32
 */
 
 @Data
@@ -40,7 +40,7 @@ public class DemoExpense implements Serializable {
      *  报销金额
      */
     @TableField("MONEY")
-    private BigDecimal money;
+    private String money;
     /**
      *  情况说明
      */

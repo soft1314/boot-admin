@@ -1,12 +1,12 @@
 /**
 * 本文件自动生成，严禁人工修改
 * @author 虚领顶劲气沉丹田
-* @since 2023-3-30 15:10:54
+* @since 2023-4-12 22:26:42
 *  tg-project表持久化接口
 */
 import request from '@/utils/request'
 
-//分页获取顶层数据表列表
+// 分页获取顶层数据表列表
 export function fetchTopDemoOrgPage(data) {
   return request({
     url: '/api/system/auth/demo-org/scene2/top/page',
@@ -14,7 +14,7 @@ export function fetchTopDemoOrgPage(data) {
     data
   })
 }
-//分页获取数据表列表
+// 分页获取数据表列表
 export function fetchDemoOrgPage(data) {
   return request({
     url: '/api/system/auth/demo-org/scene2/page',
@@ -22,7 +22,7 @@ export function fetchDemoOrgPage(data) {
     data
   })
 }
-//获取指定GUID数据的下一层全部数据列表
+// 获取指定GUID数据的下一层全部数据列表
 export function fetchDemoOrgAllChildren(guid) {
   return request({
     url: '/api/system/auth/demo-org/scene2/children/all',
@@ -30,7 +30,7 @@ export function fetchDemoOrgAllChildren(guid) {
     params: { guid }
   })
 }
-//保存数据
+// 保存数据
 export function saveDemoOrg(data) {
   return request({
     url: '/api/system/auth/demo-org/scene2/save',
@@ -38,7 +38,7 @@ export function saveDemoOrg(data) {
     data
   })
 }
-//删除数据
+// 删除数据
 export function delDemoOrg(data) {
   return request({
     url: '/api/system/auth/demo-org/scene2/del',
