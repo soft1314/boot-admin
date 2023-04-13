@@ -79,7 +79,7 @@ spring:
     wait-for-jobs-to-complete-on-shutdown: true
     jdbc:
       #数据库架构初始化模式--never 从不进行初始化，always 每次都清空数据库进行初始化,embedded 只初始化内存数据库（默认值）
-      initialize-schema: never
+      initialize-schema: always
 # 开启监控所有项
 management:
   endpoints:

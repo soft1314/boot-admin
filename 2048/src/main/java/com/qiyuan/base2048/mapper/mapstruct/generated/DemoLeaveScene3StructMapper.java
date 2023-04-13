@@ -11,7 +11,7 @@ import org.mapstruct.factory.Mappers;
     * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-4-12 22:27:24
+* @since 2023-4-13 13:53:00
 */
 @Mapper
 public interface DemoLeaveScene3StructMapper {

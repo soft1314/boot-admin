@@ -1,6 +1,6 @@
 <!-- 本文件自动生成，再次生成时易被覆盖 -->
 <!-- @author 虚领顶劲气沉丹田 -->
-<!-- @since 2023-4-12 22:27:09 -->
+<!-- @since 2023-4-13 13:52:49 -->
 <template>
   <div class="app-container background-white">
     <!-- 表数据编辑对话框区开始 -->
@@ -21,13 +21,13 @@
         <span>{{ mainDataForm.editingRecord.empName }}</span>
       </el-form-item>
       <el-form-item label="请假日期">
-        <span>{{ mainDataForm.editingRecord.bizDate }}</span>
+        <span>{{ this.$commonUtils.dateTimeFormat(mainDataForm.editingRecord.bizDate) }}</span>
       </el-form-item>
       <el-form-item label="离岗时间">
-        <span>{{ mainDataForm.editingRecord.startTime }}</span>
+        <span>{{ this.$commonUtils.dateTimeFormat(mainDataForm.editingRecord.startTime) }}</span>
       </el-form-item>
       <el-form-item label="返岗时间">
-        <span>{{ mainDataForm.editingRecord.finishTime }}</span>
+        <span>{{ this.$commonUtils.dateTimeFormat(mainDataForm.editingRecord.finishTime) }}</span>
       </el-form-item>
       <el-form-item label="职称">
         <span>{{ mainDataForm.editingRecord.techTitle }}</span>

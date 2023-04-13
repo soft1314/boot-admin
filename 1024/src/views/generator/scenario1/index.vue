@@ -650,6 +650,10 @@ export default {
     handleSaveAllFrontEndFileButton() {
       this.generateVueFile()
       this.generateJsApiFile()
+      this.$message({
+        type: 'info',
+        message: 'ROUTER片断仅供阅读!'
+      })
     },
     handleSaveAllBackEndFileButton() {
       this.handleSaveQueryVoFileButton()

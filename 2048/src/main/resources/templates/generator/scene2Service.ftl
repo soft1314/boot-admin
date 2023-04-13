@@ -3,7 +3,7 @@ package ${marker.packageUrl};
 import com.baomidou.mybatisplus.extension.service.IService;
 import ${marker.entityPackageUrl}.${marker.entityName};
 import ${marker.voPackageUrl}.${marker.entityName}Scene2QueryVO;
-import ${marker.voPackageUrl}.${marker.entityName}Scene2DataVO;
+import ${marker.voPackageUrl}.${marker.entityName}Scene2SaveDataVO;
 import com.qiyuan.bautil.dto.BaseUser;
 import com.qiyuan.bautil.dto.ResultDTO;
 /**
@@ -19,6 +19,6 @@ public interface I${marker.entityName}Scene2Service extends IService<${marker.en
   ResultDTO getTop(${marker.entityName}Scene2QueryVO queryVO, boolean includeDeleted) throws Exception;
   ResultDTO getPage(${marker.entityName}Scene2QueryVO queryVO, boolean includeDeleted) throws Exception;
   ResultDTO getAllChilden(String guid) throws Exception;
-  ResultDTO insertOrUpdate(${marker.entityName}Scene2DataVO dataVO, BaseUser baseUser) throws Exception;
+  ResultDTO insertOrUpdate(${marker.entityName}Scene2SaveDataVO dataVO, BaseUser baseUser) throws Exception;
   ResultDTO delete(String guid) throws Exception;
 }

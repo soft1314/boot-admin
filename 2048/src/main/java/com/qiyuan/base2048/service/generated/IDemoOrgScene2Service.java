@@ -3,7 +3,7 @@ package com.qiyuan.base2048.service.generated;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.qiyuan.base2048.mapper.mybatis.entity.DemoOrg;
 import com.qiyuan.base2048.pojo.vo.generated.DemoOrgScene2QueryVO;
-import com.qiyuan.base2048.pojo.vo.generated.DemoOrgScene2DataVO;
+import com.qiyuan.base2048.pojo.vo.generated.DemoOrgScene2SaveDataVO;
 import com.qiyuan.bautil.dto.BaseUser;
 import com.qiyuan.bautil.dto.ResultDTO;
 /**
@@ -13,12 +13,12 @@ import com.qiyuan.bautil.dto.ResultDTO;
 * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-4-12 22:26:50
+* @since 2023-4-13 13:52:37
 */
 public interface IDemoOrgScene2Service extends IService<DemoOrg> {
   ResultDTO getTop(DemoOrgScene2QueryVO queryVO, boolean includeDeleted) throws Exception;
   ResultDTO getPage(DemoOrgScene2QueryVO queryVO, boolean includeDeleted) throws Exception;
   ResultDTO getAllChilden(String guid) throws Exception;
-  ResultDTO insertOrUpdate(DemoOrgScene2DataVO dataVO, BaseUser baseUser) throws Exception;
+  ResultDTO insertOrUpdate(DemoOrgScene2SaveDataVO dataVO, BaseUser baseUser) throws Exception;
   ResultDTO delete(String guid) throws Exception;
 }

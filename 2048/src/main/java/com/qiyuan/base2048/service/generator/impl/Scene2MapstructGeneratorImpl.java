@@ -92,8 +92,11 @@ public class Scene2MapstructGeneratorImpl implements MapstructGenerator {
         mapstructMarker.setAuthor(tgProject.getAuthor());
         mapstructMarker.setTableComment(vTablesMaster.getComments());
         mapstructMarker.setEntityFullName(tgProject.getPackageEntity()+"."+mapstructMarker.getEntityName());
-        mapstructMarker.setDataVoName(mapstructMarker.getEntityName()+"Scene2DataVO");
-        mapstructMarker.setDataVoFullName(tgProject.getPackageVo()+"."+mapstructMarker.getDataVoName());
+        mapstructMarker.setDataSaveVoName(mapstructMarker.getEntityName()+"Scene2SaveDataVO");
+        mapstructMarker.setDataSaveVoFullName(tgProject.getPackageVo()+"."+mapstructMarker.getDataSaveVoName());
+        mapstructMarker.setDataRespVoName(mapstructMarker.getEntityName()+"Scene2RespDataVO");
+        mapstructMarker.setDataRespVoFullName(tgProject.getPackageVo()+"."+mapstructMarker.getDataRespVoName());
+
         return ResultDTO.success(mapstructMarker);
     }
 }

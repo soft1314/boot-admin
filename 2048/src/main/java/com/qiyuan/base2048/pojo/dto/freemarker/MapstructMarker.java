@@ -14,9 +14,17 @@ public class MapstructMarker {
     private String entityName;
     /** 实体类全名 **/
     private String entityFullName;
-    /** 数据VO类名 **/
+    /** 数据dataVO类名 **/
     private String dataVoName;
-    /** 数据VO类全名 **/
+    /** 数据dataVO类全名 **/
     private String dataVoFullName;
 
+    /** 数据saveVO类名 **/
+    private String dataSaveVoName;
+    /** 数据saveVO类全名 **/
+    private String dataSaveVoFullName;
+    /** 数据respVO类名 **/
+    private String dataRespVoName;
+    /** 数据respVO类全名 **/
+    private String dataRespVoFullName;
 }

@@ -1,6 +1,6 @@
 package com.qiyuan.base2048.controller.generated;
 
-import com.qiyuan.base2048.pojo.vo.generated.DemoOrgScene2DataVO;
+import com.qiyuan.base2048.pojo.vo.generated.DemoOrgScene2SaveDataVO;
 import com.qiyuan.base2048.pojo.vo.generated.DemoOrgScene2QueryVO;
 import com.qiyuan.bautil.dto.GuidContainerVO;
 import com.qiyuan.base2048.service.generated.IDemoOrgScene2Service;
@@ -28,7 +28,7 @@ import javax.validation.Valid;
     * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-4-12 22:26:50
+* @since 2023-4-13 13:52:36
 */
 @RestController
 @ResponseBodyInController
@@ -66,7 +66,7 @@ public class DemoOrgScene2Controller {
   }
   @ApiOperation("保存")
   @PostMapping("/save")
-  ResultDTO save(@Valid @RequestBody DemoOrgScene2DataVO dataVO, BindingResult bindingResult) throws Exception{
+  ResultDTO save(@Valid @RequestBody DemoOrgScene2SaveDataVO dataVO, BindingResult bindingResult) throws Exception{
     if (bindingResult.hasErrors()) {
       return formValidator.generateMessage(bindingResult);
     }

@@ -1,6 +1,6 @@
 <!-- 本文件自动生成，再次生成时易被覆盖 -->
 <!-- @author 虚领顶劲气沉丹田 -->
-<!-- @since 2023-4-12 22:27:46 -->
+<!-- @since 2023-4-13 13:53:15 -->
 <template>
   <div class="app-container background-white">
     <!-- 表数据编辑对话框区开始 -->
@@ -15,7 +15,7 @@
         <span>{{ mainDataForm.editingRecord.note }}</span>
       </el-form-item>
       <el-form-item label="业务日期">
-        <span>{{ mainDataForm.editingRecord.bizDate }}</span>
+        <span>{{ this.$commonUtils.dateTimeFormat(mainDataForm.editingRecord.bizDate) }}</span>
       </el-form-item>
       <el-form-item label="报销人">
         <span>{{ mainDataForm.editingRecord.empName }}</span>

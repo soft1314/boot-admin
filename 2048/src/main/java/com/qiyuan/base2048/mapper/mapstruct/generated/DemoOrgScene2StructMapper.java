@@ -1,7 +1,9 @@
 package com.qiyuan.base2048.mapper.mapstruct.generated;
 
 import com.qiyuan.base2048.mapper.mybatis.entity.DemoOrg;
-import com.qiyuan.base2048.pojo.vo.generated.DemoOrgScene2DataVO;;
+
+import com.qiyuan.base2048.pojo.vo.generated.DemoOrgScene2SaveDataVO;
+import com.qiyuan.base2048.pojo.vo.generated.DemoOrgScene2RespDataVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 import com.qiyuan.bautil.service.component.BooleanToCharFormat;
@@ -13,13 +15,17 @@ import java.util.List;
     * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-4-12 22:26:50
+* @since 2023-4-13 13:52:37
 */
 @Mapper(uses = {BooleanToCharFormat.class})
 public interface DemoOrgScene2StructMapper {
   DemoOrgScene2StructMapper INSTANCE= Mappers.getMapper(DemoOrgScene2StructMapper.class);
 
-  DemoOrg toDemoOrg(DemoOrgScene2DataVO vo);
-  DemoOrgScene2DataVO toDataVO(DemoOrg entity);
-  List<DemoOrgScene2DataVO> toDataVOList(List<DemoOrg> entitys);
+  DemoOrg toDemoOrg(DemoOrgScene2SaveDataVO vo);
+
+  DemoOrgScene2SaveDataVO toSaveDataVO(DemoOrg entity);
+  List<DemoOrgScene2SaveDataVO> toSaveDataVOList(List<DemoOrg> entitys);
+
+  DemoOrgScene2RespDataVO toRespDataVO(DemoOrg entity);
+  List<DemoOrgScene2RespDataVO> toRespDataVOList(List<DemoOrg> entitys);
 }

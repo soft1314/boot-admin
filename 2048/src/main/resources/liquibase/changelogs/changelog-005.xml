@@ -5761,5 +5761,35 @@
             <column name="REMARKS"/>
             <column name="TENANT_ID_" value="DEMO"/>
         </insert>
+        <insert tableName="TR_ROLE_RESOURCE">
+            <column name="GUID" value="1644234408533368840"/>
+            <column name="ROLE_GUID" value="administrator"/>
+            <column name="RESOURCE_GUID" value="E06536B489164BB39BB296CC2FA13CF4"/>
+            <column name="CREATE_BY" value="张三丰[admin]"/>
+            <column name="CREATE_TIME" valueDate="2023-04-07T14:28:37"/>
+            <column name="MODIFY_BY" value="张三丰[admin]"/>
+            <column name="MODIFY_TIME" valueDate="2023-04-07T14:28:37"/>
+            <column name="DATESTAMP" valueDate="2023-04-07T14:28:37"/>
+            <column name="ENABLED" value="1"/>
+            <column name="DELETED" value="1"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="REMARKS"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+        </insert>
+        <insert tableName="TR_ROLE_RESOURCE">
+            <column name="GUID" value="1644234408533368841"/>
+            <column name="ROLE_GUID" value="administrator"/>
+            <column name="RESOURCE_GUID" value="1E9B695B4C66466CA9AC3AB40D4B5543"/>
+            <column name="CREATE_BY" value="张三丰[admin]"/>
+            <column name="CREATE_TIME" valueDate="2023-04-07T14:28:37"/>
+            <column name="MODIFY_BY" value="张三丰[admin]"/>
+            <column name="MODIFY_TIME" valueDate="2023-04-07T14:28:37"/>
+            <column name="DATESTAMP" valueDate="2023-04-07T14:28:37"/>
+            <column name="ENABLED" value="1"/>
+            <column name="DELETED" value="1"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="REMARKS"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+        </insert>
     </changeSet>
 </databaseChangeLog>

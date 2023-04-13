@@ -1,6 +1,6 @@
 <!-- 本文件自动生成，再次生成时易被覆盖 -->
 <!-- @author 虚领顶劲气沉丹田 -->
-<!-- @since 2023-4-12 22:27:45 -->
+<!-- @since 2023-4-13 13:53:17 -->
 <template>
   <div class="app-container background-white">
     <!-- 表数据编辑对话框区开始 -->
@@ -30,12 +30,7 @@
         />
       </el-form-item>
       <el-form-item label="业务日期" prop="bizDate">
-        <el-input
-          v-model="mainDataForm.data.bizDate"
-          placeholder="请输入业务日期"
-          clearable
-          :style="{width: '100%'}"
-        />
+        <el-date-picker v-model="mainDataForm.data.bizDate" type="date" placeholder="选择日期" />
       </el-form-item>
       <el-form-item label="报销人" prop="empName">
         <el-input
@@ -171,7 +166,7 @@ export default {
           title: '',
           money: '',
           note: '',
-          bizDate: '',
+          bizDate: null,
           empName: '',
           techTitle: '',
           empLevel: '',

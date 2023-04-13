@@ -45,13 +45,18 @@ public class LogAspectController {
 
         content content = new content(url, ip, method, args);
         log.debug("Request:{}", content);
+
         tbLogGeneralService.createLog(content.toString());
     }
 
     @AfterReturning(returning = "result", pointcut = "log()")
     public void logAfterReturning(Object result) throws Exception{
         log.debug("Result:{}", result);
-        tbLogGeneralService.createLog("Result:"+result.toString());
+        if(result == null) {
+            tbLogGeneralService.createLog("Result:NULL");
+        }else {
+            tbLogGeneralService.createLog("Result:" + result.toString());
+        }
     }
 
 

@@ -8,14 +8,14 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import ${marker.mapstructPackageUrl}.${marker.entityName}Scene2StructMapper;
 import ${marker.mapperPackageUrl}.${marker.entityName}Mapper;
 import ${marker.entityPackageUrl}.${marker.entityName};
-import ${marker.voPackageUrl}.${marker.entityName}Scene2DataVO;
+import ${marker.voPackageUrl}.${marker.entityName}Scene2SaveDataVO;
+import ${marker.voPackageUrl}.${marker.entityName}Scene2RespDataVO;
 import ${marker.voPackageUrl}.${marker.entityName}Scene2QueryVO;
 import com.qiyuan.base2048.service.Component.MessageUtils;
 import ${marker.packageUrl}.I${marker.entityName}Scene2Service;
 import com.qiyuan.bautil.dto.BaseUser;
 import com.qiyuan.bautil.dto.ResultDTO;
 import com.qiyuan.bautil.enums.IsDeletedEnum;
-import com.qiyuan.bautil.enums.IsEnabledEnum;
 import com.qiyuan.bautil.enums.YesNoEnum;
 import com.qiyuan.bautil.util.StringTool;
 import com.qiyuan.bautil.util.TimeTool;
@@ -94,9 +94,9 @@ public class ${marker.entityName}Scene2ServiceImpl extends ServiceImpl<${marker.
     wrapper.orderByAsc("SORT");
     IPage page = new Page<>(queryVO.getCurrentPage(), queryVO.getPageSize());
     page = this.page(page, wrapper);
-    List<${marker.entityName}Scene2DataVO> dataVOList = new ArrayList<>();
+    List<${marker.entityName}Scene2RespDataVO> dataVOList = new ArrayList<>();
     for (Object obj : page.getRecords()) {
-      ${marker.entityName}Scene2DataVO dataVO = ${marker.entityName}Scene2StructMapper.INSTANCE.toDataVO((${marker.entityName}) obj);
+      ${marker.entityName}Scene2RespDataVO dataVO = ${marker.entityName}Scene2StructMapper.INSTANCE.toRespDataVO((${marker.entityName}) obj);
       if (YesNoEnum.NO.getValue().equals(dataVO.getLeaf())) {
         dataVO.setHasChildren(true);
       } else {
@@ -158,9 +158,9 @@ public class ${marker.entityName}Scene2ServiceImpl extends ServiceImpl<${marker.
     wrapper.orderByAsc("SORT");
     IPage page = new Page<>(queryVO.getCurrentPage(), queryVO.getPageSize());
     page = this.page(page, wrapper);
-    List<${marker.entityName}Scene2DataVO> dataVOList = new ArrayList<>();
+    List<${marker.entityName}Scene2RespDataVO> dataVOList = new ArrayList<>();
     for (Object obj : page.getRecords()) {
-      ${marker.entityName}Scene2DataVO dataVO = ${marker.entityName}Scene2StructMapper.INSTANCE.toDataVO((${marker.entityName}) obj);
+      ${marker.entityName}Scene2RespDataVO dataVO = ${marker.entityName}Scene2StructMapper.INSTANCE.toRespDataVO((${marker.entityName}) obj);
       if (YesNoEnum.NO.getValue().equals(dataVO.getLeaf())) {
         dataVO.setHasChildren(true);
       } else {
@@ -180,8 +180,8 @@ public class ${marker.entityName}Scene2ServiceImpl extends ServiceImpl<${marker.
 
     List<${marker.entityName}> list = myMapper.selectList(wrapper);
 
-    List<${marker.entityName}Scene2DataVO> dataVOList = ${marker.entityName}Scene2StructMapper.INSTANCE.toDataVOList(list);
-    for (${marker.entityName}Scene2DataVO dataVO : dataVOList) {
+    List<${marker.entityName}Scene2RespDataVO> dataVOList = ${marker.entityName}Scene2StructMapper.INSTANCE.toRespDataVOList(list);
+    for (${marker.entityName}Scene2RespDataVO dataVO : dataVOList) {
       if (YesNoEnum.NO.getValue().equals(dataVO.getLeaf())) {
         dataVO.setHasChildren(true);
       } else {
@@ -193,7 +193,7 @@ public class ${marker.entityName}Scene2ServiceImpl extends ServiceImpl<${marker.
   }
 
   @Override
-  public ResultDTO insertOrUpdate(${marker.entityName}Scene2DataVO dataVO, BaseUser baseUser) throws Exception {
+  public ResultDTO insertOrUpdate(${marker.entityName}Scene2SaveDataVO dataVO, BaseUser baseUser) throws Exception {
     ${marker.entityName} entity = ${marker.entityName}Scene2StructMapper.INSTANCE.to${marker.entityName}(dataVO);
     int result = 0;
     if (StringUtils.isBlank(entity.getGuid())) {

@@ -1,6 +1,6 @@
 <!-- 本文件自动生成，再次生成时易被覆盖 -->
 <!-- @author 虚领顶劲气沉丹田 -->
-<!-- @since 2023-4-12 22:26:41 -->
+<!-- @since 2023-4-13 13:52:09 -->
 <template>
   <div class="app-container" style="background-color: #FFFFFF;">
     <!--查询条件和查询按钮区-->
@@ -66,17 +66,8 @@
             <el-cascader ref="industryCategoryQueryCascaderId" :props="industryCategoryCascaderProps" clearable style="width: 100%;" @change="industryCategoryQueryCascaderChangeEvent" />
             {{ filterDrawer.formData.industryCategory }}
           </el-form-item>
-          <el-form-item
-            label="成立时间"
-            :label-width="filterDrawer.formLabelWidth"
-            prop="foundTime"
-          >
-            <el-input
-              v-model="filterDrawer.formData.foundTime"
-              placeholder="请输入成立时间"
-              size="mini"
-              prefix-icon="el-icon-search"
-            />
+          <el-form-item label="成立时间" prop="foundTime" :label-width="filterDrawer.formLabelWidth">
+            <el-date-picker v-model="filterDrawer.formData.foundTime" type="date" placeholder="选择日期" />
           </el-form-item>
           <el-form-item
             label="单位级别"
@@ -145,17 +136,8 @@
               prefix-icon="el-icon-search"
             />
           </el-form-item>
-          <el-form-item
-            label="记录创建时间"
-            :label-width="filterDrawer.formLabelWidth"
-            prop="createTime"
-          >
-            <el-input
-              v-model="filterDrawer.formData.createTime"
-              placeholder="请输入记录创建时间"
-              size="mini"
-              prefix-icon="el-icon-search"
-            />
+          <el-form-item label="记录创建时间" prop="createTime" :label-width="filterDrawer.formLabelWidth">
+            <el-date-picker v-model="filterDrawer.formData.createTime" type="date" placeholder="选择日期" />
           </el-form-item>
           <el-form-item
             label="记录最后修改者"
@@ -169,29 +151,11 @@
               prefix-icon="el-icon-search"
             />
           </el-form-item>
-          <el-form-item
-            label="记录最后修改时间"
-            :label-width="filterDrawer.formLabelWidth"
-            prop="modifyTime"
-          >
-            <el-input
-              v-model="filterDrawer.formData.modifyTime"
-              placeholder="请输入记录最后修改时间"
-              size="mini"
-              prefix-icon="el-icon-search"
-            />
+          <el-form-item label="记录最后修改时间" prop="modifyTime" :label-width="filterDrawer.formLabelWidth">
+            <el-date-picker v-model="filterDrawer.formData.modifyTime" type="date" placeholder="选择日期" />
           </el-form-item>
-          <el-form-item
-            label="时间戳"
-            :label-width="filterDrawer.formLabelWidth"
-            prop="datestamp"
-          >
-            <el-input
-              v-model="filterDrawer.formData.datestamp"
-              placeholder="请输入时间戳"
-              size="mini"
-              prefix-icon="el-icon-search"
-            />
+          <el-form-item label="时间戳" prop="datestamp" :label-width="filterDrawer.formLabelWidth">
+            <el-date-picker v-model="filterDrawer.formData.datestamp" type="date" placeholder="选择日期" />
           </el-form-item>
           <el-form-item
             label="启用状态"
@@ -333,16 +297,16 @@
       <el-table-column prop="code" label="社会信用代码" show-overflow-tooltip sortable />
       <el-table-column prop="orgtype" label="组织类别" show-overflow-tooltip sortable :formatter="(row,column,cellValue) => colFormatter(row,column,cellValue, $commonDicType.ORGTYPE())" />
       <el-table-column prop="industryCategory" label="行业类别" show-overflow-tooltip sortable />
-      <el-table-column prop="foundTime" label="成立时间" show-overflow-tooltip sortable />
+      <el-table-column prop="foundTime" label="成立时间" show-overflow-tooltip sortable :formatter="(row,column,cellValue) => dateTimeColFormatter(row,column,cellValue)" />
       <el-table-column prop="rankCode" label="单位级别" show-overflow-tooltip sortable :formatter="(row,column,cellValue) => colFormatter(row,column,cellValue, $commonDicType.UNITLEVEL())" />
       <el-table-column prop="num" label="编制人数" show-overflow-tooltip sortable />
       <el-table-column prop="addr" label="办公地址" show-overflow-tooltip sortable />
       <el-table-column prop="leader" label="负责人" show-overflow-tooltip sortable />
       <el-table-column prop="createBy" label="记录创建者" show-overflow-tooltip sortable />
-      <el-table-column prop="createTime" label="记录创建时间" show-overflow-tooltip sortable />
+      <el-table-column prop="createTime" label="记录创建时间" show-overflow-tooltip sortable :formatter="(row,column,cellValue) => dateTimeColFormatter(row,column,cellValue)" />
       <el-table-column prop="modifyBy" label="记录最后修改者" show-overflow-tooltip sortable />
-      <el-table-column prop="modifyTime" label="记录最后修改时间" show-overflow-tooltip sortable />
-      <el-table-column prop="datestamp" label="时间戳" show-overflow-tooltip sortable />
+      <el-table-column prop="modifyTime" label="记录最后修改时间" show-overflow-tooltip sortable :formatter="(row,column,cellValue) => dateTimeColFormatter(row,column,cellValue)" />
+      <el-table-column prop="datestamp" label="时间戳" show-overflow-tooltip sortable :formatter="(row,column,cellValue) => dateTimeColFormatter(row,column,cellValue)" />
       <el-table-column prop="enabled" label="启用状态" show-overflow-tooltip sortable :formatter="(row,column,cellValue) => colFormatter(row,column,cellValue, $commonDicType.ENABLED())" />
       <el-table-column prop="deleted" label="删除状态" show-overflow-tooltip sortable :formatter="(row,column,cellValue) => colFormatter(row,column,cellValue, $commonDicType.DELETED())" />
       <el-table-column prop="remarks" label="备注" show-overflow-tooltip sortable />
@@ -417,12 +381,7 @@
           {{ mainDataForm.editingRecord.industryCategory }}
         </el-form-item>
         <el-form-item label="成立时间" prop="foundTime">
-          <el-input
-            v-model="mainDataForm.editingRecord.foundTime"
-            placeholder="请输入成立时间"
-            clearable
-            :style="{width: '100%'}"
-          />
+          <el-date-picker v-model="mainDataForm.editingRecord.foundTime" type="date" placeholder="选择日期" />
         </el-form-item>
         <el-form-item label="单位级别" prop="rankCode">
           <el-select v-model="mainDataForm.editingRecord.rankCode" placeholder="请选择">
@@ -545,7 +504,7 @@ export default {
           code: '',
           orgtype: '',
           industryCategory: '',
-          foundTime: '',
+          foundTime: null,
           rankCode: '',
           num: '',
           addr: '',

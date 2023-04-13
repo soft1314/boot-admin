@@ -237,12 +237,24 @@
             readonly
           />
         </el-tab-pane>
-        <el-tab-pane label="DataVO">
+        <el-tab-pane label="DataSaveVO">
           <span style="font-style: italic;color: red;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;拟保存文件名：
-            {{ mainDataForm.editingRecord.backEnd.dataVOFileName }}</span>
+            {{ mainDataForm.editingRecord.backEnd.dataSaveVOFileName }}</span>
           <br><br>
           <el-input
-            v-model="mainDataForm.editingRecord.backEnd.dataVOSource"
+            v-model="mainDataForm.editingRecord.backEnd.dataSaveVOSource"
+            style="width: 80%;"
+            type="textarea"
+            :rows="15"
+            readonly
+          />
+        </el-tab-pane>
+        <el-tab-pane label="DataRespVO">
+          <span style="font-style: italic;color: red;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;拟保存文件名：
+            {{ mainDataForm.editingRecord.backEnd.dataRespVOFileName }}</span>
+          <br><br>
+          <el-input
+            v-model="mainDataForm.editingRecord.backEnd.dataRespVOSource"
             style="width: 80%;"
             type="textarea"
             :rows="15"
@@ -322,8 +334,10 @@ import {
   fetchTableAndViewsPage
 } from '@/api/generatormp'
 import {
-  generateScene2DataVoSource,
-  generateScene2DataVoFile
+  generateScene2DataSaveVoSource,
+  generateScene2DataSaveVoFile,
+  generateScene2DataRespVoSource,
+  generateScene2DataRespVoFile
 } from '@/api/scene2-data-vo-generator'
 import {
   generateScene2QueryVoSource,
@@ -370,8 +384,10 @@ export default {
           backEnd: {
             queryVOSource: '',
             queryVOFileName: '',
-            dataVOSource: '',
-            dataVOFileName: '',
+            dataSaveVOSource: '',
+            dataSaveVOFileName: '',
+            dataRespVOSource: '',
+            dataRespVOFileName: '',
             mapstructSource: '',
             mapstructFileName: '',
             serviceSource: '',
@@ -518,7 +534,8 @@ export default {
       }
       if (cmd === 'BACKEND') {
         this.asyncFetchQueryVoSource(tableName)
-        this.asyncFetchDataVoSource(tableName)
+        this.asyncFetchDataSaveVoSource(tableName)
+        this.asyncFetchDataRespVoSource(tableName)
         this.asyncFetchMapstructSource(tableName)
         this.asyncFetchServiceSource(tableName)
         this.asyncFetchControllerSource(tableName)
@@ -607,12 +624,6 @@ export default {
       })
     },
     handleSaveFileButton() {
-      if (this.mainDataForm.editingRecord.sourceType === 'API') {
-        this.generateJsApiFile()
-      }
-      if (this.mainDataForm.editingRecord.sourceType === 'VUE') {
-        this.generateVueFile()
-      }
       if (this.mainDataForm.editingRecord.sourceType === 'CHECK') {
         this.$message({
           type: 'info',
@@ -631,21 +642,7 @@ export default {
           message: '车间职能介绍仅供阅读!'
         })
       }
-      if (this.mainDataForm.editingRecord.sourceType === 'QueryVO') {
-        this.handleSaveQueryVoFileButton()
-      }
-      if (this.mainDataForm.editingRecord.sourceType === 'DataVO') {
-        this.handleSaveDataVoFileButton()
-      }
-      if (this.mainDataForm.editingRecord.sourceType === 'Mapstruct') {
-        this.handleSaveMapstructFileButton()
-      }
-      if (this.mainDataForm.editingRecord.sourceType === 'Service') {
-        this.handleSaveServiceFileButton()
-      }
-      if (this.mainDataForm.editingRecord.sourceType === 'Controller') {
-        this.handleSaveControllerFileButton()
-      }
+
       if (this.mainDataForm.editingRecord.sourceType === 'Liquibase') {
         this.handleSaveLiquibaseFileButton()
       }
@@ -653,10 +650,15 @@ export default {
     handleSaveAllFrontEndFileButton() {
       this.generateVueFile()
       this.generateJsApiFile()
+      this.$message({
+        type: 'info',
+        message: 'ROUTER片断仅供阅读!'
+      })
     },
     handleSaveAllBackEndFileButton() {
       this.handleSaveQueryVoFileButton()
-      this.handleSaveDataVoFileButton()
+      this.handleSaveDataSaveVoFileButton()
+      this.handleSaveDataRespVoFileButton()
       this.handleSaveMapstructFileButton()
       this.handleSaveServiceFileButton()
       this.handleSaveControllerFileButton()
@@ -788,35 +790,49 @@ export default {
         type: 'warning'
       })
     },
-    async asyncFetchDataVoSource(tableName) {
+    async asyncFetchDataSaveVoSource(tableName) {
       const para = {
         tableName: tableName,
         overwrite: false
       }
-      const result = await generateScene2DataVoSource(para)
+      const result = await generateScene2DataSaveVoSource(para)
       if (this.$commonResultCode.SUCCESS() === result.code) {
-        this.mainDataForm.editingRecord.backEnd.dataVOSource = result.data.sourceCode
-        this.mainDataForm.editingRecord.backEnd.dataVOFileName = result.data.fileName
+        this.mainDataForm.editingRecord.backEnd.dataSaveVOSource = result.data.sourceCode
+        this.mainDataForm.editingRecord.backEnd.dataSaveVOFileName = result.data.fileName
       }
       this.$message({
         message: result.message,
         type: 'warning'
       })
     },
-    async handleSaveDataVoFileButton() {
-      debugger
+    async asyncFetchDataRespVoSource(tableName) {
+      const para = {
+        tableName: tableName,
+        overwrite: false
+      }
+      const result = await generateScene2DataRespVoSource(para)
+      if (this.$commonResultCode.SUCCESS() === result.code) {
+        this.mainDataForm.editingRecord.backEnd.dataRespVOSource = result.data.sourceCode
+        this.mainDataForm.editingRecord.backEnd.dataRespVOFileName = result.data.fileName
+      }
+      this.$message({
+        message: result.message,
+        type: 'warning'
+      })
+    },
+    async handleSaveDataSaveVoFileButton() {
       const para = {
         tableName: this.mainDataForm.editingRecord.tableName,
         overwrite: false
       }
-      const result = await generateScene2DataVoFile(para)
+      const result = await generateScene2DataSaveVoFile(para)
       if (this.$commonResultCode.FUNCTION_ALREADY_EXIST_ERROR() === result.code) {
-        this.$confirm('DataVO文件已存在，【确定】将要覆盖文件, 是否继续?', '提示', {
+        this.$confirm('保存DataVO文件已存在，【确定】将要覆盖文件, 是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          this.generateDataVoOverwrite()
+          this.generateDataSaveVoOverwrite()
         }).catch(() => {
           this.$message({
             type: 'info',
@@ -830,18 +846,54 @@ export default {
         })
       }
     },
-    async generateDataVoOverwrite() {
+    async handleSaveDataRespVoFileButton() {
+      const para = {
+        tableName: this.mainDataForm.editingRecord.tableName,
+        overwrite: false
+      }
+      const result = await generateScene2DataRespVoFile(para)
+      if (this.$commonResultCode.FUNCTION_ALREADY_EXIST_ERROR() === result.code) {
+        this.$confirm('响应DataVO文件已存在，【确定】将要覆盖文件, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.generateDataRespVoOverwrite()
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消生成操作!'
+          })
+        })
+      } else {
+        this.$message({
+          message: result.message,
+          type: 'warning'
+        })
+      }
+    },
+    async generateDataSaveVoOverwrite() {
       const para = {
         tableName: this.mainDataForm.editingRecord.tableName,
         overwrite: true
       }
-      const result = await generateScene2DataVoFile(para)
+      const result = await generateScene2DataSaveVoFile(para)
       this.$message({
         message: result.message,
         type: 'warning'
       })
     },
-
+    async generateDataRespVoOverwrite() {
+      const para = {
+        tableName: this.mainDataForm.editingRecord.tableName,
+        overwrite: true
+      }
+      const result = await generateScene2DataRespVoFile(para)
+      this.$message({
+        message: result.message,
+        type: 'warning'
+      })
+    },
     async asyncFetchMapstructSource(tableName) {
       const para = {
         tableName: tableName,

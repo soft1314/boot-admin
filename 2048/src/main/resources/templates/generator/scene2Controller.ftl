@@ -1,6 +1,6 @@
 package ${marker.packageUrl};
 
-import ${marker.voPackageUrl}.${marker.entityName}Scene2DataVO;
+import ${marker.voPackageUrl}.${marker.entityName}Scene2SaveDataVO;
 import ${marker.voPackageUrl}.${marker.entityName}Scene2QueryVO;
 import com.qiyuan.bautil.dto.GuidContainerVO;
 import ${marker.servicePackageUrl}.I${marker.entityName}Scene2Service;
@@ -66,7 +66,7 @@ public class ${marker.entityName}Scene2Controller {
   }
   @ApiOperation("保存")
   @PostMapping("/save")
-  ResultDTO save(@Valid @RequestBody ${marker.entityName}Scene2DataVO dataVO, BindingResult bindingResult) throws Exception{
+  ResultDTO save(@Valid @RequestBody ${marker.entityName}Scene2SaveDataVO dataVO, BindingResult bindingResult) throws Exception{
     if (bindingResult.hasErrors()) {
       return formValidator.generateMessage(bindingResult);
     }

@@ -13,7 +13,7 @@ import com.qiyuan.bautil.dto.ResultDTO;
 * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-4-12 22:26:26
+* @since 2023-4-13 13:51:06
 */
 public interface IDemoEmpScene1Service extends IService<DemoEmp> {
   ResultDTO getPage(DemoEmpScene1QueryVO scene1QueryVO, boolean includeDeleted) throws Exception;

@@ -1,6 +1,6 @@
 <!-- 本文件自动生成，再次生成时易被覆盖 -->
 <!-- @author 虚领顶劲气沉丹田 -->
-<!-- @since 2023-4-12 22:27:11 -->
+<!-- @since 2023-4-13 13:52:49 -->
 <template>
   <div class="app-container background-white">
     <!-- 表数据编辑对话框区开始 -->
@@ -48,28 +48,13 @@
         />
       </el-form-item>
       <el-form-item label="请假日期" prop="bizDate">
-        <el-input
-          v-model="mainDataForm.editingRecord.bizDate"
-          placeholder="请输入请假日期"
-          clearable
-          :style="{width: '100%'}"
-        />
+        <el-date-picker v-model="mainDataForm.editingRecord.bizDate" type="date" placeholder="选择日期" />
       </el-form-item>
       <el-form-item label="离岗时间" prop="startTime">
-        <el-input
-          v-model="mainDataForm.editingRecord.startTime"
-          placeholder="请输入离岗时间"
-          clearable
-          :style="{width: '100%'}"
-        />
+        <el-date-picker v-model="mainDataForm.editingRecord.startTime" type="date" placeholder="选择日期" />
       </el-form-item>
       <el-form-item label="返岗时间" prop="finishTime">
-        <el-input
-          v-model="mainDataForm.editingRecord.finishTime"
-          placeholder="请输入返岗时间"
-          clearable
-          :style="{width: '100%'}"
-        />
+        <el-date-picker v-model="mainDataForm.editingRecord.finishTime" type="date" placeholder="选择日期" />
       </el-form-item>
       <el-form-item label="职称" prop="techTitle">
         <el-cascader
@@ -166,9 +151,9 @@ export default {
           leaveType: '',
           note: '',
           empName: '',
-          bizDate: '',
-          startTime: '',
-          finishTime: '',
+          bizDate: null,
+          startTime: null,
+          finishTime: null,
           techTitle: '',
           empLevel: '',
           sex: '',
