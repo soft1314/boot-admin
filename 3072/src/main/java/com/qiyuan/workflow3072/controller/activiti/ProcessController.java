@@ -29,7 +29,7 @@ public class ProcessController extends BaseController {
     private MyProcessService processService;
 
     @PostMapping("/process/page")
-    @ApiOperation("分页获取流程数据表列表")
+    @ApiOperation("分页获取流程（最新版本）数据表列表")
     public ResultDTO getTablePage(@Valid @RequestBody ProcessQueryVO queryVO, BindingResult bindingResult) throws Exception {
         if (bindingResult.hasErrors()) {
             return formValidator.generateMessage(bindingResult);
@@ -38,7 +38,7 @@ public class ProcessController extends BaseController {
         return resultDTO;
     }
     @PostMapping("/process/page/all")
-    @ApiOperation("分页获取流程数据表列表")
+    @ApiOperation("分页获取流程（所有版本）数据表列表")
     public ResultDTO getAllTablePage(@Valid @RequestBody ProcessQueryVO queryVO, BindingResult bindingResult) throws Exception {
         if (bindingResult.hasErrors()) {
             return formValidator.generateMessage(bindingResult);
@@ -63,9 +63,18 @@ public class ProcessController extends BaseController {
         }
         return processService.deploy(guidContainerVO.getGuid());
     }
+
+    /**
+     * 通过processDefinition.id和resType导出流程XML或图片资源
+     * @param id processDefinition.id
+     * @param resType 取值 “image/png”或“text/xml”
+     * @param response
+     * @throws Exception
+     */
     @GetMapping(value = "/res/exp")
-    @ApiOperation("导出流程XML或图片资源")
+    @ApiOperation("通过processDefinition.id和resType导出流程XML或图片资源")
     public void resourceRead(@RequestParam("id") String id,@RequestParam("resType") String resType, HttpServletResponse response) throws Exception {
+        /** resType取值 “image/png”或“text/xml” **/
         InputStream resourceAsStream = processService.resourceRead(id,resType);
         byte[] b = new byte[1024];
         int len = -1;

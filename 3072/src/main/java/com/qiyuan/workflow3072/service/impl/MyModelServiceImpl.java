@@ -123,24 +123,28 @@ public class MyModelServiceImpl implements MyModelService {
         return ResultDTO.success();
     }
 
+    /**
+     * 通过模型ID，生成模型BPMN20.xml
+     * @param guid
+     * @return
+     * @throws Exception
+     */
     @Override
     public ResultDTO genXml(String guid) throws Exception {
-        /**获取模型 **/
+        /**通过ID获取模型 **/
         Model modelData = repositoryService.getModel(guid);
         byte[] bytes = repositoryService.getModelEditorSource(modelData.getId());
-
         if (bytes == null) {
             return ResultDTO.failureCustom("模型数据为空，请先设计流程并成功保存，再进行发布。");
         }
-
         JsonNode modelNode = new ObjectMapper().readTree(bytes);
         BpmnModel model = new BpmnJsonConverter().convertToBpmnModel(modelNode);
         if (model.getProcesses().size() == 0) {
             return ResultDTO.failureCustom("数据模型不符要求，请至少设计一条主线流程。");
         }
-
-        /** 这里设置名称 **/
+        /** 设置名称 **/
         model.getMainProcess().setName(modelData.getName());
+        /** 设置 targetNamespace **/
         if(StringUtils.isNotBlank(modelData.getCategory())) {
             model.setTargetNamespace(modelData.getCategory());
         }

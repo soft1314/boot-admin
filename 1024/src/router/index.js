@@ -90,9 +90,9 @@ export const constantRoutes = [{
     }
   }]
 },
-guideRouter,
+guideRouter
 // 404 page must be placed at the end !!!
-//but 加上下面，console 会报红，Duplicate keys detected: '*'. This may cause an update error
+// but 加上下面，console 会报红，Duplicate keys detected: '*'. This may cause an update error
 // {
 //   path: '*',
 //   redirect: '/404',
@@ -415,7 +415,8 @@ const createRouter = () => new Router({
     y: 0
   }),
   // 初始化时将所有路由都加载上，否则会出现刷新页面404的情况
-  routes: constantRoutes.concat(asyncRoutes)
+  // routes: constantRoutes.concat(asyncRoutes)
+  routes: constantRoutes
 })
 
 const router = createRouter()
