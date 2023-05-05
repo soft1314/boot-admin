@@ -150,15 +150,17 @@
       :close-on-click-modal="false"
       :title="mainDataForm.formDialogTitle"
     >
-      <span style="font-style: italic;color: red;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;拟保存文件名：
-        {{ mainDataForm.editingRecord.fullFileName }}</span>
-      <br><br>
+      <div v-if="mainDataForm.needFileName">
+        <span style="font-style: italic;color: red;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;拟保存文件名：
+          {{ mainDataForm.editingRecord.fullFileName }}</span>
+        <br><br>
+      </div>
       <el-input v-model="mainDataForm.editingRecord.sourceCode" type="textarea" :rows="20" readonly />
       <div slot="footer" class="dialog-footer">
         <el-button @click="handleCloseMainDataFormDialog()">
           关闭
         </el-button>
-        <el-button type="primary" @click="handleSaveFileButton()">
+        <el-button v-if="mainDataForm.needFileName" type="primary" @click="handleSaveFileButton()">
           写文件
         </el-button>
       </div>
@@ -219,9 +221,7 @@
           />
         </el-tab-pane>
         <el-tab-pane label="ROUTER">
-          <span style="font-style: italic;color: red;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;拟保存文件名：
-            {{ mainDataForm.editingRecord.frontEnd.routerFileName }}</span>
-          <br><br>
+          <span style="font-style: italic;color: red;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以下路由片断仅供阅读</span><br><br>
           <el-input
             v-model="mainDataForm.editingRecord.frontEnd.routerSource"
             style="width: 80%;"
@@ -453,7 +453,8 @@ export default {
         formDialogVisible: false,
         frontEndDialogVisible: false,
         backEndDialogVisible: false,
-        formDialogTitle: '查看代码'
+        formDialogTitle: '查看代码',
+        needFileName: true
       },
       filterDrawer: {
         dialogVisible: false,
@@ -573,11 +574,13 @@ export default {
         this.asyncFetchScene4Story(tableName)
         this.mainDataForm.formDialogTitle = '车间职能介绍'
         this.mainDataForm.formDialogVisible = true
+        this.mainDataForm.needFileName = false
       }
       if (cmd === 'CHECK') {
         this.asyncFetchCheckResult(tableName)
         this.mainDataForm.formDialogTitle = '表结构检查'
         this.mainDataForm.formDialogVisible = true
+        this.mainDataForm.needFileName = false
       }
       if (cmd === 'FRONT-END') {
         this.asyncFetchVueSource(tableName)
@@ -603,6 +606,7 @@ export default {
         this.asyncFetchLiquibaseSource(tableName)
         this.mainDataForm.formDialogTitle = 'Liquibase changeSet生成'
         this.mainDataForm.formDialogVisible = true
+        this.mainDataForm.needFileName = true
       }
     },
     async asyncFetchVueSource(tableName) {

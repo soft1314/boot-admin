@@ -2,17 +2,16 @@ package com.qiyuan.base2048.quartz.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.qiyuan.base2048.mapper.mapstruct.JobDtoTransMapper;
-import com.qiyuan.bautil.dto.BasePageQueryVO;
 import com.qiyuan.base2048.quartz.QuartzService;
 import com.qiyuan.base2048.quartz.dto.JobDTO;
 import com.qiyuan.base2048.quartz.dto.JobUpdateDTO;
 import com.qiyuan.base2048.quartz.job.BaseJob;
 import com.qiyuan.bautil.annotate.response.ResponseBodyInController;
+import com.qiyuan.bautil.dto.BasePageQueryVO;
 import com.qiyuan.bautil.dto.ResultDTO;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;

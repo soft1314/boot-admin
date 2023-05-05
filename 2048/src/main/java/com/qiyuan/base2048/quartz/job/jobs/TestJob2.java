@@ -12,13 +12,13 @@ import java.time.ZoneOffset;
 @Slf4j
 @Component
 @DisallowConcurrentExecution
-public class TestJob extends BaseJobTemplate {
+public class TestJob2 extends BaseJobTemplate {
     @Override
     public void runing(JobExecutionContext jobExecutionContext)  {
         try {
             log.info("测试任务开始：【{}】", Instant.now().atOffset(ZoneOffset.ofHours(8)));
             System.out.println("============= 测试任务正在运行 =====================");
-            Thread.sleep(5000);
+            Thread.sleep(20000);
             System.out.println("============= Test job is running ===============");
             log.info("测试任务结束：【{}】", Instant.now().atOffset(ZoneOffset.ofHours(8)));
         } catch (Exception ex) {
