@@ -28,6 +28,5 @@ public class MobileValidator implements ConstraintValidator<Mobile, String> {
 
     @Override
     public void initialize(Mobile constraintAnnotation) {}
-
 }
 

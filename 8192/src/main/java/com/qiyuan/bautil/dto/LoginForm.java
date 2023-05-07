@@ -1,7 +1,6 @@
 package com.qiyuan.bautil.dto;
 
-
-import com.qiyuan.bautil.annotate.valid.SelfCheck1Valid;
+import com.qiyuan.bautil.annotate.valid.OverallValid;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
@@ -11,7 +10,7 @@ import javax.validation.constraints.NotBlank;
  * @create 2021-10-14 21:41
  **/
 @Data
-@SelfCheck1Valid(message = "密码复杂度不够。")
+@OverallValid(value = "selfCheck1",message = "密码复杂度不够。")
 public class LoginForm {
     @NotBlank(message = "登录账号是必填项。")
     private String username;

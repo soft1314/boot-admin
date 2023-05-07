@@ -21,7 +21,11 @@ public class StringLengthValidator implements ConstraintValidator<StringLength, 
     public boolean isValid(String value, ConstraintValidatorContext constraintValidatorContext) {
         try {
             if(StringUtils.isBlank(value)){
-                return true;
+                if(min > 0){
+                    return false;
+                }else {
+                    return true;
+                }
             }
             byte[] tmpbyte = value.getBytes("UTF-8");
             int length = tmpbyte.length;

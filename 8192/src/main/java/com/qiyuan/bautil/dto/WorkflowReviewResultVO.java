@@ -1,16 +1,15 @@
 package com.qiyuan.bautil.dto;
 
 import com.qiyuan.bautil.annotate.valid.EnumValid;
-import com.qiyuan.bautil.annotate.valid.SelfCheck1Valid;
+import com.qiyuan.bautil.annotate.valid.OverallValid;
 import com.qiyuan.bautil.enums.OutComeEnum;
 import lombok.Data;
 import org.apache.commons.lang.StringUtils;
-
 import javax.validation.constraints.NotBlank;
 import java.util.Map;
 
 @Data
-@SelfCheck1Valid(message = "驳回时必须输入审核意见。")
+@OverallValid(value = "selfCheck1",message = "驳回时必须输入审核意见。")
 public class WorkflowReviewResultVO {
     private String taskId;
     private String reviewComments;
