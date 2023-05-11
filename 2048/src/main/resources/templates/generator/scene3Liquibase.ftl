@@ -11,8 +11,8 @@
       <column name="RESOURCE_TYPE" value="2"/>
       <column name="ACCESS_CONTROL_STYLE" value="02"/>
       <column name="REMARKS" value="无"/>
-      <column name="CREATE_TIME" valueComputed="sysdate"/>
-      <column name="MODIFY_TIME" valueComputed="sysdate"/>
+      <column name="CREATE_TIME" valueComputed="${r"${time.current}"}"/>
+      <column name="MODIFY_TIME" valueComputed="${r"${time.current}"}"/>
       <column name="ENABLED" valueNumeric="1"/>
       <column name="DELETED" valueNumeric="1"/>
       <column name="TENANT_ID_" value="DEMO"/>
@@ -22,6 +22,7 @@
       <column name="LEAF" value="1"/>
       <column name="VERSION" valueNumeric="0"/>
       <column name="PARENT_GUID" value="function"/>
+      <column name="DATESTAMP" valueComputed="${r"${time.current}"}"/>
     </insert>
     <insert tableName="TB_RESOURCE">
       <column name="GUID" valueComputed="sys_guid()"/>
@@ -30,8 +31,8 @@
       <column name="RESOURCE_TYPE" value="2"/>
       <column name="ACCESS_CONTROL_STYLE" value="02"/>
       <column name="REMARKS" value="无"/>
-      <column name="CREATE_TIME" valueComputed="sysdate"/>
-      <column name="MODIFY_TIME" valueComputed="sysdate"/>
+      <column name="CREATE_TIME" valueComputed="${r"${time.current}"}"/>
+      <column name="MODIFY_TIME" valueComputed="${r"${time.current}"}"/>
       <column name="ENABLED" valueNumeric="1"/>
       <column name="DELETED" valueNumeric="1"/>
       <column name="TENANT_ID_" value="DEMO"/>
@@ -41,6 +42,7 @@
       <column name="LEAF" value="1"/>
       <column name="VERSION" valueNumeric="0"/>
       <column name="PARENT_GUID" value="function"/>
+      <column name="DATESTAMP" valueComputed="${r"${time.current}"}"/>
     </insert>
     <insert tableName="TB_RESOURCE">
       <column name="GUID" valueComputed="sys_guid()"/>
@@ -49,8 +51,8 @@
       <column name="RESOURCE_TYPE" value="2"/>
       <column name="ACCESS_CONTROL_STYLE" value="02"/>
       <column name="REMARKS" value="无"/>
-      <column name="CREATE_TIME" valueComputed="sysdate"/>
-      <column name="MODIFY_TIME" valueComputed="sysdate"/>
+      <column name="CREATE_TIME" valueComputed="${r"${time.current}"}"/>
+      <column name="MODIFY_TIME" valueComputed="${r"${time.current}"}"/>
       <column name="ENABLED" valueNumeric="1"/>
       <column name="DELETED" valueNumeric="1"/>
       <column name="TENANT_ID_" value="DEMO"/>
@@ -60,6 +62,7 @@
       <column name="LEAF" value="1"/>
       <column name="VERSION" valueNumeric="0"/>
       <column name="PARENT_GUID" value="function"/>
+      <column name="DATESTAMP" valueComputed="${r"${time.current}"}"/>
     </insert>
   </changeSet>
 </databaseChangeLog>

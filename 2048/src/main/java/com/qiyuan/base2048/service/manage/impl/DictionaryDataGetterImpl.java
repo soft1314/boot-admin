@@ -12,7 +12,9 @@ import com.qiyuan.base2048.mapper.mybatis.entity.TbDictype;
 import com.qiyuan.base2048.pojo.vo.query.DictypeQueryVO;
 import com.qiyuan.base2048.pojo.vo.query.TbDictionaryQueryVO;
 import com.qiyuan.base2048.pojo.vo.result.TbDictionaryDataVO;
+import com.qiyuan.base2048.pojo.vo.tree.TreeNode;
 import com.qiyuan.base2048.service.manage.DictionaryDataGetter;
+import com.qiyuan.base2048.service.mybatis.ITbAdmDivService;
 import com.qiyuan.base2048.service.mybatis.ITbDictionaryService;
 import com.qiyuan.base2048.service.mybatis.ITbDictypeService;
 import com.qiyuan.bautil.dto.CascaderNode;
@@ -32,6 +34,8 @@ public class DictionaryDataGetterImpl implements DictionaryDataGetter {
     private ITbDictypeService iTbDictypeService;
     @Resource
     private ITbDictionaryService iTbDictionaryService;
+    @Resource
+    private ITbAdmDivService iTbAdmDivService;
 
     @Override
     public ResultDTO getTbDictypeVOPage(DictypeQueryVO dictypeQueryVO, boolean includeDeleted) throws Exception {

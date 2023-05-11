@@ -60,16 +60,9 @@ service.interceptors.response.use(
       result.message = '系统错误信息:Status[' + res.status + '],Message[' + res.message + ']'
       return result
     }
-    if('true' === res.tokenTimeout){
-      Message({
-        message: '系统检测令牌需刷新一下子。',
-        type: 'error',
-        duration: 5 * 1000
-      })
-      //因并发，控制30秒最多刷新一次吧
-      
+    if (res.tokenTimeout === 'true') {
+      // 因并发，控制30秒最多刷新一次吧
       store.dispatch('user/refreshToken')
-
     }
     // 成功返回数据
     return res.data

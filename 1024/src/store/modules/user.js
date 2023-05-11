@@ -217,6 +217,11 @@ const actions = {
     // 距上次刷新超过10秒钟，才允许刷新
     console.log('------------timeSpan==================' + timeSpan)
     if (timeSpan > 10000) {
+      Message({
+        message: '既然系统检测令牌需刷新一下子，那就刷一下子。',
+        type: 'error',
+        duration: 5 * 1000
+      })
       commit('SET_LASTREFRESH_TIME', thisTime)
       return new Promise((resolve, reject) => {
         refreshToken({
@@ -250,11 +255,11 @@ const actions = {
         })
       })
     } else {
-      // Message({
-      //   message: '刷新太频繁，这次不刷新',
-      //   type: 'error',
-      //   duration: 5 * 1000
-      // })
+      Message({
+        message: '刷新太频繁，这一下子暂不刷新',
+        type: 'error',
+        duration: 5 * 1000
+      })
     }
   }
 }

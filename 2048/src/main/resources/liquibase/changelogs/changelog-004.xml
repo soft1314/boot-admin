@@ -7,8 +7,8 @@
             <column name="RESOURCE_TYPE" value="2"/>
             <column name="ACCESS_CONTROL_STYLE" value="03"/>
             <column name="NAME" value="剧情1获取表demo_emp分页数据"/>
-            <column name="CREATE_TIME" valueDate="2023-04-07T14:25:06"/>
-            <column name="MODIFY_TIME" valueDate="2023-04-07T14:25:06"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
             <column name="ENABLED" value="1"/>
             <column name="DELETED" value="1"/>
             <column name="TENANT_ID_" value="DEMO"/>
@@ -18,7 +18,7 @@
             <column name="PARENT_GUID" value="function"/>
             <column name="CREATE_BY" value="admin"/>
             <column name="MODIFY_BY" value="admin"/>
-            <column name="DATESTAMP" valueDate="2023-04-07T14:25:06"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
             <column name="LEAF" value="1"/>
         </insert>
         <insert tableName="TB_RESOURCE">
@@ -27,8 +27,8 @@
             <column name="RESOURCE_TYPE" value="2"/>
             <column name="ACCESS_CONTROL_STYLE" value="03"/>
             <column name="NAME" value="剧情1保存表demo_emp数据"/>
-            <column name="CREATE_TIME" valueDate="2023-04-07T14:25:06"/>
-            <column name="MODIFY_TIME" valueDate="2023-04-07T14:25:06"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
             <column name="ENABLED" value="1"/>
             <column name="DELETED" value="1"/>
             <column name="TENANT_ID_" value="DEMO"/>
@@ -38,7 +38,7 @@
             <column name="PARENT_GUID" value="function"/>
             <column name="CREATE_BY" value="admin"/>
             <column name="MODIFY_BY" value="admin"/>
-            <column name="DATESTAMP" valueDate="2023-04-07T14:25:06"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
             <column name="LEAF" value="1"/>
         </insert>
         <insert tableName="TB_RESOURCE">
@@ -47,8 +47,8 @@
             <column name="RESOURCE_TYPE" value="2"/>
             <column name="ACCESS_CONTROL_STYLE" value="03"/>
             <column name="NAME" value="剧情1按GUID删除表demo_emp数据"/>
-            <column name="CREATE_TIME" valueDate="2023-04-07T14:25:06"/>
-            <column name="MODIFY_TIME" valueDate="2023-04-07T14:25:06"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
             <column name="ENABLED" value="1"/>
             <column name="DELETED" value="1"/>
             <column name="TENANT_ID_" value="DEMO"/>
@@ -58,7 +58,7 @@
             <column name="PARENT_GUID" value="function"/>
             <column name="CREATE_BY" value="admin"/>
             <column name="MODIFY_BY" value="admin"/>
-            <column name="DATESTAMP" valueDate="2023-04-07T14:25:06"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
             <column name="LEAF" value="1"/>
         </insert>
         <insert tableName="TB_RESOURCE">
@@ -67,8 +67,8 @@
             <column name="RESOURCE_TYPE" value="2"/>
             <column name="ACCESS_CONTROL_STYLE" value="03"/>
             <column name="NAME" value="剧情2获取表demo_org首层分页数据"/>
-            <column name="CREATE_TIME" valueDate="2023-04-07T14:25:06"/>
-            <column name="MODIFY_TIME" valueDate="2023-04-07T14:25:06"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
             <column name="ENABLED" value="1"/>
             <column name="DELETED" value="1"/>
             <column name="TENANT_ID_" value="DEMO"/>
@@ -78,7 +78,7 @@
             <column name="PARENT_GUID" value="function"/>
             <column name="CREATE_BY" value="admin"/>
             <column name="MODIFY_BY" value="admin"/>
-            <column name="DATESTAMP" valueDate="2023-04-07T14:25:06"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
             <column name="LEAF" value="1"/>
         </insert>
         <insert tableName="TB_RESOURCE">
@@ -87,8 +87,8 @@
             <column name="RESOURCE_TYPE" value="2"/>
             <column name="ACCESS_CONTROL_STYLE" value="03"/>
             <column name="NAME" value="剧情2获取表demo_org分页数据"/>
-            <column name="CREATE_TIME" valueDate="2023-04-07T14:25:06"/>
-            <column name="MODIFY_TIME" valueDate="2023-04-07T14:25:06"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
             <column name="ENABLED" value="1"/>
             <column name="DELETED" value="1"/>
             <column name="TENANT_ID_" value="DEMO"/>
@@ -98,7 +98,7 @@
             <column name="PARENT_GUID" value="function"/>
             <column name="CREATE_BY" value="admin"/>
             <column name="MODIFY_BY" value="admin"/>
-            <column name="DATESTAMP" valueDate="2023-04-07T14:25:06"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
             <column name="LEAF" value="1"/>
         </insert>
         <insert tableName="TB_RESOURCE">
@@ -107,8 +107,8 @@
             <column name="RESOURCE_TYPE" value="2"/>
             <column name="ACCESS_CONTROL_STYLE" value="03"/>
             <column name="NAME" value="剧情2获取表demo_org下一层数据"/>
-            <column name="CREATE_TIME" valueDate="2023-04-07T14:25:06"/>
-            <column name="MODIFY_TIME" valueDate="2023-04-07T14:25:06"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
             <column name="ENABLED" value="1"/>
             <column name="DELETED" value="1"/>
             <column name="TENANT_ID_" value="DEMO"/>
@@ -118,7 +118,7 @@
             <column name="PARENT_GUID" value="function"/>
             <column name="CREATE_BY" value="admin"/>
             <column name="MODIFY_BY" value="admin"/>
-            <column name="DATESTAMP" valueDate="2023-04-07T14:25:06"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
             <column name="LEAF" value="1"/>
         </insert>
         <insert tableName="TB_RESOURCE">
@@ -127,8 +127,8 @@
             <column name="RESOURCE_TYPE" value="2"/>
             <column name="ACCESS_CONTROL_STYLE" value="03"/>
             <column name="NAME" value="剧情2保存表demo_org数据"/>
-            <column name="CREATE_TIME" valueDate="2023-04-07T14:25:06"/>
-            <column name="MODIFY_TIME" valueDate="2023-04-07T14:25:06"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
             <column name="ENABLED" value="1"/>
             <column name="DELETED" value="1"/>
             <column name="TENANT_ID_" value="DEMO"/>
@@ -138,7 +138,7 @@
             <column name="PARENT_GUID" value="function"/>
             <column name="CREATE_BY" value="admin"/>
             <column name="MODIFY_BY" value="admin"/>
-            <column name="DATESTAMP" valueDate="2023-04-07T14:25:06"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
             <column name="LEAF" value="1"/>
         </insert>
         <insert tableName="TB_RESOURCE">
@@ -147,8 +147,8 @@
             <column name="RESOURCE_TYPE" value="2"/>
             <column name="ACCESS_CONTROL_STYLE" value="03"/>
             <column name="NAME" value="剧情2按GUID删除表demo_org数据"/>
-            <column name="CREATE_TIME" valueDate="2023-04-07T14:25:06"/>
-            <column name="MODIFY_TIME" valueDate="2023-04-07T14:25:06"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
             <column name="ENABLED" value="1"/>
             <column name="DELETED" value="1"/>
             <column name="TENANT_ID_" value="DEMO"/>
@@ -158,7 +158,7 @@
             <column name="PARENT_GUID" value="function"/>
             <column name="CREATE_BY" value="admin"/>
             <column name="MODIFY_BY" value="admin"/>
-            <column name="DATESTAMP" valueDate="2023-04-07T14:25:06"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
             <column name="LEAF" value="1"/>
         </insert>
         <insert tableName="TB_RESOURCE">
@@ -167,8 +167,8 @@
             <column name="RESOURCE_TYPE" value="2"/>
             <column name="ACCESS_CONTROL_STYLE" value="03"/>
             <column name="NAME" value="剧情3表demo_leave插入数据并启动流程"/>
-            <column name="CREATE_TIME" valueDate="2023-04-07T14:25:06"/>
-            <column name="MODIFY_TIME" valueDate="2023-04-07T14:25:06"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
             <column name="ENABLED" value="1"/>
             <column name="DELETED" value="1"/>
             <column name="TENANT_ID_" value="DEMO"/>
@@ -178,7 +178,7 @@
             <column name="PARENT_GUID" value="function"/>
             <column name="CREATE_BY" value="admin"/>
             <column name="MODIFY_BY" value="admin"/>
-            <column name="DATESTAMP" valueDate="2023-04-07T14:25:06"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
             <column name="LEAF" value="1"/>
         </insert>
         <insert tableName="TB_RESOURCE">
@@ -187,8 +187,8 @@
             <column name="RESOURCE_TYPE" value="2"/>
             <column name="ACCESS_CONTROL_STYLE" value="03"/>
             <column name="NAME" value="剧情3表demo_leave数据修改并完成任务"/>
-            <column name="CREATE_TIME" valueDate="2023-04-07T14:25:06"/>
-            <column name="MODIFY_TIME" valueDate="2023-04-07T14:25:06"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
             <column name="ENABLED" value="1"/>
             <column name="DELETED" value="1"/>
             <column name="TENANT_ID_" value="DEMO"/>
@@ -198,7 +198,7 @@
             <column name="PARENT_GUID" value="function"/>
             <column name="CREATE_BY" value="admin"/>
             <column name="MODIFY_BY" value="admin"/>
-            <column name="DATESTAMP" valueDate="2023-04-07T14:25:06"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
             <column name="LEAF" value="1"/>
         </insert>
         <insert tableName="TB_RESOURCE">
@@ -207,8 +207,8 @@
             <column name="RESOURCE_TYPE" value="2"/>
             <column name="ACCESS_CONTROL_STYLE" value="03"/>
             <column name="NAME" value="剧情3按表demo_leave数据查询"/>
-            <column name="CREATE_TIME" valueDate="2023-04-07T14:25:06"/>
-            <column name="MODIFY_TIME" valueDate="2023-04-07T14:25:06"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
             <column name="ENABLED" value="1"/>
             <column name="DELETED" value="1"/>
             <column name="TENANT_ID_" value="DEMO"/>
@@ -218,7 +218,7 @@
             <column name="PARENT_GUID" value="function"/>
             <column name="CREATE_BY" value="admin"/>
             <column name="MODIFY_BY" value="admin"/>
-            <column name="DATESTAMP" valueDate="2023-04-07T14:25:06"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
             <column name="LEAF" value="1"/>
         </insert>
         <insert tableName="TB_RESOURCE">
@@ -227,8 +227,8 @@
             <column name="RESOURCE_TYPE" value="2"/>
             <column name="ACCESS_CONTROL_STYLE" value="03"/>
             <column name="NAME" value="剧情4获取表demo_expense分页数据"/>
-            <column name="CREATE_TIME" valueDate="2023-04-07T14:25:06"/>
-            <column name="MODIFY_TIME" valueDate="2023-04-07T14:25:06"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
             <column name="ENABLED" value="1"/>
             <column name="DELETED" value="1"/>
             <column name="TENANT_ID_" value="DEMO"/>
@@ -238,7 +238,7 @@
             <column name="PARENT_GUID" value="function"/>
             <column name="CREATE_BY" value="admin"/>
             <column name="MODIFY_BY" value="admin"/>
-            <column name="DATESTAMP" valueDate="2023-04-07T14:25:06"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
             <column name="LEAF" value="1"/>
         </insert>
         <insert tableName="TB_RESOURCE">
@@ -247,8 +247,8 @@
             <column name="RESOURCE_TYPE" value="2"/>
             <column name="ACCESS_CONTROL_STYLE" value="03"/>
             <column name="NAME" value="剧情4保存表demo_expense数据"/>
-            <column name="CREATE_TIME" valueDate="2023-04-07T14:25:06"/>
-            <column name="MODIFY_TIME" valueDate="2023-04-07T14:25:06"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
             <column name="ENABLED" value="1"/>
             <column name="DELETED" value="1"/>
             <column name="TENANT_ID_" value="DEMO"/>
@@ -258,7 +258,7 @@
             <column name="PARENT_GUID" value="function"/>
             <column name="CREATE_BY" value="admin"/>
             <column name="MODIFY_BY" value="admin"/>
-            <column name="DATESTAMP" valueDate="2023-04-07T14:25:06"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
             <column name="LEAF" value="1"/>
         </insert>
         <insert tableName="TB_RESOURCE">
@@ -267,8 +267,8 @@
             <column name="RESOURCE_TYPE" value="2"/>
             <column name="ACCESS_CONTROL_STYLE" value="03"/>
             <column name="NAME" value="剧情4按GUID删除表demo_expense数据"/>
-            <column name="CREATE_TIME" valueDate="2023-04-07T14:25:06"/>
-            <column name="MODIFY_TIME" valueDate="2023-04-07T14:25:06"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
             <column name="ENABLED" value="1"/>
             <column name="DELETED" value="1"/>
             <column name="TENANT_ID_" value="DEMO"/>
@@ -278,7 +278,7 @@
             <column name="PARENT_GUID" value="function"/>
             <column name="CREATE_BY" value="admin"/>
             <column name="MODIFY_BY" value="admin"/>
-            <column name="DATESTAMP" valueDate="2023-04-07T14:25:06"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
             <column name="LEAF" value="1"/>
         </insert>
         <insert tableName="TB_RESOURCE">
@@ -287,8 +287,8 @@
             <column name="RESOURCE_TYPE" value="2"/>
             <column name="ACCESS_CONTROL_STYLE" value="03"/>
             <column name="NAME" value="剧情4保存表demo_expense数据并启动流程"/>
-            <column name="CREATE_TIME" valueDate="2023-04-07T14:25:06"/>
-            <column name="MODIFY_TIME" valueDate="2023-04-07T14:25:06"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
             <column name="ENABLED" value="1"/>
             <column name="DELETED" value="1"/>
             <column name="TENANT_ID_" value="DEMO"/>
@@ -298,7 +298,7 @@
             <column name="PARENT_GUID" value="function"/>
             <column name="CREATE_BY" value="admin"/>
             <column name="MODIFY_BY" value="admin"/>
-            <column name="DATESTAMP" valueDate="2023-04-07T14:25:06"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
             <column name="LEAF" value="1"/>
         </insert>
         <insert tableName="TB_RESOURCE">
@@ -307,8 +307,8 @@
             <column name="RESOURCE_TYPE" value="2"/>
             <column name="ACCESS_CONTROL_STYLE" value="03"/>
             <column name="NAME" value="修改数据并完成任务"/>
-            <column name="CREATE_TIME" valueDate="2023-04-07T14:25:06"/>
-            <column name="MODIFY_TIME" valueDate="2023-04-07T14:25:06"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
             <column name="ENABLED" value="1"/>
             <column name="DELETED" value="1"/>
             <column name="TENANT_ID_" value="DEMO"/>
@@ -318,7 +318,7 @@
             <column name="PARENT_GUID" value="function"/>
             <column name="CREATE_BY" value="admin"/>
             <column name="MODIFY_BY" value="admin"/>
-            <column name="DATESTAMP" valueDate="2023-04-07T14:25:06"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
             <column name="LEAF" value="1"/>
         </insert>
         <insert tableName="TB_RESOURCE">
@@ -327,8 +327,8 @@
             <column name="RESOURCE_TYPE" value="2"/>
             <column name="ACCESS_CONTROL_STYLE" value="03"/>
             <column name="NAME" value="通过businessId获取业务数据"/>
-            <column name="CREATE_TIME" valueDate="2023-04-07T14:25:06"/>
-            <column name="MODIFY_TIME" valueDate="2023-04-07T14:25:06"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
             <column name="ENABLED" value="1"/>
             <column name="DELETED" value="1"/>
             <column name="TENANT_ID_" value="DEMO"/>
@@ -338,7 +338,7 @@
             <column name="PARENT_GUID" value="function"/>
             <column name="CREATE_BY" value="admin"/>
             <column name="MODIFY_BY" value="admin"/>
-            <column name="DATESTAMP" valueDate="2023-04-07T14:25:06"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
             <column name="LEAF" value="1"/>
         </insert>
     </changeSet>

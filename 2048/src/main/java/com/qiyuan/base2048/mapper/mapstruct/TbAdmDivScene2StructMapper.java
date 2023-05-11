@@ -2,6 +2,7 @@ package com.qiyuan.base2048.mapper.mapstruct;
 
 import com.qiyuan.base2048.mapper.mybatis.entity.TbAdmDiv;
 import com.qiyuan.base2048.pojo.vo.save.TbAdmDivScene2DataVO;
+import com.qiyuan.base2048.pojo.vo.tree.TreeNode;
 import com.qiyuan.bautil.dto.CascaderNode;
 import com.qiyuan.bautil.service.component.BooleanToCharFormat;
 import org.mapstruct.Mapper;
@@ -40,4 +41,12 @@ public interface TbAdmDivScene2StructMapper {
   })
   CascaderNode toCascaderNode(TbAdmDiv entity);
   List<CascaderNode> toCascaderNodeList(List<TbAdmDiv> entitys);
+  @Mappings({
+    @Mapping(target = "label", expression = "java(entity.getAdmDivCode() + '_' + entity.getAdmDivName())"),
+    @Mapping(target = "id", source = "guid"),
+    @Mapping(target = "value", source = "admDivCode"),
+    @Mapping(target = "leaf", source = "leaf")
+  })
+  TreeNode toTreeNode(TbAdmDiv entity);
+  List<TreeNode> toTreeNodeList(List<TbAdmDiv> tbAdmDivs);
 }

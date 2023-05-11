@@ -1,10 +1,10 @@
 const commonResultCode = {
-  SUCCESS(){
-    //文件已存在
+  SUCCESS() {
+    // 正确
     return 100
   },
-  FUNCTION_ALREADY_EXIST_ERROR(){
-    //文件已存在
+  FUNCTION_ALREADY_EXIST_ERROR() {
+    // 文件已存在
     return 104
   }
 }

@@ -12,7 +12,7 @@ spring:
 #    password: base2048
 
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/base2048?useSSL=false&serverTimezone=UTC&autoReconnect=true&allowPublicKeyRetrieval=true&useOldAliasMetadataBehavior=true
+    url: jdbc:mysql://localhost:3306/base2048?useSSL=false&serverTimezone=GMT%2B8&autoReconnect=true&allowPublicKeyRetrieval=true&useOldAliasMetadataBehavior=true
     username: root
     password: mysql
   cloud:
@@ -233,7 +233,7 @@ base2048:
 #      username: ${spring.datasource.username}
 #      password: ${spring.datasource.password}
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/base2048job?useSSL=false&serverTimezone=UTC&autoReconnect=true&allowPublicKeyRetrieval=true&useOldAliasMetadataBehavior=true
+      url: jdbc:mysql://localhost:3306/base2048job?useSSL=false&serverTimezone=GMT%2B8&autoReconnect=true&allowPublicKeyRetrieval=true&useOldAliasMetadataBehavior=true
       username: root
       password: mysql
 

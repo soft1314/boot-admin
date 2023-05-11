@@ -6,8 +6,12 @@
     <property name="type.int" value="INT" dbms="mysql"/>
     <property name="type.decimal" value="NUMBER(*, 2)" dbms="oracle"/>
     <property name="type.decimal" value="DECIMAL" dbms="mysql"/>
+<!--    字段类型用-->
     <property name="now" value="SYSDATE" dbms="oracle"/>
-    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="NOW() ON UPDATE CURRENT_TIMESTAMP()" dbms="mysql"/>
+<!--    插入时用-->
+    <property name="time.current" value="SYSDATE" dbms="oracle"/>
+    <property name="time.current" value="NOW()" dbms="mysql"/>
     <property name="autoIncrement" value="true" dbms="mysql,h2,postgresql,oracle"/>
     <property name="amount" value="decimal(20,2)"/>
     <property name="uuid" value="sys_guid()" dbms="oracle"/>
