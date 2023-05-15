@@ -21,11 +21,5 @@ public interface IToNotifyScene1Service extends IService<ToNotify> {
   ResultDTO insertOrUpdate(ToNotifyScene1DataVO dataVO, BaseUser baseUser) throws Exception;
   ResultDTO delete(String guid) throws Exception;
 
-  /**
-   * 保存某个通知通告需要通知到哪些区划
-   * @param notifyAdmDivRelationshipVO
-   * @return
-   * @throws Exception
-   */
-  ResultDTO saveTrNotifyAdmDiv(NotifyAdmDivRelationshipVO notifyAdmDivRelationshipVO) throws Exception;
+
 }

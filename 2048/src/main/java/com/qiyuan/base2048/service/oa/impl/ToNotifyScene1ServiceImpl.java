@@ -7,35 +7,22 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qiyuan.base2048.mapper.mapstruct.generated.ToNotifyScene1StructMapper;
 import com.qiyuan.base2048.mapper.mybatis.ToNotifyMapper;
-import com.qiyuan.base2048.mapper.mybatis.TrNotifyDivMapper;
 import com.qiyuan.base2048.mapper.mybatis.entity.ToNotify;
-import com.qiyuan.base2048.mapper.mybatis.entity.TrNotifyDiv;
 import com.qiyuan.base2048.pojo.vo.generated.ToNotifyScene1DataVO;
 import com.qiyuan.base2048.pojo.vo.generated.ToNotifyScene1QueryVO;
-import com.qiyuan.base2048.pojo.vo.oa.NotifyAdmDivRelationshipVO;
 import com.qiyuan.base2048.service.Component.MessageUtils;
-import com.qiyuan.base2048.service.manage.AdmDivDataGetter;
-import com.qiyuan.base2048.service.mybatis.ITrNotifyDivService;
 import com.qiyuan.base2048.service.oa.IToNotifyScene1Service;
-import com.qiyuan.bautil.constant.ConstantCommon;
 import com.qiyuan.bautil.dto.BaseUser;
 import com.qiyuan.bautil.dto.ResultDTO;
 import com.qiyuan.bautil.enums.IsDeletedEnum;
-import com.qiyuan.bautil.enums.IsEnabledEnum;
-import com.qiyuan.bautil.enums.NotifyTypeEnum;
 import com.qiyuan.bautil.enums.YesNoEnum;
 import com.qiyuan.bautil.util.StringTool;
 import com.qiyuan.bautil.util.TimeTool;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import static cn.hutool.core.bean.BeanUtil.beanToMap;
 /**
@@ -49,11 +36,6 @@ import static cn.hutool.core.bean.BeanUtil.beanToMap;
 */
 @Service
 public class ToNotifyScene1ServiceImpl extends ServiceImpl<ToNotifyMapper, ToNotify>  implements IToNotifyScene1Service {
-  @Resource
-  private AdmDivDataGetter admDivDataGetter;
-  @Resource
-  private ITrNotifyDivService iTrNotifyDivService;
-
   @Override
   public ResultDTO getPage(ToNotifyScene1QueryVO queryVO, boolean includeDeleted) throws Exception {
     QueryWrapper<ToNotify> wrapper = new QueryWrapper();
@@ -132,41 +114,6 @@ public class ToNotifyScene1ServiceImpl extends ServiceImpl<ToNotifyMapper, ToNot
     }
     return ResultDTO.failureCustom(MessageUtils.get("dao.delete.error"));
   }
-
-  @Override
-  public ResultDTO saveTrNotifyAdmDiv(NotifyAdmDivRelationshipVO notifyAdmDivRelationshipVO) throws Exception {
-    /**
-     * 对区划编码数组进行精简，有上级编码的，其下级一律丢弃
-     * 算法：1.全放在map里，2.遍历编码 3.编码的上级编码未在map中时，放到结果list,否则丢弃 4.遍历结束时得到结果
-     */
-    List<String> codes = notifyAdmDivRelationshipVO.getAdmDivCodes();
-    String notifyGuid = notifyAdmDivRelationshipVO.getNotifyGuid();
-
-    List<String> codesForSave = new ArrayList<>();
-    Map map = codes.stream().collect(Collectors.toMap(Function.identity(), s->0));
-    for(String code:codes) {
-      if(ConstantCommon.ADM_DIV_ROOT_CODE.equals(code)){
-        /**
-         * 只有有00，就唯一00
-         */
-        codesForSave = new ArrayList<>();
-        codesForSave.add(ConstantCommon.ADM_DIV_ROOT_CODE);
-        break;
-      }else {
-        String fatherCode = admDivDataGetter.getFatherCode(code);
-        if (!map.containsKey(fatherCode)) {
-          codesForSave.add(code);
-        }
-      }
-    }
-    /**
-     * 先逻辑删除原记录，再循环插入保存
-     */
-    this.logicDeleteTrNotifyDivByNotifyGuid(notifyGuid);
-    this.batchInsertTrNotifyDiv(notifyGuid,codesForSave);
-    return ResultDTO.success();
-  }
-
   private ToNotify setInitialValueWhenInsert(ToNotify entity, BaseUser baseUser) throws Exception{
 //    entity.setDeleted(IsDeletedEnum.NOTDELETED.getStringValue());
 //    entity.setEnabled(IsEnabledEnum.ENABLED.getStringValue());
@@ -175,27 +122,4 @@ public class ToNotifyScene1ServiceImpl extends ServiceImpl<ToNotifyMapper, ToNot
     entity.setVersion(1);
     return entity;
   }
-  private boolean logicDeleteTrNotifyDivByNotifyGuid(String notifyGuid) throws Exception{
-    UpdateWrapper<TrNotifyDiv> updateWrapper = new UpdateWrapper<>();
-    updateWrapper.set("DELETED",IsDeletedEnum.DELETED.getStringValue())
-            .eq("NOTIFY_GUID",notifyGuid);
-    /** UpdateWrapper 不带entity参数，自动填充无效 **/
-    boolean result = iTrNotifyDivService.update(new TrNotifyDiv(),updateWrapper);
-    return result;
-  }
-  private boolean batchInsertTrNotifyDiv(String notifyGuid,List<String> admDivCodes) throws Exception{
-    List<TrNotifyDiv> trNotifyDivLstForInsert = new ArrayList<>();
-    for(String code:admDivCodes){
-      TrNotifyDiv trNotifyDiv = new TrNotifyDiv();
-      trNotifyDiv.setDivCode(code);
-      trNotifyDiv.setNotifyGuid(notifyGuid);
-      trNotifyDiv.setEnabled(IsEnabledEnum.ENABLED.getStringValue());
-      trNotifyDiv.setDeleted(IsDeletedEnum.NOTDELETED.getStringValue());
-      trNotifyDivLstForInsert.add(trNotifyDiv);
-    }
-
-    boolean result = iTrNotifyDivService.saveBatch(trNotifyDivLstForInsert);
-    return result;
-  }
-
 }

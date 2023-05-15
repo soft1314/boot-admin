@@ -5,7 +5,7 @@
 *
 */
 import request from '@/utils/requestDownload'
-//导出流程跟踪图
+// 导出流程跟踪图
 export function fetchProcessDiagram(processInstanceId) {
   return request({
     url: '/api/workflow/auth/activiti/task/process/diagram',
@@ -13,16 +13,16 @@ export function fetchProcessDiagram(processInstanceId) {
     params: { processInstanceId }
   })
 }
-//导出流程XML或图片资源
-export function fetchResource(id,resType) {
+// 导出流程XML或图片资源
+export function fetchResource(id, resType) {
   return request({
     url: '/api/workflow/auth/activiti/res/exp',
     method: 'get',
-    params: { id,resType }
+    params: { id, resType }
   })
 }
 
-//读取带跟踪的图片
+// 读取带跟踪的图片
 export function fetchTracePhoto(processInstanceId) {
   return request({
     url: '/api/workflow/auth/activiti/task/trace/photo',
@@ -30,3 +30,4 @@ export function fetchTracePhoto(processInstanceId) {
     params: { processInstanceId }
   })
 }
+

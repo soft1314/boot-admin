@@ -3,6 +3,8 @@ package com.qiyuan.base2048.service.mybatis;
 import com.qiyuan.base2048.mapper.mybatis.entity.ToNotifyRecord;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
 * <p>
 * 本文件自动生成，严禁人工修改
@@ -13,5 +15,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @since 2023-5-9 14:24:58
 */
 public interface IToNotifyRecordService extends IService<ToNotifyRecord> {
-
+    /**
+     * 获取已发送LIST
+     * @param notifyGuid
+     * @return
+     * @throws Exception
+     */
+    List<ToNotifyRecord> selectByNotifyGuid(String notifyGuid) throws Exception;
 }

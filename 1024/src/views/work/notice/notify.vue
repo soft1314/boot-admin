@@ -233,13 +233,13 @@
               v-if="scope.row.haveRelease==='0'"
               size="least"
               type="success"
-              @click="handleMainBodyButtonInRow(scope.row)"
+              @click="handleEditMainBodyButtonInRow(scope.row)"
             >编辑</el-button>
             <el-button
               v-if="scope.row.haveRelease==='1'"
               size="least"
               type="success"
-              @click="handleMainBodyButtonInRow(scope.row)"
+              @click="handleViewMainBodyButtonInRow(scope.row)"
             >查看</el-button>
           </template>
         </el-table-column>
@@ -358,13 +358,77 @@
     <!-- 按人员维护通知范围对话框start -->
     <CheckEmp ref="checkEmpComponent" />
     <!-- 按人员维护通知范围对话框end -->
+    <!-- 正文编辑对话框 -->
+    <el-dialog :visible.sync="tinymceForm.dialogVisible" width="80%" :close-on-click-modal="false" title="正文及附件">
+      <tinymce
+        v-if="tinymceForm.dialogVisible"
+        ref="tinemceEditComponent"
+        v-model="tinymceForm.content"
+        :height="300"
+      />
+      <div style="margin-top: 10px;">
+        <MultiUpload
+          ref="attachmentUploadComponent"
+          append-to-body
+          :can-upload="true"
+          :attach-main-id="tinymceForm.notifyGuid"
+          :upload-data="uploadForm.uploadData"
+          :limit="3"
+          :multiple="true"
+        />
+      </div>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="tinymceForm.dialogVisible=false">
+          关闭
+        </el-button>
+        <el-button type="primary" @click="handleSaveTinymceContent()">
+          保存
+        </el-button>
+        <el-button type="warning" @click="resetForm('mainEditForm')">
+          重置
+        </el-button>
+      </div>
+    </el-dialog>
+    <!-- 正文查看对话框 -->
+    <el-dialog
+      :visible.sync="mainContentViewForm.dialogVisible"
+      width="80%"
+      :close-on-click-modal="false"
+      title="正文及附件"
+    >
+      <TinymceView
+        v-if="mainContentViewForm.dialogVisible"
+        ref="tinemceViewComponent"
+        v-model="mainContentViewForm.content"
+        :height="300"
+      />
+      <div style="margin-top: 10px;">
+        <MultiUpload
+          ref="attachmentViewComponent"
+          append-to-body
+          :can-upload="false"
+          :attach-main-id="tinymceForm.notifyGuid"
+          :upload-data="uploadForm.uploadData"
+          :limit="3"
+          :multiple="true"
+        />
+      </div>
+
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="mainContentViewForm.dialogVisible=false">
+          关闭
+        </el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 <script>
+import Tinymce from '@/components/Tinymce'
+import TinymceView from '@/components/TinymceView'
 import AdmDivTree from '@/views/components/AdmDivTree.vue'
 import CheckOrg from '@/views/work/notice/components/CheckOrg.vue'
 import CheckEmp from '@/views/work/notice/components/CheckEmp.vue'
-
+import MultiUpload from '@/views/components/upload/MutiUpload'
 import {
   fetchAdmDivDefaultCheckedKeys,
   fetchAdmDivDefaultExpandedKeys
@@ -373,7 +437,10 @@ import {
   fetchToNotifyPage,
   saveToNotify,
   delToNotify,
-  saveTrNotifyDiv
+  saveTrNotifyDiv,
+  sendNotify,
+  fetchNotifyContent,
+  saveNotifyContent
 } from '@/api/to-notify-scene1'
 import {
   getDictionaryOptionsByItemType,
@@ -382,7 +449,12 @@ import {
 export default {
   name: 'Notify',
   components: {
-    AdmDivTree, CheckOrg, CheckEmp
+    Tinymce,
+    TinymceView,
+    AdmDivTree,
+    CheckOrg,
+    CheckEmp,
+    MultiUpload
   },
   data() {
     return {
@@ -403,6 +475,26 @@ export default {
         },
         mainDataFormDialogVisible: false,
         mainDataFormDialogTitle: '连续新增'
+      },
+      tinymceForm: {
+        dialogVisible: false,
+        notifyGuid: '',
+        content: ''
+      },
+      mainContentViewForm: {
+        dialogVisible: false,
+        notifyGuid: '',
+        content: ''
+      },
+      uploadForm: {
+        canUpload: true,
+        clear: false,
+        uploadData: {
+          mainGuid: '',
+          mainTableName: 'tb_notify',
+          mainStyle: 'common'
+        },
+        fileString: []
       },
       empCheckForm: {
         dialogVisible: false
@@ -612,8 +704,18 @@ export default {
       this.mainDataForm.editingRecord = row
       this.mainDataForm.mainDataFormDialogVisible = true
     },
-    handleReleaseRow(row) {
-
+    async handleReleaseRow(row) {
+      const guidVO = {
+        guid: row.guid
+      }
+      this.loading = false
+      const response = await sendNotify(guidVO)
+      this.loading = false
+      this.$message({
+        message: response.message,
+        type: 'warning'
+      })
+      this.getMainTableData()
     },
     handleAdmDivRowButton(row) {
       this.fetchAdmDivTreeDefaultExpandedKeys(row.guid)
@@ -761,8 +863,71 @@ export default {
         type: 'warning'
       })
     },
-    handleMainBodyButtonInRow(row) {
-
+    handleEditMainBodyButtonInRow(row) {
+      this.tinymceForm.notifyGuid = row.guid
+      this.uploadForm.uploadData.mainGuid = row.guid
+      this.asyncHandleEditMainBodyButtonInRow(row)
+    },
+    async asyncHandleEditMainBodyButtonInRow(row) {
+      this.listLoading = true
+      const response = await fetchNotifyContent(row.guid)
+      this.listLoading = false
+      if (this.$commonResultCode.SUCCESS() !== response.code) {
+        this.$message({
+          message: response.message,
+          type: 'warning'
+        })
+        this.tinymceForm.content = ''
+        return
+      }
+      const {
+        data
+      } = response
+      this.tinymceForm.content = data
+      this.tinymceForm.dialogVisible = true
+      this.$nextTick(() => {
+        this.$refs.attachmentUploadComponent.setMainData(this.uploadForm.uploadData.mainTableName, this.uploadForm.uploadData.mainStyle, this.uploadForm.uploadData.mainGuid)
+      })
+    },
+    handleViewMainBodyButtonInRow(row) {
+      this.mainContentViewForm.notifyGuid = row.guid
+      this.asyncHandleViewMainBodyButtonInRow(row)
+      this.uploadForm.uploadData.mainGuid = row.guid
+    },
+    async asyncHandleViewMainBodyButtonInRow(row) {
+      this.listLoading = true
+      const response = await fetchNotifyContent(row.guid)
+      this.listLoading = false
+      if (this.$commonResultCode.SUCCESS() !== response.code) {
+        this.$message({
+          message: response.message,
+          type: 'warning'
+        })
+        this.mainContentViewForm.content = ''
+        return
+      }
+      const {
+        data
+      } = response
+      this.mainContentViewForm.content = data
+      this.mainContentViewForm.dialogVisible = true
+      this.$nextTick(() => {
+        this.$refs.attachmentViewComponent.setMainData(this.uploadForm.uploadData.mainTableName, this.uploadForm.uploadData.mainStyle, this.uploadForm.uploadData.mainGuid)
+      })
+    },
+    async handleSaveTinymceContent() {
+      console.log(this.tinymceForm.content)
+      const data = {
+        notifyGuid: this.tinymceForm.notifyGuid,
+        content: this.tinymceForm.content
+      }
+      this.listLoading = true
+      const response = await saveNotifyContent(data)
+      this.listLoading = false
+      this.$message({
+        message: response.message,
+        type: 'warning'
+      })
     }
   }
 }
@@ -794,4 +959,18 @@ export default {
   .el-drawer__container ::-webkit-scrollbar {
     display: none;
   }
+
+  .editor-content>>>table {
+    border: 1px solid #ccc;
+  }
+
+  /*    table th,
+    .editor-content table td {
+      border: 1px solid #ccc;
+    }
+
+    table td {
+      padding: 0px 5px;
+    } */
+  /* } */
 </style>

@@ -29,7 +29,7 @@ public class ToContent implements Serializable {
     /**
     * 
     */
-    @TableId(value = "GUID", type = IdType.ASSIGN_ID)
+    @TableId(value = "GUID", type = IdType.INPUT)
     private String guid;
     /**
      *  正文

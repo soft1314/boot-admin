@@ -36,7 +36,33 @@ export function delToNotify(data) {
 // 保存数据
 export function saveTrNotifyDiv(data) {
   return request({
-    url: '/api/system/auth/to-notify/scene1/notify/admdiv/save',
+    url: '/api/system/auth/tr-notify-div/save',
+    method: 'post',
+    data
+  })
+}
+// 发出通知通告
+export function sendNotify(data) {
+  return request({
+    url: '/api/system/auth/notify/send',
+    method: 'post',
+    data
+  })
+}
+
+// 装入正文
+export function fetchNotifyContent(notifyGuid) {
+  return request({
+    url: '/api/system/auth/notify/content/load',
+    method: 'get',
+    params: { notifyGuid }
+  })
+}
+
+// 保存正文
+export function saveNotifyContent(data) {
+  return request({
+    url: '/api/system/auth/notify/content/save',
     method: 'post',
     data
   })

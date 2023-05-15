@@ -70,7 +70,7 @@ public class LoginServiceImpl implements LoginService {
             BaseUser baseUser = new BaseUser();
             baseUser.setUserGuid(tbUsers.getGuid());
             if(StringUtils.isNotBlank(tbUsers.getFirstName()) && StringUtils.isNotBlank(tbUsers.getLastName())){
-                baseUser.setUserName(tbUsers.getFirstName() + tbUsers.getLastName());
+                baseUser.setUserName(tbUsers.getFirstName() + "("+tbUsers.getLastName()+")");
             }else if(StringUtils.isNotBlank(tbUsers.getLastName())){
                 baseUser.setUserName(tbUsers.getLastName());
             }else if(StringUtils.isNotBlank(tbUsers.getFirstName())){
@@ -101,7 +101,7 @@ public class LoginServiceImpl implements LoginService {
         if (password.equals(tbUsers.getPwd())) {
             BaseUser baseUser = new BaseUser();
             baseUser.setUserGuid(tbUsers.getGuid());
-            baseUser.setUserName(tbUsers.getFirstName() + tbUsers.getLastName());
+            baseUser.setUserName(tbUsers.getFirstName() +"("+ tbUsers.getLastName()+")");
             baseUser.setLogonName(tbUsers.getLogonName());
             baseUser.setOrgGuid(tbUsers.getOrgGuid());
             baseUser.setOrgType(tbUsers.getOrgType());

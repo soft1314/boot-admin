@@ -13,5 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @since 2023-5-8 10:37:20
 */
 public interface IToNotifyService extends IService<ToNotify> {
-
+    void changeToPublished(String notifyGuid) throws Exception;
 }

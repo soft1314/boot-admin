@@ -3,6 +3,8 @@ package com.qiyuan.base2048.service.mybatis;
 import com.qiyuan.base2048.mapper.mybatis.entity.TrNotifyOrg;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
 * <p>
 * 本文件自动生成，严禁人工修改
@@ -13,5 +15,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @since 2023-5-9 14:24:36
 */
 public interface ITrNotifyOrgService extends IService<TrNotifyOrg> {
-
+    /**
+     * 获取需要发送的机构LIST
+     * @param notifyGuid
+     * @return
+     * @throws Exception
+     */
+    List<TrNotifyOrg> getTrNotifyOrgList(String notifyGuid) throws Exception;
 }

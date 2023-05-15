@@ -22,17 +22,13 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     public void insertFill(MetaObject metaObject) {
         log.info("start insert fill ....");
         Date now = new Date();
-        String operator = "[系统]";
-        BaseUser baseUser = UserTool.getBaseUser();
-        if(baseUser != null){
-            operator = baseUser.getUserName()+"["+baseUser.getLogonName()+"]";
-        }
+        String operator = UserTool.getOperator();
         this.setFieldValByName("createTime",now,metaObject);
         this.setFieldValByName("createBy",operator,metaObject);
         this.setFieldValByName("modifyTime",now,metaObject);
         this.setFieldValByName("modifyBy",operator,metaObject);
-
-        this.setFieldValByName("guid", IdWorker.getIdStr(),metaObject);
+        /** 相不插入也不行了？ **/
+//        this.setFieldValByName("guid", IdWorker.getIdStr(),metaObject);
         this.setFieldValByName("version", 0,metaObject);
         /**  以下官方文档，为什么有问题
         this.strictInsertFill(metaObject, "createTime", LocalDateTime.class, LocalDateTime.now()); // 起始版本 3.3.0(推荐使用)
@@ -47,11 +43,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     public void updateFill(MetaObject metaObject) {
         log.info("start update fill ....");
         Date now = new Date();
-        BaseUser baseUser = UserTool.getBaseUser();
-        String operator = "[系统]";
-        if(baseUser != null){
-            operator = baseUser.getUserName()+"["+baseUser.getLogonName()+"]";
-        }
+        String operator = UserTool.getOperator();
 
         this.setFieldValByName("modifyTime",now,metaObject);
         this.setFieldValByName("modifyBy",operator,metaObject);

@@ -584,7 +584,7 @@
         <insert tableName="TB_RESOURCE">
             <column name="GUID" valueComputed="${uuid}"/>
             <column name="NAME" value="保存某条通知通告需要通知的区划范围"/>
-            <column name="URI" value="/api/system/auth/to-notify/scene1/notify/admdiv/save"/>
+            <column name="URI" value="/api/system/auth/tr-notify-div/save"/>
             <column name="RESOURCE_TYPE" value="2"/>
             <column name="ACCESS_CONTROL_STYLE" value="02"/>
             <column name="REMARKS" value="无"/>
@@ -1279,6 +1279,282 @@
             <column name="GUID" valueComputed="${uuid}"/>
             <column name="NAME" value="从拟通知人员列表中删除一个人员"/>
             <column name="URI" value="/api/system/auth/tr-notify-emp/revoke/one"/>
+            <column name="RESOURCE_TYPE" value="2"/>
+            <column name="ACCESS_CONTROL_STYLE" value="02"/>
+            <column name="REMARKS" value="无"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
+            <column name="ENABLED" valueNumeric="1"/>
+            <column name="DELETED" valueNumeric="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="LEAF" value="1"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="function"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+        </insert>
+    </changeSet>
+    <changeSet id="20230511-008" author="Administrator">
+        <insert tableName="TB_EMP">
+            <column name="GUID" value="370000001001001"/>
+            <column name="NAME" value="东灵道长"/>
+            <column name="SEX" value="1"/>
+            <column name="ENTRY_TIME" valueComputed="${time.current}" />
+            <column name="BIRTHDAY" valueComputed="${time.current}" />
+            <column name="JOB" value="创派始祖"/>
+            <column name="ADMIN_LEVEL" value="100"/>
+            <column name="TECH_LEVEL" value="100"/>
+            <column name="TECH_TITLE" value="011_高等学校教师/教授"/>
+            <column name="TELEPHONE" value="88888888"/>
+            <column name="MOBILE" value="13888888888"/>
+            <column name="ADDRESS" value="卖饭棚1号"/>
+            <column name="ADM_DIV_CODE" value="370000"/>
+            <column name="ADM_DIV_NAME" value="山东省本级"/>
+            <column name="ORG_CODE" value="001001"/>
+            <column name="ORG_NAME" value="掌门办公室"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+            <column name="ENABLED" value="1"/>
+            <column name="DELETED" value="1"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="REMARKS"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+        </insert>
+        <insert tableName="TB_EMP">
+            <column name="GUID" value="370000001001002"/>
+            <column name="NAME" value="天门道长"/>
+            <column name="SEX" value="1"/>
+            <column name="ENTRY_TIME" valueComputed="${time.current}" />
+            <column name="BIRTHDAY" valueComputed="${time.current}" />
+            <column name="JOB" value="掌门人"/>
+            <column name="ADMIN_LEVEL" value="100"/>
+            <column name="TECH_LEVEL" value="100"/>
+            <column name="TECH_TITLE" value="011_高等学校教师/教授"/>
+            <column name="TELEPHONE" value="88888888"/>
+            <column name="MOBILE" value="13888888888"/>
+            <column name="ADDRESS" value="卖饭棚1号"/>
+            <column name="ADM_DIV_CODE" value="370000"/>
+            <column name="ADM_DIV_NAME" value="山东省本级"/>
+            <column name="ORG_CODE" value="001001"/>
+            <column name="ORG_NAME" value="掌门办公室"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+            <column name="ENABLED" value="1"/>
+            <column name="DELETED" value="1"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="REMARKS"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+        </insert>
+    </changeSet>
+    <changeSet id="20230511-009" author="Administrator">
+        <insert tableName="TB_EMP">
+            <column name="GUID" value="370000001002001"/>
+            <column name="NAME" value="玉矶子"/>
+            <column name="SEX" value="1"/>
+            <column name="ENTRY_TIME" valueComputed="${time.current}" />
+            <column name="BIRTHDAY" valueComputed="${time.current}" />
+            <column name="JOB" value="长老"/>
+            <column name="ADMIN_LEVEL" value="99"/>
+            <column name="TECH_LEVEL" value="99"/>
+            <column name="TECH_TITLE" value="011_高等学校教师/教授"/>
+            <column name="TELEPHONE" value="88888888"/>
+            <column name="MOBILE" value="13888888888"/>
+            <column name="ADDRESS" value="卖饭棚1号"/>
+            <column name="ADM_DIV_CODE" value="370000"/>
+            <column name="ADM_DIV_NAME" value="山东省本级"/>
+            <column name="ORG_CODE" value="001002"/>
+            <column name="ORG_NAME" value="天枢宫"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+            <column name="ENABLED" value="1"/>
+            <column name="DELETED" value="1"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="REMARKS"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+        </insert>
+        <insert tableName="TB_EMP">
+            <column name="GUID" value="370000001002002"/>
+            <column name="NAME" value="玉音子"/>
+            <column name="SEX" value="1"/>
+            <column name="ENTRY_TIME" valueComputed="${time.current}" />
+            <column name="BIRTHDAY" valueComputed="${time.current}" />
+            <column name="JOB" value="长老"/>
+            <column name="ADMIN_LEVEL" value="98"/>
+            <column name="TECH_LEVEL" value="98"/>
+            <column name="TECH_TITLE" value="011_高等学校教师/教授"/>
+            <column name="TELEPHONE" value="88888888"/>
+            <column name="MOBILE" value="13888888888"/>
+            <column name="ADDRESS" value="卖饭棚1号"/>
+            <column name="ADM_DIV_CODE" value="370000"/>
+            <column name="ADM_DIV_NAME" value="山东省本级"/>
+            <column name="ORG_CODE" value="001002"/>
+            <column name="ORG_NAME" value="天枢宫"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+            <column name="ENABLED" value="1"/>
+            <column name="DELETED" value="1"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="REMARKS"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+        </insert>
+    </changeSet>
+    <changeSet id="20230512-001" author="Administrator">
+        <insert tableName="TB_EMP">
+            <column name="GUID" value="370000003001001"/>
+            <column name="NAME" value="寇英杰"/>
+            <column name="SEX" value="1"/>
+            <column name="ENTRY_TIME" valueComputed="${time.current}"/>
+            <column name="BIRTHDAY" valueComputed="${time.current}"/>
+            <column name="JOB" value="掌门"/>
+            <column name="ADMIN_LEVEL" value="100"/>
+            <column name="TECH_LEVEL" value="100"/>
+            <column name="TECH_TITLE" value="011_高等学校教师/教授"/>
+            <column name="TELEPHONE" value="88888888"/>
+            <column name="MOBILE" value="13888888888"/>
+            <column name="ADDRESS" value="卖饭棚1号"/>
+            <column name="ADM_DIV_CODE" value="370000"/>
+            <column name="ADM_DIV_NAME" value="山东省本级"/>
+            <column name="ORG_CODE" value="003001"/>
+            <column name="ORG_NAME" value="白马门总舵"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+            <column name="ENABLED" value="1"/>
+            <column name="DELETED" value="1"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="REMARKS"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+        </insert>
+    </changeSet>
+    <changeSet id="20230512-002" author="Administrator">
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="NAME" value="发布一条通知通告"/>
+            <column name="URI" value="/api/system/auth/notify/send"/>
+            <column name="RESOURCE_TYPE" value="2"/>
+            <column name="ACCESS_CONTROL_STYLE" value="02"/>
+            <column name="REMARKS" value="无"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
+            <column name="ENABLED" valueNumeric="1"/>
+            <column name="DELETED" valueNumeric="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="LEAF" value="1"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="function"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+        </insert>
+    </changeSet>
+    <changeSet id="20230512-003" author="Administrator">
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="NAME" value="装入一个通知通告正文"/>
+            <column name="URI" value="/api/system/auth/notify/content/load"/>
+            <column name="RESOURCE_TYPE" value="2"/>
+            <column name="ACCESS_CONTROL_STYLE" value="02"/>
+            <column name="REMARKS" value="无"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
+            <column name="ENABLED" valueNumeric="1"/>
+            <column name="DELETED" valueNumeric="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="LEAF" value="1"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="function"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+        </insert>
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="NAME" value="保存一条通知通告正文"/>
+            <column name="URI" value="/api/system/auth/notify/content/save"/>
+            <column name="RESOURCE_TYPE" value="2"/>
+            <column name="ACCESS_CONTROL_STYLE" value="02"/>
+            <column name="REMARKS" value="无"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
+            <column name="ENABLED" valueNumeric="1"/>
+            <column name="DELETED" valueNumeric="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="LEAF" value="1"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="function"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+        </insert>
+    </changeSet>
+    <changeSet id="20230515-001" author="Administrator">
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="NAME" value="上传文件"/>
+            <column name="URI" value="/api/system/auth/file/upload-with-data"/>
+            <column name="RESOURCE_TYPE" value="2"/>
+            <column name="ACCESS_CONTROL_STYLE" value="02"/>
+            <column name="REMARKS" value="无"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
+            <column name="ENABLED" valueNumeric="1"/>
+            <column name="DELETED" valueNumeric="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="LEAF" value="1"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="function"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+        </insert>
+    </changeSet>
+    <changeSet id="20230515-002" author="Administrator">
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="NAME" value="按权限获取附件文件流"/>
+            <column name="URI" value="/api/system/auth/file/attachment"/>
+            <column name="RESOURCE_TYPE" value="2"/>
+            <column name="ACCESS_CONTROL_STYLE" value="02"/>
+            <column name="REMARKS" value="无"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
+            <column name="ENABLED" valueNumeric="1"/>
+            <column name="DELETED" valueNumeric="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="LEAF" value="1"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="function"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+        </insert>
+    </changeSet>
+    <changeSet id="20230515-003" author="Administrator">
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="NAME" value="按主数据获取其附件"/>
+            <column name="URI" value="/api/system/auth/attachment/list"/>
             <column name="RESOURCE_TYPE" value="2"/>
             <column name="ACCESS_CONTROL_STYLE" value="02"/>
             <column name="REMARKS" value="无"/>

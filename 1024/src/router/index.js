@@ -90,7 +90,21 @@ export const constantRoutes = [{
     }
   }]
 },
-guideRouter
+guideRouter,
+
+{
+  path: '/tinymce',
+  component: Layout,
+  redirect: '/tinymce',
+  children: [
+    {
+      path: 'index',
+      component: () => import('@/views/components-demo/tinymce'),
+      name: 'Guide',
+      meta: { title: 'tinymce', icon: 'guide', noCache: true }
+    }
+  ]
+}
 // 404 page must be placed at the end !!!
 // but 加上下面，console 会报红，Duplicate keys detected: '*'. This may cause an update error
 // {
