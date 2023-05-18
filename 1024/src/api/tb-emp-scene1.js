@@ -1,12 +1,12 @@
 /**
 * 本文件自动生成，严禁人工修改
 * @author 虚领顶劲气沉丹田
-* @since 2022-12-5 16:36:01
+* @since 2022-12-5 22:36:01
 *  tg-project表持久化接口
 */
 import request from '@/utils/request'
 
-//分页获取数据表列表
+// 分页获取数据表列表
 export function fetchTbEmpPage(data) {
   return request({
     url: '/api/system/auth/tb-emp/scene1/table/page',
@@ -15,7 +15,7 @@ export function fetchTbEmpPage(data) {
   })
 }
 
-//保存数据
+// 保存数据
 export function saveTbEmp(data) {
   return request({
     url: '/api/system/auth/tb-emp/scene1/save',
@@ -24,7 +24,7 @@ export function saveTbEmp(data) {
   })
 }
 
-//删除数据
+// 删除数据
 export function delTbEmp(data) {
   return request({
     url: '/api/system/auth/tb-emp/scene1/del',

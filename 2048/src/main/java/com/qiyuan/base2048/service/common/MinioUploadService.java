@@ -10,5 +10,6 @@ public interface MinioUploadService {
      * @return
      * @throws Exception
      */
-    ResultDTO saveAttach(MultipartFile multipartFile, String pGuid,String pTbname,String pStyle) throws Exception;
+    ResultDTO saveAttach(MultipartFile multipartFile, String mainGuid,String mainTablebName,String mainStyle) throws Exception;
+
 }

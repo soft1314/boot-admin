@@ -1,39 +1,67 @@
 <!-- 本文件自动生成，再次生成时易被覆盖 -->
 <!-- @author 虚领顶劲气沉丹田 -->
-<!-- @since 2023-2-27 17:02:05 -->
+<!-- @since 2023-2-27 22:02:05 -->
 <template>
   <div class="app-container background-white">
     <!-- 查询抽屉开始 -->
-    <el-drawer :visible.sync="filterDrawer.dialogVisible" direction="rtl" title="请输入查询条件" :with-header="false"
-      size="30%">
+    <el-drawer
+      :visible.sync="filterDrawer.dialogVisible"
+      direction="rtl"
+      title="请输入查询条件"
+      :with-header="false"
+      size="30%"
+    >
       <div class="demo-drawer__content">
-        <el-form class="demo-form-inline" style="margin-top: 25px;margin-right: 20px;" ref="drawerForm"
-          :model="filterDrawer.formData">
+        <el-form
+          ref="drawerForm"
+          class="demo-form-inline"
+          style="margin-top: 25px;margin-right: 20px;"
+          :model="filterDrawer.formData"
+        >
           <el-form-item label="标题" :label-width="filterDrawer.formLabelWidth" prop="title">
-            <el-input placeholder="请输入标题" size="mini" prefix-icon="el-icon-search" clearable
-              v-model="filterDrawer.formData.title">
-            </el-input>
+            <el-input
+              v-model="filterDrawer.formData.title"
+              placeholder="请输入标题"
+              size="mini"
+              prefix-icon="el-icon-search"
+              clearable
+            />
           </el-form-item>
           <el-form-item label="流程名称" :label-width="filterDrawer.formLabelWidth" prop="processDefinitionName">
-            <el-input placeholder="请输入流程名称" size="mini" prefix-icon="el-icon-search" clearable
-              v-model="filterDrawer.formData.processDefinitionName">
-            </el-input>
+            <el-input
+              v-model="filterDrawer.formData.processDefinitionName"
+              placeholder="请输入流程名称"
+              size="mini"
+              prefix-icon="el-icon-search"
+              clearable
+            />
           </el-form-item>
           <el-form-item label="节点名称" :label-width="filterDrawer.formLabelWidth" prop="taskName">
-            <el-input placeholder="请输入节点名称" size="mini" prefix-icon="el-icon-search" clearable
-              v-model="filterDrawer.formData.taskName">
-            </el-input>
+            <el-input
+              v-model="filterDrawer.formData.taskName"
+              placeholder="请输入节点名称"
+              size="mini"
+              prefix-icon="el-icon-search"
+              clearable
+            />
           </el-form-item>
           <el-form-item label="收件时间" :label-width="filterDrawer.formLabelWidth" prop="taskCreated">
-            <el-date-picker v-model="filterDrawer.formData.taskCreated" type="daterange" align="right" unlink-panels
-              range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" :picker-options="pickerOptions">
-            </el-date-picker>
+            <el-date-picker
+              v-model="filterDrawer.formData.taskCreated"
+              type="daterange"
+              align="right"
+              unlink-panels
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"
+              :picker-options="pickerOptions"
+            />
           </el-form-item>
           <el-form-item :label-width="filterDrawer.formLabelWidth">
-            <el-button v-on:click="handleQueryButton()" size="mini" type="success" icon="el-icon-search">查询</el-button>
-            <el-button v-on:click="resetForm('drawerForm')" size="mini" type="primary" icon="el-icon-refresh">重置
+            <el-button size="mini" type="success" icon="el-icon-search" @click="handleQueryButton()">查询</el-button>
+            <el-button size="mini" type="primary" icon="el-icon-refresh" @click="resetForm('drawerForm')">重置
             </el-button>
-            <el-button v-on:click="hideDrawer()" size="mini" icon="el-icon-close">关闭</el-button>
+            <el-button size="mini" icon="el-icon-close" @click="hideDrawer()">关闭</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -96,15 +124,19 @@
             </el-form>
           </template>
         </el-table-column>
-        <el-table-column type="index" label="序号" :index="indexMethod" width="70">
-        </el-table-column>
-        <el-table-column prop="title" label="标题" show-overflow-tooltip sortable></el-table-column>
+        <el-table-column type="index" label="序号" :index="indexMethod" width="70" />
+        <el-table-column prop="title" label="标题" show-overflow-tooltip sortable />
         <!-- <el-table-column prop="id" label="ID" show-overflow-tooltip sortable></el-table-column> -->
-        <el-table-column prop="processName" label="流程名称" show-overflow-tooltip sortable></el-table-column>
-        <el-table-column prop="name" label="节点名称" show-overflow-tooltip sortable></el-table-column>
-        <el-table-column prop="createTime" label="收件时间" show-overflow-tooltip sortable
-          :formatter="(row,column,cellValue) => dateTimeColFormatter(row,column,cellValue)"></el-table-column>
-        <el-table-column prop="description" label="流程描述" show-overflow-tooltip sortable></el-table-column>
+        <el-table-column prop="processName" label="流程名称" show-overflow-tooltip sortable />
+        <el-table-column prop="name" label="节点名称" show-overflow-tooltip sortable />
+        <el-table-column
+          prop="createTime"
+          label="收件时间"
+          show-overflow-tooltip
+          sortable
+          :formatter="(row,column,cellValue) => dateTimeColFormatter(row,column,cellValue)"
+        />
+        <el-table-column prop="description" label="流程描述" show-overflow-tooltip sortable />
         <el-table-column align="center" label="操作" show-overflow-tooltip min-width="120">
           <template slot-scope="scope">
             <el-button size="least" type="success" @click="handleSeeResource(scope.row)">流图</el-button>
@@ -117,19 +149,27 @@
     <!-- 数据列表区域结束 -->
     <!-- 分页组件开始 -->
     <div ref="paginationContainer" style="text-align: center;">
-      <el-pagination v-on:size-change="handlePageSizeChange" v-on:current-change="handlePageCurrentChange"
-        :current-page="filterDrawer.formData.currentPage" :page-sizes="[5,10,20,50,100,500]"
-        :page-size="filterDrawer.formData.pageSize" layout="total, sizes, prev, pager, next, jumper"
-        :total="filterDrawer.formData.total">
-      </el-pagination>
+      <el-pagination
+        :current-page="filterDrawer.formData.currentPage"
+        :page-sizes="[5,10,20,50,100,500]"
+        :page-size="filterDrawer.formData.pageSize"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="filterDrawer.formData.total"
+        @size-change="handlePageSizeChange"
+        @current-change="handlePageCurrentChange"
+      />
     </div>
     <!-- 分页组件结束 -->
     <!-- 表数据编辑对话框区开始 -->
-    <el-dialog :visible.sync="photoDialog.dialogVisible" width="80%" :close-on-click-modal="false"
-      :title="photoDialog.dialogTitle">
+    <el-dialog
+      :visible.sync="photoDialog.dialogVisible"
+      width="80%"
+      :close-on-click-modal="false"
+      :title="photoDialog.dialogTitle"
+    >
       <div class="demo-image__placeholder">
         <div class="block">
-          <el-image :src="pngsrc"></el-image>
+          <el-image :src="pngsrc" />
         </div>
       </div>
       <div slot="footer" class="dialog-footer">
@@ -145,275 +185,273 @@
   </div>
 </template>
 <script>
-  import DynaAuditForm from '../../components/dynaAuditForm'
-  import DynaEditForm from '../../components/dynaEditForm'
-  import IFrame from '@/views/manage/operationmanage/task/flowLog'
-  import {
-    fetchTodoPage
-  } from '@/api/workflow-task'
-  import {
-    fetchProcessDiagram
-  } from '@/api/workflow-download'
-  import {
-    getDictionaryOptionsByItemType,
-    lazyFetchDictionaryNode
-  } from '@/api/dictionary'
-  export default {
-    name: 'todoList',
-    components: {
-      DynaAuditForm,
-      DynaEditForm,
-      IFrame
-    },
-    computed: {},
-    data() {
-      const that = this;
-      return {
-        loading: true,
-        mainTableData: [],
-        pngsrc: '',
-        photoDialog: {
-          dialogVisible: false,
-          dialogTitle: ''
-        },
-        filterDrawer: {
-          dialogVisible: false,
-          formLabelWidth: '100px',
-          formData: {
-            title: '',
-            processDefinitionName: '',
-            taskName: '',
-            taskCreated: [],
-            currentPage: 1,
-            pageSize: 10,
-            total: 0,
-          },
-        },
-        optionMap: new Map(),
-        //本页需要加载的option数据类型罗列在下面的数组中
-        optionKey: [
-          this.$commonDicType.ENABLED(),
-          this.$commonDicType.DELETED(),
-        ],
-        cascaderValue: {},
-        fileList: [],
-        pickerOptions: {
-          shortcuts: [{
-            text: '最近一周',
-            onClick(picker) {
-              const end = new Date();
-              const start = new Date();
-              start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
-              picker.$emit('pick', [start, end]);
-            }
-          }, {
-            text: '最近一个月',
-            onClick(picker) {
-              const end = new Date();
-              const start = new Date();
-              start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
-              picker.$emit('pick', [start, end]);
-            }
-          }, {
-            text: '最近三个月',
-            onClick(picker) {
-              const end = new Date();
-              const start = new Date();
-              start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
-              picker.$emit('pick', [start, end]);
-            }
-          }]
-        },
-        rules: {
-          id: [{
-            required: true,
-            message: '请输入主键',
-            trigger: 'blur'
-          }],
-          deploymentId: [{
-            required: true,
-            message: '请输入部署编号',
-            trigger: 'blur'
-          }],
-          name: [{
-            required: true,
-            message: '请输入模型名称',
-            trigger: 'blur'
-          }],
+import DynaAuditForm from '../../components/dynaAuditForm'
+import DynaEditForm from '../../components/dynaEditForm'
+import IFrame from '@/views/manage/operationmanage/task/flowLog'
+import {
+  fetchTodoPage
+} from '@/api/workflow-task'
+import {
+  fetchProcessDiagram
+} from '@/api/workflow-download'
+import {
+  getDictionaryOptionsByItemType,
+  lazyFetchDictionaryNode
+} from '@/api/dictionary'
+export default {
+  name: 'TodoList',
+  components: {
+    DynaAuditForm,
+    DynaEditForm,
+    IFrame
+  },
+  data() {
+    return {
+      loading: true,
+      mainTableData: [],
+      pngsrc: '',
+      photoDialog: {
+        dialogVisible: false,
+        dialogTitle: ''
+      },
+      filterDrawer: {
+        dialogVisible: false,
+        formLabelWidth: '100px',
+        formData: {
+          title: '',
+          processDefinitionName: '',
+          taskName: '',
+          taskCreated: [],
+          currentPage: 1,
+          pageSize: 10,
+          total: 0
         }
+      },
+      optionMap: new Map(),
+      // 本页需要加载的option数据类型罗列在下面的数组中
+      optionKey: [
+        this.$commonDicType.ENABLED(),
+        this.$commonDicType.DELETED()
+      ],
+      cascaderValue: {},
+      fileList: [],
+      pickerOptions: {
+        shortcuts: [{
+          text: '最近一周',
+          onClick(picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
+            picker.$emit('pick', [start, end])
+          }
+        }, {
+          text: '最近一个月',
+          onClick(picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
+            picker.$emit('pick', [start, end])
+          }
+        }, {
+          text: '最近三个月',
+          onClick(picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
+            picker.$emit('pick', [start, end])
+          }
+        }]
+      },
+      rules: {
+        id: [{
+          required: true,
+          message: '请输入主键',
+          trigger: 'blur'
+        }],
+        deploymentId: [{
+          required: true,
+          message: '请输入部署编号',
+          trigger: 'blur'
+        }],
+        name: [{
+          required: true,
+          message: '请输入模型名称',
+          trigger: 'blur'
+        }]
+      }
+    }
+  },
+  computed: {},
+  watch: {},
+  created() {},
+  mounted() {
+    this.loadAllOptions()
+    this.getMainTableData()
+  },
+  inject: ['reload'],
+  methods: {
+    refresh() {
+      this.reload()
+    },
+    loadAllOptions() {
+      for (var i = 0; i < this.optionKey.length; i++) {
+        this.loadDictionaryOptions(this.optionKey[i], false)
       }
     },
-    created() {},
-    computed: {},
-    mounted() {
-      this.loadAllOptions()
+    colFormatter(row, column, cellValue, key) {
+      return this.$commonUtils.optoinValue2Lable(this.optionMap.get(key), cellValue)
+    },
+    dateTimeColFormatter(row, column, cellValue) {
+      return this.$commonUtils.dateTimeFormat(cellValue)
+    },
+    dateColFormatter(row, column, cellValue) {
+      return this.$commonUtils.dateFormat(cellValue)
+    },
+    async loadDictionaryOptions(itemType, includeAllOptions) {
+      this.listLoading = true
+      const response = await getDictionaryOptionsByItemType(itemType, includeAllOptions)
+      this.listLoading = false
+      if (response.code !== 100) {
+        this.$message({
+          message: response.message,
+          type: 'warning'
+        })
+        return
+      }
+      const {
+        data
+      } = response
+      this.optionMap.set(itemType, data)
+    },
+    handlePageSizeChange(val) {
+      if (val !== this.filterDrawer.formData.pageSize) {
+        this.filterDrawer.formData.pageSize = val
+        this.getMainTableData()
+      }
+    },
+    handlePageCurrentChange(val) {
+      if (val !== this.filterDrawer.formData.currentPage) {
+        this.filterDrawer.formData.currentPage = val
+        this.getMainTableData()
+      }
+    },
+    indexMethod(index) {
+      return this.filterDrawer.formData.pageSize * (this.filterDrawer.formData.currentPage - 1) + index + 1
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields()
+    },
+    showDrawer() {
+      this.filterDrawer.dialogVisible = true
+    },
+    hideDrawer() {
+      this.filterDrawer.dialogVisible = false
+    },
+    handleQueryButton() {
+      this.filterDrawer.formData.currentPage = 1
       this.getMainTableData()
     },
-    watch: {},
-    inject: ['reload'],
-    methods: {
-      refresh() {
-        this.reload()
-      },
-      loadAllOptions() {
-        for (var i = 0; i < this.optionKey.length; i++) {
-          this.loadDictionaryOptions(this.optionKey[i], false)
-        }
-      },
-      colFormatter(row, column, cellValue, key) {
-        return this.$commonUtils.optoinValue2Lable(this.optionMap.get(key), cellValue)
-      },
-      dateTimeColFormatter(row, column, cellValue) {
-        return this.$commonUtils.dateTimeFormat(cellValue)
-      },
-      dateColFormatter(row, column, cellValue) {
-        return this.$commonUtils.dateFormat(cellValue)
-      },
-      async loadDictionaryOptions(itemType, includeAllOptions) {
-        this.listLoading = true
-        const response = await getDictionaryOptionsByItemType(itemType, includeAllOptions)
-        this.listLoading = false
-        if (response.code !== 100) {
-          this.$message({
-            message: response.message,
-            type: 'warning'
-          })
-          return
-        }
-        const {
-          data
-        } = response
-        this.optionMap.set(itemType, data)
-      },
-      handlePageSizeChange(val) {
-        if (val != this.filterDrawer.formData.pageSize) {
-          this.filterDrawer.formData.pageSize = val;
-          this.getMainTableData()
-        }
-      },
-      handlePageCurrentChange(val) {
-        if (val != this.filterDrawer.formData.currentPage) {
-          this.filterDrawer.formData.currentPage = val;
-          this.getMainTableData()
-        }
-      },
-      indexMethod(index) {
-        return this.filterDrawer.formData.pageSize * (this.filterDrawer.formData.currentPage - 1) + index + 1;
-      },
-      resetForm(formName) {
-        this.$refs[formName].resetFields();
-      },
-      showDrawer() {
-        this.filterDrawer.dialogVisible = true
-      },
-      hideDrawer() {
-        this.filterDrawer.dialogVisible = false
-      },
-      handleQueryButton() {
-        this.filterDrawer.formData.currentPage = 1
-        this.getMainTableData()
-      },
-      async getMainTableData() {
-        this.loading = false
-        const response = await fetchTodoPage(this.filterDrawer.formData)
-        this.loading = false
-        if (100 !== response.code) {
-          this.$message({
-            message: response.message,
-            type: 'warning'
-          })
-          return
-        }
-        const {
-          data
-        } = response
-        this.mainTableData = data.records
-        this.filterDrawer.formData.total = data.total
-      },
-      async handleCompleteTask(row) {
-        if(row.formKey == null){
-          this.$message({
-            message: '未定义办理表单，无法办理！',
-            type: 'warning'
-          })
-          return
-        }
-        this.$nextTick(() => {
-          //todo lilin 根据formKey中是否包含EDIT串，显示不同的子组件，审核按钮在外回在内
-          if (row.formKey.toLowerCase().indexOf("edit") >= 0) {
-            this.$refs.dynaEditFormComponent.setFormKey(row.formKey)
-            this.$refs.dynaEditFormComponent.setBusinessId(row.businessId)
-            this.$refs.dynaEditFormComponent.setTaskId(row.id)
-            this.$refs.dynaEditFormComponent.setProcessInstanceId(row.processInstanceId)
-            this.$refs.dynaEditFormComponent.setDialogTitle('【'+row.name+'】办理')
-            this.$refs.dynaEditFormComponent.showDialog()
-          } else {
-            this.$refs.dynaAuditFormComponent.setFormKey(row.formKey)
-            this.$refs.dynaAuditFormComponent.setBusinessId(row.businessId)
-            this.$refs.dynaAuditFormComponent.setTaskId(row.id)
-            this.$refs.dynaAuditFormComponent.setProcessInstanceId(row.processInstanceId)
-            this.$refs.dynaAuditFormComponent.setDialogTitle('【'+row.name+'】办理')
-            this.$refs.dynaAuditFormComponent.showDialog()
-          }
+    async getMainTableData() {
+      this.loading = false
+      const response = await fetchTodoPage(this.filterDrawer.formData)
+      this.loading = false
+      if (response.code !== 100) {
+        this.$message({
+          message: response.message,
+          type: 'warning'
         })
-      },
-      // async handleSeeResource_old(row) {
-      //   this.listLoading = true
-      //   fetchProcessDiagram(row.processInstanceId).then(request => {
-      //     let blob = new Blob([request.data], {
-      //       type: 'image/png'
-      //     })
-      //     let link = document.createElement('a')
-      //     link.href = window.URL.createObjectURL(blob)
-      //     link.download = "流程图"
-      //     link.target = "_blank"
-      //     link.style.display = 'none'
-      //     link.click()
-      //   })
-      //   this.listLoading = false;
-      //   this.$message({
-      //     message: "数据导出成功",
-      //     type: "success",
-      //   });
-      // },
-      async handleSeeResource(row) {
-        this.listLoading = true
-        const response = await fetchProcessDiagram(row.processInstanceId)
-        this.listLoading = false;
-        this.pngsrc = this.$commonUtils.genObjectURL(response.data);
-        this.photoDialog.dialogVisible=true
-      },
-      handleClosePhotoViewDialog() {
-        this.photoDialog.dialogVisible = false
-      },
-      handleDisplay(row) {
-        this.$nextTick(() => {
-          this.$refs.displayComponent.setSrc("/displayModel.html?processInstanceId=" + row.processInstanceId +
-            "&nocaching=" +
+        return
+      }
+      const {
+        data
+      } = response
+      this.mainTableData = data.records
+      this.filterDrawer.formData.total = data.total
+    },
+    async handleCompleteTask(row) {
+      if (row.formKey == null) {
+        this.$message({
+          message: '未定义办理表单，无法办理！',
+          type: 'warning'
+        })
+        return
+      }
+      this.$nextTick(() => {
+        // todo lilin 根据formKey中是否包含EDIT串，显示不同的子组件，审核按钮在外回在内
+        if (row.formKey.toLowerCase().indexOf('edit') >= 0) {
+          this.$refs.dynaEditFormComponent.setFormKey(row.formKey)
+          this.$refs.dynaEditFormComponent.setBusinessId(row.businessId)
+          this.$refs.dynaEditFormComponent.setTaskId(row.id)
+          this.$refs.dynaEditFormComponent.setProcessInstanceId(row.processInstanceId)
+          this.$refs.dynaEditFormComponent.setDialogTitle('【' + row.name + '】办理')
+          this.$refs.dynaEditFormComponent.showDialog()
+        } else {
+          this.$refs.dynaAuditFormComponent.setFormKey(row.formKey)
+          this.$refs.dynaAuditFormComponent.setBusinessId(row.businessId)
+          this.$refs.dynaAuditFormComponent.setTaskId(row.id)
+          this.$refs.dynaAuditFormComponent.setProcessInstanceId(row.processInstanceId)
+          this.$refs.dynaAuditFormComponent.setDialogTitle('【' + row.name + '】办理')
+          this.$refs.dynaAuditFormComponent.showDialog()
+        }
+      })
+    },
+    // async handleSeeResource_old(row) {
+    //   this.listLoading = true
+    //   fetchProcessDiagram(row.processInstanceId).then(request => {
+    //     let blob = new Blob([request.data], {
+    //       type: 'image/png'
+    //     })
+    //     let link = document.createElement('a')
+    //     link.href = window.URL.createObjectURL(blob)
+    //     link.download = "流程图"
+    //     link.target = "_blank"
+    //     link.style.display = 'none'
+    //     link.click()
+    //   })
+    //   this.listLoading = false;
+    //   this.$message({
+    //     message: "数据导出成功",
+    //     type: "success",
+    //   });
+    // },
+    async handleSeeResource(row) {
+      this.listLoading = true
+      const response = await fetchProcessDiagram(row.processInstanceId)
+      this.listLoading = false
+      this.pngsrc = this.$commonUtils.genObjectURL(response.data)
+      this.photoDialog.dialogVisible = true
+    },
+    handleClosePhotoViewDialog() {
+      this.photoDialog.dialogVisible = false
+    },
+    handleDisplay(row) {
+      this.$nextTick(() => {
+        this.$refs.displayComponent.setSrc('/displayModel.html?processInstanceId=' + row.processInstanceId +
+            '&nocaching=' +
             new Date().getTime())
-          this.$refs.displayComponent.loadLog(row.processInstanceId)
-          this.$refs.displayComponent.showDialog()
+        this.$refs.displayComponent.loadLog(row.processInstanceId)
+        this.$refs.displayComponent.showDialog()
+      })
+    },
+    async loadLazyCodeNode(dicType, code, resolve) {
+      this.listLoading = true
+      const response = await lazyFetchDictionaryNode(dicType, code)
+      this.listLoading = false
+      if (response.code !== 100) {
+        this.$message({
+          message: response.message,
+          type: 'warning'
         })
-      },
-      async loadLazyCodeNode(dicType, code, resolve) {
-        this.listLoading = true
-        const response = await lazyFetchDictionaryNode(dicType, code)
-        this.listLoading = false
-        if (response.code !== 100) {
-          this.$message({
-            message: response.message,
-            type: 'warning'
-          })
-          return
-        }
-        const {
-          data
-        } = response
-        // 通过调用resolve将子节点数据返回，通知组件数据加载完成
-        resolve(data);
-      },
+        return
+      }
+      const {
+        data
+      } = response
+      // 通过调用resolve将子节点数据返回，通知组件数据加载完成
+      resolve(data)
     }
   }
+}
 </script>
 <style>
   .demo-table-expand {

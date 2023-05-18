@@ -1,7 +1,9 @@
 package com.qiyuan.base2048.controller;
 
 import com.qiyuan.base2048.pojo.vo.query.AttachmentQueryDTO;
+import com.qiyuan.base2048.pojo.vo.query.DeleteAttachmentVO;
 import com.qiyuan.base2048.service.common.AttachmentGetter;
+import com.qiyuan.base2048.service.common.AttachmentSaver;
 import com.qiyuan.bautil.annotate.response.ResponseBodyInController;
 import com.qiyuan.bautil.dto.ResultDTO;
 import com.qiyuan.bautil.service.FormValidator;
@@ -27,6 +29,8 @@ public class AttachmentController {
     private FormValidator formValidator;
     @Resource
     private AttachmentGetter attachmentGetter;
+    @Resource
+    private AttachmentSaver attachmentSaver;
 
     @PostMapping("/list")
     @ApiOperation("按主数据获取附件")
@@ -36,4 +40,14 @@ public class AttachmentController {
         }
         return attachmentGetter.fetchAttachmentList(attachmentDTO.getMainTableName(),attachmentDTO.getMainStyle(),attachmentDTO.getMainGuid());
     }
+    @PostMapping("/remove")
+    @ApiOperation("删除一个附件记录")
+    public ResultDTO removeOneAttachment(@Valid @RequestBody DeleteAttachmentVO deleteAttachmentVO, BindingResult bindingResult) throws Exception{
+        if (bindingResult.hasErrors()) {
+            return formValidator.generateMessage(bindingResult);
+        }
+        ResultDTO resultDTO = attachmentSaver.removeAttachment(deleteAttachmentVO.getAttachmentGuid(),deleteAttachmentVO.getFileName());
+        return resultDTO;
+    }
+
 }

@@ -1,12 +1,12 @@
 /**
 * 本文件自动生成，严禁人工修改
 * @author 虚领顶劲气沉丹田
-* @since 2023-2-27 17:01:58
+* @since 2023-2-27 22:01:58
 *  tg-project表持久化接口
 */
 import request from '@/utils/request'
 
-//分页获取数据表列表
+// 分页获取数据表列表
 export function fetchModelPage(data) {
   return request({
     url: '/api/workflow/auth/activiti/model/page',
@@ -15,7 +15,7 @@ export function fetchModelPage(data) {
   })
 }
 
-//创建新模型
+// 创建新模型
 export function saveNewModel(data) {
   return request({
     url: '/api/workflow/auth/activiti/model/add',
@@ -24,7 +24,7 @@ export function saveNewModel(data) {
   })
 }
 
-//删除数据
+// 删除数据
 export function delModel(data) {
   return request({
     url: '/api/workflow/auth/activiti/model/del',
@@ -33,7 +33,7 @@ export function delModel(data) {
   })
 }
 
-//部署模型
+// 部署模型
 export function deployModel(data) {
   return request({
     url: '/api/workflow/auth/activiti/model/deploy',
@@ -42,7 +42,7 @@ export function deployModel(data) {
   })
 }
 
-//获取模型XML
+// 获取模型XML
 export function fetchXml(data) {
   return request({
     url: '/api/workflow/auth/activiti/model/xml',

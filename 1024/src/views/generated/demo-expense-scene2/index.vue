@@ -1,6 +1,6 @@
 <!-- 本文件自动生成，再次生成时易被覆盖 -->
 <!-- @author 虚领顶劲气沉丹田 -->
-<!-- @since 2023-4-13 13:51:21 -->
+<!-- @since 2023-4-13 -->
 <template>
   <div class="app-container" style="background-color: #FFFFFF;">
     <!--查询条件和查询按钮区-->
@@ -265,6 +265,7 @@
     <!--功能按钮区结束-->
     <!--列表开始-->
     <el-table
+      ref="multipleTable"
       v-loading="listLoading"
       :data="mainTableData"
       stripe
@@ -272,7 +273,6 @@
       highlight-current-row
       fit
       style="width: 100%"
-      ref="multipleTable"
       :header-cell-style="{'text-align':'center'}"
       row-key="guid"
       default-expand-all

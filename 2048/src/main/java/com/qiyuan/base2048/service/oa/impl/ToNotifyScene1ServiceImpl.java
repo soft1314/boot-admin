@@ -85,6 +85,9 @@ public class ToNotifyScene1ServiceImpl extends ServiceImpl<ToNotifyMapper, ToNot
         continue;
       }
     }
+    wrapper.orderByAsc("HAVE_RELEASE")
+    .orderByDesc("RELEASE_TIME")
+    .orderByDesc("CREATE_TIME");
     IPage<ToNotify> page = new Page<>(queryVO.getCurrentPage(),queryVO.getPageSize());
     page = this.page(page,wrapper);
     return ResultDTO.success(page);
@@ -97,6 +100,11 @@ public class ToNotifyScene1ServiceImpl extends ServiceImpl<ToNotifyMapper, ToNot
       entity = setInitialValueWhenInsert(entity,baseUser);
       result = this.save(entity);
     }else{
+      ToNotify oldEntity = this.getById(entity.getGuid());
+      ResultDTO resultDTO = this.checkForUpdate(oldEntity);
+      if(resultDTO.isFailure()){
+        return resultDTO;
+      }
       result = this.updateById(entity);
     }
     if(result){
@@ -107,13 +115,22 @@ public class ToNotifyScene1ServiceImpl extends ServiceImpl<ToNotifyMapper, ToNot
   }
   @Override
   public ResultDTO delete(String guid) throws Exception {
+    ToNotify oldEntity = this.getById(guid);
+    ResultDTO resultDTO = this.checkForUpdate(oldEntity);
+    if(resultDTO.isFailure()){
+      return resultDTO;
+    }
+
     UpdateWrapper<ToNotify> updateWrapper = new UpdateWrapper();
-    updateWrapper.eq("guid",guid).set("deleted", IsDeletedEnum.DELETED.getValue());
+    updateWrapper.eq("guid",guid)
+            .eq("HAVE_RELEASE",YesNoEnum.NO.getValue())
+            .set("deleted", IsDeletedEnum.DELETED.getValue());
     if(this.update(updateWrapper)){
       return ResultDTO.success();
     }
     return ResultDTO.failureCustom(MessageUtils.get("dao.delete.error"));
   }
+
   private ToNotify setInitialValueWhenInsert(ToNotify entity, BaseUser baseUser) throws Exception{
 //    entity.setDeleted(IsDeletedEnum.NOTDELETED.getStringValue());
 //    entity.setEnabled(IsEnabledEnum.ENABLED.getStringValue());
@@ -121,5 +138,14 @@ public class ToNotifyScene1ServiceImpl extends ServiceImpl<ToNotifyMapper, ToNot
     entity.setHaveRelease(YesNoEnum.NO.getValue());
     entity.setVersion(1);
     return entity;
+  }
+  private ResultDTO checkForUpdate(ToNotify toNotify){
+    if(toNotify == null){
+      return ResultDTO.failureCustom("找不到数据。");
+    }
+    if(YesNoEnum.YES.getValue().equals(toNotify.getHaveRelease())){
+      return ResultDTO.failureCustom("已发布的通知通告不允许删除和修改。");
+    }
+    return ResultDTO.success();
   }
 }

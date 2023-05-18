@@ -35,7 +35,13 @@
       </el-link>
     </el-button-group>
 
-    <el-dialog append-to-body :visible.sync="photoDialog.dialogVisible" width="80%" :close-on-click-modal="false" title="图片附件">
+    <el-dialog
+      append-to-body
+      :visible.sync="photoDialog.dialogVisible"
+      width="80%"
+      :close-on-click-modal="false"
+      title="图片附件"
+    >
       <div class="demo-image__placeholder">
         <div class="block">
           <el-image :src="photoDialog.pngsrc" />
@@ -55,7 +61,8 @@ import {
   getToken
 } from '@/utils/auth.js'
 import {
-  fetchAttachmentList
+  fetchAttachmentList,
+  removeOneAttachment
 } from '@/api/attachment'
 import {
   fetchAttachment
@@ -135,9 +142,9 @@ export default {
       if (file.size === 0) {
         this.$message.error('文件大小不能为 0')
       }
-      const isRightSize = file.size / 1024 / 1024 < 20
+      const isRightSize = file.size / 1024 / 1024 < 10
       if (!isRightSize) {
-        this.$message.error('文件大小超过 20MB')
+        this.$message.error('文件大小超过 10MB')
       }
       const isAccept = new RegExp(this.fileAcceptRegex).test(file.type)
       if (!isAccept) {
@@ -149,13 +156,20 @@ export default {
       this.$emit('clearAttachFile')
     },
     handleRemove(file, fileList) {
-      if (this.fileList.length > 0) {
-        this.fileList.forEach((item, index) => {
-          if (item.fileNumberId === file.fileNumberId) {
-            this.fileList.splice(index, 1)
-          }
-        })
+      const para = {
+        attachmentGuid: file.guid,
+        fileName: file.fileName
       }
+      this.asyncDeleteAttachment(para)
+    },
+    async asyncDeleteAttachment(para) {
+      this.listLoading = true
+      const response = await removeOneAttachment(para)
+      this.listLoading = false
+      this.$message({
+        message: response.message,
+        type: 'warning'
+      })
     },
     handleUploadChange(file, fileList) {
       this.fileList = fileList
@@ -168,7 +182,8 @@ export default {
         })
         return
       }
-      this.handleSeeAttachment(file.guid, file.contentType)
+      debugger
+      this.handleSeeAttachment(file.guid, file.contentType, file.fileOriginName)
     },
     handleExceed(files, fileList) {
       this.$message.warning(`当前限制选择` + this.limit +
@@ -177,7 +192,7 @@ export default {
     beforeRemove(file, fileList) {
       return this.$confirm(`确定移除 ${file.name}？`)
     },
-    async handleSeeAttachment(guid, resType) {
+    async handleSeeAttachment(guid, resType, fileOriginName) {
       this.listLoading = true
       const response = await fetchAttachment(guid)
       this.listLoading = false
@@ -189,7 +204,7 @@ export default {
         const link = document.createElement('a')
         link.style.display = 'none'
         link.href = url
-        link.download = url
+        link.download = fileOriginName
         link.target = '_blank'
         link.click()
       }

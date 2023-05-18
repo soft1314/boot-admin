@@ -1,12 +1,12 @@
 /**
 * 本文件自动生成，严禁人工修改
 * @author 张三丰
-* @since 2022-11-23 14:19:06
+* @since 2022-11-23 22:19:06
 *  tg-project表持久化接口
 */
 import request from '@/utils/request'
 
-//分页获取数据表列表
+// 分页获取数据表列表
 export function fetchTgFileSummaryPage(data) {
   return request({
     url: '/api/system/auth/tg-file-summary/scene1/table/page',
@@ -15,7 +15,7 @@ export function fetchTgFileSummaryPage(data) {
   })
 }
 
-//保存数据
+// 保存数据
 export function saveTgFileSummary(data) {
   return request({
     url: '/api/system/auth/tg-file-summary/scene1/save',
@@ -24,7 +24,7 @@ export function saveTgFileSummary(data) {
   })
 }
 
-//删除数据
+// 删除数据
 export function delTgFileSummary(data) {
   return request({
     url: '/api/system/auth/tg-file-summary/scene1/del',

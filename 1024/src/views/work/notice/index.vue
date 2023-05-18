@@ -17,14 +17,6 @@
           style="margin-top: 25px;margin-right: 20px;"
           :model="filterDrawer.formData"
         >
-          <el-form-item label="主键" :label-width="filterDrawer.formLabelWidth" prop="guid">
-            <el-input
-              v-model="filterDrawer.formData.guid"
-              placeholder="请输入主键"
-              size="mini"
-              prefix-icon="el-icon-search"
-            />
-          </el-form-item>
           <el-form-item label="类别" :label-width="filterDrawer.formLabelWidth" prop="notifyType">
             <el-select v-model="filterDrawer.formData.notifyType" placeholder="请选择类别" size="mini" clearable>
               <el-option
@@ -43,14 +35,6 @@
               prefix-icon="el-icon-search"
             />
           </el-form-item>
-          <el-form-item label="内容概要" :label-width="filterDrawer.formLabelWidth" prop="summary">
-            <el-input
-              v-model="filterDrawer.formData.summary"
-              placeholder="请输入内容概要"
-              size="mini"
-              prefix-icon="el-icon-search"
-            />
-          </el-form-item>
           <el-form-item label="关键词" :label-width="filterDrawer.formLabelWidth" prop="keyword">
             <el-input
               v-model="filterDrawer.formData.keyword"
@@ -59,8 +43,8 @@
               prefix-icon="el-icon-search"
             />
           </el-form-item>
-          <el-form-item label="是否已发布" :label-width="filterDrawer.formLabelWidth" prop="haveRelease">
-            <el-select v-model="filterDrawer.formData.haveRelease" placeholder="请选择是否已发布" size="mini" clearable>
+          <el-form-item label="是否已阅读" :label-width="filterDrawer.formLabelWidth" prop="haveRead">
+            <el-select v-model="filterDrawer.formData.haveRead" placeholder="请选择是否已阅读" size="mini" clearable>
               <el-option
                 v-for="item in optionMap.get($commonDicType.YESNO())"
                 :key="item.value"
@@ -69,66 +53,13 @@
               />
             </el-select>
           </el-form-item>
-          <el-form-item label="发布时间" prop="releaseTime" :label-width="filterDrawer.formLabelWidth">
+          <!--          <el-form-item label="发布时间" prop="releaseTime" :label-width="filterDrawer.formLabelWidth">
             <el-date-picker v-model="filterDrawer.formData.releaseTime" type="date" placeholder="选择日期" />
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item label="发布人" :label-width="filterDrawer.formLabelWidth" prop="releaseBy">
             <el-input
               v-model="filterDrawer.formData.releaseBy"
               placeholder="请输入发布人"
-              size="mini"
-              prefix-icon="el-icon-search"
-            />
-          </el-form-item>
-          <el-form-item label="记录创建者" :label-width="filterDrawer.formLabelWidth" prop="createBy">
-            <el-input
-              v-model="filterDrawer.formData.createBy"
-              placeholder="请输入记录创建者"
-              size="mini"
-              prefix-icon="el-icon-search"
-            />
-          </el-form-item>
-          <el-form-item label="记录创建时间" prop="createTime" :label-width="filterDrawer.formLabelWidth">
-            <el-date-picker v-model="filterDrawer.formData.createTime" type="date" placeholder="选择日期" />
-          </el-form-item>
-          <el-form-item label="记录最后修改者" :label-width="filterDrawer.formLabelWidth" prop="modifyBy">
-            <el-input
-              v-model="filterDrawer.formData.modifyBy"
-              placeholder="请输入记录最后修改者"
-              size="mini"
-              prefix-icon="el-icon-search"
-            />
-          </el-form-item>
-          <el-form-item label="记录最后修改时间" prop="modifyTime" :label-width="filterDrawer.formLabelWidth">
-            <el-date-picker v-model="filterDrawer.formData.modifyTime" type="date" placeholder="选择日期" />
-          </el-form-item>
-          <el-form-item label="时间戳" prop="datestamp" :label-width="filterDrawer.formLabelWidth">
-            <el-date-picker v-model="filterDrawer.formData.datestamp" type="date" placeholder="选择日期" />
-          </el-form-item>
-          <el-form-item label="启用状态" :label-width="filterDrawer.formLabelWidth" prop="enabled">
-            <el-select v-model="filterDrawer.formData.enabled" placeholder="请选择启用状态" size="mini" clearable>
-              <el-option
-                v-for="item in optionMap.get($commonDicType.ENABLED())"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              />
-            </el-select>
-          </el-form-item>
-          <el-form-item label="删除状态" :label-width="filterDrawer.formLabelWidth" prop="deleted">
-            <el-select v-model="filterDrawer.formData.deleted" placeholder="请选择删除状态" size="mini" clearable>
-              <el-option
-                v-for="item in optionMap.get($commonDicType.DELETED())"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              />
-            </el-select>
-          </el-form-item>
-          <el-form-item label="备注" :label-width="filterDrawer.formLabelWidth" prop="remarks">
-            <el-input
-              v-model="filterDrawer.formData.remarks"
-              placeholder="请输入备注"
               size="mini"
               prefix-icon="el-icon-search"
             />
@@ -212,7 +143,6 @@
             </el-form>
           </template>
         </el-table-column>
-        <el-table-column type="selection" width="55" />
         <el-table-column type="index" label="序号" :index="indexMethod" width="70" />
         <el-table-column
           prop="notifyType"
@@ -226,34 +156,32 @@
         <el-table-column prop="keyword" label="关键词" show-overflow-tooltip sortable />
         <el-table-column align="center" label="正文及附件" show-overflow-tooltip min-width="70">
           <template slot-scope="scope">
-            <el-button
-              size="least"
-              type="success"
-              @click="handleMainBodyButtonInRow(scope.row)"
-            >查看</el-button>
+            <el-button size="least" type="success" @click="handleMainBodyButtonInRow(scope.row)">阅读</el-button>
           </template>
         </el-table-column>
         <el-table-column
-          prop="haveRelease"
-          label="是否已发布"
+          prop="haveRead"
+          label="是否已阅读"
           show-overflow-tooltip
           sortable
           :formatter="(row,column,cellValue) => colFormatter(row,column,cellValue, $commonDicType.YESNO())"
         />
         <el-table-column
-          prop="releaseTime"
-          label="发布时间"
+          prop="readTime"
+          label="阅读时间"
           show-overflow-tooltip
           sortable
           :formatter="(row,column,cellValue) => dateTimeColFormatter(row,column,cellValue)"
         />
         <el-table-column prop="releaseBy" label="发布人" show-overflow-tooltip sortable />
-        <el-table-column prop="remarks" label="备注" show-overflow-tooltip sortable />
-        <el-table-column align="center" label="操作" show-overflow-tooltip min-width="180">
-          <template slot-scope="scope">
-            <el-button size="least" type="primary" @click="handleViewRow(scope.row)">概要</el-button>
-          </template>
-        </el-table-column>
+        <el-table-column
+          prop="releaseTime"
+          label="发布时间"
+          show-overflow-tooltip
+          sortable
+          min-width="110"
+          :formatter="(row,column,cellValue) => dateTimeColFormatter(row,column,cellValue)"
+        />
       </el-table>
     </div>
     <!-- 数据列表区域结束 -->
@@ -270,74 +198,55 @@
       />
     </div>
     <!-- 分页组件结束 -->
-    <!-- 表数据编辑对话框区开始 -->
     <el-dialog
-      :visible.sync="mainDataForm.mainDataFormDialogVisible"
+      :visible.sync="mainContentViewForm.dialogVisible"
       width="80%"
       :close-on-click-modal="false"
-      :title="mainDataForm.mainDataFormDialogTitle"
+      title="正文及附件"
     >
-      <el-form ref="mainEditForm" :model="mainDataForm.editingRecord" :rules="rules" size="medium" label-width="150px">
-        <el-form-item label="类别" prop="notifyType">
-          {{ $commonUtils.optoinValue2Lable(optionMap.get($commonDicType.NOTIFY_TYPE()),mainDataForm.editingRecord.notifyType) }}
-        </el-form-item>
-        <el-form-item label="标题" prop="title">
-          {{ mainDataForm.editingRecord.title }}
-        </el-form-item>
-        <el-form-item label="内容概要" prop="summary">
-          {{ mainDataForm.editingRecord.summary }}
-        </el-form-item>
-        <el-form-item label="关键词" prop="keyword">
-          {{ mainDataForm.editingRecord.keyword }}
-        </el-form-item>
-        <el-form-item label="备注" prop="remarks">
-          {{ mainDataForm.editingRecord.remarks }}
-        </el-form-item>
-      </el-form>
+      <TinymceView
+        v-if="mainContentViewForm.dialogVisible"
+        ref="tinemceViewComponent"
+        v-model="mainContentViewForm.content"
+        :height="300"
+      />
+      <div style="margin-top: 10px;">
+        <MultiUpload
+          ref="attachmentViewComponent"
+          append-to-body
+          :can-upload="false"
+          :attach-main-id="tinymceForm.notifyGuid"
+          :upload-data="uploadForm.uploadData"
+          :limit="3"
+          :multiple="true"
+        />
+      </div>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="handleCloseMainDataFormDialog()">
+        <el-button @click="mainContentViewForm.dialogVisible=false">
           关闭
         </el-button>
       </div>
     </el-dialog>
-    <!-- 表数据编辑对话框区结束 -->
-    <!-- 按区划维护通知范围 start-->
-    <AdmDivTree ref="admDivTreeComponent" @sendDataToParent="receiveDataFromAdmDivTreeChild" />
-    <!-- 按区划维护通知范围 end -->
-    <!-- 按组织机构维护通知范围对话框start -->
-    <CheckOrg ref="checkOrgComponent" />
-    <!-- 按组织机构维护通知范围对话框end -->
-    <!-- 按人员维护通知范围对话框start -->
-    <CheckEmp ref="checkEmpComponent" />
-    <!-- 按人员维护通知范围对话框end -->
   </div>
 </template>
 <script>
-import AdmDivTree from '@/views/components/AdmDivTree.vue'
-import CheckOrg from '@/views/work/notice/components/CheckOrg.vue'
-import CheckEmp from '@/views/work/notice/components/CheckEmp.vue'
-
+import TinymceView from '@/components/TinymceView'
+import MultiUpload from '@/views/components/upload/MutiUpload'
 import {
-  fetchAdmDivDefaultCheckedKeys,
-  fetchAdmDivDefaultExpandedKeys
-} from '@/api/admdiv'
+  fetchUserNotifyRecordPageByUserGuid,
+  setNotifyReaded
+} from '@/api/to-notify-record'
 import {
-  fetchToNotifyPage,
-  saveToNotify,
-  delToNotify,
-  saveTrNotifyDiv,
-  sendNotify
-} from '@/api/to-notify-scene1'
-import {
-  getDictionaryOptionsByItemType,
-  lazyFetchDictionaryNode
+  getDictionaryOptionsByItemType
 } from '@/api/dictionary'
+import {
+  fetchNotifyContent
+} from '@/api/to-notify-scene1'
 export default {
-  name: 'Notify',
+  name: 'MyNotify',
   components: {
-    AdmDivTree,
-    CheckOrg,
-    CheckEmp
+    TinymceView,
+    MultiUpload
   },
   data() {
     return {
@@ -366,26 +275,36 @@ export default {
         dialogVisible: false,
         formLabelWidth: '100px',
         formData: {
-          guid: '',
+          haveRead: null,
           notifyType: '',
           title: '',
-          summary: '',
           keyword: '',
-          haveRelease: '',
           releaseTime: '',
           releaseBy: '',
-          createBy: '',
-          createTime: '',
-          modifyBy: '',
-          modifyTime: '',
-          datestamp: '',
-          enabled: '',
-          deleted: '',
-          remarks: '',
           currentPage: 1,
           pageSize: 10,
           total: 0
         }
+      },
+      tinymceForm: {
+        dialogVisible: false,
+        notifyGuid: '',
+        content: ''
+      },
+      mainContentViewForm: {
+        dialogVisible: false,
+        notifyGuid: '',
+        content: ''
+      },
+      uploadForm: {
+        canUpload: true,
+        clear: false,
+        uploadData: {
+          mainGuid: '',
+          mainTableName: 'tb_notify',
+          mainStyle: 'common'
+        },
+        fileString: []
       },
       optionMap: new Map(),
       // 本页需要加载的option数据类型罗列在下面的数组中
@@ -395,84 +314,7 @@ export default {
         this.$commonDicType.ENABLED(),
         this.$commonDicType.DELETED()
       ],
-      cascaderValue: {},
-      rules: {
-        guid: [{
-          required: true,
-          message: '请输入主键',
-          trigger: 'blur'
-        }],
-        notifyType: [{
-          required: true,
-          message: '请输入类别',
-          trigger: 'blur'
-        }],
-        title: [{
-          required: true,
-          message: '请输入标题',
-          trigger: 'blur'
-        }],
-        summary: [{
-          required: true,
-          message: '请输入内容概要',
-          trigger: 'blur'
-        }],
-        keyword: [{
-          required: true,
-          message: '请输入关键词',
-          trigger: 'blur'
-        }],
-        haveRelease: [{
-          required: true,
-          message: '请输入是否已发布',
-          trigger: 'blur'
-        }],
-        releaseTime: [{
-          required: true,
-          message: '请输入发布时间',
-          trigger: 'blur'
-        }],
-        releaseBy: [{
-          required: true,
-          message: '请输入发布人',
-          trigger: 'blur'
-        }],
-        createBy: [{
-          required: true,
-          message: '请输入记录创建者',
-          trigger: 'blur'
-        }],
-        createTime: [{
-          required: true,
-          message: '请输入记录创建时间',
-          trigger: 'blur'
-        }],
-        modifyBy: [{
-          required: true,
-          message: '请输入记录最后修改者',
-          trigger: 'blur'
-        }],
-        modifyTime: [{
-          required: true,
-          message: '请输入记录最后修改时间',
-          trigger: 'blur'
-        }],
-        datestamp: [{
-          required: true,
-          message: '请输入时间戳',
-          trigger: 'blur'
-        }],
-        enabled: [{
-          required: true,
-          message: '请输入启用状态',
-          trigger: 'blur'
-        }],
-        deleted: [{
-          required: true,
-          message: '请输入删除状态',
-          trigger: 'blur'
-        }]
-      }
+      cascaderValue: {}
     }
   },
   computed: {},
@@ -547,7 +389,7 @@ export default {
     },
     async getMainTableData() {
       this.loading = false
-      const response = await fetchToNotifyPage(this.filterDrawer.formData)
+      const response = await fetchUserNotifyRecordPageByUserGuid(this.filterDrawer.formData)
       this.loading = false
       if (response.code !== 100) {
         this.$message({
@@ -562,171 +404,42 @@ export default {
       this.mainTableData = data.records
       this.filterDrawer.formData.total = data.total
     },
-    handleViewRow(row) {
-      this.mainDataForm.mainDataFormDialogTitle = '概要'
-      this.mainDataForm.editingRecord = row
-      this.mainDataForm.mainDataFormDialogVisible = true
-    },
-    async handleReleaseRow(row) {
-      const guidVO = {
-        guid: row.guid
-      }
-      this.loading = false
-      const response = await sendNotify(guidVO)
-      this.loading = false
-      this.$message({
-        message: response.message,
-        type: 'warning'
-      })
-    },
-    handleAdmDivRowButton(row) {
-      this.fetchAdmDivTreeDefaultExpandedKeys(row.guid)
-    },
-    handleOrgRowButton(row) {
-      this.$nextTick(() => {
-        this.$refs.checkOrgComponent.showDialog(row.guid)
-      })
-    },
-    handleEmpRowButton(row) {
-      this.$nextTick(() => {
-        this.$refs.checkEmpComponent.showDialog(row.guid)
-      })
-    },
-    handleDeleteRow(row) {
-      this.$confirm('此操作将删除选中的数据, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        this.awaitDelToNotify(row.guid)
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '已取消删除'
-        })
-      })
-    },
-    async awaitDelToNotify(guid) {
-      const guidVO = {
-        guid
-      }
-      const result = await delToNotify(guidVO)
-      if (this.$commonResultCode.SUCCESS() === result.code) {
-        this.getMainTableData()
-      }
-      this.$message({
-        message: result.message,
-        type: 'warning'
-      })
-    },
-    handleClickAddButton() {
-      this.mainDataForm.mainDataFormDialogTitle = '连续新增'
-      this.initmainDataForm()
-      this.mainDataForm.mainDataFormDialogVisible = true
-    },
-    initmainDataForm() {
-      this.mainDataForm.editingRecord.guid = ''
-      // this.resetFormData()
-    },
-    handleSubmitMainDataForm() {
-      this.$refs['mainEditForm'].validate((valid) => {
-        if (valid) {
-          this.submitMainDataForm()
-        } else {
-          console.log('未通过表单校验!!')
-          return false
-        }
-      })
-    },
-    async submitMainDataForm() {
-      const response = await saveToNotify(this.mainDataForm.editingRecord)
-      this.$message({
-        message: response.message,
-        type: 'warning'
-      })
-      if (this.mainDataForm.mainDataFormDialogTitle === '修改') {
-        this.getMainTableData()
-        this.mainDataForm.mainDataFormDialogVisible = false
-      }
-    },
-    handleCloseMainDataFormDialog() {
-      this.getMainTableData()
-      this.mainDataForm.mainDataFormDialogVisible = false
-    },
-    async loadLazyCodeNode(dicType, code, resolve) {
-      this.listLoading = true
-      const response = await lazyFetchDictionaryNode(dicType, code)
-      this.listLoading = false
-      if (response.code !== 100) {
-        this.$message({
-          message: response.message,
-          type: 'warning'
-        })
-        return
-      }
-      const {
-        data
-      } = response
-      // 通过调用resolve将子节点数据返回，通知组件数据加载完成
-      resolve(data)
-    },
-    /**
-       * 获取行政区划树缺省初始展开的树枝
-       */
-    async fetchAdmDivTreeDefaultCheckedKeys(notifyGuid) {
-      const response = await fetchAdmDivDefaultCheckedKeys(notifyGuid)
-      if (this.$commonResultCode.SUCCESS() !== response.code) {
-        this.$message({
-          message: response.message,
-          type: 'warning'
-        })
-        return
-      }
-      const {
-        data
-      } = response
-      this.$nextTick(() => {
-        this.$refs.admDivTreeComponent.pushTreedefaultCheckedKeys(data)
-      })
-    },
-    /**
-       * 获取行政区划树缺省初始勾选的枝叶
-       */
-    async fetchAdmDivTreeDefaultExpandedKeys(notifyGuid) {
-      const response = await fetchAdmDivDefaultExpandedKeys(notifyGuid)
-      if (this.$commonResultCode.SUCCESS() !== response.code) {
-        this.$message({
-          message: response.message,
-          type: 'warning'
-        })
-        return
-      }
-      const {
-        data
-      } = response
-      this.$nextTick(() => {
-        this.$refs.admDivTreeComponent.pushTreedefaultExpandedKeys(data)
-        this.$refs.admDivTreeComponent.showDialog(notifyGuid)
-        this.$refs.admDivTreeComponent.pushDialogTitle('拟通知到所勾选区划下所有用户')
-        this.fetchAdmDivTreeDefaultCheckedKeys(notifyGuid)
-      })
-    },
-    receiveDataFromAdmDivTreeChild(checkedCodes, notifyGuid) {
-      const vo = {
-        notifyGuid: notifyGuid,
-        admDivCodes: checkedCodes
-      }
-      this.saveNotifyDiv(vo)
-    },
-    async saveNotifyDiv(vo) {
-      const response = await saveTrNotifyDiv(vo)
-      this.$message({
-        message: response.message,
-        type: 'warning'
-      })
-    },
     handleMainBodyButtonInRow(row) {
-
+      row.haveRead = '1'
+      row.readTime = new Date()
+      this.mainContentViewForm.notifyGuid = row.guid
+      this.asyncSetReaed(row)
+      this.asyncHandleViewMainBodyButtonInRow(row)
+      this.uploadForm.uploadData.mainGuid = row.guid
+    },
+    async asyncHandleViewMainBodyButtonInRow(row) {
+      this.listLoading = true
+      const response = await fetchNotifyContent(row.guid)
+      this.listLoading = false
+      if (this.$commonResultCode.SUCCESS() !== response.code) {
+        this.$message({
+          message: response.message,
+          type: 'warning'
+        })
+        this.mainContentViewForm.content = ''
+        return
+      }
+      const {
+        data
+      } = response
+      this.mainContentViewForm.content = data
+      this.mainContentViewForm.dialogVisible = true
+      this.$nextTick(() => {
+        this.$refs.attachmentViewComponent.setMainData(this.uploadForm.uploadData.mainTableName, this.uploadForm
+          .uploadData.mainStyle, this.uploadForm.uploadData.mainGuid)
+      })
+    },
+    async asyncSetReaed(row) {
+      const response = await setNotifyReaded(row.guid)
+      this.$message({
+        message: response.message,
+        type: 'warning'
+      })
     }
   }
 }

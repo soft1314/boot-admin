@@ -8,3 +8,12 @@ export function fetchAttachmentList(data) {
     data
   })
 }
+
+// 删除一个附件
+export function removeOneAttachment(data) {
+  return request({
+    url: '/api/system/auth/attachment/remove',
+    method: 'post',
+    data
+  })
+}

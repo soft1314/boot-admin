@@ -16,4 +16,5 @@ import java.util.List;
 */
 public interface ITbAttachmentService extends IService<TbAttachment> {
     List<TbAttachment> selectTbAttachmentByMainData(String tbName, String tbStyle, String tbGuid) throws Exception;
+    Boolean deleteAttachment(String guid,String fileName) throws Exception;
 }

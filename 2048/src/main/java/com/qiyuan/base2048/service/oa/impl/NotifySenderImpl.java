@@ -1,9 +1,6 @@
 package com.qiyuan.base2048.service.oa.impl;
 
-import com.qiyuan.base2048.mapper.mybatis.entity.TbUser;
-import com.qiyuan.base2048.mapper.mybatis.entity.ToNotifyRecord;
-import com.qiyuan.base2048.mapper.mybatis.entity.TrNotifyDiv;
-import com.qiyuan.base2048.mapper.mybatis.entity.TrNotifyOrg;
+import com.qiyuan.base2048.mapper.mybatis.entity.*;
 import com.qiyuan.base2048.service.mybatis.*;
 import com.qiyuan.base2048.service.oa.NotifySender;
 import com.qiyuan.bautil.constant.ConstantCommon;
@@ -11,6 +8,7 @@ import com.qiyuan.bautil.dto.ResultDTO;
 import com.qiyuan.bautil.enums.IsDeletedEnum;
 import com.qiyuan.bautil.enums.IsEnabledEnum;
 import com.qiyuan.bautil.enums.YesNoEnum;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -31,6 +29,29 @@ public class NotifySenderImpl implements NotifySender {
     private ITbUserService iTbUserService;
     @Resource
     private IToNotifyService iToNotifyService;
+    @Resource
+    private IToContentService iToContentService;
+    @Resource
+    private ITbAttachmentService iTbAttachmentService;
+
+    @Override
+    public ResultDTO preSend(String notifyGuid) throws Exception {
+        ToContent toContent = iToContentService.getById(notifyGuid);
+        if(toContent == null){
+            return ResultDTO.failureCustom("无正文。");
+        }
+        if(StringUtils.isBlank(toContent.getContent())){
+            return ResultDTO.failureCustom("正文空。");
+        }
+
+        List<TbAttachment> tbAttachments = iTbAttachmentService.selectTbAttachmentByMainData("tb_notify","common",notifyGuid);
+        int contentSize = toContent.getContent().length();
+        int attachNum = tbAttachments.size();
+        if(attachNum == 0){
+            return ResultDTO.successCustom("正文字符个数：【"+contentSize+"】个，未上传附件。");
+        }
+        return ResultDTO.successCustom("正文字符个数：【"+contentSize+"】个，上传附件个数：【"+attachNum+"】个。");
+    }
 
     @Override
     public ResultDTO send(String notifyGuid) throws Exception {

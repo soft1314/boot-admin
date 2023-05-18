@@ -1,12 +1,12 @@
 /**
 * 本文件自动生成，严禁人工修改
 * @author 虚领顶劲气沉丹田
-* @since 2023-2-27 17:01:58
+* @since 2023-2-27 22:01:58
 *  tg-project表持久化接口
 */
 import request from '@/utils/request'
 
-//分页获取数据表列表(最新版本)
+// 分页获取数据表列表(最新版本)
 export function fetchLastVersionProcessPage(data) {
   return request({
     url: '/api/workflow/auth/activiti/process/page',
@@ -14,7 +14,7 @@ export function fetchLastVersionProcessPage(data) {
     data
   })
 }
-//分页获取数据表列表(所有版本)
+// 分页获取数据表列表(所有版本)
 export function fetchAllProcessPage(data) {
   return request({
     url: '/api/workflow/auth/activiti/process/page/all',
@@ -22,7 +22,7 @@ export function fetchAllProcessPage(data) {
     data
   })
 }
-//创建新模型
+// 创建新模型
 export function saveNewProcess(data) {
   return request({
     url: '/api/workflow/auth/activiti/process/add',
@@ -31,7 +31,7 @@ export function saveNewProcess(data) {
   })
 }
 
-//删除数据
+// 删除数据
 export function delProcess(data) {
   return request({
     url: '/api/workflow/auth/activiti/process/del',
@@ -40,7 +40,7 @@ export function delProcess(data) {
   })
 }
 
-//转为模型
+// 转为模型
 export function deployModel(data) {
   return request({
     url: '/api/workflow/auth/activiti/process/deploy',
@@ -49,11 +49,11 @@ export function deployModel(data) {
   })
 }
 
-//强行终止流程
-export function stopProcessInstanceById(processInstanceId,taskId,businessTable,businessId) {
+// 强行终止流程
+export function stopProcessInstanceById(processInstanceId, taskId, businessTable, businessId) {
   return request({
     url: '/api/workflow/auth/activiti/process/destroy',
     method: 'get',
-    params: {processInstanceId,taskId,businessTable,businessId}
+    params: { processInstanceId, taskId, businessTable, businessId }
   })
 }

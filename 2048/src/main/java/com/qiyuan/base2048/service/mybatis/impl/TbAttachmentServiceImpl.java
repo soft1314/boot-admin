@@ -1,6 +1,7 @@
 package com.qiyuan.base2048.service.mybatis.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.qiyuan.base2048.mapper.mybatis.entity.TbAttachment;
 import com.qiyuan.base2048.mapper.mybatis.TbAttachmentMapper;
 import com.qiyuan.base2048.service.mybatis.ITbAttachmentService;
@@ -33,5 +34,15 @@ public class TbAttachmentServiceImpl extends ServiceImpl<TbAttachmentMapper, TbA
                 .orderByAsc("GUID");
         List<TbAttachment> tbAttachments = this.list(queryWrapper);
         return tbAttachments;
+    }
+
+    @Override
+    public Boolean deleteAttachment(String guid, String fileName) throws Exception {
+        UpdateWrapper<TbAttachment> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.set("DELETED",IsDeletedEnum.DELETED.getStringValue())
+                .set("ENABLED",IsEnabledEnum.NOTENABLED.getStringValue())
+                .eq("GUID",guid)
+                .eq("FILE_NAME",fileName);
+        return this.update(updateWrapper);
     }
 }

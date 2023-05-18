@@ -1,12 +1,12 @@
 /**
 * 本文件自动生成，严禁人工修改
 * @author 虚领顶劲气沉丹田
-* @since 2022-11-29 12:19:07
+* @since 2022-11-29 22:19:07
 *  tg-project表持久化接口
 */
 import request from '@/utils/request'
 
-//分页获取顶层数据表列表
+// 分页获取顶层数据表列表
 export function fetchTopTbOrganizationPage(data) {
   return request({
     url: '/api/system/auth/tb-organization/scene2/top/page',
@@ -14,7 +14,7 @@ export function fetchTopTbOrganizationPage(data) {
     data
   })
 }
-//分页获取数据表列表
+// 分页获取数据表列表
 export function fetchTbOrganizationPage(data) {
   return request({
     url: '/api/system/auth/tb-organization/scene2/page',
@@ -22,7 +22,7 @@ export function fetchTbOrganizationPage(data) {
     data
   })
 }
-//获取指定GUID数据的下一层全部数据列表
+// 获取指定GUID数据的下一层全部数据列表
 export function fetchTbOrganizationAllChildren(guid) {
   return request({
     url: '/api/system/auth/tb-organization/scene2/children/all',
@@ -30,7 +30,7 @@ export function fetchTbOrganizationAllChildren(guid) {
     params: { guid }
   })
 }
-//保存数据
+// 保存数据
 export function saveTbOrganization(data) {
   return request({
     url: '/api/system/auth/tb-organization/scene2/save',
@@ -38,7 +38,7 @@ export function saveTbOrganization(data) {
     data
   })
 }
-//删除数据
+// 删除数据
 export function delTbOrganization(data) {
   return request({
     url: '/api/system/auth/tb-organization/scene2/del',
@@ -47,10 +47,10 @@ export function delTbOrganization(data) {
   })
 }
 
-export function fetchOrgChildrenNode(code,admDivCode){
+export function fetchOrgChildrenNode(code, admDivCode) {
   return request({
     url: '/api/system/auth/tb-organization/scene2/children/node',
     method: 'get',
-    params: { code,admDivCode }
+    params: { code, admDivCode }
   })
 }

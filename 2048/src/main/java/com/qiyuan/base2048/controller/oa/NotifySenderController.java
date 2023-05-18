@@ -35,4 +35,12 @@ public class NotifySenderController {
         }
         return notifySender.send(guidContainerVO.getGuid());
     }
+    @PostMapping("/presend")
+    @ApiOperation("发布一条通知通告前检查")
+    public ResultDTO preSend(@Valid @RequestBody GuidContainerVO guidContainerVO, BindingResult bindingResult) throws Exception {
+        if (bindingResult.hasErrors()) {
+            return formValidator.generateMessage(bindingResult);
+        }
+        return notifySender.preSend(guidContainerVO.getGuid());
+    }
 }

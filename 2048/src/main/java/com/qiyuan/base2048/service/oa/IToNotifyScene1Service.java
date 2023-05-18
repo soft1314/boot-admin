@@ -20,6 +20,4 @@ public interface IToNotifyScene1Service extends IService<ToNotify> {
   ResultDTO getPage(ToNotifyScene1QueryVO scene1QueryVO, boolean includeDeleted) throws Exception;
   ResultDTO insertOrUpdate(ToNotifyScene1DataVO dataVO, BaseUser baseUser) throws Exception;
   ResultDTO delete(String guid) throws Exception;
-
-
 }

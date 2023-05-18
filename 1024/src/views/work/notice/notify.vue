@@ -215,24 +215,26 @@
             </el-form>
           </template>
         </el-table-column>
-        <el-table-column type="selection" width="55" />
-        <el-table-column type="index" label="序号" :index="indexMethod" width="70" />
+        <!--        <el-table-column type="selection" width="40" />
+ -->
+        <el-table-column type="index" label="序号" :index="indexMethod" width="50" />
         <el-table-column
           prop="notifyType"
           label="类别"
           show-overflow-tooltip
           sortable
+          width="80"
           :formatter="(row,column,cellValue) => colFormatter(row,column,cellValue, $commonDicType.NOTIFY_TYPE())"
         />
-        <el-table-column prop="title" label="标题" show-overflow-tooltip sortable />
-        <el-table-column prop="summary" label="内容概要" show-overflow-tooltip sortable />
-        <el-table-column prop="keyword" label="关键词" show-overflow-tooltip sortable />
-        <el-table-column align="center" label="正文及附件" show-overflow-tooltip min-width="70">
+        <el-table-column prop="title" label="标题" show-overflow-tooltip sortable align="left" />
+        <!--        <el-table-column prop="summary" label="内容概要" show-overflow-tooltip sortable />
+ -->        <!-- <el-table-column prop="keyword" label="关键词" show-overflow-tooltip sortable /> -->
+        <el-table-column align="center" label="正文及附件" width="70">
           <template slot-scope="scope">
             <el-button
               v-if="scope.row.haveRelease==='0'"
               size="least"
-              type="success"
+              type="primary"
               @click="handleEditMainBodyButtonInRow(scope.row)"
             >编辑</el-button>
             <el-button
@@ -248,6 +250,7 @@
           label="是否已发布"
           show-overflow-tooltip
           sortable
+          width="50"
           :formatter="(row,column,cellValue) => colFormatter(row,column,cellValue, $commonDicType.YESNO())"
         />
         <el-table-column
@@ -257,20 +260,21 @@
           sortable
           :formatter="(row,column,cellValue) => dateTimeColFormatter(row,column,cellValue)"
         />
-        <el-table-column prop="releaseBy" label="发布人" show-overflow-tooltip sortable />
-        <el-table-column prop="remarks" label="备注" show-overflow-tooltip sortable />
-        <el-table-column align="center" label="通知范围" show-overflow-tooltip min-width="180">
+        <!--        <el-table-column prop="releaseBy" label="发布人" show-overflow-tooltip sortable />
+        <el-table-column prop="remarks" label="备注" show-overflow-tooltip sortable /> -->
+        <el-table-column align="center" label="通知范围设置与跟踪">
           <template slot-scope="scope">
-            <el-button size="least" type="success" @click="handleAdmDivRowButton(scope.row)">区划</el-button>
-            <el-button size="least" type="success" @click="handleOrgRowButton(scope.row)">单位</el-button>
-            <el-button size="least" type="success" @click="handleEmpRowButton(scope.row)">人员</el-button>
+            <el-button size="least" type="primary" @click="handleAdmDivRowButton(scope.row)">区划</el-button>
+            <el-button size="least" type="primary" @click="handleOrgRowButton(scope.row)">单位</el-button>
+            <el-button size="least" type="primary" @click="handleEmpRowButton(scope.row)">人员</el-button>
+            <el-button size="least" type="success" @click="handleTrackButton(scope.row)">跟踪</el-button>
           </template>
         </el-table-column>
-        <el-table-column align="center" label="操作" show-overflow-tooltip min-width="180">
+        <el-table-column align="center" label="操作">
           <template slot-scope="scope">
-            <el-button size="least" type="primary" @click="handleEditRow(scope.row)">修改</el-button>
+            <el-button v-if="scope.row.haveRelease==='0'" size="least" type="primary" @click="handleEditRow(scope.row)">修改</el-button>
             <el-button size="least" type="primary" @click="handleReleaseRow(scope.row)">发布</el-button>
-            <el-button size="least" type="danger" @click="handleDeleteRow(scope.row)">删除</el-button>
+            <el-button v-if="scope.row.haveRelease==='0'" size="least" type="danger" @click="handleDeleteRow(scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -413,13 +417,15 @@
           :multiple="true"
         />
       </div>
-
       <div slot="footer" class="dialog-footer">
         <el-button @click="mainContentViewForm.dialogVisible=false">
           关闭
         </el-button>
       </div>
     </el-dialog>
+    <!-- 阅读追踪start -->
+    <TrackNotify ref="trackNotifyComponent" />
+    <!-- 阅读追踪end -->
   </div>
 </template>
 <script>
@@ -429,6 +435,7 @@ import AdmDivTree from '@/views/components/AdmDivTree.vue'
 import CheckOrg from '@/views/work/notice/components/CheckOrg.vue'
 import CheckEmp from '@/views/work/notice/components/CheckEmp.vue'
 import MultiUpload from '@/views/components/upload/MutiUpload'
+import TrackNotify from '@/views/work/notice/components/TrackNotify.vue'
 import {
   fetchAdmDivDefaultCheckedKeys,
   fetchAdmDivDefaultExpandedKeys
@@ -439,6 +446,7 @@ import {
   delToNotify,
   saveTrNotifyDiv,
   sendNotify,
+  preSendNotify,
   fetchNotifyContent,
   saveNotifyContent
 } from '@/api/to-notify-scene1'
@@ -454,7 +462,8 @@ export default {
     AdmDivTree,
     CheckOrg,
     CheckEmp,
-    MultiUpload
+    MultiUpload,
+    TrackNotify
   },
   data() {
     return {
@@ -639,9 +648,9 @@ export default {
       return this.$commonUtils.dateFormat(cellValue)
     },
     async loadDictionaryOptions(itemType, includeAllOptions) {
-      this.listLoading = true
+      this.loading = true
       const response = await getDictionaryOptionsByItemType(itemType, includeAllOptions)
-      this.listLoading = false
+      this.loading = false
       if (response.code !== 100) {
         this.$message({
           message: response.message,
@@ -709,6 +718,34 @@ export default {
         guid: row.guid
       }
       this.loading = false
+      const response = await preSendNotify(guidVO)
+      this.loading = false
+      debugger
+      if (this.$commonResultCode.SUCCESS() === response.code) {
+        this.$confirm(response.message + '是否发布?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.asyncReleaseRow(row)
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消发布'
+          })
+        })
+      } else {
+        this.$message({
+          message: response.message,
+          type: 'warning'
+        })
+      }
+    },
+    async asyncReleaseRow(row) {
+      const guidVO = {
+        guid: row.guid
+      }
+      this.loading = false
       const response = await sendNotify(guidVO)
       this.loading = false
       this.$message({
@@ -728,6 +765,11 @@ export default {
     handleEmpRowButton(row) {
       this.$nextTick(() => {
         this.$refs.checkEmpComponent.showDialog(row.guid)
+      })
+    },
+    handleTrackButton(row) {
+      this.$nextTick(() => {
+        this.$refs.trackNotifyComponent.showDialog(row.guid)
       })
     },
     handleDeleteRow(row) {
@@ -792,9 +834,9 @@ export default {
       this.mainDataForm.mainDataFormDialogVisible = false
     },
     async loadLazyCodeNode(dicType, code, resolve) {
-      this.listLoading = true
+      this.loading = true
       const response = await lazyFetchDictionaryNode(dicType, code)
-      this.listLoading = false
+      this.loading = false
       if (response.code !== 100) {
         this.$message({
           message: response.message,
@@ -869,9 +911,9 @@ export default {
       this.asyncHandleEditMainBodyButtonInRow(row)
     },
     async asyncHandleEditMainBodyButtonInRow(row) {
-      this.listLoading = true
+      this.loading = true
       const response = await fetchNotifyContent(row.guid)
-      this.listLoading = false
+      this.loading = false
       if (this.$commonResultCode.SUCCESS() !== response.code) {
         this.$message({
           message: response.message,
@@ -886,7 +928,8 @@ export default {
       this.tinymceForm.content = data
       this.tinymceForm.dialogVisible = true
       this.$nextTick(() => {
-        this.$refs.attachmentUploadComponent.setMainData(this.uploadForm.uploadData.mainTableName, this.uploadForm.uploadData.mainStyle, this.uploadForm.uploadData.mainGuid)
+        this.$refs.attachmentUploadComponent.setMainData(this.uploadForm.uploadData.mainTableName, this
+          .uploadForm.uploadData.mainStyle, this.uploadForm.uploadData.mainGuid)
       })
     },
     handleViewMainBodyButtonInRow(row) {
@@ -895,9 +938,9 @@ export default {
       this.uploadForm.uploadData.mainGuid = row.guid
     },
     async asyncHandleViewMainBodyButtonInRow(row) {
-      this.listLoading = true
+      this.loading = true
       const response = await fetchNotifyContent(row.guid)
-      this.listLoading = false
+      this.loading = false
       if (this.$commonResultCode.SUCCESS() !== response.code) {
         this.$message({
           message: response.message,
@@ -912,7 +955,8 @@ export default {
       this.mainContentViewForm.content = data
       this.mainContentViewForm.dialogVisible = true
       this.$nextTick(() => {
-        this.$refs.attachmentViewComponent.setMainData(this.uploadForm.uploadData.mainTableName, this.uploadForm.uploadData.mainStyle, this.uploadForm.uploadData.mainGuid)
+        this.$refs.attachmentViewComponent.setMainData(this.uploadForm.uploadData.mainTableName, this.uploadForm
+          .uploadData.mainStyle, this.uploadForm.uploadData.mainGuid)
       })
     },
     async handleSaveTinymceContent() {
@@ -921,9 +965,9 @@ export default {
         notifyGuid: this.tinymceForm.notifyGuid,
         content: this.tinymceForm.content
       }
-      this.listLoading = true
+      this.loading = true
       const response = await saveNotifyContent(data)
-      this.listLoading = false
+      this.loading = false
       this.$message({
         message: response.message,
         type: 'warning'

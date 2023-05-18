@@ -1,10 +1,10 @@
 package com.qiyuan.base2048.controller.oa;
 
 import com.qiyuan.base2048.pojo.vo.oa.MainContentVO;
+import com.qiyuan.base2048.service.mybatis.IToNotifyRecordService;
 import com.qiyuan.base2048.service.oa.NotifyContentGetter;
 import com.qiyuan.base2048.service.oa.NotifyContentSaver;
 import com.qiyuan.bautil.annotate.response.ResponseBodyInController;
-import com.qiyuan.bautil.dto.GuidContainerVO;
 import com.qiyuan.bautil.dto.ResultDTO;
 import com.qiyuan.bautil.service.FormValidator;
 import io.swagger.annotations.Api;
@@ -26,6 +26,8 @@ public class NotifyContentController {
     private NotifyContentSaver notifyContentSaver;
     @Resource
     private NotifyContentGetter notifyContentGetter;
+    @Resource
+    private IToNotifyRecordService iToNotifyRecordService;
 
     @PostMapping("/save")
     @ApiOperation("保存一条通知通告的正文")
@@ -40,5 +42,11 @@ public class NotifyContentController {
     @ApiOperation("拉取一条通知通告的正文")
     public ResultDTO load(@RequestParam("notifyGuid") String notifyGuid) throws Exception {
         return notifyContentGetter.loadContent(notifyGuid);
+    }
+
+    @GetMapping("/read")
+    @ApiOperation("设置已读")
+    public ResultDTO setRead(@RequestParam("notifyGuid") String notifyGuid) throws Exception {
+        return iToNotifyRecordService.setReaded(notifyGuid);
     }
 }

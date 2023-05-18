@@ -4,4 +4,5 @@ import com.qiyuan.bautil.dto.ResultDTO;
 
 public interface NotifySender {
     ResultDTO send(String notifyGuid) throws Exception;
+    ResultDTO preSend(String notifyGuid) throws Exception;
 }

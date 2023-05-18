@@ -4,6 +4,7 @@ import com.qiyuan.base2048.mapper.mapstruct.TbAttachmentStructMapper;
 import com.qiyuan.base2048.mapper.mybatis.TbAttachmentMapper;
 import com.qiyuan.base2048.mapper.mybatis.entity.TbAttachment;
 import com.qiyuan.base2048.service.Component.MinIoUtils;
+import com.qiyuan.base2048.service.common.AttachmentSaver;
 import com.qiyuan.base2048.service.common.MinioUploadService;
 import com.qiyuan.bautil.dto.BaseUser;
 import com.qiyuan.bautil.dto.MinIoFileDTO;
@@ -24,33 +25,16 @@ public class MinioUploadServiceImpl implements MinioUploadService {
     @Autowired
     private MinIoUtils minIoUtils;
     @Resource
-    private TbAttachmentMapper tbAttachmentMapper;
+    private AttachmentSaver attachmentSaver;
 
     @Override
-    public ResultDTO saveAttach(MultipartFile multipartFile, String pGuid,String pTbname,String pStyle) throws Exception{
+    public ResultDTO saveAttach(MultipartFile multipartFile, String mainGuid,String mainTableName,String mainStyle) throws Exception{
         String originalName = multipartFile.getOriginalFilename();
         String bucketName = minIoUtils.getMinioDefaultBucketName();
         String fileName = minIoUtils.getMinioDefaultFileName(originalName);
         minIoUtils.putObject(bucketName, multipartFile, fileName);
-        TbAttachment tbAttachment = new TbAttachment();
-        tbAttachment.setPGuid(pGuid);
-        tbAttachment.setPStyle(pStyle);
-        tbAttachment.setPTableName(pTbname);
-        tbAttachment.setBucketName(bucketName);
-        tbAttachment.setFileName(fileName);
-        tbAttachment.setFileOriginName(originalName);
-        tbAttachment.setContentType(multipartFile.getContentType());
-        tbAttachment.setFileSize(new BigDecimal(multipartFile.getSize()).toString());
-        String operator = UserTool.getOperator();
-        tbAttachment.setCreateBy(operator);
-        tbAttachment.setModifyBy(operator);
-        Date now = new Date();
-        tbAttachment.setCreateTime(now);
-        tbAttachment.setModifyTime(now);
-        tbAttachment.setEnabled(IsEnabledEnum.ENABLED.getStringValue());
-        tbAttachment.setDeleted(IsDeletedEnum.NOTDELETED.getStringValue());
-        tbAttachment.setVersion(0);
-        int rtn = tbAttachmentMapper.insert(tbAttachment);
+        TbAttachment tbAttachment = attachmentSaver.genTbAttachment(mainGuid,mainStyle,mainTableName,bucketName,fileName,originalName,multipartFile.getContentType(),new BigDecimal(multipartFile.getSize()).toString());
+        int rtn = attachmentSaver.saveTbAttachment(tbAttachment);
         if (rtn != 1) {
             return ResultDTO.failureCustom("插入附件信息数据时出错");
         }
