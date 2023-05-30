@@ -2,9 +2,6 @@ package com.qiyuan.bautil.util;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.beanutils.BeanUtilsBean;
-import org.apache.commons.lang.CharUtils;
-import org.apache.commons.lang.StringUtils;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -232,7 +229,7 @@ public class BeanTool {
     }
 
     public static <T> String[] getStringPropertyArray(List<T> objList,String propertyName) throws Exception{
-        if(objList == null || StringUtils.isBlank(propertyName)){
+        if(objList == null || StringUtil.isBlank(propertyName)){
             return new String[0];
         }
 
@@ -243,7 +240,7 @@ public class BeanTool {
         return values;
     }
     public static <T> BigDecimal[] getBigDecimalPropertyArray(List<T> objList,String propertyName) throws Exception{
-        if(objList == null || StringUtils.isBlank(propertyName)){
+        if(objList == null || StringUtil.isBlank(propertyName)){
             return new BigDecimal[0];
         }
 
@@ -306,8 +303,8 @@ public class BeanTool {
         char[] chars = property.toCharArray();
         StringBuffer sb = new StringBuffer();
         for (char c : chars) {
-            if (CharUtils.isAsciiAlphaUpper(c)) {
-                sb.append("_" + StringUtils.lowerCase(CharUtils.toString(c)));
+            if (CharUtil.isAsciiAlphaUpper(c)) {
+                sb.append("_" + StringUtil.lowerCase(CharUtil.toString(c)));
             } else {
                 sb.append(c);
             }
@@ -331,7 +328,7 @@ public class BeanTool {
             if (c == '_') {
                 int j = i + 1;
                 if (j < chars.length) {
-                    sb.append(StringUtils.upperCase(CharUtils.toString(chars[j])));
+                    sb.append(StringUtil.upperCase(CharUtil.toString(chars[j])));
                     i++;
                 }
             } else {

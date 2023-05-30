@@ -1,7 +1,5 @@
 package com.qiyuan.bautil.util;
 
-import org.apache.commons.lang.StringUtils;
-
 public class UrlTool {
     /**
      * /api/XXX/free/XX 结构的为真
@@ -10,7 +8,7 @@ public class UrlTool {
      * @throws Exception
      */
     public static boolean isFreeUrl(String url){
-        if(StringUtils.isBlank(url)){
+        if(StringUtil.isBlank(url)){
             return false;
         }
         String[] urlArray = url.split("/");

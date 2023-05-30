@@ -276,6 +276,48 @@ const sysManageRouter = {
     ]
   },
   {
+    path: 'logmanage',
+    name: 'LogManage',
+    srvName: '/api/system/auth/manage/logmanage',
+    component: () => import('@/views/manage/logmanage/index'),
+    meta: {
+      title: '日志管理',
+      icon: 'tree'
+    },
+    children: [
+      {
+        path: 'login',
+        name: 'LoginManage',
+        srvName: '/api/system/auth/manage/logmanage/login',
+        component: () => import('@/views/manage/logmanage/login/index'),
+        meta: {
+          title: '登录日志',
+          icon: 'tree'
+        }
+      },
+      {
+        path: 'operate',
+        name: 'OperateManage',
+        srvName: '/api/system/auth/manage/logmanage/operate',
+        component: () => import('@/views/manage/logmanage/operate/index'),
+        meta: {
+          title: '操作日志',
+          icon: 'tree'
+        }
+      },
+      {
+        path: 'generate',
+        name: 'GenerateManage',
+        srvName: '/api/system/auth/manage/logmanage/generate',
+        component: () => import('@/views/manage/logmanage/generate/index'),
+        meta: {
+          title: '生成日志',
+          icon: 'tree'
+        }
+      }
+    ]
+  },
+  {
     path: 'datamaintain',
     name: 'DataMaintain',
     srvName: '/api/system/auth/manage/datamaintain',

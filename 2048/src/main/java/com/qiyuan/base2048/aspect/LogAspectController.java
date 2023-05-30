@@ -2,7 +2,6 @@ package com.qiyuan.base2048.aspect;
 
 import com.qiyuan.base2048.service.mybatis.ITbLogGeneralService;
 import com.qiyuan.bautil.util.IpAddrUtil;
-import com.qiyuan.bautil.util.StringTool;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;

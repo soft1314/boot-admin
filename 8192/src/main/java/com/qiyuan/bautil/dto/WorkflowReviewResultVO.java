@@ -3,8 +3,9 @@ package com.qiyuan.bautil.dto;
 import com.qiyuan.bautil.annotate.valid.EnumValid;
 import com.qiyuan.bautil.annotate.valid.OverallValid;
 import com.qiyuan.bautil.enums.OutComeEnum;
+import com.qiyuan.bautil.util.StringUtil;
 import lombok.Data;
-import org.apache.commons.lang.StringUtils;
+
 import javax.validation.constraints.NotBlank;
 import java.util.Map;
 
@@ -24,7 +25,7 @@ public class WorkflowReviewResultVO {
     private Map<String, Object> vars;
     public boolean selfCheck1(){
         if("驳回".equalsIgnoreCase(result)){
-            if(StringUtils.isBlank(reviewComments)){
+            if(StringUtil.isBlank(reviewComments)){
                 return false;
             }
         }

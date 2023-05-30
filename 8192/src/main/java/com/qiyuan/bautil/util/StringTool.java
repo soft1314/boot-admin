@@ -1,6 +1,5 @@
 package com.qiyuan.bautil.util;
 
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -93,7 +92,7 @@ public class StringTool {
      * @throws Exception
      */
     public static String getFirstRoleFromFLowContent(String flowContent) throws Exception{
-        if(StringUtils.isBlank(flowContent)){
+        if(StringUtil.isBlank(flowContent)){
             return "";
         }
         String[] roleArray = flowContent.split(",");
@@ -120,7 +119,7 @@ public class StringTool {
      * @return
      */
     public static boolean isMatches(String bot){
-        if(StringUtils.isBlank(bot)){
+        if(StringUtil.isBlank(bot)){
             return false;
         }
         boolean flag=false;
@@ -263,7 +262,7 @@ public class StringTool {
      * @throws Exception
      */
     public static String cutGuid(String guid) throws Exception{
-        if(StringUtils.isBlank(guid)){
+        if(StringUtil.isBlank(guid)){
             return "";
         }
         String ret = guid.replace("-","");

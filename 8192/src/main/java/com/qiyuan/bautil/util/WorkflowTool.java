@@ -1,7 +1,8 @@
 package com.qiyuan.bautil.util;
 
 import com.qiyuan.bautil.dto.BaseUser;
-import org.apache.commons.lang.StringUtils;
+
+
 
 public class WorkflowTool {
     /**
@@ -13,7 +14,7 @@ public class WorkflowTool {
         return baseUser.getUserName()+"~"+baseUser.getLogonName()+"~"+baseUser.getUserGuid();
     }
     public static String getAssigneeUserName(String assignee){
-        if(StringUtils.isBlank(assignee)){
+        if(StringUtil.isBlank(assignee)){
             return "";
         }
         String[] arr = assignee.split("~");
@@ -24,7 +25,7 @@ public class WorkflowTool {
     }
 
     public static String getAssigneeLogonName(String assignee){
-        if(StringUtils.isBlank(assignee)){
+        if(StringUtil.isBlank(assignee)){
             return "";
         }
         String[] arr = assignee.split("~");
@@ -35,7 +36,7 @@ public class WorkflowTool {
     }
 
     public static String getAssigneeUserGuid(String assignee){
-        if(StringUtils.isBlank(assignee)){
+        if(StringUtil.isBlank(assignee)){
             return "";
         }
         String[] arr = assignee.split("~");
@@ -56,13 +57,13 @@ public class WorkflowTool {
         String logonName=WorkflowTool.getAssigneeLogonName(realAssignee);
         String userGuid=WorkflowTool.getAssigneeUserGuid(realAssignee);
 
-        if (StringUtils.isNotBlank(userName)) {
+        if (StringUtil.isNotBlank(userName)) {
             humanAssignee = userName;
-            if (StringUtils.isNotBlank(logonName)) {
+            if (StringUtil.isNotBlank(logonName)) {
                 humanAssignee = humanAssignee+"【"+logonName+"】";
             }
         }else{
-            if (StringUtils.isNotBlank(logonName)) {
+            if (StringUtil.isNotBlank(logonName)) {
                 humanAssignee = logonName+"【"+userGuid+"】";
             }else{
                 humanAssignee = userGuid;
@@ -94,7 +95,7 @@ public class WorkflowTool {
      * @return
      */
     public static String genComment(String result,String note){
-        if(StringUtils.isBlank(note)){
+        if(StringUtil.isBlank(note)){
             return result;
         }
         return result+"【"+note+"】";

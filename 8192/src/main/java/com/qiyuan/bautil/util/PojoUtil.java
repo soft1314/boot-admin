@@ -1,6 +1,5 @@
 package com.qiyuan.bautil.util;
 
-import org.apache.commons.lang.StringUtils;
 import io.swagger.annotations.ApiModelProperty;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -32,7 +31,7 @@ public class PojoUtil {
 
             // Annotation[] annotations = field.getAnnotations(); // 获取所有的注解
             ApiModelProperty api = field.getDeclaredAnnotation(ApiModelProperty.class); // 获取指定的注解
-            if (api != null && StringUtils.isNotEmpty(api.value())) {
+            if (api != null && StringUtil.isNotEmpty(api.value())) {
                 // System.out.println(api.value());
                 ret += api.value() + ":" + value + ";";
             }
@@ -66,8 +65,8 @@ public class PojoUtil {
             String targetValue = String.valueOf(getFieldValueByName(field.getName(), targetDto));
 
             ApiModelProperty api = field.getDeclaredAnnotation(ApiModelProperty.class); // 获取指定的注解
-            if (api != null && StringUtils.isNotEmpty(api.value())) {
-                if (!StringUtils.equals(srcValue, targetValue)) {
+            if (api != null && StringUtil.isNotEmpty(api.value())) {
+                if (!StringUtil.equals(srcValue, targetValue)) {
                     ret += api.value() + ":" + srcValue + "->" + targetValue + ";";
                 }
             }

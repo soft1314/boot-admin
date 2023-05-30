@@ -5,7 +5,7 @@ import com.qiyuan.bautil.dto.BaseUser;
 import com.qiyuan.bautil.dto.redis.BaseUserDTO;
 import com.qiyuan.bautil.dto.redis.OnlineUserVO;
 import com.qiyuan.bautil.dto.redis.UserAgentDTO;
-import org.apache.commons.lang.StringUtils;
+import com.qiyuan.bautil.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -63,10 +63,10 @@ public class RedisOnlineUserUtils {
         String userKey = this.getSysOnlineUserKeyForRedis(userGuid);
         BaseUserDTO baseUserDTO = redisCacheUtils.getCacheObject(userKey);
         redisCacheUtils.deleteObject(userKey);
-        if(StringUtils.isNotBlank(baseUserDTO.getAccessToken())) {
+        if(StringUtil.isNotBlank(baseUserDTO.getAccessToken())) {
             redisCacheUtils.deleteObject(this.getSysAccessTokenKeyForRedis(baseUserDTO.getAccessToken()));
         }
-        if(StringUtils.isNotBlank(baseUserDTO.getRefreshToken())) {
+        if(StringUtil.isNotBlank(baseUserDTO.getRefreshToken())) {
             redisCacheUtils.deleteObject(this.getSysRefreshTokenKeyForRedis(baseUserDTO.getRefreshToken()));
         }
         /** 对于弥留期的令牌，无法定位，自生自灭吧 **/
@@ -136,7 +136,7 @@ public class RedisOnlineUserUtils {
     public BaseUser getBaseUserByAccessToken(String accessToken) throws Exception{
         String key = this.getSysAccessTokenKeyForRedis(accessToken);
         String userGuid = redisCacheUtils.getCacheObject(key);
-        if(StringUtils.isBlank(userGuid)){
+        if(StringUtil.isBlank(userGuid)){
             throw new Exception("令牌丢失了。");
         }
         BaseUserDTO baseUserDTO = redisCacheUtils.getCacheObject(this.getSysOnlineUserKeyForRedis(userGuid));
@@ -160,7 +160,7 @@ public class RedisOnlineUserUtils {
         /** 初始寿命 - 剩余寿命 = 秒龄 < 幼年期限,查出数据返回，不生产 **/
         if ((refreshTokenInitTtl - refreshTokenTtl) < ONLINE_REFRESS_TOKEN_CHILDHOOD_VALUE) {
             String userGuid = redisCacheUtils.getCacheObject(refreshTokenKey);
-            if (StringUtils.isBlank(userGuid)) {
+            if (StringUtil.isBlank(userGuid)) {
                 throw new Exception("令牌已过期，暂不实现重新从数据库装入的功能。");
             }
             String userTokenKey = this.getSysOnlineUserKeyForRedis(userGuid);
@@ -172,7 +172,7 @@ public class RedisOnlineUserUtils {
         }
         /** 成年的刷新令牌，可以刷新 **/
         String userGuid = redisCacheUtils.getCacheObject(refreshTokenKey);
-        if (StringUtils.isBlank(userGuid)) {
+        if (StringUtil.isBlank(userGuid)) {
             throw new Exception("令牌已过期，暂不实现重新从数据库装入的功能。");
         }
         String userTokenKey = this.getSysOnlineUserKeyForRedis(userGuid);
@@ -207,7 +207,7 @@ public class RedisOnlineUserUtils {
     public synchronized BaseUserDTO createAccessTokenByRefreshToken_old(String refreshToken) throws Exception{
         String key = this.getSysRefreshTokenKeyForRedis(refreshToken);
         String userGuid = redisCacheUtils.getCacheObject(key);
-        if (StringUtils.isBlank(userGuid)) {
+        if (StringUtil.isBlank(userGuid)) {
             throw new Exception("令牌已过期，暂不实现重新从数据库装入的功能。");
         }
 
@@ -324,7 +324,7 @@ public class RedisOnlineUserUtils {
         if(baseUserDTO == null){
             throw new Exception("丢失");
         }
-        return StringUtils.isBlank(baseUserDTO.getRefreshToken());
+        return StringUtil.isBlank(baseUserDTO.getRefreshToken());
     }
     private String getSysOnlineUserKeyForRedis(String userGuid){
         return ONLINE_USER_KEY_PERFIX + userGuid;

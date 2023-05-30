@@ -1680,4 +1680,152 @@
             <column name="DATESTAMP" valueComputed="${time.current}"/>
         </insert>
     </changeSet>
+    <changeSet id="20230525-001" author="Administrator">
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" value="1661674611090890754"/>
+            <column name="URI" value="/api/system/auth/manage/logmanage"/>
+            <column name="RESOURCE_TYPE" value="1"/>
+            <column name="ACCESS_CONTROL_STYLE" value="03"/>
+            <column name="NAME" value="日志管理"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
+            <column name="ENABLED" value="1"/>
+            <column name="DELETED" value="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="REMARKS" value="无"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="3C8C7298A4454C9E8CD4FBC770286565"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+            <column name="LEAF" value="1"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+        </insert>
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" value="a3606a9b-fb03-11ed-b289-f4a80d18b72e"/>
+            <column name="URI" value="/api/system/auth/manage/logmanage/login"/>
+            <column name="RESOURCE_TYPE" value="1"/>
+            <column name="ACCESS_CONTROL_STYLE" value="03"/>
+            <column name="NAME" value="登录日志"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
+            <column name="ENABLED" value="1"/>
+            <column name="DELETED" value="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="REMARKS" value="无"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="1661674611090890754"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+            <column name="LEAF" value="1"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+        </insert>
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" value="a360aa1e-fb03-11ed-b289-f4a80d18b72e"/>
+            <column name="URI" value="/api/system/auth/manage/logmanage/operate"/>
+            <column name="RESOURCE_TYPE" value="1"/>
+            <column name="ACCESS_CONTROL_STYLE" value="03"/>
+            <column name="NAME" value="操作日志"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
+            <column name="ENABLED" value="1"/>
+            <column name="DELETED" value="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="REMARKS" value="无"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="1661674611090890754"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+            <column name="LEAF" value="1"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+        </insert>
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" value="a360e9d8-fb03-11ed-b289-f4a80d18b72e"/>
+            <column name="URI" value="/api/system/auth/manage/logmanage/generate"/>
+            <column name="RESOURCE_TYPE" value="1"/>
+            <column name="ACCESS_CONTROL_STYLE" value="03"/>
+            <column name="NAME" value="生成日志"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
+            <column name="ENABLED" value="1"/>
+            <column name="DELETED" value="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="REMARKS" value="无"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="1661674611090890754"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+            <column name="LEAF" value="1"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+        </insert>
+    </changeSet>
+    <changeSet id="20230525-002" author="Administrator">
+        <insert tableName="TR_ROLE_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="ROLE_GUID" value="administrator"/>
+            <column name="RESOURCE_GUID" value="1661674611090890754"/>
+            <column name="CREATE_BY" value="张三丰[admin]"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_BY" value="张三丰[admin]"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+            <column name="ENABLED" value="1"/>
+            <column name="DELETED" value="1"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="REMARKS"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+        </insert>
+        <insert tableName="TR_ROLE_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="ROLE_GUID" value="administrator"/>
+            <column name="RESOURCE_GUID" value="a3606a9b-fb03-11ed-b289-f4a80d18b72e"/>
+            <column name="CREATE_BY" value="张三丰[admin]"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_BY" value="张三丰[admin]"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+            <column name="ENABLED" value="1"/>
+            <column name="DELETED" value="1"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="REMARKS"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+        </insert>
+        <insert tableName="TR_ROLE_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="ROLE_GUID" value="administrator"/>
+            <column name="RESOURCE_GUID" value="a360aa1e-fb03-11ed-b289-f4a80d18b72e"/>
+            <column name="CREATE_BY" value="张三丰[admin]"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_BY" value="张三丰[admin]"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+            <column name="ENABLED" value="1"/>
+            <column name="DELETED" value="1"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="REMARKS"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+        </insert>
+        <insert tableName="TR_ROLE_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="ROLE_GUID" value="administrator"/>
+            <column name="RESOURCE_GUID" value="a360e9d8-fb03-11ed-b289-f4a80d18b72e"/>
+            <column name="CREATE_BY" value="张三丰[admin]"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_BY" value="张三丰[admin]"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+            <column name="ENABLED" value="1"/>
+            <column name="DELETED" value="1"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="REMARKS"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+        </insert>
+    </changeSet>
 </databaseChangeLog>

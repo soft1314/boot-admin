@@ -4,11 +4,13 @@ import com.qiyuan.base2048.pojo.vo.generated.ToNotifyScene1DataVO;
 import com.qiyuan.base2048.pojo.vo.generated.ToNotifyScene1QueryVO;
 import com.qiyuan.base2048.pojo.vo.oa.NotifyAdmDivRelationshipVO;
 import com.qiyuan.base2048.service.oa.NotifyDivRelationSaver;
+import com.qiyuan.bautil.aspect.Log;
 import com.qiyuan.bautil.dto.GuidContainerVO;
 import com.qiyuan.base2048.service.oa.IToNotifyScene1Service;
 import com.qiyuan.bautil.annotate.response.ResponseBodyInController;
 import com.qiyuan.bautil.dto.BaseUser;
 import com.qiyuan.bautil.dto.ResultDTO;
+import com.qiyuan.bautil.enums.BusinessType;
 import com.qiyuan.bautil.service.FormValidator;
 import com.qiyuan.bautil.util.UserTool;
 import io.swagger.annotations.Api;
@@ -49,6 +51,7 @@ public class ToNotifyController {
 
     @PostMapping("/save")
     @ApiOperation("保存数据")
+    @Log(title = "通知公告", businessType = BusinessType.INSERT_OR_UPDATE)
     public ResultDTO save(@Valid @RequestBody ToNotifyScene1DataVO dataVO, BindingResult bindingResult) throws Exception {
         if (bindingResult.hasErrors()) {
             return formValidator.generateMessage(bindingResult);
@@ -59,6 +62,7 @@ public class ToNotifyController {
 
     @PostMapping("/del")
     @ApiOperation("删除数据")
+    @Log(title = "通知公告", businessType = BusinessType.DELETE)
     public ResultDTO del(@Valid @RequestBody GuidContainerVO guidContainerVO, BindingResult bindingResult) throws Exception {
         if (bindingResult.hasErrors()) {
             return formValidator.generateMessage(bindingResult);

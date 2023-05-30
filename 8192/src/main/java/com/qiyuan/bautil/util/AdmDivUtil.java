@@ -1,7 +1,5 @@
 package com.qiyuan.bautil.util;
 
-import org.apache.commons.lang.StringUtils;
-
 public class AdmDivUtil {
     /**
      * 返回串数组，元素依次为本级编码，父级编码，爷级编码......直到最高级区划编码
@@ -11,7 +9,7 @@ public class AdmDivUtil {
      */
     public static String[] getUpMofDivCodeArray(String mofDivCode) throws Exception {
         String[] ret;
-        if (StringUtils.isBlank(mofDivCode)) {
+        if (StringUtil.isBlank(mofDivCode)) {
             ret = new String[]{""};
             return ret;
         } else if (mofDivCode.length() == 9) {

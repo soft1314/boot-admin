@@ -61,4 +61,27 @@ public class TestController {
         testDTO.getInterest().add("ddd");
         return testDTO;
     }
+    @GetMapping("/test4")
+    public String test4(@RequestParam("level") int level,@RequestParam("msg") String msg){
+        switch (level){
+            case 1:
+                log.trace("这是trace消息：{}",msg);
+                break;
+            case 2:
+                log.debug("这是debug消息：{}",msg);
+                break;
+            case 3:
+                log.info("这是info消息：{}",msg);
+                break;
+            case 4:
+                log.warn("这是warn消息：{}",msg);
+                break;
+            case 5:
+                log.error("这是error消息：{}",msg);
+                break;
+            default:
+                log.error("这是什么消息：{}",msg);
+        }
+        return "消息已打印";
+    }
 }

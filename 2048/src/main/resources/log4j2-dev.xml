@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="30">
+    <Properties>
+        <Property name="LOG_PATTERN_LAYOUT">%d{HH:mm:ss,SSS} %highlight{[%-5.5level]}{STYLE=Logback} [%-5.5thread] %blue{[%-5.15X{uid}]} %cyan{[%-40.40c{1.}:%-4line]} - %msg%xEx%n</Property>
+        <Property name="DEFAULT_CHARSET">UTF-8</Property>
+    </Properties>
+
+    <Appenders>
+        <!-- 定义控制台输出 -->
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout  charset="${DEFAULT_CHARSET}" pattern="${LOG_PATTERN_LAYOUT}"/>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+        <!-- 包名以com.qiyuan 开头的日志输出级别为TRACE -->
+        <Logger name="com.qiyuan" level="TRACE"/>
+        <!-- 默认日志输出级别为INFO -->
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>

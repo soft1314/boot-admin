@@ -2,8 +2,8 @@ package com.qiyuan.bautil.annotate.valid.impl;
 
 
 import com.qiyuan.bautil.annotate.valid.StringLength;
+import com.qiyuan.bautil.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.StringUtils;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -20,7 +20,7 @@ public class StringLengthValidator implements ConstraintValidator<StringLength, 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext constraintValidatorContext) {
         try {
-            if(StringUtils.isBlank(value)){
+            if(StringUtil.isBlank(value)){
                 if(min > 0){
                     return false;
                 }else {

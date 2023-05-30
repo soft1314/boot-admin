@@ -42,7 +42,6 @@ public class SchedulerConfig {
         // 自定义Job Factory，用于Spring注入
         factory.setJobFactory(myJobFactory);
 
-        // 在com.neusoft.jn.gpbase.quartz.job.BaseJobTemplate 同样出现该配置
         //原因 : qrtz 在集群模式下 存在 同一个任务 一个在A服务器任务被分配出去 另一个B服务器任务不再分配的情况.
         //
         if(!JOB_LOCAL_RUNING){

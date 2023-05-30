@@ -7,14 +7,13 @@ package com.qiyuan.bautil.annotate.valid.impl;
 
 
 import com.qiyuan.bautil.annotate.valid.EnumValid;
+import com.qiyuan.bautil.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-
-import static org.apache.commons.lang.StringUtils.isNotEmpty;
 
 /**
  * 枚举参数校验处理类
@@ -35,7 +34,7 @@ public class EnumValidator implements ConstraintValidator<EnumValid, String> {
         Class<?> cls = annotation.target();
         boolean ignoreEmpty = annotation.ignoreEmpty();
         // target为枚举，并且value有值，或者不忽视空值，才进行校验
-        boolean fitCheck = cls.isEnum() && (isNotEmpty(value) || !ignoreEmpty);
+        boolean fitCheck = cls.isEnum() && (StringUtil.isNotEmpty(value) || !ignoreEmpty);
         if (fitCheck) {
             Object[] objects = cls.getEnumConstants();
             try {

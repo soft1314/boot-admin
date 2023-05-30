@@ -1,11 +1,9 @@
 package com.qiyuan.bautil.util;
 
 import com.qiyuan.bautil.dto.BaseUser;
-import com.qiyuan.bautil.dto.JwtUserDTO;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.StringUtils;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -65,7 +63,7 @@ public class JwtUtil {
 //        return jwtUserDTO;
 //    }
     public static String getUserInfoFromToken(String token) throws Exception{
-        if (StringUtils.isBlank(token)) {
+        if (StringUtil.isBlank(token)) {
             log.warn("令牌丢失了。");
             throw new TokenValidationException("令牌丢失了。");
         }
@@ -99,7 +97,7 @@ public class JwtUtil {
         return jwt;
     }
     public static <T> T fetchDtoFromToken(String token,Class<T> tclass) throws Exception{
-        if (StringUtils.isBlank(token)) {
+        if (StringUtil.isBlank(token)) {
             log.warn("令牌丢失了。");
             throw new TokenValidationException("令牌丢失了。");
         }

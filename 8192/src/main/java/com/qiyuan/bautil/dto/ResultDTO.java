@@ -73,6 +73,11 @@ public class ResultDTO<T> {
         resultDTO.setMessage(message);
         return resultDTO;
     }
+    public static <T> ResultDTO<T> successCustom(String message) {
+        ResultDTO<T> resultDTO = new ResultDTO<T>(ResultStatus.SUCCESS,null);
+        resultDTO.setMessage(message);
+        return resultDTO;
+    }
     public boolean isSuccess(){
         return ResultStatus.SUCCESS.getCode().equals(this.code);
     }

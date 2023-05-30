@@ -1,6 +1,5 @@
 package com.qiyuan.bautil.util;
 
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -83,7 +82,7 @@ public class TimeTool {
      * @return
      */
     public static java.util.Date stringToDateTime(String str) throws Exception {
-        if(StringUtils.isBlank(str)){
+        if(StringUtil.isBlank(str)){
             return null;
         }
 //        try {
@@ -94,7 +93,7 @@ public class TimeTool {
 //        }
     }
     public static java.util.Date stringToDateTimeWithTry(String str) {
-        if(StringUtils.isBlank(str)){
+        if(StringUtil.isBlank(str)){
             return null;
         }
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
