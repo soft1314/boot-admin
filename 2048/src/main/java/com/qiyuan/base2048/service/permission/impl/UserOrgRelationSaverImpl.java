@@ -2,13 +2,10 @@ package com.qiyuan.base2048.service.permission.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
-import com.qiyuan.base2048.mapper.mybatis.TrUserAdmdivMapper;
 import com.qiyuan.base2048.mapper.mybatis.TrUserOrgMapper;
-import com.qiyuan.base2048.mapper.mybatis.entity.TrUserAdmdiv;
 import com.qiyuan.base2048.mapper.mybatis.entity.TrUserOrg;
-import com.qiyuan.base2048.pojo.vo.save.UserDivVO;
 import com.qiyuan.base2048.pojo.vo.save.UserOrgVO;
-import com.qiyuan.base2048.service.Component.MessageUtils;
+import com.qiyuan.base2048.service.component.MessageUtils;
 import com.qiyuan.base2048.service.permission.UserOrgRelationSaver;
 import com.qiyuan.bautil.dto.ResultDTO;
 import com.qiyuan.bautil.enums.IsDeletedEnum;

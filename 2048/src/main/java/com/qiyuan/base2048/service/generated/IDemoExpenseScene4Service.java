@@ -14,7 +14,7 @@ import com.qiyuan.bautil.dto.ResultDTO;
 * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-4-13 13:53:29
+* @since 2000-08-20
 */
 public interface IDemoExpenseScene4Service extends IService<DemoExpense> {
   ResultDTO getPage(DemoExpenseScene4QueryVO scene4QueryVO, boolean includeDeleted) throws Exception;

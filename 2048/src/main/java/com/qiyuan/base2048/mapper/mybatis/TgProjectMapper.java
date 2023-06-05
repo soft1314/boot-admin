@@ -9,7 +9,7 @@ import com.qiyuan.base2048.mapper.mybatis.entity.TgProject;
 * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2022-6-17 10:42:09
+* @since 2000-08-20
 */
 public interface TgProjectMapper extends BaseMapper<TgProject> {
 }

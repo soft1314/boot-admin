@@ -15,7 +15,7 @@ import java.util.List;
     * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-4-13 13:52:37
+* @since 2000-08-20
 */
 @Mapper(uses = {BooleanToCharFormat.class})
 public interface DemoOrgScene2StructMapper {

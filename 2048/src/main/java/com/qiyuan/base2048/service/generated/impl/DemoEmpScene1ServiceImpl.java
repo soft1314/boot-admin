@@ -10,12 +10,11 @@ import com.qiyuan.base2048.mapper.mybatis.DemoEmpMapper;
 import com.qiyuan.base2048.mapper.mybatis.entity.DemoEmp;
 import com.qiyuan.base2048.pojo.vo.generated.DemoEmpScene1DataVO;
 import com.qiyuan.base2048.pojo.vo.generated.DemoEmpScene1QueryVO;
-import com.qiyuan.base2048.service.Component.MessageUtils;
+import com.qiyuan.base2048.service.component.MessageUtils;
 import com.qiyuan.base2048.service.generated.IDemoEmpScene1Service;
 import com.qiyuan.bautil.dto.BaseUser;
 import com.qiyuan.bautil.dto.ResultDTO;
 import com.qiyuan.bautil.enums.IsDeletedEnum;
-import com.qiyuan.bautil.enums.IsEnabledEnum;
 import com.qiyuan.bautil.util.StringTool;
 import com.qiyuan.bautil.util.TimeTool;
 import org.apache.commons.lang.StringUtils;
@@ -30,7 +29,7 @@ import static cn.hutool.core.bean.BeanUtil.beanToMap;
     * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-4-13 13:51:06
+* @since 2000-08-20
 */
 @Service
 public class DemoEmpScene1ServiceImpl extends ServiceImpl<DemoEmpMapper, DemoEmp>  implements IDemoEmpScene1Service {

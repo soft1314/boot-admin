@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2022-12-11 13:28:14
+* @since 2000-08-20
 */
 @Service
 public class TrUserAdmdivServiceImpl extends ServiceImpl<TrUserAdmdivMapper, TrUserAdmdiv> implements ITrUserAdmdivService {

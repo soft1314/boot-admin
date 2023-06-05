@@ -1,7 +1,7 @@
 package com.qiyuan.base2048.service.generator.impl;
 
 import com.qiyuan.base2048.pojo.vo.vuecomponent.*;
-import com.qiyuan.base2048.service.Component.FreeMarkerUtils;
+import com.qiyuan.base2048.service.component.FreeMarkerUtils;
 import com.qiyuan.base2048.service.generator.VueElementAdminFileGenerator;
 import com.qiyuan.bautil.dto.ResultDTO;
 import com.qiyuan.bautil.util.StringTool;

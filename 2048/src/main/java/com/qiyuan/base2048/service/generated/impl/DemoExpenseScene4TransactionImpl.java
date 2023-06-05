@@ -1,11 +1,10 @@
 package com.qiyuan.base2048.service.generated.impl;
 
-import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qiyuan.base2048.feign.FeignWorkflowService;
 import com.qiyuan.base2048.mapper.mybatis.DemoExpenseMapper;
 import com.qiyuan.base2048.mapper.mybatis.entity.DemoExpense;
-import com.qiyuan.base2048.service.Component.MessageUtils;
+import com.qiyuan.base2048.service.component.MessageUtils;
 import com.qiyuan.base2048.service.generated.IDemoExpenseScene4Transaction;
 import com.qiyuan.bautil.dto.ResultDTO;
 import com.qiyuan.bautil.dto.WorkflowProcessInstanceDTO;
@@ -13,13 +12,16 @@ import com.qiyuan.bautil.dto.WorkflowReviewResultVO;
 import com.qiyuan.bautil.dto.WorkflowStartProcessDTO;
 import com.qiyuan.bautil.enums.WorkflowStatusEnum;
 import io.seata.spring.annotation.GlobalTransactional;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.apache.commons.lang.StringUtils;
+
 import javax.annotation.Resource;
 
 @Service
 @GlobalTransactional(rollbackFor=Exception.class)
+@Slf4j
 public class DemoExpenseScene4TransactionImpl implements IDemoExpenseScene4Transaction {
     @Autowired
     private ObjectMapper objectMapper;
@@ -30,6 +32,7 @@ public class DemoExpenseScene4TransactionImpl implements IDemoExpenseScene4Trans
 
     @Override
     public ResultDTO saveDemoExpenseAndStartProcess(DemoExpense entity, WorkflowStartProcessDTO startProcessDTO) throws Exception {
+        log.error("GPBASE测试流程跟踪。");
         if(StringUtils.isNotBlank(entity.getGuid())){
             /** 修改数据，并提交流程 **/
             startProcessDTO.setBusinessId(entity.getGuid());

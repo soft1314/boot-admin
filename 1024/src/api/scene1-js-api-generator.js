@@ -1,6 +1,6 @@
 /**
 * @author 张三丰
-* @since 2022-11-11 22:42:10
+* @since 2000-08-20
 *  js api 相关代码生成接口
 */
 import request from '@/utils/request'

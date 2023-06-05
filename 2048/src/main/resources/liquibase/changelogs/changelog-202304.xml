@@ -323,7 +323,7 @@ end
         <insert tableName="TB_RESOURCE">
             <column name="GUID" valueComputed="${uuid}"/>
             <column name="NAME" value="剧情1获取表tb_log_general分页数据"/>
-            <column name="URI" value="/api/system/auth/tb-log-general/scene1/table/page"/>
+            <column name="URI" value="/api/log/auth/tb-log-general/scene1/table/page"/>
             <column name="RESOURCE_TYPE" value="2"/>
             <column name="ACCESS_CONTROL_STYLE" value="02"/>
             <column name="REMARKS" value="无"/>
@@ -343,7 +343,7 @@ end
         <insert tableName="TB_RESOURCE">
             <column name="GUID" valueComputed="${uuid}"/>
             <column name="NAME" value="剧情1保存表tb_log_general数据"/>
-            <column name="URI" value="/api/system/auth/tb-log-general/scene1/save"/>
+            <column name="URI" value="/api/log/auth/tb-log-general/scene1/save"/>
             <column name="RESOURCE_TYPE" value="2"/>
             <column name="ACCESS_CONTROL_STYLE" value="02"/>
             <column name="REMARKS" value="无"/>
@@ -363,7 +363,7 @@ end
         <insert tableName="TB_RESOURCE">
             <column name="GUID" valueComputed="${uuid}"/>
             <column name="NAME" value="剧情1按GUID删除表tb_log_general数据"/>
-            <column name="URI" value="/api/system/auth/tb-log-general/scene1/del"/>
+            <column name="URI" value="/api/log/auth/tb-log-general/scene1/del"/>
             <column name="RESOURCE_TYPE" value="2"/>
             <column name="ACCESS_CONTROL_STYLE" value="02"/>
             <column name="REMARKS" value="无"/>

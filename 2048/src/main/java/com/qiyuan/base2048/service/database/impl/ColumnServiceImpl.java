@@ -3,7 +3,7 @@ package com.qiyuan.base2048.service.database.impl;
 import com.qiyuan.base2048.mapper.mybatis.UserTableColumnMasterGetter;
 import com.qiyuan.base2048.pojo.vo.vuecomponent.TableColVO;
 import com.qiyuan.base2048.pojo.vo.vuecomponent.UserTableColumnResultDTO;
-import com.qiyuan.base2048.service.Component.FreeMarkerUtils;
+import com.qiyuan.base2048.service.component.FreeMarkerUtils;
 import com.qiyuan.base2048.service.database.ColumnService;
 import com.qiyuan.bautil.enums.DataTypeEnum;
 import com.qiyuan.bautil.enums.TableColStyleEnum;

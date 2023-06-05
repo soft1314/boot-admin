@@ -6,7 +6,6 @@ import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * <p>
@@ -15,7 +14,7 @@ import java.util.Date;
  * </p>
  *
  * @author 虚领顶劲气沉丹田
- * @since 2022-11-29 12:19:49
+ * @since 2022-11-29
  */
 
 @Data

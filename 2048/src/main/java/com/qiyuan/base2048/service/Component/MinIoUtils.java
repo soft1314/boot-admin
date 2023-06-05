@@ -1,4 +1,4 @@
-package com.qiyuan.base2048.service.Component;
+package com.qiyuan.base2048.service.component;
 
 import com.qiyuan.bautil.util.FileNameTool;
 import com.qiyuan.bautil.util.TimeTool;

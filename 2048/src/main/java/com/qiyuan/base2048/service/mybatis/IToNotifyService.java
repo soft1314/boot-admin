@@ -10,7 +10,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-5-8 10:37:20
+* @since 2000-08-20
 */
 public interface IToNotifyService extends IService<ToNotify> {
     void changeToPublished(String notifyGuid) throws Exception;

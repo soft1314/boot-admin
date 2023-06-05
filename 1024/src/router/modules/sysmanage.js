@@ -286,8 +286,8 @@ const sysManageRouter = {
     },
     children: [
       {
-        path: 'login',
-        name: 'LoginManage',
+        path: 'login-log',
+        name: 'LoginLogManage',
         srvName: '/api/system/auth/manage/logmanage/login',
         component: () => import('@/views/manage/logmanage/login/index'),
         meta: {
@@ -296,8 +296,18 @@ const sysManageRouter = {
         }
       },
       {
-        path: 'operate',
-        name: 'OperateManage',
+        path: 'request-log',
+        name: 'RequestLogManage',
+        srvName: '/api/system/auth/manage/logmanage/request',
+        component: () => import('@/views/manage/logmanage/request/index'),
+        meta: {
+          title: '访问日志',
+          icon: 'tree'
+        }
+      },
+      {
+        path: 'operate-log',
+        name: 'OperateLogManage',
         srvName: '/api/system/auth/manage/logmanage/operate',
         component: () => import('@/views/manage/logmanage/operate/index'),
         meta: {
@@ -306,8 +316,8 @@ const sysManageRouter = {
         }
       },
       {
-        path: 'generate',
-        name: 'GenerateManage',
+        path: 'generate-log',
+        name: 'GenerateLogManage',
         srvName: '/api/system/auth/manage/logmanage/generate',
         component: () => import('@/views/manage/logmanage/generate/index'),
         meta: {

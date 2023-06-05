@@ -13,7 +13,7 @@ import com.qiyuan.bautil.dto.ResultDTO;
 * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-4-10 16:11:01
+* @since 2000-08-20
 */
 public interface ITbDroolsRuleScene1Service extends IService<TbDroolsRule> {
   ResultDTO getPage(TbDroolsRuleScene1QueryVO scene1QueryVO, boolean includeDeleted) throws Exception;

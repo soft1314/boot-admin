@@ -11,7 +11,7 @@ import org.mapstruct.factory.Mappers;
  * </p>
  *
  * @author 虚领顶劲气沉丹田
- * @since 2023-4-10 16:10:57
+ * @since 2023-4-10
  */
 @Mapper
 public interface TbDroolsRuleScene1StructMapper {

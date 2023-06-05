@@ -2,7 +2,11 @@
 <Configuration>
     <!-- 文件输出格式 -->
     <Properties>
-        <Property name="LOG_PATTERN_LAYOUT">%d{HH:mm:ss,SSS} %highlight{[%-5.5level]}{STYLE=Logback} [%-5.5thread] %blue{[%-5.15X{uid}]} %cyan{[%-40.40c{1.}:%-4line]} - %msg%xEx%n</Property>
+        <Property name="LOG_PATTERN_LAYOUT">%d{HH:mm:ss} [${APP_NAME},%X{traceId},%X{parentSpanId},%X{spanId},%X{spanExportable}] [%level] [%X{uid}] [%c] [%L] - %msg%xEx%n</Property>
+        <Property name="LOG_PATTERN_LAYOUT3">%d{HH:mm:ss} [%level] [%X{uid}] [%c] [%L] - %msg%xEx%n</Property>
+        <Property name="LOG_PATTERN_LAYOUT4">%d{HH:mm:ss} [%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-B3-ParentSpanId},%X{X-Span-Export}] [%level] [%X{uid}] [%c] [%L] - %msg%xEx%n</Property>
+        <Property name="LOG_PATTERN_LAYOUT2">%d{HH:mm:ss,SSS} %highlight{[%-5.5level]}{STYLE=Logback} [%-5.5thread] %blue{[%-5.15X{uid}]} %cyan{[%c:%L]} 行号：[%L] - %msg%xEx%n</Property>
+        <Property name="LOG_PATTERN_LAYOUT1">%d{HH:mm:ss,SSS} %highlight{[%-5.5level]}{STYLE=Logback} [%-5.5thread] %blue{[%-5.15X{uid}]} %cyan{[%-40.40c{1.}:%-4line]} - %msg%xEx%n</Property>
         <Property name="DEFAULT_CHARSET">UTF-8</Property>
         <Property name="LOG_HOME">logs/</Property>
         <property name="PATTERN" value="%5p [%t] %d{yyyy-MM-dd HH:mm:ss} (%F:%L) %m%n" />
@@ -52,23 +56,31 @@
         </RollingRandomAccessFile>
 
         <!--错误日志写入数据库 -->
-        <JDBC name ="DATABASE_APPENDER" tableName = "tb_log_general1"><!--error_log数据库表名-->
+        <JDBC name ="DATABASE_APPENDER" tableName = "tb_log_general"><!--error_log数据库表名-->
             <ConnectionFactory class="com.qiyuan.base2048.log.ConnectionFactory" method="getDatabaseConnection" />
-            <Column name="timestamp" pattern="%d{ddMMyyyy HH:mm:ss,SSS}" />
-            <Column name="datestamp" pattern="%d{yyyy-MM-dd HH:mm:ss}" />
-            <Column name="class" pattern="%c" />
-            <Column name="method" pattern="%M" />
-            <Column name="log_level" pattern="%p" />
-            <Column name="msg" pattern="%msg"/>
-            <Column name="line_no" pattern="%L" />
-            <Column name="file_name" pattern="%F" />
-            <Column name="uid" pattern="%X{uid}" />
+            <Column name="guid" pattern="%uuid" />
+            <Column name="LOG_LEVEL" pattern="%p" />
+            <Column name="CLASS_NAME" pattern="%c" />
+            <Column name="LINE_NO" pattern="%L" />
+            <Column name="OPERATOR" pattern="%X{uid}" />
+            <Column name="LOG_CONTENT" pattern="%msg"/>
+            <Column name="CREATE_BY" pattern="System" />
+            <Column name="CREATE_TIME" pattern="%d{yyyy-MM-dd HH:mm:ss}" />
+            <Column name="MODIFY_BY" pattern="System" />
+            <Column name="MODIFY_TIME" pattern="%d{yyyy-MM-dd HH:mm:ss}" />
+            <Column name="DATESTAMP" pattern="%d{yyyy-MM-dd HH:mm:ss}" />
+            <Column name="ENABLED" pattern="1" />
+            <Column name="DELETED" pattern="1" />
+            <Column name="VERSION" pattern="0" />
+            <Column name="TENANT_ID_" pattern="DEMO" />
         </JDBC>
+        <!--错误日志写入数据库 -->
+
     </Appenders>
 
     <Loggers>
         <!-- 配置日志的根节点 -->
-        <root level="INFO">
+        <root level="INFO" additivity="false" includeLocation="true">
             <appender-ref ref="CONSOLE_OUT_APPENDER"/>
             <appender-ref ref="CONSOLE_ERR_APPENDER"/>
             <appender-ref ref="INFO_APPENDER"/>
@@ -77,8 +89,12 @@
         </root>
 
         <!-- 第三方日志系统 -->
-        <logger name="com.qiyuan" level="TRACE">
-            <appender-ref ref="DATABASE_APPENDER" level="INFO"/>
+        <logger name="com.qiyuan" level="TRACE" additivity="false" includeLocation="true">
+            <appender-ref ref="CONSOLE_OUT_APPENDER"/>
+            <appender-ref ref="CONSOLE_ERR_APPENDER"/>
+            <appender-ref ref="INFO_APPENDER"/>
+            <appender-ref ref="ERROR_APPENDER"/>
+            <appender-ref ref="DATABASE_APPENDER" level="WARN"/>
         </logger>
         <logger name="org.springframework" level="WARN"/>
         <logger name="org.apache" level="WARN"/>

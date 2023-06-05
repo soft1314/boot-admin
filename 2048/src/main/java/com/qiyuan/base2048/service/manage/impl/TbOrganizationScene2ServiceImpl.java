@@ -10,7 +10,7 @@ import com.qiyuan.base2048.mapper.mybatis.TbOrganizationMapper;
 import com.qiyuan.base2048.mapper.mybatis.entity.TbOrganization;
 import com.qiyuan.base2048.pojo.vo.query.TbOrganizationScene2QueryVO;
 import com.qiyuan.base2048.pojo.vo.save.TbOrganizationScene2DataVO;
-import com.qiyuan.base2048.service.Component.MessageUtils;
+import com.qiyuan.base2048.service.component.MessageUtils;
 import com.qiyuan.base2048.service.manage.ITbOrganizationScene2Service;
 import com.qiyuan.bautil.dto.BaseUser;
 import com.qiyuan.bautil.dto.CascaderNode;
@@ -38,7 +38,7 @@ import static cn.hutool.core.bean.BeanUtil.beanToMap;
     * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2022-11-29 12:20:06
+* @since 2000-08-20
 */
 @Service
 public class TbOrganizationScene2ServiceImpl extends ServiceImpl<TbOrganizationMapper, TbOrganization>  implements ITbOrganizationScene2Service {

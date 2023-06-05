@@ -1,0 +1,111 @@
+Manifest-Version: 1.0
+Main-Class: com.qiyuan.gateway4096.Gateway4096Application
+Class-Path: jackson-module-parameter-names-2.12.5.jar reactor-extra-3.4.
+ 5.jar netty-transport-4.1.68.Final.jar jackson-core-2.12.5.jar spring-j
+ cl-5.3.10.jar spring-cloud-openfeign-core-3.0.2.jar feign-core-10.10.1.
+ jar spring-cloud-starter-3.0.2.jar netty-handler-proxy-4.1.68.Final.jar
+  LatencyUtils-2.0.3.jar spring-boot-starter-2.5.5.jar netty-resolver-4.
+ 1.68.Final.jar okio-1.17.2.jar spring-boot-starter-data-redis-2.5.6.jar
+  nacos-client-1.4.1.jar jackson-datatype-jsr310-2.12.5.jar feign-core-1
+ 0.10.1.jar ehcache-2.10.9.2.jar commons-logging-1.2.jar reactor-netty-c
+ ore-1.0.11.jar log4j-api-2.14.1.jar netty-transport-native-epoll-4.1.68
+ .Final-linux-x86_64.jar spring-cloud-commons-3.0.2.jar commons-fileuplo
+ ad-1.4.jar commons-io-2.2.jar jsonassert-1.5.0.jar simpleclient-0.10.0.
+ jar reactive-streams-1.0.3.jar reactive-streams-1.0.3.jar spring-boot-s
+ tarter-validation-2.5.5.jar netty-codec-http-4.1.68.Final.jar spring-bo
+ ot-starter-logging-2.5.5.jar netty-codec-dns-4.1.68.Final.jar spring-co
+ ntext-support-5.3.10.jar commons-fileupload-1.4.jar snakeyaml-1.28.jar 
+ byte-buddy-agent-1.10.22.jar jackson-databind-2.12.5.jar hutool-all-5.7
+ .14.jar spring-oxm-5.3.10.jar spring-cloud-alibaba-commons-2021.1.jar n
+ etty-transport-native-unix-common-4.1.68.Final.jar jakarta.xml.bind-api
+ -2.3.3.jar spring-cloud-loadbalancer-3.0.2.jar spring-expression-5.3.10
+ .jar spring-boot-starter-cache-2.5.5.jar spring-boot-starter-webflux-2.
+ 5.5.jar lombok-1.18.20.jar jakarta.annotation-api-1.3.5.jar spring-tx-5
+ .3.10.jar jul-to-slf4j-1.7.32.jar spring-boot-test-2.5.5.jar spring-clo
+ ud-starter-gateway-2.2.10.RELEASE.jar spring-boot-starter-validation-2.
+ 5.5.jar jjwt-0.9.1.jar spring-aop-5.3.10.jar commons-codec-1.15.jar spr
+ ing-context-support-1.0.10.jar HdrHistogram-2.1.12.jar spring-webflux-5
+ .3.10.jar spring-cloud-starter-loadbalancer-4.0.0.jar mockito-core-3.9.
+ 0.jar aspectjweaver-1.9.7.jar spring-boot-actuator-2.5.5.jar spring-boo
+ t-starter-json-2.5.5.jar spring-boot-starter-logging-2.5.5.jar lettuce-
+ core-6.1.5.RELEASE.jar spring-tx-5.3.10.jar netty-resolver-dns-native-m
+ acos-4.1.68.Final-osx-x86_64.jar fastjson-1.2.78.jar junit-platform-eng
+ ine-1.7.2.jar feign-slf4j-10.10.1.jar netty-resolver-4.1.68.Final.jar s
+ pring-cloud-loadbalancer-3.0.2.jar httpclient-4.5.13.jar jakarta.valida
+ tion-api-2.0.2.jar LatencyUtils-2.0.3.jar spring-boot-2.5.5.jar jakarta
+ .activation-api-1.2.2.jar evictor-1.0.0.jar bcpkix-jdk15on-1.64.jar jac
+ kson-datatype-jdk8-2.12.5.jar spring-data-redis-2.5.5.jar logback-core-
+ 1.2.6.jar hibernate-validator-6.2.0.Final.jar micrometer-core-1.7.4.jar
+  spring-cloud-gateway-server-3.0.2.jar spring-security-rsa-1.0.9.RELEAS
+ E.jar spring-boot-starter-reactor-netty-2.5.5.jar nacos-client-1.4.1.ja
+ r junit-platform-commons-1.7.2.jar httpcore-4.4.14.jar jakarta.annotati
+ on-api-1.3.5.jar spring-security-rsa-1.0.9.RELEASE.jar spring-context-s
+ upport-1.0.10.jar bcprov-jdk15on-1.64.jar spring-security-crypto-5.5.2.
+ jar spring-data-keyvalue-2.5.5.jar spring-boot-starter-json-2.5.5.jar n
+ etty-handler-4.1.68.Final.jar xmlunit-core-2.8.2.jar objenesis-3.2.jar 
+ spring-boot-starter-actuator-2.5.5.jar feign-form-spring-3.8.0.jar spri
+ ng-jcl-5.3.10.jar netty-codec-socks-4.1.68.Final.jar reactor-test-3.4.1
+ 0.jar assertj-core-3.19.0.jar tomcat-embed-el-9.0.53.jar nacos-api-1.4.
+ 1.jar spring-cloud-alibaba-commons-2021.1.jar spring-security-crypto-5.
+ 5.2.jar spring-boot-autoconfigure-2.5.5.jar netty-codec-dns-4.1.68.Fina
+ l.jar feign-okhttp-10.10.1.jar nacos-common-1.4.1.jar jboss-logging-3.4
+ .2.Final.jar log4j-api-2.14.1.jar netty-resolver-dns-4.1.68.Final.jar n
+ etty-codec-4.1.68.Final.jar reactor-core-3.4.10.jar hibernate-validator
+ -6.2.0.Final.jar spring-beans-5.3.10.jar spring-boot-starter-test-2.5.5
+ .jar spring-boot-actuator-autoconfigure-2.5.5.jar spring-cloud-starter-
+ loadbalancer-4.0.0.jar spring-cloud-starter-gateway-2.2.10.RELEASE.jar 
+ log4j-to-slf4j-2.14.1.jar spring-boot-2.5.5.jar httpclient-4.5.13.jar n
+ etty-handler-4.1.68.Final.jar evictor-1.0.0.jar spring-data-keyvalue-2.
+ 5.5.jar jackson-annotations-2.12.5.jar asm-9.1.jar jackson-datatype-jsr
+ 310-2.12.5.jar okhttp-3.14.9.jar spring-beans-5.3.10.jar commons-codec-
+ 1.15.jar jjwt-0.9.1.jar commons-lang3-3.12.0.jar ehcache-2.10.9.2.jar f
+ eign-form-3.8.0.jar nacos-api-1.4.1.jar commons-lang3-3.12.0.jar classm
+ ate-1.5.1.jar spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar j
+ ackson-core-2.12.5.jar spring-expression-5.3.10.jar okhttp-3.14.9.jar l
+ ogback-classic-1.2.6.jar spring-cloud-starter-openfeign-3.0.2.jar sprin
+ g-web-5.3.10.jar reactor-netty-http-1.0.11.jar spring-web-5.3.10.jar js
+ on-smart-2.4.7.jar slf4j-api-1.7.32.jar classmate-1.5.1.jar netty-codec
+ -http-4.1.68.Final.jar netty-resolver-dns-4.1.68.Final.jar reactor-core
+ -3.4.10.jar spring-context-5.3.10.jar opentest4j-1.2.0.jar netty-codec-
+ http2-4.1.68.Final.jar netty-handler-proxy-4.1.68.Final.jar jackson-mod
+ ule-parameter-names-2.12.5.jar spring-boot-test-autoconfigure-2.5.5.jar
+  spring-boot-starter-reactor-netty-2.5.5.jar nacos-common-1.4.1.jar jso
+ n-path-2.5.0.jar jboss-logging-3.4.2.Final.jar log4j-to-slf4j-2.14.1.ja
+ r netty-buffer-4.1.68.Final.jar netty-transport-4.1.68.Final.jar netty-
+ buffer-4.1.68.Final.jar netty-codec-http2-4.1.68.Final.jar spring-cloud
+ -starter-3.0.2.jar logback-classic-1.2.6.jar lombok-1.18.20.jar spring-
+ cloud-openfeign-core-3.0.2.jar fastjson-1.2.78.jar slf4j-api-1.7.32.jar
+  logback-core-1.2.6.jar netty-common-4.1.68.Final.jar spring-cloud-cont
+ ext-3.0.2.jar bautil8192-0.0.1-SNAPSHOT.jar feign-form-3.8.0.jar spring
+ -boot-starter-data-redis-2.5.6.jar spring-boot-actuator-2.5.5.jar mocki
+ to-junit-jupiter-3.9.0.jar spring-context-support-5.3.10.jar reactor-ne
+ tty-core-1.0.11.jar junit-jupiter-engine-5.7.2.jar spring-cloud-gateway
+ -server-3.0.2.jar spring-boot-actuator-autoconfigure-2.5.5.jar bcpkix-j
+ dk15on-1.64.jar spring-boot-starter-aop-2.5.5.jar spring-webflux-5.3.10
+ .jar spring-data-commons-2.5.5.jar spring-boot-autoconfigure-2.5.5.jar 
+ httpasyncclient-4.1.4.jar aspectjweaver-1.9.7.jar spring-boot-starter-2
+ .5.5.jar android-json-0.0.20131108.vaadin1.jar junit-jupiter-api-5.7.2.
+ jar netty-transport-native-unix-common-4.1.68.Final.jar accessors-smart
+ -2.4.7.jar netty-transport-native-epoll-4.1.68.Final-linux-x86_64.jar j
+ unit-jupiter-params-5.7.2.jar reactor-netty-http-1.0.11.jar spring-aop-
+ 5.3.10.jar simpleclient-0.10.0.jar httpcore-4.4.14.jar lettuce-core-6.1
+ .5.RELEASE.jar HdrHistogram-2.1.12.jar hamcrest-2.2.jar feign-okhttp-10
+ .10.1.jar bcprov-jdk15on-1.64.jar commons-io-2.2.jar netty-common-4.1.6
+ 8.Final.jar spring-boot-starter-actuator-2.5.5.jar netty-codec-socks-4.
+ 1.68.Final.jar netty-codec-4.1.68.Final.jar spring-oxm-5.3.10.jar bauti
+ l8192-0.0.1-SNAPSHOT.jar jul-to-slf4j-1.7.32.jar spring-core-5.3.10.jar
+  junit-jupiter-5.7.2.jar jackson-datatype-jdk8-2.12.5.jar spring-boot-s
+ tarter-cache-2.5.5.jar commons-pool2-2.11.1.jar feign-form-spring-3.8.0
+ .jar spring-cloud-commons-3.0.2.jar jackson-annotations-2.12.5.jar nett
+ y-resolver-dns-native-macos-4.1.68.Final-osx-x86_64.jar httpasyncclient
+ -4.1.4.jar byte-buddy-1.10.22.jar commons-lang-2.6.jar spring-data-redi
+ s-2.5.5.jar commons-pool2-2.11.1.jar micrometer-core-1.7.4.jar jakarta.
+ validation-api-2.0.2.jar spring-core-5.3.10.jar apiguardian-api-1.1.0.j
+ ar spring-boot-starter-aop-2.5.5.jar httpcore-nio-4.4.14.jar spring-clo
+ ud-starter-openfeign-3.0.2.jar snakeyaml-1.28.jar spring-test-5.3.10.ja
+ r httpcore-nio-4.4.14.jar spring-cloud-context-3.0.2.jar hutool-all-5.7
+ .14.jar okio-1.17.2.jar feign-slf4j-10.10.1.jar spring-context-5.3.10.j
+ ar spring-data-commons-2.5.5.jar spring-boot-starter-webflux-2.5.5.jar 
+ reactor-extra-3.4.5.jar jackson-databind-2.12.5.jar tomcat-embed-el-9.0
+ .53.jar spring-cloud-starter-alibaba-nacos-discovery-2021.1.jar
+

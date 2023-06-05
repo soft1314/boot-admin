@@ -2,17 +2,14 @@ package com.qiyuan.base2048.controller.sysmanage;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.qiyuan.base2048.mapper.mapstruct.TbResourceStructMapper;
-import com.qiyuan.base2048.mapper.mapstruct.TbUserStructMapper;
 import com.qiyuan.base2048.mapper.mybatis.entity.TbResource;
-import com.qiyuan.base2048.mapper.mybatis.entity.TbUser;
 import com.qiyuan.base2048.pojo.vo.eltable.MenuVO;
 import com.qiyuan.base2048.pojo.vo.query.ResourcePageQueryByRoleIdParamVO;
 import com.qiyuan.base2048.pojo.vo.query.ResourcePageQueryParamVO;
 import com.qiyuan.bautil.dto.GuidContainerVO;
 import com.qiyuan.base2048.pojo.vo.save.ResourceRoleVO;
 import com.qiyuan.base2048.pojo.vo.save.ResourceVO;
-import com.qiyuan.base2048.pojo.vo.save.UserVO;
-import com.qiyuan.base2048.service.Component.MessageUtils;
+import com.qiyuan.base2048.service.component.MessageUtils;
 import com.qiyuan.base2048.service.permission.ResourceDataGetter;
 import com.qiyuan.base2048.service.permission.ResourceDataSaver;
 import com.qiyuan.base2048.service.permission.RoleDataGetter;

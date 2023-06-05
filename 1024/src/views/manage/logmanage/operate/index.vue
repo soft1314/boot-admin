@@ -1,6 +1,6 @@
 <!-- 本文件自动生成，再次生成时易被覆盖 -->
 <!-- @author 虚领顶劲气沉丹田 -->
-<!-- @since 2023-4-11 14:49:33 -->
+<!-- @since 2000-08-20 -->
 <template>
   <div class="app-container background-white">
     <!-- 查询抽屉开始 -->
@@ -19,7 +19,46 @@
           :model="filterDrawer.formData"
         >
           <el-form-item label="主键" :label-width="filterDrawer.formLabelWidth" prop="guid">
-            <el-input v-model="filterDrawer.formData.guid" placeholder="请输入主键" size="mini" prefix-icon="el-icon-search" />
+            <el-input
+              v-model="filterDrawer.formData.guid"
+              placeholder="请输入主键"
+              size="mini"
+              prefix-icon="el-icon-search"
+            />
+          </el-form-item>
+          <el-form-item label="日志级别" :label-width="filterDrawer.formLabelWidth" prop="logLevel">
+            <el-select v-model="filterDrawer.formData.logLevel" placeholder="请选择日志级别" size="mini" clearable>
+              <el-option
+                v-for="item in optionMap.get($commonDicType.LOG_LEVEL())"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              />
+            </el-select>
+          </el-form-item>
+          <el-form-item label="类名" :label-width="filterDrawer.formLabelWidth" prop="className">
+            <el-input
+              v-model="filterDrawer.formData.className"
+              placeholder="请输入类名"
+              size="mini"
+              prefix-icon="el-icon-search"
+            />
+          </el-form-item>
+          <el-form-item label="行号" :label-width="filterDrawer.formLabelWidth" prop="lineNo">
+            <el-input
+              v-model="filterDrawer.formData.lineNo"
+              placeholder="请输入行号"
+              size="mini"
+              prefix-icon="el-icon-search"
+            />
+          </el-form-item>
+          <el-form-item label="操作者" :label-width="filterDrawer.formLabelWidth" prop="operator">
+            <el-input
+              v-model="filterDrawer.formData.operator"
+              placeholder="请输入操作者"
+              size="mini"
+              prefix-icon="el-icon-search"
+            />
           </el-form-item>
           <el-form-item label="日志内容" :label-width="filterDrawer.formLabelWidth" prop="logContent">
             <el-input
@@ -29,30 +68,8 @@
               prefix-icon="el-icon-search"
             />
           </el-form-item>
-          <el-form-item label="记录创建者" :label-width="filterDrawer.formLabelWidth" prop="createBy">
-            <el-input
-              v-model="filterDrawer.formData.createBy"
-              placeholder="请输入记录创建者"
-              size="mini"
-              prefix-icon="el-icon-search"
-            />
-          </el-form-item>
           <el-form-item label="记录创建时间" prop="createTime" :label-width="filterDrawer.formLabelWidth">
             <el-date-picker v-model="filterDrawer.formData.createTime" type="date" placeholder="选择日期" />
-          </el-form-item>
-          <el-form-item label="记录最后修改者" :label-width="filterDrawer.formLabelWidth" prop="modifyBy">
-            <el-input
-              v-model="filterDrawer.formData.modifyBy"
-              placeholder="请输入记录最后修改者"
-              size="mini"
-              prefix-icon="el-icon-search"
-            />
-          </el-form-item>
-          <el-form-item label="记录最后修改时间" prop="modifyTime" :label-width="filterDrawer.formLabelWidth">
-            <el-date-picker v-model="filterDrawer.formData.modifyTime" type="date" placeholder="选择日期" />
-          </el-form-item>
-          <el-form-item label="时间戳" prop="datestamp" :label-width="filterDrawer.formLabelWidth">
-            <el-date-picker v-model="filterDrawer.formData.datestamp" type="date" placeholder="选择日期" />
           </el-form-item>
           <el-form-item label="启用状态" :label-width="filterDrawer.formLabelWidth" prop="enabled">
             <el-select v-model="filterDrawer.formData.enabled" placeholder="请选择启用状态" size="mini" clearable>
@@ -113,6 +130,18 @@
               <el-form-item label="主键">
                 <span>{{ props.row.guid }}</span>
               </el-form-item>
+              <el-form-item label="日志级别">
+                <span>{{ props.row.logLevel }}</span>
+              </el-form-item>
+              <el-form-item label="类名">
+                <span>{{ props.row.className }}</span>
+              </el-form-item>
+              <el-form-item label="行号">
+                <span>{{ props.row.lineNo }}</span>
+              </el-form-item>
+              <el-form-item label="操作者">
+                <span>{{ props.row.operator }}</span>
+              </el-form-item>
               <el-form-item label="日志内容">
                 <span>{{ props.row.logContent }}</span>
               </el-form-item>
@@ -144,6 +173,10 @@
           </template>
         </el-table-column>
         <el-table-column type="index" label="序号" :index="indexMethod" width="70" />
+        <el-table-column prop="logLevel" label="日志级别" show-overflow-tooltip sortable />
+        <el-table-column prop="className" label="类名" show-overflow-tooltip sortable />
+        <el-table-column prop="lineNo" label="行号" show-overflow-tooltip sortable />
+        <el-table-column prop="operator" label="操作者" show-overflow-tooltip sortable />
         <el-table-column prop="logContent" label="日志内容" show-overflow-tooltip sortable />
         <el-table-column prop="createBy" label="记录创建者" show-overflow-tooltip sortable />
         <el-table-column
@@ -153,25 +186,18 @@
           sortable
           :formatter="(row,column,cellValue) => dateTimeColFormatter(row,column,cellValue)"
         />
+        <!--
         <el-table-column prop="modifyBy" label="记录最后修改者" show-overflow-tooltip sortable />
-        <el-table-column
-          prop="modifyTime"
-          label="记录最后修改时间"
-          show-overflow-tooltip
-          sortable
-          :formatter="(row,column,cellValue) => dateTimeColFormatter(row,column,cellValue)"
-        />
-        <el-table-column
-          prop="datestamp"
-          label="时间戳"
-          show-overflow-tooltip
-          sortable
-          :formatter="(row,column,cellValue) => dateTimeColFormatter(row,column,cellValue)"
-        />
+        <el-table-column prop="modifyTime" label="记录最后修改时间" show-overflow-tooltip sortable
+          :formatter="(row,column,cellValue) => dateTimeColFormatter(row,column,cellValue)" />
+        <el-table-column prop="datestamp" label="时间戳" show-overflow-tooltip sortable
+          :formatter="(row,column,cellValue) => dateTimeColFormatter(row,column,cellValue)" />
+ -->
         <el-table-column prop="remarks" label="备注" show-overflow-tooltip sortable />
-        <el-table-column align="center" label="操作" show-overflow-tooltip min-width="50">
+        <el-table-column align="center" label="操作" show-overflow-tooltip min-width="120">
           <template slot-scope="scope">
-            <el-button size="least" type="primary" @click="handleEditRow(scope.row)">修改</el-button>
+            <el-button size="least" type="primary" @click="handleEditRow(scope.row)">备注</el-button>
+            <el-button size="least" type="danger" @click="handleDeleteRow(scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -257,6 +283,10 @@ export default {
         formLabelWidth: '100px',
         formData: {
           guid: '',
+          logLevel: '',
+          className: '',
+          lineNo: '',
+          operator: '',
           logContent: '',
           createBy: '',
           createTime: null,
@@ -275,7 +305,8 @@ export default {
       // 本页需要加载的option数据类型罗列在下面的数组中
       optionKey: [
         this.$commonDicType.ENABLED(),
-        this.$commonDicType.DELETED()
+        this.$commonDicType.DELETED(),
+        this.$commonDicType.LOG_LEVEL()
       ],
       cascaderValue: {},
       rules: {

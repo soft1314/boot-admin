@@ -95,7 +95,7 @@ management:
 
 
 logging:
-  config: classpath:log4j2-db.xml
+  config: classpath:log4j2-http.xml
   level:
     root: info
     com.qiyuan: debug

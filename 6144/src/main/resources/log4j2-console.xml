@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <!-- 文件输出格式 -->
+    <Properties>
+        <Property name="LOG_PATTERN_LAYOUT">%d{HH:mm:ss} [%X{appName},%X{traceId},%X{parentId},%X{spanId}] [%level] [%X{Uid}] [%c] [%L] - %msg%xEx%n</Property>
+        <Property name="LOG_PATTERN_LAYOUT3">%d{HH:mm:ss} [%level] [%X{uid}] [%c] [%L] - %msg%xEx%n</Property>
+        <Property name="LOG_PATTERN_LAYOUT2">%d{HH:mm:ss,SSS} %highlight{[%-5.5level]}{STYLE=Logback} [%-5.5thread]
+            %blue{[%-5.15X{uid}]} %cyan{[%c:%L]} 行号：[%L] - %msg%xEx%n
+        </Property>
+        <Property name="LOG_PATTERN_LAYOUT1">%d{HH:mm:ss,SSS} %highlight{[%-5.5level]}{STYLE=Logback} [%-5.5thread]
+            %blue{[%-5.15X{uid}]} %cyan{[%-40.40c{1.}:%-4line]} - %msg%xEx%n
+        </Property>
+        <Property name="DEFAULT_CHARSET">UTF-8</Property>
+        <Property name="LOG_HOME">logs/</Property>
+        <property name="PATTERN" value="%5p [%t] %d{yyyy-MM-dd HH:mm:ss} (%F:%L) %m%n"/>
+    </Properties>
+
+    <Appenders>
+
+        <!--SYSTEM_OUT 标准输出流 这个输出控制台的配置，这里输出除了warn和error级别的信息到System.out-->
+        <Console name="CONSOLE_OUT_APPENDER" target="SYSTEM_OUT">
+            <!-- 控制台只输出level及以上级别的信息(onMatch),其他的直接拒绝(onMismatch) -->
+            <ThresholdFilter level="WARN" onMatch="DENY" onMismatch="ACCEPT"/>
+            <!-- 输出日志的格式 -->
+            <PatternLayout pattern="${LOG_PATTERN_LAYOUT}"/>
+        </Console>
+        <!-- SYSTEM_ERR标准错误输出流 这个输出控制台的配置，这里输出warn和error级别的信息到System.err，在eclipse控制台上看到的是红色文字-->
+        <Console name="CONSOLE_ERR_APPENDER" target="SYSTEM_ERR">
+            <!-- 控制台只输出level及以上级别的信息(onMatch),其他的直接拒绝(onMismatch) -->
+            <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+            <!-- 输出日志的格式 -->
+            <PatternLayout pattern="${LOG_PATTERN_LAYOUT}"/>
+        </Console>
+
+        <!-- INFO级别日志 -->
+        <RollingRandomAccessFile name="INFO_APPENDER" immediateFlush="true" fileName="${LOG_HOME}/info.log"
+                                 filePattern="${LOG_HOME}/info-%d{yyyy-MM-dd}.log.gz">
+            <PatternLayout>
+                <pattern>${LOG_PATTERN_LAYOUT}</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <Filters>
+                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </RollingRandomAccessFile>
+
+        <!-- ERROR级别日志 -->
+        <RollingRandomAccessFile name="ERROR_APPENDER" immediateFlush="true" fileName="${LOG_HOME}/error.log"
+                                 filePattern="${LOG_HOME}/error-%d{yyyy-MM-dd}.log.gz">
+            <PatternLayout>
+                <pattern>${LOG_PATTERN_LAYOUT}</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <Filters>
+                <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </RollingRandomAccessFile>
+    </Appenders>
+
+    <Loggers>
+        <!-- 配置日志的根节点 -->
+        <root level="INFO" additivity="false" includeLocation="true">
+            <appender-ref ref="CONSOLE_OUT_APPENDER"/>
+            <appender-ref ref="CONSOLE_ERR_APPENDER"/>
+            <appender-ref ref="INFO_APPENDER"/>
+            <appender-ref ref="ERROR_APPENDER"/>
+        </root>
+
+        <!-- 第三方日志系统 -->
+        <logger name="com.qiyuan" level="TRACE" additivity="false" includeLocation="true">
+            <appender-ref ref="CONSOLE_OUT_APPENDER"/>
+            <appender-ref ref="CONSOLE_ERR_APPENDER"/>
+            <appender-ref ref="INFO_APPENDER"/>
+            <appender-ref ref="ERROR_APPENDER"/>
+        </logger>
+        <logger name="org.springframework" level="WARN"/>
+        <logger name="org.apache" level="WARN"/>
+        <logger name="org.mybatis" level="WARN"/>
+    </Loggers>
+</Configuration>

@@ -10,7 +10,7 @@ import com.qiyuan.base2048.mapper.mybatis.TbDroolsRuleMapper;
 import com.qiyuan.base2048.mapper.mybatis.entity.TbDroolsRule;
 import com.qiyuan.base2048.pojo.vo.query.TbDroolsRuleScene1QueryVO;
 import com.qiyuan.base2048.pojo.vo.save.TbDroolsRuleScene1DataVO;
-import com.qiyuan.base2048.service.Component.MessageUtils;
+import com.qiyuan.base2048.service.component.MessageUtils;
 import com.qiyuan.base2048.service.manage.ITbDroolsRuleScene1Service;
 import com.qiyuan.bautil.dto.BaseUser;
 import com.qiyuan.bautil.dto.ResultDTO;
@@ -29,7 +29,7 @@ import static cn.hutool.core.bean.BeanUtil.beanToMap;
     * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-4-10 16:11:01
+* @since 2000-08-20
 */
 @Service
 public class TbDroolsRuleScene1ServiceImpl extends ServiceImpl<TbDroolsRuleMapper, TbDroolsRule>  implements ITbDroolsRuleScene1Service {

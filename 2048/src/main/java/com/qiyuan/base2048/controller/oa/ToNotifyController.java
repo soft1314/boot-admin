@@ -1,14 +1,12 @@
 package com.qiyuan.base2048.controller.oa;
 
-import com.qiyuan.base2048.pojo.vo.generated.ToNotifyScene1DataVO;
-import com.qiyuan.base2048.pojo.vo.generated.ToNotifyScene1QueryVO;
-import com.qiyuan.base2048.pojo.vo.oa.NotifyAdmDivRelationshipVO;
-import com.qiyuan.base2048.service.oa.NotifyDivRelationSaver;
-import com.qiyuan.bautil.aspect.Log;
-import com.qiyuan.bautil.dto.GuidContainerVO;
+import com.qiyuan.base2048.pojo.vo.save.ToNotifyScene1DataVO;
+import com.qiyuan.base2048.pojo.vo.query.ToNotifyScene1QueryVO;
 import com.qiyuan.base2048.service.oa.IToNotifyScene1Service;
 import com.qiyuan.bautil.annotate.response.ResponseBodyInController;
+import com.qiyuan.bautil.aspect.Log;
 import com.qiyuan.bautil.dto.BaseUser;
+import com.qiyuan.bautil.dto.GuidContainerVO;
 import com.qiyuan.bautil.dto.ResultDTO;
 import com.qiyuan.bautil.enums.BusinessType;
 import com.qiyuan.bautil.service.FormValidator;
@@ -16,7 +14,10 @@ import com.qiyuan.bautil.util.UserTool;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -28,7 +29,7 @@ import javax.validation.Valid;
  * </p>
  *
  * @author 虚领顶劲气沉丹田
- * @since 2023-5-8 10:38:33
+ * @since 2023-5-8
  */
 @RestController
 @ResponseBodyInController
@@ -51,7 +52,7 @@ public class ToNotifyController {
 
     @PostMapping("/save")
     @ApiOperation("保存数据")
-    @Log(title = "通知公告", businessType = BusinessType.INSERT_OR_UPDATE)
+    @Log(businessModule = "通知公告", businessType = BusinessType.INSERT_OR_UPDATE)
     public ResultDTO save(@Valid @RequestBody ToNotifyScene1DataVO dataVO, BindingResult bindingResult) throws Exception {
         if (bindingResult.hasErrors()) {
             return formValidator.generateMessage(bindingResult);
@@ -62,7 +63,7 @@ public class ToNotifyController {
 
     @PostMapping("/del")
     @ApiOperation("删除数据")
-    @Log(title = "通知公告", businessType = BusinessType.DELETE)
+    @Log(businessModule = "通知公告", businessType = BusinessType.DELETE)
     public ResultDTO del(@Valid @RequestBody GuidContainerVO guidContainerVO, BindingResult bindingResult) throws Exception {
         if (bindingResult.hasErrors()) {
             return formValidator.generateMessage(bindingResult);

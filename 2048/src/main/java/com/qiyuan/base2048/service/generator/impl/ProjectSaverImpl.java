@@ -2,9 +2,8 @@ package com.qiyuan.base2048.service.generator.impl;
 
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.qiyuan.base2048.mapper.mybatis.TgProjectMapper;
-import com.qiyuan.base2048.mapper.mybatis.entity.TbUser;
 import com.qiyuan.base2048.mapper.mybatis.entity.TgProject;
-import com.qiyuan.base2048.service.Component.MessageUtils;
+import com.qiyuan.base2048.service.component.MessageUtils;
 import com.qiyuan.base2048.service.generator.ProjectSaver;
 import com.qiyuan.base2048.service.mybatis.ITgProjectService;
 import com.qiyuan.bautil.dto.BaseUser;
@@ -12,7 +11,6 @@ import com.qiyuan.bautil.dto.ResultDTO;
 import com.qiyuan.bautil.enums.IsDeletedEnum;
 import com.qiyuan.bautil.enums.IsEnabledEnum;
 import com.qiyuan.bautil.enums.YesNoEnum;
-import com.qiyuan.bautil.enums.YesNoIntegerEnum;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 

@@ -2,9 +2,8 @@ package com.qiyuan.base2048.service.oa;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.qiyuan.base2048.mapper.mybatis.entity.ToNotify;
-import com.qiyuan.base2048.pojo.vo.generated.ToNotifyScene1QueryVO;
-import com.qiyuan.base2048.pojo.vo.generated.ToNotifyScene1DataVO;
-import com.qiyuan.base2048.pojo.vo.oa.NotifyAdmDivRelationshipVO;
+import com.qiyuan.base2048.pojo.vo.query.ToNotifyScene1QueryVO;
+import com.qiyuan.base2048.pojo.vo.save.ToNotifyScene1DataVO;
 import com.qiyuan.bautil.dto.BaseUser;
 import com.qiyuan.bautil.dto.ResultDTO;
 /**
@@ -14,7 +13,7 @@ import com.qiyuan.bautil.dto.ResultDTO;
 * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-5-8 10:38:33
+* @since 2000-08-20
 */
 public interface IToNotifyScene1Service extends IService<ToNotify> {
   ResultDTO getPage(ToNotifyScene1QueryVO scene1QueryVO, boolean includeDeleted) throws Exception;

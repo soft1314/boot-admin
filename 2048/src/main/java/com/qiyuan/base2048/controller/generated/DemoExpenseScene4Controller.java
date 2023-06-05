@@ -12,6 +12,7 @@ import com.qiyuan.bautil.service.FormValidator;
 import com.qiyuan.bautil.util.UserTool;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,12 +28,13 @@ import javax.validation.Valid;
     * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-4-13 13:53:33
+* @since 2023-4-13
 */
 @RestController
 @ResponseBodyInController
 @RequestMapping("/api/system/auth/demo-expense/scene4")
 @Api("demo_expense表剧情4接口")
+@Slf4j
 public class DemoExpenseScene4Controller {
   @Resource
   private FormValidator formValidator;
@@ -63,6 +65,7 @@ public class DemoExpenseScene4Controller {
     if (bindingResult.hasErrors()) {
       return formValidator.generateMessage(bindingResult);
     }
+    log.error("GPBASE:saveAndStartProcess测试流程跟踪");
     BaseUser baseUser = UserTool.getBaseUser();
     return scene4Service.saveAndStartProcess(dataVO, baseUser);
   }

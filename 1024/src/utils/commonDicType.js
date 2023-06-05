@@ -1,7 +1,7 @@
 /**
 * 本文件自动生成，严禁人工修改
 * @author 虚领顶劲气沉丹田
-* @since 2023-5-8 22:35:11
+* @since 2000-08-20
 */
 const commonDicType = {
   // 资源类别
@@ -75,6 +75,22 @@ const commonDicType = {
   // 通知通告类别
   NOTIFY_TYPE() {
     return '5017'
+  },
+  // 业务类型
+  BUSINESS_TYPE() {
+    return '5018'
+  },
+  // 操作人员类别
+  OPERATOR_TYPE() {
+    return '5019'
+  },
+  // 结果类型
+  RESULT_TYPE() {
+    return '5020'
+  },
+  // 日志级别
+  LOG_LEVEL() {
+    return '5021'
   }
 }
 export default commonDicType

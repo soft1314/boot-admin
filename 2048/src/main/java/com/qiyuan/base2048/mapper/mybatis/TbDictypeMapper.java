@@ -9,7 +9,7 @@ import com.qiyuan.base2048.mapper.mybatis.entity.TbDictype;
 * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2022-10-31 10:25:59
+* @since 2000-08-20
 */
 public interface TbDictypeMapper extends BaseMapper<TbDictype> {
 }

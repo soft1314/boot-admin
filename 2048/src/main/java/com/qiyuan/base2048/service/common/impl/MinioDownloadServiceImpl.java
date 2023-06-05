@@ -2,16 +2,14 @@ package com.qiyuan.base2048.service.common.impl;
 
 import com.qiyuan.base2048.mapper.mybatis.TbAttachmentMapper;
 import com.qiyuan.base2048.mapper.mybatis.entity.TbAttachment;
-import com.qiyuan.base2048.service.Component.MinIoUtils;
+import com.qiyuan.base2048.service.component.MinIoUtils;
 import com.qiyuan.base2048.service.common.MinioDownloadService;
 import com.qiyuan.bautil.enums.IsDeletedEnum;
 import com.qiyuan.bautil.enums.IsEnabledEnum;
-import com.qiyuan.bautil.enums.YesNoEnum;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-import java.io.InputStream;
 
 @Service
 public class MinioDownloadServiceImpl implements MinioDownloadService {

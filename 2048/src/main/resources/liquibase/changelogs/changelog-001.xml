@@ -1,15 +1,18 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
     <property name="type.datetime" value="date" dbms="oracle"/>
     <property name="type.datetime" value="timestamp" dbms="mysql"/>
     <property name="type.int" value="NUMBER(*, 0)" dbms="oracle"/>
     <property name="type.int" value="INT" dbms="mysql"/>
     <property name="type.decimal" value="NUMBER(*, 2)" dbms="oracle"/>
     <property name="type.decimal" value="DECIMAL" dbms="mysql"/>
-<!--    字段类型用-->
+    <!--    字段类型用-->
     <property name="now" value="SYSDATE" dbms="oracle"/>
     <property name="now" value="NOW() ON UPDATE CURRENT_TIMESTAMP()" dbms="mysql"/>
-<!--    插入时用-->
+    <!--    插入时用-->
     <property name="time.current" value="SYSDATE" dbms="oracle"/>
     <property name="time.current" value="NOW()" dbms="mysql"/>
     <property name="autoIncrement" value="true" dbms="mysql,h2,postgresql,oracle"/>
@@ -34,7 +37,7 @@
     </changeSet>
     <changeSet author="37514 (generated)" id="00000-2" dbms="mysql">
         <createView fullDefinition="true" remarks="表和视图" viewName="V_TABLES_MASTER">
-            CREATE OR REPLACE VIEW V_TABLES_MASTER  AS
+            CREATE OR REPLACE VIEW V_TABLES_MASTER AS
             SELECT
             TABLE_SCHEMA,
             TABLE_NAME AS TABLENAME,
@@ -43,21 +46,27 @@
             'DEMO' TENANT_ID_
             FROM
             information_schema.`TABLES`
-            WHERE table_name != 'databasechangeloglock' AND TABLE_NAME != 'databasechangelog' AND TABLE_NAME != 'undo_log'
+            WHERE table_name != 'databasechangeloglock' AND TABLE_NAME != 'databasechangelog' AND TABLE_NAME !=
+            'undo_log'
         </createView>
     </changeSet>
     <changeSet author="admin (generated)" id="00001-2" dbms="oracle">
-        <createView fullDefinition="true" remarks="表主键视图" viewName="V_TABLE_KEY">CREATE OR REPLACE FORCE VIEW V_TABLE_KEY (OWNER, TABLE_NAME, COLUMN_NAME, CONSTRAINT_TYPE, TENANT_ID_) AS select con.owner, con.table_name, col.column_name, con.constraint_type,'DEMO' TENANT_ID_
+        <createView fullDefinition="true" remarks="表主键视图" viewName="V_TABLE_KEY">CREATE OR REPLACE FORCE VIEW
+            V_TABLE_KEY (OWNER, TABLE_NAME, COLUMN_NAME, CONSTRAINT_TYPE, TENANT_ID_) AS select con.owner,
+            con.table_name, col.column_name, con.constraint_type,'DEMO' TENANT_ID_
             from user_constraints con, user_cons_columns col
             where con.constraint_name = col.constraint_name
             and con.owner = col.owner
             and con.table_name = col.table_name
-            and con.constraint_type = 'P'</createView>
+            and con.constraint_type = 'P'
+        </createView>
     </changeSet>
 
 
     <changeSet author="admin (generated)" id="00001-3" dbms="oracle">
-        <createView fullDefinition="true" remarks="列视图" viewName="V_COLUMNS_MASTER">CREATE OR REPLACE FORCE VIEW V_COLUMNS_MASTER (TENANT_ID_, COLUMN_ID, COLUMN_NAME, DATA_TYPE, DATA_LENGTH, DATA_SCALE, CHAR_LENGTH, NULLABLE, DATA_DEFAULT, COMMENTS, TABLE_NAME, TABLE_SCHEMA, PRIMARY_KEY) AS select
+        <createView fullDefinition="true" remarks="列视图" viewName="V_COLUMNS_MASTER">CREATE OR REPLACE FORCE VIEW
+            V_COLUMNS_MASTER (TENANT_ID_, COLUMN_ID, COLUMN_NAME, DATA_TYPE, DATA_LENGTH, DATA_SCALE, CHAR_LENGTH,
+            NULLABLE, DATA_DEFAULT, COMMENTS, TABLE_NAME, TABLE_SCHEMA, PRIMARY_KEY) AS select
             'DEMO' TENANT_ID_,
             a.column_id,
             a."COLUMN_NAME",a."DATA_TYPE",a."DATA_LENGTH",a."DATA_SCALE",a."CHAR_LENGTH",a."NULLABLE",a."DATA_DEFAULT",a."COMMENTS",a."TABLE_NAME",
@@ -82,11 +91,12 @@
             and utc.column_name = ucc.column_name) a
             left join v_table_key b
             on a.table_name = b.table_name
-            and a.column_name = b.column_name</createView>
+            and a.column_name = b.column_name
+        </createView>
     </changeSet>
     <changeSet author="37514 (generated)" id="00000-5" dbms="mysql">
         <createView fullDefinition="true" remarks="列视图" viewName="V_COLUMNS_MASTER">
-            CREATE OR REPLACE VIEW V_COLUMNS_MASTER  AS
+            CREATE OR REPLACE VIEW V_COLUMNS_MASTER AS
             SELECT TABLE_SCHEMA,
             ORDINAL_POSITION COLUMN_ID,
             TABLE_NAME,
@@ -338,9 +348,36 @@
     <changeSet author="admin (generated)" id="00001-13">
         <createTable remarks="一般日志表" tableName="TB_LOG_GENERAL">
             <column name="GUID" remarks="主键" type="NVARCHAR2(38)">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C00335258"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_TB_LOG_GENERAL"/>
             </column>
-            <column name="LOG_CONTENT" remarks="日志内容" type="NVARCHAR2(900)">
+            <column name="TRACE_ID" remarks="traceId" type="NVARCHAR2(38)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="SPAN_ID" remarks="spanId" type="NVARCHAR2(38)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="PARENT_ID" remarks="parentId" type="NVARCHAR2(38)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="APP_NAME" remarks="应用名称" type="NVARCHAR2(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="HOST_NAME" remarks="主机名称" type="NVARCHAR2(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="LOG_LEVEL" remarks="日志级别" type="NVARCHAR2(24)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CLASS_NAME" remarks="类名" type="NVARCHAR2(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LINE_NO" remarks="行号" type="NVARCHAR2(12)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPERATOR" remarks="操作人" type="NVARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LOG_CONTENT" remarks="日志内容" type="NVARCHAR2(4000)">
                 <constraints nullable="false"/>
             </column>
             <column name="CREATE_BY" remarks="记录创建者" type="NVARCHAR2(100)">
@@ -920,7 +957,8 @@
     </changeSet>
     <changeSet author="admin (generated)" id="00001-29" dbms="oracle">
         <createIndex indexName="IDX_TB_DICTIONARY_CODE" tableName="TB_DICTIONARY" unique="true">
-            <column computed="true" name="CASE &quot;DELETED&quot; WHEN U'1' THEN &quot;ITEM_TYPE_CODE&quot;||&quot;ITEM_CODE&quot; END"/>
+            <column computed="true"
+                    name="CASE &quot;DELETED&quot; WHEN U'1' THEN &quot;ITEM_TYPE_CODE&quot;||&quot;ITEM_CODE&quot; END"/>
         </createIndex>
     </changeSet>
     <changeSet author="admin (generated)" id="00001-30" dbms="oracle">

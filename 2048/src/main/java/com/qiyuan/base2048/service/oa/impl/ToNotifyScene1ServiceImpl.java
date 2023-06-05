@@ -5,12 +5,12 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.qiyuan.base2048.mapper.mapstruct.generated.ToNotifyScene1StructMapper;
+import com.qiyuan.base2048.mapper.mapstruct.ToNotifyScene1StructMapper;
 import com.qiyuan.base2048.mapper.mybatis.ToNotifyMapper;
 import com.qiyuan.base2048.mapper.mybatis.entity.ToNotify;
-import com.qiyuan.base2048.pojo.vo.generated.ToNotifyScene1DataVO;
-import com.qiyuan.base2048.pojo.vo.generated.ToNotifyScene1QueryVO;
-import com.qiyuan.base2048.service.Component.MessageUtils;
+import com.qiyuan.base2048.pojo.vo.save.ToNotifyScene1DataVO;
+import com.qiyuan.base2048.pojo.vo.query.ToNotifyScene1QueryVO;
+import com.qiyuan.base2048.service.component.MessageUtils;
 import com.qiyuan.base2048.service.oa.IToNotifyScene1Service;
 import com.qiyuan.bautil.dto.BaseUser;
 import com.qiyuan.bautil.dto.ResultDTO;
@@ -32,7 +32,7 @@ import static cn.hutool.core.bean.BeanUtil.beanToMap;
     * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-5-8 10:38:33
+* @since 2000-08-20
 */
 @Service
 public class ToNotifyScene1ServiceImpl extends ServiceImpl<ToNotifyMapper, ToNotify>  implements IToNotifyScene1Service {

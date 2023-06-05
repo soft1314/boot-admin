@@ -10,7 +10,7 @@ import com.qiyuan.base2048.mapper.mybatis.entity.TrUserOrg;
 * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2022-12-11 13:28:09
+* @since 2022-12-11
 */
 public interface TrUserOrgMapper extends BaseMapper<TrUserOrg> {
 }

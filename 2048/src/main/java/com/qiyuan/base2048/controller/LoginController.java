@@ -3,26 +3,23 @@ package com.qiyuan.base2048.controller;
 import com.anji.captcha.model.common.ResponseModel;
 import com.anji.captcha.model.vo.CaptchaVO;
 import com.anji.captcha.service.CaptchaService;
+import com.qiyuan.base2048.log.AuthLogSaver;
 import com.qiyuan.base2048.service.LoginService;
-import com.qiyuan.base2048.service.mybatis.ITbLogGeneralService;
 import com.qiyuan.base2048.service.permission.ResourceDataGetter;
 import com.qiyuan.bautil.annotate.response.ResponseBodyInController;
 import com.qiyuan.bautil.dto.*;
+import com.qiyuan.bautil.enums.ResultTypeEnum;
 import com.qiyuan.bautil.service.FormValidator;
 import com.qiyuan.bautil.util.UserTool;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author 虚领顶劲气沉丹田
@@ -43,8 +40,8 @@ public class LoginController {
     private ResourceDataGetter resourceDataGetter;
     @Resource
     private CaptchaService captchaService;
-    @Autowired
-    private ITbLogGeneralService tbLogGeneralService;
+    @Resource
+    private AuthLogSaver authLogSaver;
 
     /**
      * 验证登录，返回令牌
@@ -57,13 +54,16 @@ public class LoginController {
     public ResultDTO login(@Valid @RequestBody LoginForm loginForm, BindingResult bindingResult, HttpServletRequest request) throws Exception{
         /** 表单对象 VO 验证 **/
         if (bindingResult.hasErrors()) {
-            return formValidator.generateMessage(bindingResult);
+            ResultDTO resultDTO = formValidator.generateMessage(bindingResult);
+            authLogSaver.saveLog(loginForm.getUsername(), ResultTypeEnum.FAILURE,resultDTO.getMessage());
+            return resultDTO;
         }
         /** 校验码二次核对 **/
         CaptchaVO captchaVO = new CaptchaVO();
         captchaVO.setCaptchaVerification(loginForm.getCaptchaVerification());
         ResponseModel response = captchaService.verification(captchaVO);
         if(response.isSuccess() == false){
+            authLogSaver.saveLog(loginForm.getUsername(), ResultTypeEnum.FAILURE,response.getRepMsg());
             return ResultDTO.failureCustom(response.getRepMsg());
         }
 
@@ -72,6 +72,8 @@ public class LoginController {
     }
     @GetMapping("/auth/user/info")
     public ResultDTO getUserInfo(HttpServletRequest request) throws Exception{
+        BaseUser baseUser = UserTool.getBaseUser();
+        authLogSaver.saveLog(baseUser.getLogonName(), ResultTypeEnum.SUCCESS,"用户请求自身UserInfo信息。");
         return loginService.getUserInfo(request);
     }
     @PostMapping("/auth/user/logout")
@@ -83,13 +85,16 @@ public class LoginController {
     public List<MenuDTO> getMenus() throws Exception{
         BaseUser baseUser = UserTool.getBaseUser();
         List<MenuDTO> menuDTOList = resourceDataGetter.getMyselfMenuList(baseUser);
+        authLogSaver.saveLog(baseUser.getLogonName(), ResultTypeEnum.SUCCESS,"用户请求菜单。");
         return menuDTOList;
     }
     @PostMapping("/auth/token/refresh")
     public ResultDTO refreshToken(@Valid @RequestBody SingleTokenVO singleTokenVO, BindingResult bindingResult) throws Exception{
-        tbLogGeneralService.createLog("刷新令牌");
         if (bindingResult.hasErrors()) {
-            return formValidator.generateMessage(bindingResult);
+            ResultDTO resultDTO = formValidator.generateMessage(bindingResult);
+            BaseUser baseUser = UserTool.getBaseUser();
+            authLogSaver.saveLog(baseUser.getLogonName(), ResultTypeEnum.FAILURE,resultDTO.getMessage());
+            return resultDTO;
         }
         ResultDTO r = loginService.refreshToken(singleTokenVO);
         return r;

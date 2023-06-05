@@ -1,24 +1,18 @@
 package com.qiyuan.base2048.service.common.impl;
 
 import com.qiyuan.base2048.mapper.mapstruct.TbAttachmentStructMapper;
-import com.qiyuan.base2048.mapper.mybatis.TbAttachmentMapper;
 import com.qiyuan.base2048.mapper.mybatis.entity.TbAttachment;
-import com.qiyuan.base2048.service.Component.MinIoUtils;
+import com.qiyuan.base2048.service.component.MinIoUtils;
 import com.qiyuan.base2048.service.common.AttachmentSaver;
 import com.qiyuan.base2048.service.common.MinioUploadService;
-import com.qiyuan.bautil.dto.BaseUser;
 import com.qiyuan.bautil.dto.MinIoFileDTO;
 import com.qiyuan.bautil.dto.ResultDTO;
-import com.qiyuan.bautil.enums.IsDeletedEnum;
-import com.qiyuan.bautil.enums.IsEnabledEnum;
-import com.qiyuan.bautil.util.UserTool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
-import java.util.Date;
 
 @Service
 public class MinioUploadServiceImpl implements MinioUploadService {

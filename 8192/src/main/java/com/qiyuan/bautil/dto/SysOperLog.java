@@ -7,16 +7,16 @@ import java.util.Date;
 @Data
 public class SysOperLog {
     /** 日志主键 */
-    private Long operId;
+//    private Long operId;
 
     /** 操作模块 */
-    private String title;
+    private String businessModule;
 
-    /** 业务类型（0其它 1新增 2修改 3删除） */
-    private Integer businessType;
+    /** 业务类型 */
+    private String businessType;
 
     /** 业务类型数组 */
-    private Integer[] businessTypes;
+//    private Integer[] businessTypes;
 
     /** 请求方法 */
     private String method;
@@ -24,14 +24,14 @@ public class SysOperLog {
     /** 请求方式 */
     private String requestMethod;
 
-    /** 操作类别（0其它 1后台用户 2手机端用户） */
-    private Integer operatorType;
+    /** 操作类别 */
+    private String operatorType;
 
     /** 操作人员 */
     private String operName;
 
     /** 部门名称 */
-    private String deptName;
+//    private String deptName;
 
     /** 请求url */
     private String operUrl;
@@ -46,7 +46,7 @@ public class SysOperLog {
     private String jsonResult;
 
     /** 操作状态（0正常 1异常） */
-    private Integer status;
+//    private Integer status;
 
     /** 错误消息 */
     private String errorMsg;

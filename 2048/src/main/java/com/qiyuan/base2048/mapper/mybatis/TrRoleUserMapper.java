@@ -14,7 +14,7 @@ import java.util.List;
 * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2022-12-14 22:46:27
+* @since 2000-08-20
 */
 public interface TrRoleUserMapper extends BaseMapper<TrRoleUser> {
     /**

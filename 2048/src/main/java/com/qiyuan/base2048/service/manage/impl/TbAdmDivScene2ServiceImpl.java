@@ -10,7 +10,7 @@ import com.qiyuan.base2048.mapper.mybatis.TbAdmDivMapper;
 import com.qiyuan.base2048.mapper.mybatis.entity.TbAdmDiv;
 import com.qiyuan.base2048.pojo.vo.query.TbAdmDivScene2QueryVO;
 import com.qiyuan.base2048.pojo.vo.save.TbAdmDivScene2DataVO;
-import com.qiyuan.base2048.service.Component.MessageUtils;
+import com.qiyuan.base2048.service.component.MessageUtils;
 import com.qiyuan.base2048.service.manage.ITbAdmDivScene2Service;
 import com.qiyuan.bautil.dto.BaseUser;
 import com.qiyuan.bautil.dto.CascaderNode;
@@ -38,7 +38,7 @@ import static cn.hutool.core.bean.BeanUtil.beanToMap;
     * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2022-11-24 8:56:35
+* @since 2000-08-20
 */
 @Service
 public class TbAdmDivScene2ServiceImpl extends ServiceImpl<TbAdmDivMapper, TbAdmDiv>  implements ITbAdmDivScene2Service {

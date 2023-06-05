@@ -3,16 +3,13 @@ package com.qiyuan.base2048.cache.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.qiyuan.base2048.cache.DictionaryCacheService;
 import com.qiyuan.base2048.mapper.mapstruct.TbDictionaryStructMapper;
-import com.qiyuan.base2048.service.mybatis.ITbDictionaryService;
 import com.qiyuan.base2048.mapper.mybatis.TbDictionaryMapper;
 import com.qiyuan.base2048.mapper.mybatis.entity.TbDictionary;
-
 import com.qiyuan.bautil.dto.DictionaryNode;
 import com.qiyuan.bautil.dto.OptionNode;
 import com.qiyuan.bautil.enums.IsDeletedEnum;
 import com.qiyuan.bautil.enums.IsEnabledEnum;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +37,7 @@ public class DictionaryCacheServiceImpl implements DictionaryCacheService {
         queryWrapper.eq("ITEM_TYPE_CODE",itemtype)
                 .eq("ENABLED", IsEnabledEnum.ENABLED.getValue())
                 .eq("DELETED", IsDeletedEnum.NOTDELETED.getValue())
+                .orderByAsc("SORT")
                 .orderByAsc("ITEM_CODE");
         List<TbDictionary> tbDictionaryList = tbDictionaryMapper.selectList(queryWrapper);
         List<OptionNode> optionNodeList = TbDictionaryStructMapper.INSTANCE.map2OptionNodeList(tbDictionaryList);

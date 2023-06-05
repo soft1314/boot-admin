@@ -1,0 +1,38 @@
+server:
+  port: 6144
+spring:
+  application:
+    name: service-rest-log6144
+  datasource:
+    #    driverClassName: oracle.jdbc.driver.OracleDriver
+    #    url: jdbc:oracle:thin:@127.0.0.1:1521:orcl
+    #    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    #    url: jdbc:p6spy:oracle:thin:@127.0.0.1:1521:orcl
+    #    username: base2048
+    #    password: base2048
+
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/base2048?useSSL=false&serverTimezone=GMT%2B8&autoReconnect=true&allowPublicKeyRetrieval=true&useOldAliasMetadataBehavior=true
+    username: root
+    password: mysql
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: 9047c5e7-ee93-498f-9c79-10f53a92310f
+        username: nacos
+        password: nacos123
+        metadata:
+          user.name: ${spring.security.user.name}
+          user.password: ${spring.security.user.password}
+      config:
+        username: ${spring.cloud.nacos.discovery.username}
+        password: ${spring.cloud.nacos.discovery.password}
+logging:
+  config: classpath:log4j2-console.xml
+  level:
+    root: info
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
+  mapper-locations: classpath*:**/mapper/mybatis/xml/*.xml

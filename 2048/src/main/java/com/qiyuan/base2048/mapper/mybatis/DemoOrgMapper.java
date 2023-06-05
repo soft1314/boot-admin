@@ -10,7 +10,7 @@ import com.qiyuan.base2048.mapper.mybatis.entity.DemoOrg;
 * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-4-12 22:25:47
+* @since 2000-08-20
 */
 public interface DemoOrgMapper extends BaseMapper<DemoOrg> {
 }

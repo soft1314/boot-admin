@@ -1,10 +1,9 @@
-package com.qiyuan.base2048.service.Component;
+package com.qiyuan.base2048.service.component;
 
 import com.qiyuan.base2048.pojo.vo.vuecomponent.UserTableColumnResultDTO;
 import com.qiyuan.base2048.mapper.mybatis.UserTableColumnMasterGetter;
 import com.qiyuan.base2048.service.generator.TxtFileSummaryGetter;
 import com.qiyuan.base2048.service.generator.TxtFileSummarySaver;
-import com.qiyuan.bautil.util.TextFileTool;
 import com.qiyuan.bautil.util.TimeTool;
 import freemarker.template.Configuration;
 import freemarker.template.Template;

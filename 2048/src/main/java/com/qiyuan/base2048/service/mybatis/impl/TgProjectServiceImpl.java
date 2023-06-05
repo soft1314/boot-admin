@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.qiyuan.base2048.mapper.mybatis.entity.TgProject;
 import com.qiyuan.base2048.mapper.mybatis.TgProjectMapper;
 import com.qiyuan.base2048.pojo.vo.query.ProjectQueryVO;
-import com.qiyuan.base2048.service.Component.MessageUtils;
+import com.qiyuan.base2048.service.component.MessageUtils;
 import com.qiyuan.base2048.service.mybatis.ITgProjectService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qiyuan.bautil.dto.BaseUser;
@@ -29,7 +29,7 @@ import static cn.hutool.core.bean.BeanUtil.beanToMap;
 * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2022-6-17 10:42:14
+* @since 2000-08-20
 */
 @Service
 public class TgProjectServiceImpl extends ServiceImpl<TgProjectMapper, TgProject> implements ITgProjectService {

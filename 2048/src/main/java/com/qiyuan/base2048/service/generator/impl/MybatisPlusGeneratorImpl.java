@@ -1,8 +1,6 @@
 package com.qiyuan.base2048.service.generator.impl;
 
-import cn.hutool.Hutool;
 import com.qiyuan.base2048.mapper.mybatis.UserTableColumnMasterGetter;
-import com.qiyuan.base2048.mapper.mybatis.VTablesMasterMapper;
 import com.qiyuan.base2048.mapper.mybatis.entity.VTablesMaster;
 import com.qiyuan.base2048.pojo.dto.mybatis.EntityColumnDTO;
 import com.qiyuan.base2048.pojo.dto.mybatis.EntityDTO;
@@ -10,9 +8,8 @@ import com.qiyuan.base2048.pojo.dto.mybatis.MapperDTO;
 import com.qiyuan.base2048.pojo.dto.mybatis.ServiceDTO;
 import com.qiyuan.base2048.pojo.vo.result.SourceCodeVO;
 import com.qiyuan.base2048.pojo.vo.vuecomponent.UserTableColumnResultDTO;
-import com.qiyuan.base2048.pojo.vo.vuecomponent.VueControllerResultDTO;
-import com.qiyuan.base2048.service.Component.FreeMarkerUtils;
-import com.qiyuan.base2048.service.Component.MessageUtils;
+import com.qiyuan.base2048.service.component.FreeMarkerUtils;
+import com.qiyuan.base2048.service.component.MessageUtils;
 import com.qiyuan.base2048.service.database.TableService;
 import com.qiyuan.base2048.service.generator.MybatisPlusGenerator;
 import com.qiyuan.bautil.annotate.response.enumer.ResultStatus;
@@ -26,7 +23,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.File;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

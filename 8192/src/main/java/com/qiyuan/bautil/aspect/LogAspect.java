@@ -3,6 +3,7 @@ package com.qiyuan.bautil.aspect;
 import cn.hutool.core.util.ArrayUtil;
 import com.alibaba.fastjson.JSON;
 import com.qiyuan.bautil.dto.SysOperLog;
+import com.qiyuan.bautil.service.SysOperLogAsyncSaver;
 import com.qiyuan.bautil.util.IpAddrUtil;
 import com.qiyuan.bautil.util.ServletUtil;
 import com.qiyuan.bautil.util.StringUtil;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Collection;
@@ -33,6 +35,9 @@ import java.util.Map;
 @Component
 @Slf4j
 public class LogAspect {
+    @Resource
+    private SysOperLogAsyncSaver sysOperLogAsyncSaver;
+
     /**
      * 排除敏感属性字段
      */
@@ -79,27 +84,34 @@ public class LogAspect {
             // 请求的地址
             String ip = IpAddrUtil.getIpAddr(ServletUtil.getRequest());
             operLog.setOperIp(ip);
+
             String uri = ServletUtil.getRequest().getRequestURI();
             operLog.setOperUrl(uri);
-            String username = UserTool.getOperator();
+
+            String operator = UserTool.getOperator();
+            operLog.setOperName(operator);
+
             if (e != null) {
                 String msg = e.getMessage();
                 operLog.setErrorMsg(msg);
             }
+
             // 设置方法名称
             String className = joinPoint.getTarget().getClass().getName();
             String methodName = joinPoint.getSignature().getName();
             operLog.setMethod(className + ":" + methodName + "()");
+
             // 设置请求方式
             String requestMethod = ServletUtil.getRequest().getMethod();
             operLog.setRequestMethod(requestMethod);
+
             // 处理设置注解上的参数
             getControllerMethodDescription(joinPoint, controllerLog, operLog, jsonResult);
             // 设置消耗时间
             long costTime = System.currentTimeMillis() - TIME_THREADLOCAL.get();
             operLog.setCostTime(costTime);
-            log.error("日志采集完成");
-            System.out.println(operLog.toString());
+
+            sysOperLogAsyncSaver.asyncSave(operLog);
         } catch (Exception exp) {
             // 记录本地异常日志
             log.error("异常信息:{}", exp.getMessage());
@@ -118,11 +130,11 @@ public class LogAspect {
      */
     public void getControllerMethodDescription(JoinPoint joinPoint, Log log, SysOperLog operLog, Object jsonResult) throws Exception {
         // 设置action动作
-        operLog.setBusinessType(log.businessType().ordinal());
+        operLog.setBusinessType(log.businessType().getValue());
         // 设置标题
-        operLog.setTitle(log.title());
+        operLog.setBusinessModule(log.businessModule());
         // 设置操作人类别
-        operLog.setOperatorType(log.operatorType().ordinal());
+        operLog.setOperatorType(log.operatorType().getValue());
         // 是否需要保存request，参数和值
         if (log.isSaveRequestData()) {
             // 获取参数的信息，传入到数据库中。

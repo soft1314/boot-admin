@@ -1,8 +1,7 @@
 package com.qiyuan.base2048.service.generator.impl;
 
-import com.qiyuan.base2048.mapper.mybatis.UserTableColumnMasterGetter;
 import com.qiyuan.base2048.pojo.vo.result.SourceCodeVO;
-import com.qiyuan.base2048.service.Component.FreeMarkerUtils;
+import com.qiyuan.base2048.service.component.FreeMarkerUtils;
 import com.qiyuan.base2048.service.generator.StoryGenerator;
 import com.qiyuan.bautil.dto.ResultDTO;
 import org.springframework.stereotype.Service;

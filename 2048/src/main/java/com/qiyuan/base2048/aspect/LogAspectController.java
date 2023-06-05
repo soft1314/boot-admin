@@ -1,14 +1,11 @@
 package com.qiyuan.base2048.aspect;
 
-import com.qiyuan.base2048.service.mybatis.ITbLogGeneralService;
 import com.qiyuan.bautil.util.IpAddrUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -16,12 +13,13 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 
-@Aspect
+//@Aspect
 @Component
 @Slf4j
+@Deprecated
 public class LogAspectController {
-    @Autowired
-    private ITbLogGeneralService tbLogGeneralService;
+//    @Autowired
+//    private ITbLogGeneralService tbLogGeneralService;
 
     @Pointcut("execution(* com.qiyuan.base2048.controller.*.*(..))")
     public void log() {
@@ -45,16 +43,16 @@ public class LogAspectController {
         content content = new content(url, ip, method, args);
         log.debug("Request:{}", content);
 
-        tbLogGeneralService.createLog(content.toString());
+//        tbLogGeneralService.createLog(content.toString());
     }
 
     @AfterReturning(returning = "result", pointcut = "log()")
     public void logAfterReturning(Object result) throws Exception{
         log.debug("Result:{}", result);
         if(result == null) {
-            tbLogGeneralService.createLog("Result:NULL");
+//            tbLogGeneralService.createLog("Result:NULL");
         }else {
-            tbLogGeneralService.createLog("Result:" + result.toString());
+//            tbLogGeneralService.createLog("Result:" + result.toString());
         }
     }
 

@@ -1,6 +1,6 @@
 <!-- 本文件自动生成，再次生成时易被覆盖 -->
 <!-- @author 虚领顶劲气沉丹田 -->
-<!-- @since 2023-4-11 14:49:33 -->
+<!-- @since 2023-6-1 -->
 <template>
   <div class="app-container background-white">
     <!-- 查询抽屉开始 -->
@@ -18,38 +18,42 @@
           style="margin-top: 25px;margin-right: 20px;"
           :model="filterDrawer.formData"
         >
-          <el-form-item label="主键" :label-width="filterDrawer.formLabelWidth" prop="guid">
-            <el-input v-model="filterDrawer.formData.guid" placeholder="请输入主键" size="mini" prefix-icon="el-icon-search" />
+          <el-form-item label="GUID" :label-width="filterDrawer.formLabelWidth" prop="guid">
+            <el-input v-model="filterDrawer.formData.guid" placeholder="请输入" size="mini" prefix-icon="el-icon-search" />
           </el-form-item>
-          <el-form-item label="日志内容" :label-width="filterDrawer.formLabelWidth" prop="logContent">
+          <el-form-item label="登录账号" :label-width="filterDrawer.formLabelWidth" prop="userName">
             <el-input
-              v-model="filterDrawer.formData.logContent"
-              placeholder="请输入日志内容"
+              v-model="filterDrawer.formData.userName"
+              placeholder="请输入登录账号"
               size="mini"
               prefix-icon="el-icon-search"
             />
           </el-form-item>
-          <el-form-item label="记录创建者" :label-width="filterDrawer.formLabelWidth" prop="createBy">
+          <el-form-item label="结果类型" :label-width="filterDrawer.formLabelWidth" prop="resultType">
+            <el-select v-model="filterDrawer.formData.resultType" placeholder="请选择结果类型" size="mini" clearable>
+              <el-option
+                v-for="item in optionMap.get($commonDicType.RESULT_TYPE())"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              />
+            </el-select>
+          </el-form-item>
+          <el-form-item label="IP地址" :label-width="filterDrawer.formLabelWidth" prop="operIp">
             <el-input
-              v-model="filterDrawer.formData.createBy"
-              placeholder="请输入记录创建者"
+              v-model="filterDrawer.formData.operIp"
+              placeholder="请输入IP地址"
               size="mini"
               prefix-icon="el-icon-search"
             />
           </el-form-item>
-          <el-form-item label="记录创建时间" prop="createTime" :label-width="filterDrawer.formLabelWidth">
-            <el-date-picker v-model="filterDrawer.formData.createTime" type="date" placeholder="选择日期" />
-          </el-form-item>
-          <el-form-item label="记录最后修改者" :label-width="filterDrawer.formLabelWidth" prop="modifyBy">
+          <el-form-item label="消息内容" :label-width="filterDrawer.formLabelWidth" prop="msg">
             <el-input
-              v-model="filterDrawer.formData.modifyBy"
-              placeholder="请输入记录最后修改者"
+              v-model="filterDrawer.formData.msg"
+              placeholder="请输入消息内容"
               size="mini"
               prefix-icon="el-icon-search"
             />
-          </el-form-item>
-          <el-form-item label="记录最后修改时间" prop="modifyTime" :label-width="filterDrawer.formLabelWidth">
-            <el-date-picker v-model="filterDrawer.formData.modifyTime" type="date" placeholder="选择日期" />
           </el-form-item>
           <el-form-item label="时间戳" prop="datestamp" :label-width="filterDrawer.formLabelWidth">
             <el-date-picker v-model="filterDrawer.formData.datestamp" type="date" placeholder="选择日期" />
@@ -98,6 +102,9 @@
         <el-button size="mini" class="btn-item" type="success" icon="el-icon-refresh" @click="refresh()">
           刷新
         </el-button>
+        <el-button size="mini" class="btn-item" type="primary" icon="el-icon-add" @click="handleClickAddButton()">
+          添加
+        </el-button>
         <el-button size="mini" class="btn-item" type="success" icon="el-icon-search" @click="showDrawer()">
           查询
         </el-button>
@@ -110,11 +117,20 @@
         <el-table-column type="expand">
           <template slot-scope="props">
             <el-form label-position="left" class="demo-table-expand">
-              <el-form-item label="主键">
+              <el-form-item label="">
                 <span>{{ props.row.guid }}</span>
               </el-form-item>
-              <el-form-item label="日志内容">
-                <span>{{ props.row.logContent }}</span>
+              <el-form-item label="登录账号">
+                <span>{{ props.row.userName }}</span>
+              </el-form-item>
+              <el-form-item label="结果类型">
+                <span>{{ $commonUtils.optoinValue2Lable(optionMap.get($commonDicType.RESULT_TYPE()),props.row.resultType) }}</span>
+              </el-form-item>
+              <el-form-item label="IP地址">
+                <span>{{ props.row.operIp }}</span>
+              </el-form-item>
+              <el-form-item label="消息内容">
+                <span>{{ props.row.msg }}</span>
               </el-form-item>
               <el-form-item label="记录创建者">
                 <span>{{ props.row.createBy }}</span>
@@ -143,24 +159,18 @@
             </el-form>
           </template>
         </el-table-column>
+        <el-table-column type="selection" width="55" />
         <el-table-column type="index" label="序号" :index="indexMethod" width="70" />
-        <el-table-column prop="logContent" label="日志内容" show-overflow-tooltip sortable />
-        <el-table-column prop="createBy" label="记录创建者" show-overflow-tooltip sortable />
+        <el-table-column prop="userName" label="登录账号" show-overflow-tooltip sortable />
         <el-table-column
-          prop="createTime"
-          label="记录创建时间"
+          prop="resultType"
+          label="结果类型"
           show-overflow-tooltip
           sortable
-          :formatter="(row,column,cellValue) => dateTimeColFormatter(row,column,cellValue)"
+          :formatter="(row,column,cellValue) => colFormatter(row,column,cellValue, $commonDicType.RESULT_TYPE())"
         />
-        <el-table-column prop="modifyBy" label="记录最后修改者" show-overflow-tooltip sortable />
-        <el-table-column
-          prop="modifyTime"
-          label="记录最后修改时间"
-          show-overflow-tooltip
-          sortable
-          :formatter="(row,column,cellValue) => dateTimeColFormatter(row,column,cellValue)"
-        />
+        <el-table-column prop="operIp" label="IP地址" show-overflow-tooltip sortable />
+        <el-table-column prop="msg" label="消息内容" show-overflow-tooltip sortable min-width="220" />
         <el-table-column
           prop="datestamp"
           label="时间戳"
@@ -168,10 +178,25 @@
           sortable
           :formatter="(row,column,cellValue) => dateTimeColFormatter(row,column,cellValue)"
         />
+        <el-table-column
+          prop="enabled"
+          label="启用状态"
+          show-overflow-tooltip
+          sortable
+          :formatter="(row,column,cellValue) => colFormatter(row,column,cellValue, $commonDicType.ENABLED())"
+        />
+        <el-table-column
+          prop="deleted"
+          label="删除状态"
+          show-overflow-tooltip
+          sortable
+          :formatter="(row,column,cellValue) => colFormatter(row,column,cellValue, $commonDicType.DELETED())"
+        />
         <el-table-column prop="remarks" label="备注" show-overflow-tooltip sortable />
-        <el-table-column align="center" label="操作" show-overflow-tooltip min-width="50">
+        <el-table-column align="center" label="操作" show-overflow-tooltip min-width="180">
           <template slot-scope="scope">
-            <el-button size="least" type="primary" @click="handleEditRow(scope.row)">修改</el-button>
+            <el-button size="least" type="primary" @click="handleEditRow(scope.row)">备注</el-button>
+            <el-button size="least" type="danger" @click="handleDeleteRow(scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -198,8 +223,23 @@
       :title="mainDataForm.mainDataFormDialogTitle"
     >
       <el-form ref="mainEditForm" :model="mainDataForm.editingRecord" :rules="rules" size="medium" label-width="150px">
-        <el-form-item label="日志内容" prop="logContent">
-          {{ mainDataForm.editingRecord.logContent }}
+        <el-form-item label="登录账号">
+          <span>{{ mainDataForm.editingRecord.userName }}</span>
+        </el-form-item>
+        <el-form-item label="结果类型">
+          <span>{{ $commonUtils.optoinValue2Lable(optionMap.get($commonDicType.RESULT_TYPE()),mainDataForm.editingRecord.resultType) }}</span>
+        </el-form-item>
+        <el-form-item label="IP地址">
+          <span>{{ mainDataForm.editingRecord.operIp }}</span>
+        </el-form-item>
+        <el-form-item label="消息内容">
+          <span>{{ mainDataForm.editingRecord.msg }}</span>
+        </el-form-item>
+        <el-form-item label="启用状态">
+          <span>{{ $commonUtils.optoinValue2Lable(optionMap.get($commonDicType.ENABLED()),mainDataForm.editingRecord.enabled) }}</span>
+        </el-form-item>
+        <el-form-item label="删除状态">
+          <span>{{ $commonUtils.optoinValue2Lable(optionMap.get($commonDicType.DELETED()),mainDataForm.editingRecord.deleted) }}</span>
         </el-form-item>
         <el-form-item label="备注" prop="remarks">
           <el-input
@@ -227,16 +267,16 @@
 </template>
 <script>
 import {
-  fetchTbLogGeneralPage,
-  saveTbLogGeneral,
-  delTbLogGeneral
-} from '@/api/tb-log-general-scene1'
+  fetchTbLogAuthPage,
+  saveTbLogAuth,
+  delTbLogAuth
+} from '@/api/tb-log-auth-scene1'
 import {
   getDictionaryOptionsByItemType,
   lazyFetchDictionaryNode
 } from '@/api/dictionary'
 export default {
-  name: 'TbLogGeneral',
+  name: 'TbLogAuth',
   components: {},
   data() {
     return {
@@ -244,7 +284,10 @@ export default {
       mainTableData: [],
       mainDataForm: {
         editingRecord: {
-          logContent: '',
+          userName: '',
+          resultType: '',
+          operIp: '',
+          msg: '',
           enabled: '1',
           deleted: '1',
           remarks: '无'
@@ -257,12 +300,15 @@ export default {
         formLabelWidth: '100px',
         formData: {
           guid: '',
-          logContent: '',
+          userName: '',
+          resultType: '',
+          operIp: '',
+          msg: '',
           createBy: '',
-          createTime: null,
+          createTime: '',
           modifyBy: '',
-          modifyTime: null,
-          datestamp: null,
+          modifyTime: '',
+          datestamp: '',
           enabled: '',
           deleted: '',
           remarks: '',
@@ -274,6 +320,7 @@ export default {
       optionMap: new Map(),
       // 本页需要加载的option数据类型罗列在下面的数组中
       optionKey: [
+        this.$commonDicType.RESULT_TYPE(),
         this.$commonDicType.ENABLED(),
         this.$commonDicType.DELETED()
       ],
@@ -281,12 +328,27 @@ export default {
       rules: {
         guid: [{
           required: true,
-          message: '请输入主键',
+          message: '请输入',
           trigger: 'blur'
         }],
-        logContent: [{
+        userName: [{
           required: true,
-          message: '请输入日志内容',
+          message: '请输入登录账号',
+          trigger: 'blur'
+        }],
+        resultType: [{
+          required: true,
+          message: '请输入结果类型',
+          trigger: 'blur'
+        }],
+        operIp: [{
+          required: true,
+          message: '请输入IP地址',
+          trigger: 'blur'
+        }],
+        msg: [{
+          required: true,
+          message: '请输入消息内容',
           trigger: 'blur'
         }],
         createBy: [{
@@ -399,7 +461,7 @@ export default {
     },
     async getMainTableData() {
       this.loading = false
-      const response = await fetchTbLogGeneralPage(this.filterDrawer.formData)
+      const response = await fetchTbLogAuthPage(this.filterDrawer.formData)
       this.loading = false
       if (response.code !== 100) {
         this.$message({
@@ -425,7 +487,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.awaitDelTbLogGeneral(row.guid)
+        this.awaitDelTbLogAuth(row.guid)
       }).catch(() => {
         this.$message({
           type: 'info',
@@ -433,11 +495,11 @@ export default {
         })
       })
     },
-    async awaitDelTbLogGeneral(guid) {
+    async awaitDelTbLogAuth(guid) {
       const guidVO = {
         guid
       }
-      const result = await delTbLogGeneral(guidVO)
+      const result = await delTbLogAuth(guidVO)
       if (this.$commonResultCode.SUCCESS() === result.code) {
         this.getMainTableData()
       }
@@ -466,7 +528,7 @@ export default {
       })
     },
     async submitMainDataForm() {
-      const response = await saveTbLogGeneral(this.mainDataForm.editingRecord)
+      const response = await saveTbLogAuth(this.mainDataForm.editingRecord)
       this.$message({
         message: response.message,
         type: 'warning'

@@ -10,7 +10,7 @@ import com.qiyuan.base2048.mapper.mybatis.TbRoleMapper;
 import com.qiyuan.base2048.mapper.mybatis.entity.TbRole;
 import com.qiyuan.base2048.pojo.vo.query.TbRoleScene1QueryVO;
 import com.qiyuan.base2048.pojo.vo.save.TbRoleScene1DataVO;
-import com.qiyuan.base2048.service.Component.MessageUtils;
+import com.qiyuan.base2048.service.component.MessageUtils;
 import com.qiyuan.base2048.service.permission.ITbRoleScene1Service;
 import com.qiyuan.bautil.dto.BaseUser;
 import com.qiyuan.bautil.dto.ResultDTO;
@@ -29,7 +29,7 @@ import static cn.hutool.core.bean.BeanUtil.beanToMap;
     * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2022-12-14 21:12:42
+* @since 2000-08-20
 */
 @Service
 public class TbRoleScene1ServiceImpl extends ServiceImpl<TbRoleMapper, TbRole>  implements ITbRoleScene1Service {

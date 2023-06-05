@@ -11,7 +11,7 @@ import com.qiyuan.base2048.mapper.mybatis.entity.DemoOrg;
 import com.qiyuan.base2048.pojo.vo.generated.DemoOrgScene2SaveDataVO;
 import com.qiyuan.base2048.pojo.vo.generated.DemoOrgScene2RespDataVO;
 import com.qiyuan.base2048.pojo.vo.generated.DemoOrgScene2QueryVO;
-import com.qiyuan.base2048.service.Component.MessageUtils;
+import com.qiyuan.base2048.service.component.MessageUtils;
 import com.qiyuan.base2048.service.generated.IDemoOrgScene2Service;
 import com.qiyuan.bautil.dto.BaseUser;
 import com.qiyuan.bautil.dto.ResultDTO;
@@ -35,7 +35,7 @@ import static cn.hutool.core.bean.BeanUtil.beanToMap;
     * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-4-13 13:52:37
+* @since 2000-08-20
 */
 @Service
 public class DemoOrgScene2ServiceImpl extends ServiceImpl<DemoOrgMapper, DemoOrg>  implements IDemoOrgScene2Service {

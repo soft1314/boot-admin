@@ -8,7 +8,7 @@ import com.qiyuan.base2048.mapper.mybatis.entity.TbDictionary;
 import com.qiyuan.base2048.mapper.mybatis.entity.TbDictype;
 import com.qiyuan.base2048.pojo.vo.eltable.TbDictionaryVO;
 import com.qiyuan.base2048.pojo.vo.eltable.TbDictypeVO;
-import com.qiyuan.base2048.service.Component.MessageUtils;
+import com.qiyuan.base2048.service.component.MessageUtils;
 import com.qiyuan.base2048.service.manage.DictionaryDataSaver;
 import com.qiyuan.base2048.service.mybatis.ITbDictionaryService;
 import com.qiyuan.base2048.service.mybatis.ITbDictypeService;

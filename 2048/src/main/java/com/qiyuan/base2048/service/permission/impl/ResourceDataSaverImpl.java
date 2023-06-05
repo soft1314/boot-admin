@@ -2,8 +2,7 @@ package com.qiyuan.base2048.service.permission.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
-import com.qiyuan.base2048.mapper.mybatis.entity.TbUser;
-import com.qiyuan.base2048.service.Component.MessageUtils;
+import com.qiyuan.base2048.service.component.MessageUtils;
 import com.qiyuan.base2048.service.mybatis.ITbResourceService;
 import com.qiyuan.base2048.mapper.mybatis.entity.TbResource;
 import com.qiyuan.base2048.service.permission.ResourceDataSaver;

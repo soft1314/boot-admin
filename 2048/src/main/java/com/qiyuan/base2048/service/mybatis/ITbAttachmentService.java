@@ -12,7 +12,7 @@ import java.util.List;
 * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-5-9 14:25:25
+* @since 2000-08-20
 */
 public interface ITbAttachmentService extends IService<TbAttachment> {
     List<TbAttachment> selectTbAttachmentByMainData(String tbName, String tbStyle, String tbGuid) throws Exception;

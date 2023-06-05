@@ -1,6 +1,6 @@
 package com.qiyuan.base2048.filter;
 
-import com.qiyuan.base2048.service.Component.MessageUtils;
+import com.qiyuan.base2048.service.component.MessageUtils;
 import com.qiyuan.bautil.util.TenantContextHolder;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;

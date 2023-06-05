@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2022-1-20 15:51:31
+* @since 2000-08-20
 */
 public interface ITbSysTestService extends IService<TbSysTest> {
 

@@ -18,7 +18,7 @@ import java.util.List;
     * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2022-11-24 8:56:25
+* @since 2022-11-24
 */
 @Mapper(uses = {BooleanToCharFormat.class})
 public interface TbAdmDivScene2StructMapper {

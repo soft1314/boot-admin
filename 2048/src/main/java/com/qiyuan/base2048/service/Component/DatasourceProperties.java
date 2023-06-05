@@ -1,4 +1,4 @@
-package com.qiyuan.base2048.service.Component;
+package com.qiyuan.base2048.service.component;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

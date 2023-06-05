@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2022-10-31 10:26:04
+* @since 2000-08-20
 */
 @Service
 public class TbDictypeServiceImpl extends ServiceImpl<TbDictypeMapper, TbDictype> implements ITbDictypeService {

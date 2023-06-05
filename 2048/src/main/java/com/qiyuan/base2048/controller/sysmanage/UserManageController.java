@@ -5,7 +5,7 @@ import com.qiyuan.base2048.mapper.mapstruct.TbUserStructMapper;
 import com.qiyuan.base2048.mapper.mybatis.entity.TbUser;
 import com.qiyuan.base2048.pojo.vo.query.UserPageQueryVO;
 import com.qiyuan.base2048.pojo.vo.save.*;
-import com.qiyuan.base2048.service.Component.MessageUtils;
+import com.qiyuan.base2048.service.component.MessageUtils;
 import com.qiyuan.base2048.service.permission.RoleDataGetter;
 import com.qiyuan.base2048.service.permission.RoleDataSaver;
 import com.qiyuan.base2048.service.permission.UserDataGetter;

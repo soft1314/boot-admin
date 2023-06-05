@@ -1,16 +1,14 @@
 package com.qiyuan.base2048.service.generator.impl;
 
-import com.qiyuan.base2048.mapper.mybatis.UserTableColumnMasterGetter;
 import com.qiyuan.base2048.mapper.mybatis.entity.TgProject;
 import com.qiyuan.base2048.pojo.dto.freemarker.VueMarker;
 import com.qiyuan.base2048.pojo.vo.result.SourceCodeVO;
-import com.qiyuan.base2048.service.Component.FreeMarkerUtils;
+import com.qiyuan.base2048.service.component.FreeMarkerUtils;
 import com.qiyuan.base2048.service.database.ColumnService;
 import com.qiyuan.base2048.service.generator.VueGenerator;
 import com.qiyuan.bautil.annotate.response.enumer.ResultStatus;
 import com.qiyuan.bautil.dto.ResultDTO;
 import com.qiyuan.bautil.util.StringTool;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

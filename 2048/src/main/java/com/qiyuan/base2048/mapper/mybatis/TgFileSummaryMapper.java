@@ -10,7 +10,7 @@ import com.qiyuan.base2048.mapper.mybatis.entity.TgFileSummary;
 * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2022-11-23 11:13:19
+* @since 2000-08-20
 */
 public interface TgFileSummaryMapper extends BaseMapper<TgFileSummary> {
 }

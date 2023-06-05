@@ -1,21 +1,13 @@
 package com.qiyuan.base2048.service.generator.impl;
 
-import com.qiyuan.base2048.mapper.mybatis.UserTableColumnMasterGetter;
-import com.qiyuan.base2048.pojo.dto.freemarker.VueMarker;
 import com.qiyuan.base2048.pojo.vo.result.SourceCodeVO;
-import com.qiyuan.base2048.pojo.vo.vuecomponent.UserTableColumnResultDTO;
-import com.qiyuan.base2048.service.Component.FreeMarkerUtils;
-import com.qiyuan.base2048.service.Component.MessageUtils;
+import com.qiyuan.base2048.service.component.FreeMarkerUtils;
 import com.qiyuan.base2048.service.generator.StoryGenerator;
-import com.qiyuan.base2048.service.generator.TableChecker;
 import com.qiyuan.bautil.dto.ResultDTO;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.io.File;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Service("Scene1StoryGeneratorImpl")

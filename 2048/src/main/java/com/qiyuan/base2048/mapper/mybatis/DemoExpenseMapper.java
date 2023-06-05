@@ -10,7 +10,7 @@ import com.qiyuan.base2048.mapper.mybatis.entity.DemoExpense;
 * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-4-12 22:25:32
+* @since 2023-4-12
 */
 public interface DemoExpenseMapper extends BaseMapper<DemoExpense> {
 }

@@ -10,7 +10,7 @@ import com.qiyuan.base2048.mapper.mybatis.TbEmpMapper;
 import com.qiyuan.base2048.mapper.mybatis.entity.TbEmp;
 import com.qiyuan.base2048.pojo.vo.query.TbEmpScene1QueryVO;
 import com.qiyuan.base2048.pojo.vo.save.TbEmpScene1DataVO;
-import com.qiyuan.base2048.service.Component.MessageUtils;
+import com.qiyuan.base2048.service.component.MessageUtils;
 import com.qiyuan.base2048.service.manage.ITbEmpScene1Service;
 import com.qiyuan.bautil.dto.BaseUser;
 import com.qiyuan.bautil.dto.ResultDTO;
@@ -29,7 +29,7 @@ import static cn.hutool.core.bean.BeanUtil.beanToMap;
     * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2022-12-5 16:40:32
+* @since 2000-08-20
 */
 @Service
 public class TbEmpScene1ServiceImpl extends ServiceImpl<TbEmpMapper, TbEmp>  implements ITbEmpScene1Service {

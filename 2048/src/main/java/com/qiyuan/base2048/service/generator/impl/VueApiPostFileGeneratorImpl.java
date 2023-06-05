@@ -2,11 +2,10 @@ package com.qiyuan.base2048.service.generator.impl;
 
 import com.qiyuan.base2048.pojo.vo.vuecomponent.ApiJsGeneratorParameterDTO;
 import com.qiyuan.base2048.pojo.vo.vuecomponent.VueControllerResultDTO;
-import com.qiyuan.base2048.service.Component.FreeMarkerUtils;
+import com.qiyuan.base2048.service.component.FreeMarkerUtils;
 import com.qiyuan.base2048.service.generator.ControllerInfoGetter;
 import com.qiyuan.base2048.service.generator.VueApiPostFileGenerator;
 import com.qiyuan.bautil.annotate.response.enumer.ResultStatus;
-import com.qiyuan.bautil.annotate.response.pojo.ControllerResultDTO;
 import com.qiyuan.bautil.dto.ResultDTO;
 import com.qiyuan.bautil.util.StringTool;
 import org.springframework.beans.factory.annotation.Autowired;

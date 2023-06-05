@@ -10,7 +10,7 @@ import com.qiyuan.base2048.mapper.mybatis.TgFileSummaryMapper;
 import com.qiyuan.base2048.mapper.mybatis.entity.TgFileSummary;
 import com.qiyuan.base2048.pojo.vo.query.TgFileSummaryScene1QueryVO;
 import com.qiyuan.base2048.pojo.vo.save.TgFileSummaryScene1DataVO;
-import com.qiyuan.base2048.service.Component.MessageUtils;
+import com.qiyuan.base2048.service.component.MessageUtils;
 import com.qiyuan.base2048.service.generator.ITgFileSummaryScene1Service;
 import com.qiyuan.bautil.dto.BaseUser;
 import com.qiyuan.bautil.dto.ResultDTO;
@@ -34,7 +34,7 @@ import static cn.hutool.core.bean.BeanUtil.beanToMap;
     * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2022-11-23 14:20:18
+* @since 2000-08-20
 */
 @Service
 public class TgFileSummaryScene1ServiceImpl extends ServiceImpl<TgFileSummaryMapper, TgFileSummary>  implements ITgFileSummaryScene1Service {

@@ -3,7 +3,7 @@ package com.qiyuan.base2048.service.generated.impl;
 import com.qiyuan.base2048.feign.FeignWorkflowService;
 import com.qiyuan.base2048.mapper.mybatis.DemoLeaveMapper;
 import com.qiyuan.base2048.mapper.mybatis.entity.DemoLeave;
-import com.qiyuan.base2048.service.Component.MessageUtils;
+import com.qiyuan.base2048.service.component.MessageUtils;
 import com.qiyuan.base2048.service.generated.IDemoLeaveScene3Transaction;
 import com.qiyuan.bautil.dto.ResultDTO;
 import com.qiyuan.bautil.dto.WorkflowReviewResultVO;

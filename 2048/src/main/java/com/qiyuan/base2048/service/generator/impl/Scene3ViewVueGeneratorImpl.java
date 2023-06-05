@@ -3,7 +3,7 @@ package com.qiyuan.base2048.service.generator.impl;
 import com.qiyuan.base2048.mapper.mybatis.entity.TgProject;
 import com.qiyuan.base2048.pojo.dto.freemarker.VueMarker;
 import com.qiyuan.base2048.pojo.vo.result.SourceCodeVO;
-import com.qiyuan.base2048.service.Component.FreeMarkerUtils;
+import com.qiyuan.base2048.service.component.FreeMarkerUtils;
 import com.qiyuan.base2048.service.database.ColumnService;
 import com.qiyuan.base2048.service.generator.VueGenerator;
 import com.qiyuan.bautil.annotate.response.enumer.ResultStatus;

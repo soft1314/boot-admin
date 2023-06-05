@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.qiyuan.base2048.mapper.mybatis.TrNotifyEmpMapper;
 import com.qiyuan.base2048.mapper.mybatis.entity.TrNotifyEmp;
 import com.qiyuan.base2048.pojo.vo.save.NotifyEmpVO;
-import com.qiyuan.base2048.service.Component.MessageUtils;
+import com.qiyuan.base2048.service.component.MessageUtils;
 import com.qiyuan.base2048.service.oa.NotifyEmpRelationSaver;
 import com.qiyuan.bautil.dto.ResultDTO;
 import com.qiyuan.bautil.enums.IsDeletedEnum;

@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.qiyuan.base2048.mapper.mybatis.entity.TbUser;
 import com.qiyuan.base2048.pojo.vo.save.UserDataPermissionTypeVO;
 import com.qiyuan.base2048.pojo.vo.save.UserEmpVO;
-import com.qiyuan.base2048.service.Component.MessageUtils;
+import com.qiyuan.base2048.service.component.MessageUtils;
 import com.qiyuan.base2048.service.mybatis.ITbUserService;
 import com.qiyuan.base2048.service.permission.UserDataSaver;
 import com.qiyuan.bautil.dto.ResultDTO;

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-4-10 16:10:28
+* @since 2000-08-20
 */
 @Service
 public class TbDroolsRuleServiceImpl extends ServiceImpl<TbDroolsRuleMapper, TbDroolsRule> implements ITbDroolsRuleService {

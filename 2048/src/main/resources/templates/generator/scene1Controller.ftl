@@ -44,7 +44,7 @@ public class ${marker.entityName}Scene1Controller {
     if (bindingResult.hasErrors()) {
       return formValidator.generateMessage(bindingResult);
     }
-    return scene1Service.getPage(queryVO, false);
+    return scene1Service.getPage(queryVO, true);
   }
 
   @PostMapping("/save")

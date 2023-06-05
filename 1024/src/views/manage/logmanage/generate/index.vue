@@ -18,11 +18,7 @@
           style="margin-top: 25px;margin-right: 20px;"
           :model="filterDrawer.formData"
         >
-          <el-form-item
-            label="主键"
-            :label-width="filterDrawer.formLabelWidth"
-            prop="guid"
-          >
+          <el-form-item label="主键" :label-width="filterDrawer.formLabelWidth" prop="guid">
             <el-input
               v-model="filterDrawer.formData.guid"
               placeholder="请输入主键"
@@ -30,11 +26,7 @@
               prefix-icon="el-icon-search"
             />
           </el-form-item>
-          <el-form-item
-            label="文件名"
-            :label-width="filterDrawer.formLabelWidth"
-            prop="fileName"
-          >
+          <el-form-item label="文件名" :label-width="filterDrawer.formLabelWidth" prop="fileName">
             <el-input
               v-model="filterDrawer.formData.fileName"
               placeholder="请输入文件名"
@@ -42,11 +34,7 @@
               prefix-icon="el-icon-search"
             />
           </el-form-item>
-          <el-form-item
-            label="摘要"
-            :label-width="filterDrawer.formLabelWidth"
-            prop="summary"
-          >
+          <el-form-item label="摘要" :label-width="filterDrawer.formLabelWidth" prop="summary">
             <el-input
               v-model="filterDrawer.formData.summary"
               placeholder="请输入摘要"
@@ -60,16 +48,8 @@
           <el-form-item label="记录最后修改时间" prop="modifyTime" :label-width="filterDrawer.formLabelWidth">
             <el-date-picker v-model="filterDrawer.formData.modifyTime" type="date" placeholder="选择日期" />
           </el-form-item>
-          <el-form-item
-            label="启用状态"
-            :label-width="filterDrawer.formLabelWidth"
-            prop="enabled"
-          >
-            <el-select
-              v-model="filterDrawer.formData.enabled"
-              placeholder="请选择启用状态"
-              size="mini"
-            >
+          <el-form-item label="启用状态" :label-width="filterDrawer.formLabelWidth" prop="enabled">
+            <el-select v-model="filterDrawer.formData.enabled" placeholder="请选择启用状态" size="mini" clearable>
               <el-option
                 v-for="item in optionMap.get($commonDicType.ENABLED())"
                 :key="item.value"
@@ -78,16 +58,8 @@
               />
             </el-select>
           </el-form-item>
-          <el-form-item
-            label="删除状态"
-            :label-width="filterDrawer.formLabelWidth"
-            prop="deleted"
-          >
-            <el-select
-              v-model="filterDrawer.formData.deleted"
-              placeholder="请选择删除状态"
-              size="mini"
-            >
+          <el-form-item label="删除状态" :label-width="filterDrawer.formLabelWidth" prop="deleted">
+            <el-select v-model="filterDrawer.formData.deleted" clearable placeholder="请选择删除状态" size="mini">
               <el-option
                 v-for="item in optionMap.get($commonDicType.DELETED())"
                 :key="item.value"
@@ -96,11 +68,7 @@
               />
             </el-select>
           </el-form-item>
-          <el-form-item
-            label="备注"
-            :label-width="filterDrawer.formLabelWidth"
-            prop="remarks"
-          >
+          <el-form-item label="备注" :label-width="filterDrawer.formLabelWidth" prop="remarks">
             <el-input
               v-model="filterDrawer.formData.remarks"
               placeholder="请输入备注"
@@ -135,14 +103,7 @@
     <!-- 按钮区域接收 -->
     <!-- 数据列表区域开始 -->
     <div class="table-container" style="padding: 0;margin: 0px 0px 0px 0px;">
-      <el-table
-        v-loading="loading"
-        :data="mainTableData"
-        border
-        fit
-        style="width: 100%"
-        max-height="500"
-      >
+      <el-table v-loading="loading" :data="mainTableData" border fit style="width: 100%" max-height="500">
         <el-table-column type="expand">
           <template slot-scope="props">
             <el-form label-position="left" class="demo-table-expand">
@@ -185,14 +146,42 @@
         <el-table-column type="selection" width="55" />
         <el-table-column type="index" label="序号" :index="indexMethod" width="70" />
         <el-table-column prop="fileName" label="文件名" show-overflow-tooltip sortable min-width="500" align="left" />
-        <el-table-column prop="createTime" label="记录创建时间" show-overflow-tooltip sortable min-width="120" :formatter="(row,column,cellValue) => dateTimeColFormatter(row,column,cellValue)" />
-        <el-table-column prop="modifyTime" label="记录最后修改时间" show-overflow-tooltip sortable min-width="120" :formatter="(row,column,cellValue) => dateTimeColFormatter(row,column,cellValue)" />
-        <el-table-column prop="enabled" label="启用状态" show-overflow-tooltip sortable min-width="80" :formatter="(row,column,cellValue) => colFormatter(row,column,cellValue, $commonDicType.ENABLED())" />
-        <el-table-column prop="deleted" label="删除状态" show-overflow-tooltip sortable min-width="80" :formatter="(row,column,cellValue) => colFormatter(row,column,cellValue, $commonDicType.DELETED())" />
+        <el-table-column
+          prop="createTime"
+          label="记录创建时间"
+          show-overflow-tooltip
+          sortable
+          min-width="120"
+          :formatter="(row,column,cellValue) => dateTimeColFormatter(row,column,cellValue)"
+        />
+        <el-table-column
+          prop="modifyTime"
+          label="记录最后修改时间"
+          show-overflow-tooltip
+          sortable
+          min-width="120"
+          :formatter="(row,column,cellValue) => dateTimeColFormatter(row,column,cellValue)"
+        />
+        <el-table-column
+          prop="enabled"
+          label="启用状态"
+          show-overflow-tooltip
+          sortable
+          min-width="80"
+          :formatter="(row,column,cellValue) => colFormatter(row,column,cellValue, $commonDicType.ENABLED())"
+        />
+        <el-table-column
+          prop="deleted"
+          label="删除状态"
+          show-overflow-tooltip
+          sortable
+          min-width="80"
+          :formatter="(row,column,cellValue) => colFormatter(row,column,cellValue, $commonDicType.DELETED())"
+        />
         <el-table-column prop="remarks" label="备注" show-overflow-tooltip sortable min-width="80" />
-        <el-table-column align="center" label="操作" show-overflow-tooltip min-width="80">
+        <el-table-column align="center" label="操作" show-overflow-tooltip min-width="120">
           <template slot-scope="scope">
-            <el-button size="least" type="primary" @click="handleEditRow(scope.row)">修改</el-button>
+            <el-button size="least" type="primary" @click="handleEditRow(scope.row)">备注</el-button>
             <el-button size="least" type="danger" @click="handleDeleteRow(scope.row)">删除</el-button>
           </template>
         </el-table-column>
@@ -220,67 +209,25 @@
       :title="mainDataForm.mainDataFormDialogTitle"
     >
       <el-form ref="elForm" :model="mainDataForm.editingRecord" :rules="rules" size="medium" label-width="150px">
-        <el-form-item label="文件名" prop="fileName">
-          <el-input
-            v-model="mainDataForm.editingRecord.fileName"
-            placeholder="请输入文件名"
-            clearable
-            :style="{width: '100%'}"
-          />
+        <el-form-item label="文件名">
+          <span>{{ mainDataForm.editingRecord.fileName }}</span>
         </el-form-item>
-        <el-form-item label="摘要" prop="summary">
-          <el-input
-            v-model="mainDataForm.editingRecord.summary"
-            placeholder="请输入摘要"
-            clearable
-            :style="{width: '100%'}"
-          />
+        <el-form-item label="摘要">
+          <span>{{ mainDataForm.editingRecord.summary }}</span>
         </el-form-item>
-        <el-form-item label="记录创建者" prop="createBy">
-          <el-input
-            v-model="mainDataForm.editingRecord.createBy"
-            placeholder="请输入记录创建者"
-            clearable
-            :style="{width: '100%'}"
-          />
+        <el-form-item label="记录创建者">
+          <span>{{ mainDataForm.editingRecord.createBy }}</span>
         </el-form-item>
-        <el-form-item label="记录创建时间" prop="createTime">
-          <el-date-picker v-model="mainDataForm.editingRecord.createTime" type="date" placeholder="选择日期" />
+        <el-form-item label="记录创建时间">
+          <span>{{ mainDataForm.editingRecord.createTime }}</span>
         </el-form-item>
-        <el-form-item label="记录最后修改者" prop="modifyBy">
-          <el-input
-            v-model="mainDataForm.editingRecord.modifyBy"
-            placeholder="请输入记录最后修改者"
-            clearable
-            :style="{width: '100%'}"
-          />
+        <el-form-item label="启用状态">
+          <span>{{ $commonUtils.optoinValue2Lable(optionMap.get($commonDicType.ENABLED()),mainDataForm.editingRecord.enabled) }}</span>
         </el-form-item>
-        <el-form-item label="记录最后修改时间" prop="modifyTime">
-          <el-date-picker v-model="mainDataForm.editingRecord.modifyTime" type="date" placeholder="选择日期" />
+        <el-form-item label="删除状态">
+          <span>{{ $commonUtils.optoinValue2Lable(optionMap.get($commonDicType.DELETED()),mainDataForm.editingRecord.deleted) }}</span>
         </el-form-item>
-        <el-form-item label="时间戳" prop="datestamp">
-          <el-date-picker v-model="mainDataForm.editingRecord.datestamp" type="date" placeholder="选择日期" />
-        </el-form-item>
-        <el-form-item label="启用状态" prop="enabled">
-          <el-select v-model="mainDataForm.editingRecord.enabled" placeholder="请选择">
-            <el-option
-              v-for="item in optionMap.get($commonDicType.ENABLED())"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            />
-          </el-select>
-        </el-form-item>
-        <el-form-item label="删除状态" prop="deleted">
-          <el-select v-model="mainDataForm.editingRecord.deleted" placeholder="请选择">
-            <el-option
-              v-for="item in optionMap.get($commonDicType.DELETED())"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            />
-          </el-select>
-        </el-form-item>
+
         <el-form-item label="备注" prop="remarks">
           <el-input
             v-model="mainDataForm.editingRecord.remarks"
@@ -554,27 +501,30 @@ export default {
 }
 </script>
 <style>
-    .demo-table-expand {
-        font-size: 0;
-    }
-    .demo-table-expand label {
-        width: 190px;
-        color: #99a9bf;
-    }
-    .demo-table-expand .el-form-item {
-        text-align: left;
-        margin-right: 0;
-        margin-bottom: 0;
-        width: 100%;
-    }
-    /*1.显示滚动条：当内容超出容器的时候，可以拖动：*/
-    .el-drawer__body {
-        overflow: auto;
-        /* overflow-x: auto; */
-    }
+  .demo-table-expand {
+    font-size: 0;
+  }
 
-    /*2.隐藏滚动条，太丑了*/
-    .el-drawer__container ::-webkit-scrollbar{
-        display: none;
-    }
+  .demo-table-expand label {
+    width: 190px;
+    color: #99a9bf;
+  }
+
+  .demo-table-expand .el-form-item {
+    text-align: left;
+    margin-right: 0;
+    margin-bottom: 0;
+    width: 100%;
+  }
+
+  /*1.显示滚动条：当内容超出容器的时候，可以拖动：*/
+  .el-drawer__body {
+    overflow: auto;
+    /* overflow-x: auto; */
+  }
+
+  /*2.隐藏滚动条，太丑了*/
+  .el-drawer__container ::-webkit-scrollbar {
+    display: none;
+  }
 </style>

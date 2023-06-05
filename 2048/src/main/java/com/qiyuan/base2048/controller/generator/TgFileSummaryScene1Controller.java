@@ -26,7 +26,7 @@ import javax.validation.Valid;
     * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2022-11-23 14:20:25
+* @since 2000-08-20
 */
 @RestController
 @ResponseBodyInController
@@ -44,7 +44,7 @@ public class TgFileSummaryScene1Controller {
     if (bindingResult.hasErrors()) {
       return formValidator.generateMessage(bindingResult);
     }
-    return scene1Service.getPage(queryVO, false);
+    return scene1Service.getPage(queryVO, true);
   }
 
   @PostMapping("/save")

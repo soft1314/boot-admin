@@ -12,7 +12,7 @@ import com.qiyuan.bautil.dto.ResultDTO;
 * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2022-6-17 10:42:14
+* @since 2000-08-20
 */
 public interface ITgProjectService extends IService<TgProject> {
     ResultDTO getPage(ProjectQueryVO projectQueryVO, boolean includeDeleted) throws Exception;

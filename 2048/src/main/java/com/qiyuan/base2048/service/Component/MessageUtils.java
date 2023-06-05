@@ -1,8 +1,8 @@
-package com.qiyuan.base2048.service.Component;
+package com.qiyuan.base2048.service.component;
 
 /**
  * @author 虚领顶劲气沉丹田
- * @create 2021-10-20 17:05
+ * @create 2021-10-20
  * 国际化工具类
  **/
 

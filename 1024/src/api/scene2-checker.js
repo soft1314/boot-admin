@@ -1,6 +1,6 @@
 /**
 * @author 张三丰
-* @since 2022-11-18 22:12:10
+* @since 2000-08-20
 *  规范检查 相关代码生成接口
 */
 import request from '@/utils/request'

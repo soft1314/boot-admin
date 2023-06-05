@@ -16,7 +16,7 @@ public @interface Log
     /**
      * 模块
      */
-    public String title() default "";
+    public String businessModule() default "";
 
     /**
      * 功能

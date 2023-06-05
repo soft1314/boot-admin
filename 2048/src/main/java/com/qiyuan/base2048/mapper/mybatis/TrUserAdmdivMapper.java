@@ -10,7 +10,7 @@ import com.qiyuan.base2048.mapper.mybatis.entity.TrUserAdmdiv;
 * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2022-12-11 13:28:05
+* @since 2000-08-20
 */
 public interface TrUserAdmdivMapper extends BaseMapper<TrUserAdmdiv> {
 }

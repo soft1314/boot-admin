@@ -13,7 +13,7 @@ import com.qiyuan.bautil.dto.ResultDTO;
 * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2023-4-13 13:53:03
+* @since 2000-08-20
 */
 public interface IDemoLeaveScene3Service extends IService<DemoLeave> {
   ResultDTO insertBizDataAndStartProcess(DemoLeaveScene3StartProcessDataVO dataVO, BaseUser baseUser) throws Exception;

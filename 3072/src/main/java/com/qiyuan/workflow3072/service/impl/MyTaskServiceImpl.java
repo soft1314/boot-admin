@@ -7,6 +7,7 @@ import com.qiyuan.bautil.util.MapTool;
 import com.qiyuan.bautil.util.StringTool;
 import com.qiyuan.bautil.util.UserTool;
 import com.qiyuan.bautil.util.WorkflowTool;
+import com.qiyuan.workflow3072.feign.FeignLogdemoService;
 import com.qiyuan.workflow3072.pojo.bo.TaskBO;
 import com.qiyuan.workflow3072.pojo.vo.HisTaskVO;
 import com.qiyuan.workflow3072.pojo.vo.TaskQueryVO;
@@ -64,6 +65,8 @@ public class MyTaskServiceImpl implements MyTaskService {
     private FlowableUtis flowableUtis;
     @Autowired
     private GlobalTransaction globalTransaction;
+    @Autowired
+    private FeignLogdemoService feignLogdemoService;
 
     @Override
     public String getFormKey(String procDefId, String taskDefKey) {
@@ -88,6 +91,7 @@ public class MyTaskServiceImpl implements MyTaskService {
 
     @Override
     public ResultDTO startProcess(WorkflowStartProcessDTO startProcessDTO) throws Exception {
+        log.error("WORKFLOW测试日志跟踪");
         BaseUser baseUser = UserTool.getBaseUser();
         /** 用来设置启动流程的人员ID，引擎会自动把用户ID保存到activiti:initiator中 **/
         identityService.setAuthenticatedUserId(WorkflowTool.genAssignee(baseUser));

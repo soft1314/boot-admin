@@ -14,7 +14,7 @@ import java.util.List;
 * </p>
 *
 * @author 虚领顶劲气沉丹田
-* @since 2022-12-14 22:46:06
+* @since 2000-08-20
 */
 public interface TrRoleResourceMapper extends BaseMapper<TrRoleResource> {
     @Select("select a.role_guid from tr_role_resource a,tb_resource b where b.uri=#{uri} and a.resource_guid=b.guid and a.enabled=#{enabled} and a.deleted=#{deleted} and b.enabled=#{enabled} and b.deleted=#{deleted}")
