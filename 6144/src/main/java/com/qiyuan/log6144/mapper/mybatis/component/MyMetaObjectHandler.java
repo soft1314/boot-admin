@@ -1,4 +1,4 @@
-package com.qiyuan.base2048.mapper.mybatis.component;
+package com.qiyuan.log6144.mapper.mybatis.component;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.qiyuan.bautil.util.UserTool;
@@ -29,11 +29,11 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
 //        this.setFieldValByName("guid", IdWorker.getIdStr(),metaObject);
         this.setFieldValByName("version", 0,metaObject);
         /**  以下官方文档，为什么有问题
-        this.strictInsertFill(metaObject, "createTime", LocalDateTime.class, LocalDateTime.now()); // 起始版本 3.3.0(推荐使用)
-        // 或者
-        this.strictInsertFill(metaObject, "createTime", () -> LocalDateTime.now(), LocalDateTime.class); // 起始版本 3.3.3(推荐)
-        // 或者
-        this.fillStrategy(metaObject, "createTime", LocalDateTime.now()); // 也可以使用(3.3.0 该方法有bug)
+         this.strictInsertFill(metaObject, "createTime", LocalDateTime.class, LocalDateTime.now()); // 起始版本 3.3.0(推荐使用)
+         // 或者
+         this.strictInsertFill(metaObject, "createTime", () -> LocalDateTime.now(), LocalDateTime.class); // 起始版本 3.3.3(推荐)
+         // 或者
+         this.fillStrategy(metaObject, "createTime", LocalDateTime.now()); // 也可以使用(3.3.0 该方法有bug)
          **/
     }
 
@@ -47,11 +47,12 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
         this.setFieldValByName("modifyBy",operator,metaObject);
 //        this.setFieldValByName("datestamp",now,metaObject);
         /** 以下官方文档，为什么有问题
-        this.strictUpdateFill(metaObject, "modifyTime", LocalDateTime.class, LocalDateTime.now()); // 起始版本 3.3.0(推荐)
+         this.strictUpdateFill(metaObject, "modifyTime", LocalDateTime.class, LocalDateTime.now()); // 起始版本 3.3.0(推荐)
          或者
-        this.strictUpdateFill(metaObject, "modifyTime", () -> LocalDateTime.now(), LocalDateTime.class); // 起始版本 3.3.3(推荐)
-        // 或者
-        this.fillStrategy(metaObject, "modifyTime", LocalDateTime.now()); // 也可以使用(3.3.0 该方法有bug)
+         this.strictUpdateFill(metaObject, "modifyTime", () -> LocalDateTime.now(), LocalDateTime.class); // 起始版本 3.3.3(推荐)
+         // 或者
+         this.fillStrategy(metaObject, "modifyTime", LocalDateTime.now()); // 也可以使用(3.3.0 该方法有bug)
          **/
     }
 }
+

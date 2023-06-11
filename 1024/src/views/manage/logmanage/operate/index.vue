@@ -36,6 +36,46 @@
               />
             </el-select>
           </el-form-item>
+          <el-form-item label="主机名称" :label-width="filterDrawer.formLabelWidth" prop="hostName">
+            <el-input
+              v-model="filterDrawer.formData.hostname"
+              placeholder="请输入主机名称"
+              size="mini"
+              prefix-icon="el-icon-search"
+            />
+          </el-form-item>
+          <el-form-item label="应用名称" :label-width="filterDrawer.formLabelWidth" prop="appName">
+            <el-input
+              v-model="filterDrawer.formData.appName"
+              placeholder="请输入应用名称"
+              size="mini"
+              prefix-icon="el-icon-search"
+            />
+          </el-form-item>
+          <el-form-item label="跟踪ID" :label-width="filterDrawer.formLabelWidth" prop="traceId">
+            <el-input
+              v-model="filterDrawer.formData.traceId"
+              placeholder="请输入跟踪ID"
+              size="mini"
+              prefix-icon="el-icon-search"
+            />
+          </el-form-item>
+          <el-form-item label="节点跟踪ID" :label-width="filterDrawer.formLabelWidth" prop="spanId">
+            <el-input
+              v-model="filterDrawer.formData.spanId"
+              placeholder="请输入节点跟踪ID"
+              size="mini"
+              prefix-icon="el-icon-search"
+            />
+          </el-form-item>
+          <el-form-item label="父节点跟踪ID" :label-width="filterDrawer.formLabelWidth" prop="parentId">
+            <el-input
+              v-model="filterDrawer.formData.parentId"
+              placeholder="请输入父节点跟踪ID"
+              size="mini"
+              prefix-icon="el-icon-search"
+            />
+          </el-form-item>
           <el-form-item label="类名" :label-width="filterDrawer.formLabelWidth" prop="className">
             <el-input
               v-model="filterDrawer.formData.className"
@@ -133,6 +173,21 @@
               <el-form-item label="日志级别">
                 <span>{{ props.row.logLevel }}</span>
               </el-form-item>
+              <el-form-item label="主机名称">
+                <span>{{ props.row.hostName }}</span>
+              </el-form-item>
+              <el-form-item label="应用名称">
+                <span>{{ props.row.appName }}</span>
+              </el-form-item>
+              <el-form-item label="跟踪ID">
+                <span>{{ props.row.traceId }}</span>
+              </el-form-item>
+              <el-form-item label="节点跟踪ID">
+                <span>{{ props.row.spanId }}</span>
+              </el-form-item>
+              <el-form-item label="父节点跟踪ID">
+                <span>{{ props.row.parentId }}</span>
+              </el-form-item>
               <el-form-item label="类名">
                 <span>{{ props.row.className }}</span>
               </el-form-item>
@@ -173,7 +228,9 @@
           </template>
         </el-table-column>
         <el-table-column type="index" label="序号" :index="indexMethod" width="70" />
+        <el-table-column prop="traceId" label="跟踪ID" show-overflow-tooltip sortable />
         <el-table-column prop="logLevel" label="日志级别" show-overflow-tooltip sortable />
+        <el-table-column prop="appName" label="应用名称" show-overflow-tooltip sortable />
         <el-table-column prop="className" label="类名" show-overflow-tooltip sortable />
         <el-table-column prop="lineNo" label="行号" show-overflow-tooltip sortable />
         <el-table-column prop="operator" label="操作者" show-overflow-tooltip sortable />
@@ -283,6 +340,11 @@ export default {
         formLabelWidth: '100px',
         formData: {
           guid: '',
+          hostName: '',
+          appName: '',
+          traceId: '',
+          spanId: '',
+          parentId: '',
           logLevel: '',
           className: '',
           lineNo: '',

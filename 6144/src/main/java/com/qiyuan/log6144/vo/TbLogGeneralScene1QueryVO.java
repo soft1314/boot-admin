@@ -27,6 +27,12 @@ public class TbLogGeneralScene1QueryVO extends BasePageQueryVO {
      * 主键
      */
     private String guid;
+    private String appName;
+    private String hostName;
+    private String traceId;
+    private String spanId;
+    private String parentId;
+
     /**
      * 日志级别
      */
