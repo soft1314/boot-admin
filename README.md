@@ -43,7 +43,7 @@
 
 #### 主要功能框图
 
-![image](https://gitee.com/soft1314/boot-admin-vue/raw/master/func.png)
+![image](https://gitee.com/soft1314/boot-admin-vue/blob/master/func.png)
 
 #### 模块介绍
 
