@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 //@MapperScan("com.qiyuan.base2048.mapper")
 @ComponentScan(basePackages = "com.qiyuan")
 @EnableDiscoveryClient
-@EnableFeignClients
+@EnableFeignClients(basePackages = "com.qiyuan.base2048.feign")
 public class Base2048Application {
     @Resource
     private DatasourceProperties datasourceProperties;

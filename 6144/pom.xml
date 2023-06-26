@@ -241,6 +241,35 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+<!--            <plugin>-->
+<!--                <groupId>com.spotify</groupId>-->
+<!--                <artifactId>docker-maven-plugin</artifactId>-->
+<!--                <version>1.2.2</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>build-image</id>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>build</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--                <configuration>-->
+<!--                    <imageName>${project.artifactId}</imageName>&lt;!&ndash;镜像名,注意:这里的镜像名一定要小写，如果你的应用名字是大写会报错的&ndash;&gt;-->
+<!--                    <imageTags>-->
+<!--                        <imageTag>latest</imageTag>-->
+<!--                    </imageTags>-->
+<!--                    <dockerDirectory>${project.basedir}</dockerDirectory>&lt;!&ndash;Dockerfile所在的目录&ndash;&gt;-->
+<!--                    <dockerHost>http://127.0.0.1:2375</dockerHost>&lt;!&ndash;docker所在的宿主机地址,或者填写http://yourip:2375&ndash;&gt;-->
+<!--                    <resources>-->
+<!--                        <resource>&lt;!&ndash;这里配置的就是打包后jar所在的位置&ndash;&gt;-->
+<!--                            <targetPath>/</targetPath>-->
+<!--                            <directory>${project.build.directory}</directory>&lt;!&ndash;构建的class文件路径 一般是target&ndash;&gt;-->
+<!--                            <include>${project.build.finalName}.jar</include>-->
+<!--                        </resource>-->
+<!--                    </resources>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 </project>

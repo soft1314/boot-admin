@@ -36,7 +36,7 @@ public class TenantContextHolderFilter extends GenericFilterBean {
             //todo
             String tenantId = "DEMO";//request.getHeader(TenantContextHolder.TENANT_ID);
             if (StringUtils.isNotBlank(tenantId)) {
-                log.info("tenantId={}-------------获取到的租户ID", tenantId);
+                log.debug("tenantId={}-------------获取到的租户ID", tenantId);
                 TenantContextHolder.setTenantId(tenantId);
                 filterChain.doFilter(request, response);
             }else{

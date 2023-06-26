@@ -12,17 +12,17 @@ spring:
     #    password: base2048
 
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/base2048?useSSL=false&serverTimezone=GMT%2B8&autoReconnect=true&allowPublicKeyRetrieval=true&useOldAliasMetadataBehavior=true
+    url: jdbc:mysql://172.17.0.1:13306/base2048?useSSL=false&serverTimezone=GMT%2B8&autoReconnect=true&allowPublicKeyRetrieval=true&useOldAliasMetadataBehavior=true
     username: root
     password: mysql
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848
+        server-addr: 172.17.0.1:8848
         namespace: 9047c5e7-ee93-498f-9c79-10f53a92310f
         username: nacos
         password: nacos123456
-        ip: 127.0.0.1
+        ip: 172.17.0.1
         port: 6144
         metadata:
           user.name: ${spring.security.user.name}

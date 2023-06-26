@@ -1,10 +1,10 @@
-package com.qiyuan.base2048.log;
+package com.qiyuan.workflow3072.log;
 
-import com.qiyuan.base2048.feign.FeignLogService;
-import com.qiyuan.base2048.service.component.GetBeanUtils;
 import com.qiyuan.bautil.dto.ResultDTO;
 import com.qiyuan.bautil.dto.StringContainerVO;
+import com.qiyuan.bautil.util.SpringTool;
 import com.qiyuan.bautil.util.StringUtil;
+import com.qiyuan.workflow3072.feign.FeignLogService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.core.Filter;
 import org.apache.logging.log4j.core.Layout;
@@ -22,7 +22,7 @@ import java.io.Serializable;
 @Plugin(name = "MyCustomAppender", category = "Core", elementType = "appender", printObject = true)
 public class MyCustomAppender extends AbstractAppender {
     public MyCustomAppender(String name, Filter filter, Layout<? extends Serializable> layout, boolean ignoreExceptions,
-                           String registryAddress, String registryProtocol, String namespace, String protocolName, String consumerGroup) {
+                            String registryAddress, String registryProtocol, String namespace, String protocolName, String consumerGroup) {
         super(name, filter, layout, ignoreExceptions);
     }
 
@@ -63,13 +63,10 @@ public class MyCustomAppender extends AbstractAppender {
         }
         StringContainerVO stringContainerVO = new StringContainerVO();
         stringContainerVO.setStrValue(logInfo);
-        FeignLogService feignLogService = GetBeanUtils.getFeignBean("feignLogService",FeignLogService.class);
+        FeignLogService feignLogService = SpringTool.getFeignBean("feignLogService",FeignLogService.class);
         if(feignLogService != null) {
             ResultDTO resultDTO = feignLogService.sendLog(stringContainerVO);
             log.debug(resultDTO.getMessage());
         }
     }
 }
-
-
-

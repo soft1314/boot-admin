@@ -5,6 +5,7 @@ import com.qiyuan.bautil.dto.LogDTO;
 import com.qiyuan.bautil.dto.LogInstant;
 import com.qiyuan.bautil.enums.IsDeletedEnum;
 import com.qiyuan.bautil.enums.IsEnabledEnum;
+import com.qiyuan.bautil.util.StringUtil;
 import com.qiyuan.log6144.mapper.mybatis.TbLogGeneralMapper;
 import com.qiyuan.log6144.mapper.mybatis.entity.TbLogGeneral;
 import com.qiyuan.log6144.service.LogSaver;
@@ -22,6 +23,9 @@ public class LogSaverImpl implements LogSaver {
     @Override
     public void saveLog(LogDTO logDTO) throws Exception {
         TbLogGeneral entity = this.genEntity(logDTO);
+        if(StringUtil.isBlank(entity.getOperator())){
+            entity.setOperator("系统");
+        }
         tbLogGeneralMapper.insert(entity);
     }
 
@@ -31,7 +35,9 @@ public class LogSaverImpl implements LogSaver {
         entity.setLogContent(logDTO.getMessage());
         entity = genInstant(logDTO.getInstant(),entity);
         entity = genContextMap(logDTO.getContextMap(),entity);
-        entity.setClassName(logDTO.getSource().getClassName()+":"+logDTO.getSource().getMethod());
+        if(logDTO.getSource() != null) {
+            entity.setClassName(logDTO.getSource().getClassName() + ":" + logDTO.getSource().getMethod());
+        }
         entity.setLineNo(logDTO.getSource().getLine().toString());
         entity.setHostName(logDTO.getHostName());
         entity.setCreateBy(entity.getOperator());

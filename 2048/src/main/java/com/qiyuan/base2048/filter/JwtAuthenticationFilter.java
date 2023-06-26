@@ -29,8 +29,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        logger.info(request.getServletPath());
-        logger.info(request.getMethod());
+        logger.info(request.getServletPath()+"["+request.getMethod()+"]");
         try {
             if (PATH_MATCHER.match(AUTH_PATH_PERFIX, request.getServletPath())) {
                 String jsonEncString = request.getHeader(JwtUtil.AUTHORIZE_USER);
