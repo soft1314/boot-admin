@@ -1,0 +1,384 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                       xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                       xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="admin (generated)" id="20230410-001">
+        <createTable remarks="系统规则表" tableName="TB_DROOLS_RULE">
+            <column name="GUID" remarks="主键" type="NVARCHAR2(38)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C00351498"/>
+            </column>
+            <column name="NAME" remarks="规则名称" type="NVARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RULE" remarks="规则" type="CLOB">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ADM_DIV_CODE" remarks="行政区划编码" type="NVARCHAR2(12)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_BY" remarks="记录创建者" type="NVARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_TIME" remarks="记录创建时间" type="${type.datetime}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODIFY_BY" remarks="记录最后修改者" type="NVARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODIFY_TIME" remarks="记录最后修改时间" type="${type.datetime}">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="${now}" name="DATESTAMP" remarks="时间戳" type="${type.datetime}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ENABLED" remarks="启用状态;ENABLED" type="NVARCHAR2(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DELETED" remarks="删除状态;DELETED" type="NVARCHAR2(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" remarks="乐观锁" type="${type.int}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REMARKS" remarks="备注" type="NVARCHAR2(900)"/>
+            <column name="TENANT_ID_" remarks="租户ID" type="NVARCHAR2(38)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet  author="admin"  id="20230410-002"  dbms="mysql">
+        <sql dbms="mysql"
+             endDelimiter="\nGO"
+             splitStatements="true"
+             stripComments="true">
+            ALTER TABLE `demo_emp`
+            CHANGE COLUMN `GUID` `GUID` VARCHAR(38) NOT NULL COMMENT '主键' COLLATE 'utf8_general_ci' FIRST
+            <comment>主键</comment>
+        </sql>
+        <sql dbms="mysql"
+             endDelimiter="\nGO"
+             splitStatements="true"
+             stripComments="true">
+            ALTER TABLE `demo_org`
+            CHANGE COLUMN `GUID` `GUID` VARCHAR(38) NOT NULL COMMENT '主键' COLLATE 'utf8_general_ci' FIRST
+            <comment>主键</comment>
+        </sql>
+        <sql dbms="mysql"
+             endDelimiter="\nGO"
+             splitStatements="true"
+             stripComments="true">
+            ALTER TABLE `demo_leave`
+            CHANGE COLUMN `GUID` `GUID` VARCHAR(38) NOT NULL COMMENT '主键' COLLATE 'utf8_general_ci' FIRST
+            <comment>主键</comment>
+        </sql>
+        <sql dbms="mysql"
+             endDelimiter="\nGO"
+             splitStatements="true"
+             stripComments="true">
+            ALTER TABLE `demo_expense`
+            CHANGE COLUMN `GUID` `GUID` VARCHAR(38) NOT NULL COMMENT '主键' COLLATE 'utf8_general_ci' FIRST
+            <comment>主键</comment>
+        </sql>
+    </changeSet>
+    <changeSet author="admin" id="20230410-003" dbms="mysql">
+        <sql dbms="mysql"
+             endDelimiter="\nGO"
+             splitStatements="true"
+             stripComments="true">
+            ALTER TABLE `tb_adm_div`
+            CHANGE COLUMN `GUID` `GUID` VARCHAR(38) NOT NULL COMMENT '主键' COLLATE 'utf8_general_ci' FIRST
+            <comment>主键</comment>
+        </sql>
+        <sql dbms="mysql"
+             endDelimiter="\nGO"
+             splitStatements="true"
+             stripComments="true">
+            ALTER TABLE `tb_dictionary`
+            CHANGE COLUMN `GUID` `GUID` VARCHAR(38) NOT NULL COMMENT '主键' COLLATE 'utf8_general_ci' FIRST
+            <comment>主键</comment>
+        </sql>
+        <sql dbms="mysql"
+             endDelimiter="\nGO"
+             splitStatements="true"
+             stripComments="true">
+            ALTER TABLE `tb_dictype`
+            CHANGE COLUMN `GUID` `GUID` VARCHAR(38) NOT NULL COMMENT '主键' COLLATE 'utf8_general_ci' FIRST
+            <comment>主键</comment>
+        </sql>
+        <sql dbms="mysql"
+             endDelimiter="\nGO"
+             splitStatements="true"
+             stripComments="true">
+            ALTER TABLE `tb_drools_rule`
+            CHANGE COLUMN `GUID` `GUID` VARCHAR(38) NOT NULL COMMENT '主键' COLLATE 'utf8_general_ci' FIRST
+            <comment>主键</comment>
+        </sql>
+        <sql dbms="mysql"
+             endDelimiter="\nGO"
+             splitStatements="true"
+             stripComments="true">
+            ALTER TABLE `tb_emp`
+            CHANGE COLUMN `GUID` `GUID` VARCHAR(38) NOT NULL COMMENT '主键' COLLATE 'utf8_general_ci' FIRST
+            <comment>主键</comment>
+        </sql>
+        <sql dbms="mysql"
+             endDelimiter="\nGO"
+             splitStatements="true"
+             stripComments="true">
+            ALTER TABLE `tb_log_general`
+            CHANGE COLUMN `GUID` `GUID` VARCHAR(38) NOT NULL COMMENT '主键' COLLATE 'utf8_general_ci' FIRST
+            <comment>主键</comment>
+        </sql>
+        <sql dbms="mysql"
+             endDelimiter="\nGO"
+             splitStatements="true"
+             stripComments="true">
+            ALTER TABLE `tb_organization`
+            CHANGE COLUMN `GUID` `GUID` VARCHAR(38) NOT NULL COMMENT '主键' COLLATE 'utf8_general_ci' FIRST
+            <comment>主键</comment>
+        </sql>
+        <sql dbms="mysql"
+             endDelimiter="\nGO"
+             splitStatements="true"
+             stripComments="true">
+            ALTER TABLE `tb_resource`
+            CHANGE COLUMN `GUID` `GUID` VARCHAR(38) NOT NULL COMMENT '主键' COLLATE 'utf8_general_ci' FIRST
+            <comment>主键</comment>
+        </sql>
+        <sql dbms="mysql"
+             endDelimiter="\nGO"
+             splitStatements="true"
+             stripComments="true">
+            ALTER TABLE `tb_role`
+            CHANGE COLUMN `GUID` `GUID` VARCHAR(38) NOT NULL COMMENT '主键' COLLATE 'utf8_general_ci' FIRST
+            <comment>主键</comment>
+        </sql>
+        <sql dbms="mysql"
+             endDelimiter="\nGO"
+             splitStatements="true"
+             stripComments="true">
+            ALTER TABLE `tb_user`
+            CHANGE COLUMN `GUID` `GUID` VARCHAR(38) NOT NULL COMMENT '主键' COLLATE 'utf8_general_ci' FIRST
+            <comment>主键</comment>
+        </sql>
+        <sql dbms="mysql"
+             endDelimiter="\nGO"
+             splitStatements="true"
+             stripComments="true">
+            ALTER TABLE `tg_file_summary`
+            CHANGE COLUMN `GUID` `GUID` VARCHAR(38) NOT NULL COMMENT '主键' COLLATE 'utf8_general_ci' FIRST
+            <comment>主键</comment>
+        </sql>
+        <sql dbms="mysql"
+             endDelimiter="\nGO"
+             splitStatements="true"
+             stripComments="true">
+            ALTER TABLE `tg_project`
+            CHANGE COLUMN `GUID` `GUID` VARCHAR(38) NOT NULL COMMENT '主键' COLLATE 'utf8_general_ci' FIRST
+            <comment>主键</comment>
+        </sql>
+        <sql dbms="mysql"
+             endDelimiter="\nGO"
+             splitStatements="true"
+             stripComments="true">
+            ALTER TABLE `tr_role_resource`
+            CHANGE COLUMN `GUID` `GUID` VARCHAR(38) NOT NULL COMMENT '主键' COLLATE 'utf8_general_ci' FIRST
+            <comment>主键</comment>
+        </sql>
+        <sql dbms="mysql"
+             endDelimiter="\nGO"
+             splitStatements="true"
+             stripComments="true">
+            ALTER TABLE `tr_role_user`
+            CHANGE COLUMN `GUID` `GUID` VARCHAR(38) NOT NULL COMMENT '主键' COLLATE 'utf8_general_ci' FIRST
+            <comment>主键</comment>
+        </sql>
+        <sql dbms="mysql"
+             endDelimiter="\nGO"
+             splitStatements="true"
+             stripComments="true">
+            ALTER TABLE `tr_user_admdiv`
+            CHANGE COLUMN `GUID` `GUID` VARCHAR(38) NOT NULL COMMENT '主键' COLLATE 'utf8_general_ci' FIRST
+            <comment>主键</comment>
+        </sql>
+        <sql dbms="mysql"
+             endDelimiter="\nGO"
+             splitStatements="true"
+             stripComments="true">
+            ALTER TABLE `tr_user_org`
+            CHANGE COLUMN `GUID` `GUID` VARCHAR(38) NOT NULL COMMENT '主键' COLLATE 'utf8_general_ci' FIRST
+            <comment>主键</comment>
+        </sql>
+    </changeSet>
+    <changeSet author="admin" id="20230410-004">
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="NAME" value="剧情1获取表tb_drools_rule分页数据"/>
+            <column name="URI" value="/api/system/auth/tb-drools-rule/scene1/table/page"/>
+            <column name="RESOURCE_TYPE" value="2"/>
+            <column name="ACCESS_CONTROL_STYLE" value="02"/>
+            <column name="REMARKS" value="无"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
+            <column name="ENABLED" valueNumeric="1"/>
+            <column name="DELETED" valueNumeric="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="LEAF" value="1"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="function"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+        </insert>
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="NAME" value="剧情1保存表tb_drools_rule数据"/>
+            <column name="URI" value="/api/system/auth/tb-drools-rule/scene1/save"/>
+            <column name="RESOURCE_TYPE" value="2"/>
+            <column name="ACCESS_CONTROL_STYLE" value="02"/>
+            <column name="REMARKS" value="无"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
+            <column name="ENABLED" valueNumeric="1"/>
+            <column name="DELETED" valueNumeric="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="LEAF" value="1"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="function"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+        </insert>
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="NAME" value="剧情1按GUID删除表tb_drools_rule数据"/>
+            <column name="URI" value="/api/system/auth/tb-drools-rule/scene1/del"/>
+            <column name="RESOURCE_TYPE" value="2"/>
+            <column name="ACCESS_CONTROL_STYLE" value="02"/>
+            <column name="REMARKS" value="无"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
+            <column name="ENABLED" valueNumeric="1"/>
+            <column name="DELETED" valueNumeric="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="LEAF" value="1"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="function"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+        </insert>
+    </changeSet>
+    <changeSet author="admin" id="20230411-001">
+        <insert tableName="TB_DROOLS_RULE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="NAME" value="流程选择规则"/>
+            <column name="RULE" value="
+package com.qiyuan.base2048
+import com.qiyuan.bautil.dto.ResultDTO;
+import java.util.LinkedHashMap;
+
+rule &quot;Workflow ProcDefKey Select.drl-1&quot;
+        no-loop true
+        lock-on-active true
+    when
+      $resultDTO : ResultDTO()
+      $extraObj : LinkedHashMap(this[&quot;businessTable&quot;] == &quot;DEMO_EXPENSE&quot;)
+    then
+        $resultDTO.setData(&quot;expense_process&quot;);
+        $resultDTO.setCode(100);
+        update($resultDTO);
+end
+
+rule &quot;Workflow ProcDefKey Select.drl-2&quot;
+        no-loop true
+        lock-on-active true
+    when
+      $resultDTO : ResultDTO()
+      $extraObj : LinkedHashMap(this[&quot;businessTable&quot;] == &quot;DEMO_LEAVE&quot;)
+    then
+        $resultDTO.setData(&quot;leave_process&quot;);
+        $resultDTO.setCode(100);
+        update($resultDTO);
+end
+            "/>
+            <column name="ADM_DIV_CODE" value="NON"/>
+            <column name="REMARKS" value="无"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
+            <column name="ENABLED" valueNumeric="1"/>
+            <column name="DELETED" valueNumeric="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="CREATE_BY" value="张三丰张邋遢[admin]"/>
+            <column name="MODIFY_BY" value="张三丰张邋遢[admin]"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+        </insert>
+    </changeSet>
+    <changeSet id="20230412-001" author="Administrator">
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="NAME" value="剧情1获取表tb_log_general分页数据"/>
+            <column name="URI" value="/api/log/auth/tb-log-general/scene1/table/page"/>
+            <column name="RESOURCE_TYPE" value="2"/>
+            <column name="ACCESS_CONTROL_STYLE" value="02"/>
+            <column name="REMARKS" value="无"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
+            <column name="ENABLED" valueNumeric="1"/>
+            <column name="DELETED" valueNumeric="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="LEAF" value="1"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="function"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+        </insert>
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="NAME" value="剧情1保存表tb_log_general数据"/>
+            <column name="URI" value="/api/log/auth/tb-log-general/scene1/save"/>
+            <column name="RESOURCE_TYPE" value="2"/>
+            <column name="ACCESS_CONTROL_STYLE" value="02"/>
+            <column name="REMARKS" value="无"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
+            <column name="ENABLED" valueNumeric="1"/>
+            <column name="DELETED" valueNumeric="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="LEAF" value="1"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="function"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+        </insert>
+        <insert tableName="TB_RESOURCE">
+            <column name="GUID" valueComputed="${uuid}"/>
+            <column name="NAME" value="剧情1按GUID删除表tb_log_general数据"/>
+            <column name="URI" value="/api/log/auth/tb-log-general/scene1/del"/>
+            <column name="RESOURCE_TYPE" value="2"/>
+            <column name="ACCESS_CONTROL_STYLE" value="02"/>
+            <column name="REMARKS" value="无"/>
+            <column name="CREATE_TIME" valueComputed="${time.current}"/>
+            <column name="MODIFY_TIME" valueComputed="${time.current}"/>
+            <column name="ENABLED" valueNumeric="1"/>
+            <column name="DELETED" valueNumeric="1"/>
+            <column name="TENANT_ID_" value="DEMO"/>
+            <column name="CREATE_BY" value="admin"/>
+            <column name="MODIFY_BY" value="admin"/>
+            <column name="SORT" valueNumeric="0"/>
+            <column name="LEAF" value="1"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="PARENT_GUID" value="function"/>
+            <column name="DATESTAMP" valueComputed="${time.current}"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

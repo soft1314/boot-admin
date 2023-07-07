@@ -1,0 +1,20 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+<!--    <changeSet id="20000820-001" author="Administrator" dbms="mysql">-->
+<!--        <sqlFile-->
+<!--                encoding="utf8"-->
+<!--                path="classpath:/org/quartz/impl/jdbcjobstore/tables_mysql.sql"-->
+<!--                relativeToChangelogFile="false"-->
+<!--                splitStatements="true"-->
+<!--                stripComments="true"/>-->
+<!--    </changeSet>-->
+<!--    <changeSet id="20000820-002" author="Administrator" dbms="oracle">-->
+<!--        <sqlFile dbms="oracle" path="classpath:/liquibase/sql/tables_oracle.sql" />-->
+<!--    </changeSet>-->
+    <changeSet id="20000820-003" author="Administrator" dbms="oracle">
+        <sqlFile dbms="oracle" path="classpath:/liquibase/sql/seata-undo_log-oracle.sql" />
+    </changeSet>
+    <changeSet id="20000820-003" author="Administrator" dbms="mysql">
+        <sqlFile dbms="mysql" path="classpath:/liquibase/sql/seata-undo_log-mysql.sql" />
+    </changeSet>
+</databaseChangeLog>

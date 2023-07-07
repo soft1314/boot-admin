@@ -1,0 +1,262 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="admin (generated)" id="00003-5">
+        <createTable remarks="示例表（基本CRUD）人员表" tableName="DEMO_EMP">
+            <column name="GUID" remarks="主键" type="NVARCHAR2(38)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C00340536"/>
+            </column>
+            <column name="NAME" remarks="姓名" type="NVARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEX" remarks="性别;SEX" type="NVARCHAR2(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BIRTHDAY" remarks="出生年月" type="${type.datetime}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TECH_TITLE" remarks="职称;TECH_TITLE;LAZY" type="NVARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SALARY" remarks="薪水" type="NUMBER(24, 6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NOTE" remarks="情况说明" type="NVARCHAR2(900)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_BY" remarks="记录创建者" type="NVARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_TIME" remarks="记录创建时间" type="${type.datetime}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODIFY_BY" remarks="记录最后修改者" type="NVARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODIFY_TIME" remarks="记录最后修改时间" type="${type.datetime}">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="${now}" name="DATESTAMP" remarks="时间戳" type="${type.datetime}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ENABLED" remarks="启用状态;ENABLED" type="NVARCHAR2(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DELETED" remarks="删除状态;DELETED" type="NVARCHAR2(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" remarks="乐观锁" type="${type.int}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REMARKS" remarks="备注" type="NVARCHAR2(900)"/>
+            <column name="TENANT_ID_" remarks="租户ID" type="NVARCHAR2(38)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="admin (generated)" id="00003-6">
+        <createTable remarks="示例表（业务工作流）报销" tableName="DEMO_EXPENSE">
+            <column name="GUID" remarks="主键" type="NVARCHAR2(38)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C00340599"/>
+            </column>
+            <column name="TITLE" remarks="标题" type="NVARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MONEY" remarks="报销金额" type="NUMBER(24, 6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NOTE" remarks="情况说明" type="NVARCHAR2(900)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BIZ_DATE" remarks="业务日期" type="${type.datetime}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EMP_NAME" remarks="报销人" type="NVARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TECH_TITLE" remarks="职称;TECH_TITLE;LAZY" type="NVARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EMP_LEVEL" remarks="员工级别;EMP_LEVEL" type="NVARCHAR2(24)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEX" remarks="性别;SEX" type="NVARCHAR2(2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FLOW_STATUS" remarks="流转状态;FLOW_STATUS" type="NVARCHAR2(2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PROCESS_DEFINITION_ID" remarks="流程定义ID" type="NVARCHAR2(100)"/>
+            <column name="PROCESS_INSTANCE_ID" remarks="流程实例ID" type="NVARCHAR2(38)"/>
+            <column name="CREATE_BY" remarks="记录创建者" type="NVARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_TIME" remarks="记录创建时间" type="${type.datetime}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODIFY_BY" remarks="记录最后修改者" type="NVARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODIFY_TIME" remarks="记录最后修改时间" type="${type.datetime}">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="${now}" name="DATESTAMP" remarks="时间戳" type="${type.datetime}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ENABLED" remarks="启用状态;ENABLED" type="NVARCHAR2(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DELETED" remarks="删除状态;DELETED" type="NVARCHAR2(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" remarks="乐观锁" type="${type.int}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REMARKS" remarks="备注" type="NVARCHAR2(900)"/>
+            <column name="TENANT_ID_" remarks="租户ID" type="NVARCHAR2(38)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="admin (generated)" id="00003-7">
+        <createTable remarks="示例表（基本工作流）请假" tableName="DEMO_LEAVE">
+            <column name="GUID" remarks="主键" type="NVARCHAR2(38)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C00340579"/>
+            </column>
+            <column name="TITLE" remarks="标题" type="NVARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DAYS" remarks="请假天数" type="${type.decimal}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LEAVE_TYPE" remarks="请假类型;LEAVE_TYPE" type="NVARCHAR2(2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NOTE" remarks="情况说明" type="NVARCHAR2(900)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EMP_NAME" remarks="请假人" type="NVARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BIZ_DATE" remarks="请假日期" type="${type.datetime}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="START_TIME" remarks="离岗时间" type="${type.datetime}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FINISH_TIME" remarks="返岗时间" type="${type.datetime}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TECH_TITLE" remarks="职称;TECH_TITLE;LAZY" type="NVARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EMP_LEVEL" remarks="职务级别;EMP_LEVEL" type="NVARCHAR2(2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEX" remarks="性别;SEX" type="NVARCHAR2(2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FLOW_STATUS" remarks="流转状态;FLOW_STATUS" type="NVARCHAR2(2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_BY" remarks="记录创建者" type="NVARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_TIME" remarks="记录创建时间" type="${type.datetime}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODIFY_BY" remarks="记录最后修改者" type="NVARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODIFY_TIME" remarks="记录最后修改时间" type="${type.datetime}">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="${now}" name="DATESTAMP" remarks="时间戳" type="${type.datetime}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ENABLED" remarks="启用状态;ENABLED" type="NVARCHAR2(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DELETED" remarks="删除状态;DELETED" type="NVARCHAR2(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" remarks="乐观锁" type="${type.int}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REMARKS" remarks="备注" type="NVARCHAR2(900)"/>
+            <column name="TENANT_ID_" remarks="租户ID" type="NVARCHAR2(38)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="admin (generated)" id="00003-8">
+        <createTable remarks="示例表（层次CRUD）单位表" tableName="DEMO_ORG">
+            <column name="GUID" remarks="主键" type="NVARCHAR2(38)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C00340559"/>
+            </column>
+            <column name="NAME" remarks="单位名称" type="NVARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CODE" remarks="社会信用代码" type="NVARCHAR2(24)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ORGTYPE" remarks="组织类别;ORGTYPE" type="NVARCHAR2(2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="INDUSTRY_CATEGORY" remarks="行业类别;INDUSTRY_CATEGORY;LAZY" type="NVARCHAR2(24)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FOUND_TIME" remarks="成立时间" type="${type.datetime}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RANK_CODE" remarks="单位级别;UNITLEVEL" type="NVARCHAR2(2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NUM" remarks="编制人数" type="${type.int}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ADDR" remarks="办公地址" type="NVARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LEADER" remarks="负责人" type="NVARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_BY" remarks="记录创建者" type="NVARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATE_TIME" remarks="记录创建时间" type="${type.datetime}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODIFY_BY" remarks="记录最后修改者" type="NVARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODIFY_TIME" remarks="记录最后修改时间" type="${type.datetime}">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="${now}" name="DATESTAMP" remarks="时间戳" type="${type.datetime}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ENABLED" remarks="启用状态;ENABLED" type="NVARCHAR2(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DELETED" remarks="删除状态;DELETED" type="NVARCHAR2(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" remarks="乐观锁" type="${type.int}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="REMARKS" remarks="备注" type="NVARCHAR2(900)"/>
+            <column name="TENANT_ID_" remarks="租户ID" type="NVARCHAR2(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LEAF" remarks="是否末级;YESNO" type="NVARCHAR2(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PARENT_GUID" remarks="父级GUID" type="NVARCHAR2(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SORT" remarks="顺序号" type="${type.int}">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

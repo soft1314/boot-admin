@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiyuan.base2048.mapper.mybatis.ToNotifyRecordMapper">
+    <resultMap id="user_notify_record_vo" type="com.qiyuan.base2048.pojo.vo.result.UserNotifyRecordVO">
+        <!--        <result column="first_name" jdbcType="VARCHAR" property="firstName"/>-->
+        <!--        <result column="last_name" jdbcType="VARCHAR" property="lastName"/>-->
+        <!--        <result column="logon_name" jdbcType="VARCHAR" property="logonName"/>-->
+        <!--        <result column="adm_div_code" jdbcType="VARCHAR" property="admDivCode"/>-->
+        <!--        <result column="adm_div_name" jdbcType="VARCHAR" property="admDivName"/>-->
+        <!--        <result column="org_code" jdbcType="VARCHAR" property="orgCode"/>-->
+        <!--        <result column="org_name" jdbcType="VARCHAR" property="orgName"/>-->
+        <!--        <result column="have_read" jdbcType="VARCHAR" property="haveRead"/>-->
+        <!--        <result column="create_time" property="createTime"/>-->
+        <!--        <result column="read_time" property="readTime"/>-->
+    </resultMap>
+
+    <select id="selectTbUserPageByNotifyGuid" resultMap="user_notify_record_vo"
+            parameterType="com.qiyuan.base2048.pojo.vo.query.NotifyEmpQueryVO">
+        select
+        b.first_name,b.last_name,b.logon_name,b.adm_div_code,b.adm_div_name,b.org_code,b.org_name,a.have_read,a.create_time,a.read_time
+        from to_notify_record a left join tb_user b on a.user_guid=b.guid
+        <where>
+            and a.notify_guid=#{notifyEmpQueryVO.notifyGuid,jdbcType=VARCHAR}
+            <if test="notifyEmpQueryVO.logonName !='' and notifyEmpQueryVO.logonName != null">
+                and b.logon_name = #{notifyEmpQueryVO.logonName,jdbcType=VARCHAR}
+            </if>
+            <if test="notifyEmpQueryVO.empName !='' and notifyEmpQueryVO.empName != null">
+                and b.first_name like concat(concat('%',#{notifyEmpQueryVO.empName,jdbcType=VARCHAR}),'%')
+            </if>
+            <if test="!notifyEmpQueryVO.ignoreAdmDiv">
+                <if test="notifyEmpQueryVO.admDivCode !='' and notifyEmpQueryVO.admDivCode != null">
+                    and b.adm_div_code = #{notifyEmpQueryVO.admDivCode,jdbcType=VARCHAR}
+                </if>
+            </if>
+        </where>
+        order by b.adm_div_code,b.org_code,b.first_name
+    </select>
+
+    <resultMap id="notify_result_vo" type="com.qiyuan.base2048.pojo.vo.result.NotifyResultVO">
+        <!--        <result column="have_read" jdbcType="VARCHAR" property="haveRead"/>-->
+        <!--        <result column="create_time" property="createTime"/>-->
+        <!--        <result column="read_time" property="readTime"/>-->
+    </resultMap>
+    <select id="selectTbUserPageByUserGuid" resultMap="notify_result_vo"
+            parameterType="com.qiyuan.base2048.pojo.vo.query.MyNotifyQueryVO">
+        SELECT b.notify_type,
+        b.title,
+        b.summary,
+        b.keyword,
+        b.release_time,
+        b.release_by,
+        b.datestamp,
+        a.have_read,
+        a.read_time,
+        b.guid
+        from to_notify_record a
+        left join to_notify b
+        on a.notify_guid = b.guid
+        <where>
+            and a.user_guid=#{myNotifyQueryVO.userGuid,jdbcType=VARCHAR}
+            <if test="myNotifyQueryVO.haveRead != '' and myNotifyQueryVO.haveRead != null">
+                and a.have_read = #{myNotifyQueryVO.haveRead,jdbcType=VARCHAR}
+            </if>
+            <if test="myNotifyQueryVO.notifyType != '' and myNotifyQueryVO.notifyType != null">
+                and b.notify_type = #{myNotifyQueryVO.notifyType,jdbcType=VARCHAR}
+            </if>
+            <if test="myNotifyQueryVO.title !='' and myNotifyQueryVO.title != null">
+                and b.title like concat(concat('%',#{myNotifyQueryVO.title,jdbcType=VARCHAR}),'%')
+            </if>
+            <if test="myNotifyQueryVO.keyword !='' and myNotifyQueryVO.keyword != null">
+                and b.keyword like concat(concat('%',#{myNotifyQueryVO.keyword,jdbcType=VARCHAR}),'%')
+            </if>
+            <if test="myNotifyQueryVO.releaseBy !='' and myNotifyQueryVO.releaseBy != null">
+                and b.release_by like concat(concat('%',#{myNotifyQueryVO.releaseBy,jdbcType=VARCHAR}),'%')
+            </if>
+
+        </where>
+        order by b.release_time desc
+    </select>
+</mapper>
