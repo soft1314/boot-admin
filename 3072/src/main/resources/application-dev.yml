@@ -24,7 +24,7 @@ spring:
 #    username: base2048flow
 #    password: base2048flow
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:23306/base2048flow?useSSL=false&serverTimezone=UTC&autoReconnect=true&allowPublicKeyRetrieval=true&useOldAliasMetadataBehavior=true&nullCatalogMeansCurrent=true
+    url: jdbc:mysql://localhost:3306/base2048flow?useSSL=false&serverTimezone=UTC&autoReconnect=true&allowPublicKeyRetrieval=true&useOldAliasMetadataBehavior=true&nullCatalogMeansCurrent=true
     username: root
     password: mysql
 
@@ -114,7 +114,7 @@ seata:
       username: ${spring.cloud.nacos.discovery.username}
       password: ${spring.cloud.nacos.discovery.password}
 logging:
-  config: classpath:log4j2-custom.xml
+  config: classpath:log4j2-dev.xml
   level:
     root: info
     com.qiyuan: debug
