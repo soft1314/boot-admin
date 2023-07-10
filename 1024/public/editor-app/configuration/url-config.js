@@ -27,11 +27,11 @@ KISBPM.URL = {
 
   getStencilSet: function() {
     return ACTIVITI.CONFIG.contextRoot + '/editor/stencilset?version=' + Date.now();
-    // return 'http://localhost:4196/api/workflow/free/activiti'+ '/editor/stencilset?version=' + Date.now();
+    // return 'http://localhost:4096/api/workflow/free/activiti'+ '/editor/stencilset?version=' + Date.now();
   },
   getFreeStencilSet: function() {
     return ACTIVITI.CONFIG.contextFreeRoot + '/editor/stencilset?version=' + Date.now();
-    // return 'http://localhost:4196/api/workflow/free/activiti'+ '/editor/stencilset?version=' + Date.now();
+    // return 'http://localhost:4096/api/workflow/free/activiti'+ '/editor/stencilset?version=' + Date.now();
   },
   putModel: function(modelId) {
     return ACTIVITI.CONFIG.contextRoot + '/model/save?modelId=' + modelId;

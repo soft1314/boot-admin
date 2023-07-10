@@ -30,6 +30,10 @@ spring:
       config:
         username: ${spring.cloud.nacos.discovery.username}
         password: ${spring.cloud.nacos.discovery.password}
+  security:
+    user:
+      name: "admin"
+      password: "client123"
 logging:
   config: classpath:log4j2-console.xml
   level:

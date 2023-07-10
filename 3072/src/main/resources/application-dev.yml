@@ -10,8 +10,6 @@ spring:
         namespace: 9047c5e7-ee93-498f-9c79-10f53a92310f
         username: nacos
         password: nacos123456
-        ip: 127.0.0.1
-        port: 2048
         metadata:
           user.name: ${spring.security.user.name}
           user.password: ${spring.security.user.password}
@@ -19,14 +17,14 @@ spring:
         username: ${spring.cloud.nacos.discovery.username}
         password: ${spring.cloud.nacos.discovery.password}
   datasource:
-#    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
-#    url: jdbc:p6spy:oracle:thin:@127.0.0.1:1521:orcl
-#    username: base2048flow
-#    password: base2048flow
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/base2048flow?useSSL=false&serverTimezone=UTC&autoReconnect=true&allowPublicKeyRetrieval=true&useOldAliasMetadataBehavior=true&nullCatalogMeansCurrent=true
-    username: root
-    password: mysql
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    url: jdbc:p6spy:oracle:thin:@127.0.0.1:1521:orcl
+    username: base2048flow
+    password: base2048flow
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/base2048flow?useSSL=false&serverTimezone=UTC&autoReconnect=true&allowPublicKeyRetrieval=true&useOldAliasMetadataBehavior=true&nullCatalogMeansCurrent=true
+#    username: root
+#    password: mysql
 
   thymeleaf:
     mode: LEGACYHTML5

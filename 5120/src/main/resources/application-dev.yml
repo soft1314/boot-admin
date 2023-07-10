@@ -9,7 +9,7 @@ spring:
         server-addr: 127.0.0.1:8848
         namespace: 9047c5e7-ee93-498f-9c79-10f53a92310f
         username: nacos
-        password: nacos123
+        password: nacos123456
         metadata:
           user.name: ${spring.security.user.name}
           user.password: ${spring.security.user.password}

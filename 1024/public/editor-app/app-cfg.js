@@ -21,6 +21,6 @@
 var ACTIVITI = ACTIVITI || {};
 // edit by 
 ACTIVITI.CONFIG = {
-	'contextRoot' : 'http://localhost:4196/api/workflow/auth/activiti',
-	'contextFreeRoot' : 'http://localhost:4196/api/workflow/free/activiti',
+	'contextRoot' : 'http://localhost:4096/api/workflow/auth/activiti',
+	'contextFreeRoot' : 'http://localhost:4096/api/workflow/free/activiti',
 };
