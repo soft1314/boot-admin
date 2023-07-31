@@ -17,7 +17,7 @@ features: # 可选的
     link: /myblog/
     imgUrl: /img/ui.png
   - title: 转载
-    details: 转载技术文档、教程、技巧、总结等文章
+    details: 转载技术文档、教程、技巧、总结等文章。
     link: /technology/
     imgUrl: /img/other.png
 

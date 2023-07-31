@@ -227,6 +227,13 @@ minio:
   url: http://127.0.0.1:9000
   accessKey: minioadmin
   secreKey: minioadmin
+# 是否解析带有 @ResponseExcel 注解的函数的返回值为文件下载
+com:
+  gaoice:
+    easyexcel:
+      enable-excel-file: true
+      enable-response-excel: true
+      enable-sheet-info: true
 
 base2048:
   table-schema: BASE2048

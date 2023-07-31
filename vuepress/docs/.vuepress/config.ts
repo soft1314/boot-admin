@@ -65,10 +65,11 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
           { text: '技术文档', link: '/pages/9a7ee40fc232253e/' },
           { text: 'GitHub技巧', link: '/pages/4c778760be26d8b3/' },
           { text: 'Nodejs', link: '/pages/117708e0af7f0bd9/' },
-          { text: '博客搭建', link: '/pages/41f87d890d0a02af/' },
+          { text: '博客搭建', link: '/pages/1da0bf9a988eafe5/' },
         ],
       },
       { text: '关于', link: '/about/' },
+      { text: '友链', link: '/friends/' },
       {
         text: '收藏',
         link: '/pages/beb6c0bd8a66cea6/',
@@ -319,7 +320,7 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
       '@vuepress/last-updated', // "上次更新"时间格式
       {
         transformer: (timestamp, lang) => {
-          return dayjs(timestamp).format('YYYY/MM/DD, HH:mm:ss')
+          return dayjs(timestamp).format('YYYY/MM/DD')
         },
       },
     ],
