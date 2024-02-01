@@ -1,5 +1,6 @@
 package com.qiyuan.base2048.log;
 
+import com.alibaba.cloud.nacos.discovery.NacosServiceDiscovery;
 import com.qiyuan.base2048.feign.FeignLogService;
 import com.qiyuan.base2048.service.component.GetBeanUtils;
 import com.qiyuan.bautil.dto.ResultDTO;
@@ -15,8 +16,10 @@ import org.apache.logging.log4j.core.config.plugins.PluginAttribute;
 import org.apache.logging.log4j.core.config.plugins.PluginElement;
 import org.apache.logging.log4j.core.config.plugins.PluginFactory;
 import org.apache.logging.log4j.core.layout.PatternLayout;
+import org.springframework.cloud.client.ServiceInstance;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Slf4j
 @Plugin(name = "MyCustomAppender", category = "Core", elementType = "appender", printObject = true)
@@ -65,8 +68,21 @@ public class MyCustomAppender extends AbstractAppender {
         stringContainerVO.setStrValue(logInfo);
         FeignLogService feignLogService = GetBeanUtils.getFeignBean("feignLogService",FeignLogService.class);
         if(feignLogService != null) {
-            ResultDTO resultDTO = feignLogService.sendLog(stringContainerVO);
-            log.debug(resultDTO.getMessage());
+            try {
+                NacosServiceDiscovery nacosServiceDiscovery = GetBeanUtils.getFeignBean("nacosServiceDiscoverry",NacosServiceDiscovery.class);
+                List<ServiceInstance> serviceInstances = nacosServiceDiscovery.getInstances("service-rest-log6144");
+                if(serviceInstances != null && serviceInstances.size()>0) {
+                    ResultDTO resultDTO = feignLogService.sendLog(stringContainerVO);
+                }else{
+                    System.out.println("未发现日志服务！");
+                }
+//            log.debug(resultDTO.getMessage());
+            }catch (RuntimeException runtimeException){
+                System.out.println(runtimeException.getMessage());
+            }catch (Exception ex){
+                System.out.println(ex.getMessage());
+
+            }
         }
     }
 }

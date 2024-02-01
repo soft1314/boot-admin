@@ -1,5 +1,5 @@
 server:
-  port: 3072
+  port: 4072
 spring:
   application:
     name: service-rest-workflow3072
@@ -7,7 +7,7 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
-        namespace: 9047c5e7-ee93-498f-9c79-10f53a92310f
+        namespace: bootadmin
         username: nacos
         password: nacos123456
         metadata:
@@ -99,7 +99,7 @@ seata:
     type: nacos
     nacos:
       server-addr: 127.0.0.1:8848
-      namespace: a667f2c4-d1f7-466b-80e7-2fa043135670
+      namespace: bootadminseata
       group: SEATA_GROUP
       username: ${spring.cloud.nacos.discovery.username}
       password: ${spring.cloud.nacos.discovery.password}

@@ -461,6 +461,7 @@ export default {
     },
     async getMainTableData() {
       this.loading = false
+      debugger
       const response = await fetchTbLogAuthPage(this.filterDrawer.formData)
       this.loading = false
       if (response.code !== 100) {

@@ -17,7 +17,7 @@
             <column name="OPER_IP" remarks="IP地址" type="NVARCHAR2(24)">
                 <constraints nullable="false"/>
             </column>
-            <column name="MSG" remarks="消息内容" type="NVARCHAR2(4000)">
+            <column name="MSG" remarks="消息内容" type="NVARCHAR2(2000)">
                 <constraints nullable="false"/>
             </column>
             <column name="CREATE_BY" remarks="记录创建者" type="NVARCHAR2(100)">

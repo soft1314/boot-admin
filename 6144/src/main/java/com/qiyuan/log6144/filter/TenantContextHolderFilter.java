@@ -36,11 +36,11 @@ public class TenantContextHolderFilter extends GenericFilterBean {
             //todo
             String tenantId = "DEMO";//request.getHeader(TenantContextHolder.TENANT_ID);
             if (StringUtil.isNotBlank(tenantId)) {
-                log.info("tenantId={}-------------获取到的租户ID", tenantId);
+//                log.info("tenantId={}-------------获取到的租户ID", tenantId);
                 TenantContextHolder.setTenantId(tenantId);
                 filterChain.doFilter(request, response);
             }else{
-                logger.error("tenantId is blank.--------------未取到租户ID");
+//                logger.error("tenantId is blank.--------------未取到租户ID");
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED, MessageUtils.get("tenant.id.blank.error"));
                 return;
             }

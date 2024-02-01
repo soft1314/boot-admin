@@ -27,6 +27,9 @@ import javax.annotation.Resource;
 import java.nio.charset.StandardCharsets;
 import java.util.function.Consumer;
 
+/**
+ * 处理令牌超时更新问题
+ */
 @Component
 @Slf4j
 public class TokenTimeOutFilter implements GlobalFilter, Ordered {
@@ -39,7 +42,6 @@ public class TokenTimeOutFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         String uri = exchange.getRequest().getPath().toString();
-        log.info(uri);
         if(UrlTool.isFreeUrl(uri)){
             return chain.filter(exchange);
         }

@@ -5,7 +5,6 @@ import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -75,4 +74,6 @@ public class TbLogAuthScene1QueryVO extends BasePageQueryVO {
             *  备注
             */
         private String remarks;
+
+        private Date datestamp;
 }

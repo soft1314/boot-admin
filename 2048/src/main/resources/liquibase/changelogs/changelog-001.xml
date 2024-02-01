@@ -377,7 +377,7 @@
             <column name="OPERATOR" remarks="操作人" type="NVARCHAR2(100)">
                 <constraints nullable="false"/>
             </column>
-            <column name="LOG_CONTENT" remarks="日志内容" type="NVARCHAR2(4000)">
+            <column name="LOG_CONTENT" remarks="日志内容" type="NVARCHAR2(2000)">
                 <constraints nullable="false"/>
             </column>
             <column name="CREATE_BY" remarks="记录创建者" type="NVARCHAR2(100)">

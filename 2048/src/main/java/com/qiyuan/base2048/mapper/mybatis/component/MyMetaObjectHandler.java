@@ -18,7 +18,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
 
     @Override
     public void insertFill(MetaObject metaObject) {
-        log.info("start insert fill ....");
+        log.debug("start insert fill ....");
         Date now = new Date();
         String operator = UserTool.getOperator();
         this.setFieldValByName("createTime",now,metaObject);

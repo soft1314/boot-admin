@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 //@Component
-@FeignClient(contextId = "feignBaseService" ,value = "service-rest-base2048", configuration = FeignConfig.class, fallbackFactory = FeignBaseServiceHystricImplFactory.class)
+@FeignClient(contextId = "feignBaseService" ,value = "base2048", configuration = FeignConfig.class, fallbackFactory = FeignBaseServiceHystricImplFactory.class)
 //@FeignClient(contextId = "feignBaseService" ,value = "service-rest-base2048")
 public interface FeignBaseService {
     @GetMapping(value = "/api/system/free/resource/role/list")

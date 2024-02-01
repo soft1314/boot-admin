@@ -19,6 +19,7 @@ import codeGeneratorRouter from './modules/codegenerator.js'
 import generatedRouter from './modules/generated.js'
 import myWorkRouter from './modules/mywork.js'
 import workflowRouter from './modules/workflow.js'
+import gisRouter from './modules/gis.js'
 /**
  * Note: sub-menu only appear when route children.length >= 1
  * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
@@ -90,7 +91,8 @@ export const constantRoutes = [{
     }
   }]
 },
-guideRouter
+guideRouter,
+gisRouter
 
 // 404 page must be placed at the end !!!
 // but 加上下面，console 会报红，Duplicate keys detected: '*'. This may cause an update error

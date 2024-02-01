@@ -82,6 +82,7 @@ public class TbLogAuthScene1ServiceImpl extends ServiceImpl<TbLogAuthMapper, TbL
         continue;
       }
     }
+    wrapper.orderByDesc("GUID");
     IPage<TbLogAuth> page = new Page<>(queryVO.getCurrentPage(),queryVO.getPageSize());
     page = this.page(page,wrapper);
     return ResultDTO.success(page);

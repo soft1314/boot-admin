@@ -31,6 +31,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 /**
+ * 检查token有效性，可用性，格式处理等
  * @author 虚领顶劲气沉丹田
  * @create 2021-10-25 17:41
  **/
@@ -57,7 +58,6 @@ public class AuthFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain){
         String uri = exchange.getRequest().getPath().toString();
-        log.info(uri);
         if(UrlTool.isFreeUrl(uri)){
             return chain.filter(exchange);
         }
@@ -68,8 +68,6 @@ public class AuthFilter implements GlobalFilter, Ordered {
             }
             HttpHeaders headers = exchange.getRequest().getHeaders();
             String token = headers.getFirst(JwtUtil.AUTHORIZE_TOKEN);
-            log.info(token);
-
             if (StringUtils.isBlank(token)) {
                 log.warn("token is blank ------令牌是空白");
                 log.warn(exchange.getRequest().getMethodValue());
@@ -165,8 +163,6 @@ public class AuthFilter implements GlobalFilter, Ordered {
         }else{
             throw new JwtUtil.TokenValidationException("令牌丢失了。");
         }
-
     }
-
 }
 

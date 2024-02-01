@@ -13,6 +13,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 
+/**
+ * 弃用了，改用注解实现
+ */
 //@Aspect
 @Component
 @Slf4j

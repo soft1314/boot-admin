@@ -104,6 +104,7 @@ public class LoginServiceImpl implements LoginService {
             authLogSaver.saveLog(userName, ResultTypeEnum.SUCCESS,"登录成功，正常返回TOKEN。");
             return ResultDTO.success(accessToken);
         }
+        authLogSaver.saveLog(userName, ResultTypeEnum.SUCCESS,"开始使用密码进行登录。");
 
         /** 加密 **/
         password = SmUtil.sm3(password).toUpperCase();

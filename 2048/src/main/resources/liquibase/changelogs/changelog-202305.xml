@@ -1728,7 +1728,7 @@
             <column name="URI" value="/api/system/auth/manage/logmanage/operate"/>
             <column name="RESOURCE_TYPE" value="1"/>
             <column name="ACCESS_CONTROL_STYLE" value="03"/>
-            <column name="NAME" value="操作日志"/>
+            <column name="NAME" value="运行日志ELK"/>
             <column name="CREATE_TIME" valueComputed="${time.current}"/>
             <column name="MODIFY_TIME" valueComputed="${time.current}"/>
             <column name="ENABLED" value="1"/>
@@ -1839,7 +1839,7 @@
             <column name="URI" remarks="访问点" type="NVARCHAR2(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="ERROR_MSG" remarks="异常消息" type="NVARCHAR2(4000)">
+            <column name="ERROR_MSG" remarks="异常消息" type="NVARCHAR2(2000)">
                 <constraints nullable="true"/>
             </column>
             <column name="METHOD" remarks="访问方法" type="NVARCHAR2(255)">
@@ -1860,10 +1860,10 @@
             <column name="OPERATOR_TYPE" remarks="操作人员类别;OPERATOR_TYPE" type="NVARCHAR2(2)">
                 <constraints nullable="false"/>
             </column>
-            <column name="OPER_PARAM" remarks="请求参数" type="NVARCHAR2(4000)">
+            <column name="OPER_PARAM" remarks="请求参数" type="NVARCHAR2(2000)">
                 <constraints nullable="true"/>
             </column>
-            <column name="JSON_RESULT" remarks="响应结果" type="NVARCHAR2(4000)">
+            <column name="JSON_RESULT" remarks="响应结果" type="NVARCHAR2(2000)">
                 <constraints nullable="true"/>
             </column>
             <column name="CREATE_BY" remarks="记录创建者" type="NVARCHAR2(100)">

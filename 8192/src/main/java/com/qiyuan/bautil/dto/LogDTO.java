@@ -10,6 +10,7 @@ public class LogDTO {
     private String level;
     private String loggerName;
     private String message;
+    private Object thrown;
     private Boolean endOfBatch;
     private String loggerFqcn;
     private BigDecimal threadId;

@@ -1,6 +1,6 @@
 <!-- 本文件自动生成，再次生成时易被覆盖 -->
 <!-- @author 虚领顶劲气沉丹田 -->
-<!-- @since 2023-4-13 -->
+<!-- @since 2024-1-24 10:25:45 -->
 <template>
   <div class="app-container background-white">
     <!-- 查询抽屉开始 -->
@@ -439,15 +439,15 @@ export default {
           guid: '',
           name: '',
           sex: '',
-          birthday: '',
+          birthday: null,
           techTitle: '',
-          salary: '',
+          salary: null,
           note: '',
           createBy: '',
-          createTime: '',
+          createTime: null,
           modifyBy: '',
-          modifyTime: '',
-          datestamp: '',
+          modifyTime: null,
+          datestamp: null,
           enabled: '',
           deleted: '',
           remarks: '',

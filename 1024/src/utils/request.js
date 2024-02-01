@@ -90,7 +90,11 @@ service.interceptors.response.use(
     } else {
       const result = {}
       result.code = '102'
-      result.message = 'HTTP状态码[' + error.response.status + '],HTTP状态[' + error.response.statusText + '],系统错误信息:  Error[' + error.response.data.error + '],Status[' + error.response.data.status + '],Message[' + error.response.data.message + '],URI[' + error.response.data.path + '],Exception:' + error.response.data.exception
+      if (error.response.data === '') {
+        result.message = 'HTTP状态码[' + error.response.status + '],HTTP状态[' + error.response.statusText + ']'
+      } else {
+        result.message = 'HTTP状态码[' + error.response.status + '],HTTP状态[' + error.response.statusText + '],系统错误信息:  Error[' + error.response.data.error + '],Status[' + error.response.data.status + '],Message[' + error.response.data.message + '],URI[' + error.response.data.path + '],Exception:' + error.response.data.exception
+      }
       return result
     }
   }

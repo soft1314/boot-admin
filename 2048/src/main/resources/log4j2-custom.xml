@@ -71,7 +71,7 @@
             <appender-ref ref="INFO_APPENDER"/>
             <appender-ref ref="ERROR_APPENDER"/>
 <!--            <appender-ref ref="HTTP_APPENDER" level="ERROR"/>-->
-            <appender-ref ref="MyCustomAppender"  level="INFO"/>
+            <appender-ref ref="MyCustomAppender"  level="TRACE"/>
         </root>
         <!-- 第三方日志系统 -->
         <logger name="com.qiyuan" level="TRACE" additivity="false" includeLocation="true">
@@ -80,7 +80,7 @@
             <appender-ref ref="INFO_APPENDER"/>
             <appender-ref ref="ERROR_APPENDER"/>
 <!--            <appender-ref ref="HTTP_APPENDER" level="WARN"/>-->
-            <appender-ref ref="MyCustomAppender"  level="INFO"/>
+            <appender-ref ref="MyCustomAppender"  level="TRACE"/>
         </logger>
         <logger name="org.springframework" level="WARN"/>
         <logger name="org.apache" level="WARN"/>

@@ -207,7 +207,7 @@ const sysManageRouter = {
       srvName: '/api/system/auth/manage/operationmanage/log',
       component: () => import('@/views/manage/operationmanage/log/index'),
       meta: {
-        title: '系统日志',
+        title: 'ELK',
         icon: 'tree'
       }
     },
@@ -311,7 +311,7 @@ const sysManageRouter = {
         srvName: '/api/system/auth/manage/logmanage/operate',
         component: () => import('@/views/manage/logmanage/operate/index'),
         meta: {
-          title: '操作日志',
+          title: '运行日志ELK',
           icon: 'tree'
         }
       },

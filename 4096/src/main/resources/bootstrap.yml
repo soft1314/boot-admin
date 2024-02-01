@@ -1,0 +1,33 @@
+﻿spring:
+  main:
+    allow-circular-references: true
+  application:
+    name: gateway4096
+  profiles:
+    active: nacos
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: bootadmin
+        username: nacos
+        password: nacos123456
+        group: DEFAULT_GROUP
+        metadata:
+          user.name: ${spring.security.user.name}
+          user.password: ${spring.security.user.password}
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        namespace: ${spring.cloud.nacos.discovery.namespace}
+        username: ${spring.cloud.nacos.discovery.username}
+        password: ${spring.cloud.nacos.discovery.password}
+        group: ${spring.cloud.nacos.discovery.group}
+        file-extension: yaml
+jasypt:
+  encryptor:
+    password: G9w0BAQEFAASCBKYwggSiAgEAAoIBAQC
+    property:
+      prefix: "ENC@["
+      suffix: "]"
+
+
